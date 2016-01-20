@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: CT_ICH_Segmentation.aux
+The style file: biblatex.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated field_info (elt_size=4) to 11394 items from 5000.
+Database file #1: CT_ICH_Segmentation-blx.bib
+Database file #2: CT_Skull_Stripping_Bib.bib
+Database file #3: CT_ICH_Segmentation.bib
+Reallocated str_pool (elt_size=1) to 130000 items from 65000.
+Database file #4: extra_bibs_addon.bib
+Biblatex version: 2.9
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+You've used 46 entries,
+            6047 wiz_defined-function locations,
+            1612 strings with 77194 characters,
+and the built_in function-call counts, 337401 in all, are:
+= -- 8153
+> -- 34249
+< -- 2614
++ -- 28019
+- -- 28097
+* -- 21863
+:= -- 40355
+add.period$ -- 0
+call.type$ -- 46
+change.case$ -- 628
+chr.to.int$ -- 2218
+cite$ -- 90
+duplicate$ -- 28839
+empty$ -- 23523
+format.name$ -- 5320
+if$ -- 48918
+int.to.chr$ -- 0
+int.to.str$ -- 104
+missing$ -- 0
+newline$ -- 2938
+num.names$ -- 2030
+pop$ -- 14882
+preamble$ -- 1
+purify$ -- 940
+quote$ -- 0
+skip$ -- 11469
+stack$ -- 0
+substring$ -- 11224
+swap$ -- 11262
+text.length$ -- 2312
+text.prefix$ -- 55
+top$ -- 1
+type$ -- 1736
+warning$ -- 0
+while$ -- 2624
+width$ -- 0
+write$ -- 2891

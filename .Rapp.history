@@ -1,0 +1,187 @@
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_111_Filenames_with_Exclusions.Rda")
+q('no')
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Aggregate_data_cutoffs_Rigid.Rda")
+ls()
+est.cutoffs
+save(est.cutoffs, "~/Dropbox/Packages/cttools/data/est.cutoffs.rda")
+save(est.cutoffs, file = "~/Dropbox/Packages/cttools/data/est.cutoffs.rda")
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+ls()
+q('no')
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+xlong = long#
+#
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+slong = filter(long, #
+    cutoff %in% c("Smoothed"),#
+    group %in% c("Test", "Validation"))#
+relev = c("logistic" = "Logistic",#
+        "lasso" = "LASSO",#
+        "gam" = "GAM",#
+        "rf" = "Random\nForest")#
+slong$mod = revalue(slong$mod, #
+    relev#
+    )#
+slong$mod = factor(slong$mod,#
+    levels = relev)#
+#
+nlong = filter(slong, app %in% "Native")#
+llong = select(nlong, mod, #
+    dice, sens, accur,#
+    spec, iimg, group)#
+llong = melt(llong, #
+    id.vars = c("iimg", "group", "mod"))#
+relev2 = c("dice" = "Dice Similarity Index",#
+        "accur" = "Accuracy",#
+        "sens" = "Sensitivity",#
+        "spec" = "Specificity")#
+llong$variable = revalue(llong$variable, #
+    relev2#
+    )#
+llong$variable = factor(llong$variable, #
+    levels = relev2)
+?facet_wr
+library(ggplot2)
+?facet_wr
+??facet_wrap
+?facet_wrap
+??facet_grid
+?facet_grid
+?facet_wrap
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/logistic_modlist.rda")
+coefs = broom::tidy(logistic_modlist$mod, quick = TRUE)
+coefs
+load("/Users/johnmuschelli/Dropbox/Packages/ichseg/data/logistic_modlist.rda")
+coefs2 = broom::tidy(logistic_modlist$mod, quick = TRUE)
+coefs
+coefs2
+all.equal(coefs2, coefs)
+names(coefs2$term)
+coefs2$term
+dput(as.character(coefs2$term))
+?plyr::rename
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/logistic_modlist.rda")
+logistic_modlist$mod
+coef(logistic_modlist$mod)
+length(coef(logistic_modlist$mod))
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+ls()
+all.results
+head(long)
+library(dplyr)
+native = filter(long, app == "Native")
+head(native)
+load("Reseg_Results.Rda")#
+slong = filter(long, #
+    cutoff %in% c("Smoothed"),#
+    group %in% c("Test", "Validation"))#
+relev = c("logistic" = "Logistic",#
+        "lasso" = "LASSO",#
+        "gam" = "GAM",#
+        "rf" = "Random\nForest")#
+slong$mod = revalue(slong$mod, #
+    relev#
+    )#
+slong$mod = factor(slong$mod,#
+    levels = relev)#
+#
+nlong = filter(slong, app %in% "Native")
+q('no')
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+library(plyr)
+library(dplyr)
+slong = filter(long, #
+    cutoff %in% c("Smoothed"),#
+    group %in% c("Test", "Validation"))#
+relev = c("logistic" = "Logistic",#
+        "lasso" = "LASSO",#
+        "gam" = "GAM",#
+        "rf" = "Random\nForest")#
+slong$mod = plyr::revalue(slong$mod, #
+    relev#
+    )#
+slong$mod = factor(slong$mod,#
+    levels = relev)#
+#
+nlong = filter(slong, app %in% "Native")
+nlong
+head(long)
+table(long$cutoff)
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+slong = filter(long, #
+    cutoff %in% c("Smoothed"),#
+    group %in% c("Test", "Validation"))#
+relev = c("logistic" = "Logistic",#
+        "lasso" = "LASSO",#
+        "gam" = "GAM",#
+        "rf" = "Random\nForest")#
+slong$mod = plyr::revalue(slong$mod, #
+    relev#
+    )#
+slong$mod = factor(slong$mod,#
+    levels = relev)#
+#
+nlong = filter(slong, app %in% "Native")
+nlong
+head(nlong)
+rm(list=ls())
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+slong = filter(long, #
+    cutoff %in% c("Smoothed"),#
+    group %in% c("Test", "Validation"))#
+relev = c("logistic" = "Logistic",#
+        "lasso" = "LASSO",#
+        "gam" = "GAM",#
+        "rf" = "Random\nForest")#
+slong$mod = revalue(slong$mod, #
+    relev#
+    )#
+slong$mod = factor(slong$mod,#
+    levels = relev)#
+#
+nlong = filter(slong, app %in% "Native")#
+llong = select(nlong, mod, #
+    dice, sens, accur,#
+    spec, iimg, group)#
+llong = melt(llong, #
+    id.vars = c("iimg", "group", "mod"))#
+relev2 = c("dice" = "Dice Similarity Index",#
+        "accur" = "Accuracy",#
+        "sens" = "Sensitivity",#
+        "spec" = "Specificity")#
+llong$variable = revalue(llong$variable, #
+    relev2#
+    )#
+llong$variable = factor(llong$variable, #
+    levels = relev2)#
+native = filter(slong, app %in% "Native")
+med_dice = group_by(native, mod) %>% summarise(median(dice))

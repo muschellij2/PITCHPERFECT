@@ -1,0 +1,27 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Methods}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Data}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{ Participants and Imaging Data }{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Hemorrhage Segmentation and Location Identification}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Image Processing: Brain Extraction, Registration}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Image Registration}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{Voxel Selection}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.7}{Imaging Predictors}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.7.1}{CT voxel intensity information}{subsection.2.7}% 10
+\BOOKMARK [3][-]{subsubsection.2.7.2}{Local Moment Information}{subsection.2.7}% 11
+\BOOKMARK [3][-]{subsubsection.2.7.3}{Within-plane Standard Scores}{subsection.2.7}% 12
+\BOOKMARK [3][-]{subsubsection.2.7.4}{First-pass Segmentation}{subsection.2.7}% 13
+\BOOKMARK [3][-]{subsubsection.2.7.5}{Contralateral Difference Images}{subsection.2.7}% 14
+\BOOKMARK [3][-]{subsubsection.2.7.6}{Global Head Information}{subsection.2.7}% 15
+\BOOKMARK [3][-]{subsubsection.2.7.7}{Standardized-to-template Intensity}{subsection.2.7}% 16
+\BOOKMARK [2][-]{subsection.2.8}{Model Creation}{section.2}% 17
+\BOOKMARK [2][-]{subsection.2.9}{Models}{section.2}% 18
+\BOOKMARK [2][-]{subsection.2.10}{Estimating a Cutoff for Model Probability}{section.2}% 19
+\BOOKMARK [2][-]{subsection.2.11}{Measuring and Testing ICH Prediction Performance}{section.2}% 20
+\BOOKMARK [1][-]{section.3}{Results}{}% 21
+\BOOKMARK [2][-]{subsection.3.1}{Dice Similarity Index}{section.3}% 22
+\BOOKMARK [2][-]{subsection.3.2}{ICH Volume Estimation}{section.3}% 23
+\BOOKMARK [2][-]{subsection.3.3}{Model Choice}{section.3}% 24
+\BOOKMARK [1][-]{section.4}{Discussion}{}% 25
+\BOOKMARK [1][-]{section.5}{Appendix}{}% 26
+\BOOKMARK [2][-]{subsection.5.1}{Model Specification}{section.5}% 27
