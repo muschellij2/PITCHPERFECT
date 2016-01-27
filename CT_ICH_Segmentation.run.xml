@@ -82,9 +82,7 @@
       <file>CT_ICH_Segmentation-blx.bib</file>
     </requires>
     <requires type="editable">
-      <file>CT_Skull_Stripping_Bib.bib</file>
-      <file>CT_ICH_Segmentation.bib</file>
-      <file>extra_bibs_addon.bib</file>
+      <file>ich_chapter.bib</file>
     </requires>
     <requires type="static">
       <file>biblatex.bst</file>

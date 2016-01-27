@@ -13,53 +13,51 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 11394 items from 5000.
+Reallocated field_info (elt_size=4) to 12089 items from 5000.
 Database file #1: CT_ICH_Segmentation-blx.bib
-Database file #2: CT_Skull_Stripping_Bib.bib
-Database file #3: CT_ICH_Segmentation.bib
+Database file #2: ich_chapter.bib
 Reallocated str_pool (elt_size=1) to 130000 items from 65000.
-Database file #4: extra_bibs_addon.bib
 Biblatex version: 2.9
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
-You've used 46 entries,
+You've used 51 entries,
             6047 wiz_defined-function locations,
-            1612 strings with 77194 characters,
-and the built_in function-call counts, 337401 in all, are:
-= -- 8153
-> -- 34249
-< -- 2614
-+ -- 28019
-- -- 28097
-* -- 21863
-:= -- 40355
+            1646 strings with 79887 characters,
+and the built_in function-call counts, 360621 in all, are:
+= -- 8892
+> -- 35687
+< -- 2808
++ -- 28962
+- -- 29062
+* -- 23755
+:= -- 42314
 add.period$ -- 0
-call.type$ -- 46
-change.case$ -- 628
-chr.to.int$ -- 2218
-cite$ -- 90
-duplicate$ -- 28839
-empty$ -- 23523
-format.name$ -- 5320
-if$ -- 48918
+call.type$ -- 51
+change.case$ -- 704
+chr.to.int$ -- 2290
+cite$ -- 100
+duplicate$ -- 31266
+empty$ -- 25590
+format.name$ -- 5836
+if$ -- 53309
 int.to.chr$ -- 0
-int.to.str$ -- 104
+int.to.str$ -- 118
 missing$ -- 0
-newline$ -- 2938
-num.names$ -- 2030
-pop$ -- 14882
+newline$ -- 3171
+num.names$ -- 2272
+pop$ -- 16537
 preamble$ -- 1
-purify$ -- 940
+purify$ -- 1044
 quote$ -- 0
-skip$ -- 11469
+skip$ -- 12525
 stack$ -- 0
-substring$ -- 11224
-swap$ -- 11262
-text.length$ -- 2312
-text.prefix$ -- 55
+substring$ -- 11819
+swap$ -- 12141
+text.length$ -- 2487
+text.prefix$ -- 60
 top$ -- 1
-type$ -- 1736
+type$ -- 1926
 warning$ -- 0
-while$ -- 2624
+while$ -- 2774
 width$ -- 0
-write$ -- 2891
+write$ -- 3119

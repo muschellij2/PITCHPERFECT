@@ -185,3 +185,181 @@ llong$variable = factor(llong$variable, #
     levels = relev2)#
 native = filter(slong, app %in% "Native")
 med_dice = group_by(native, mod) %>% summarise(median(dice))
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+load("Reseg_Results.Rda")#
+run_group = c("Test", "Validation")#
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+slong = filter(long, #
+    group %in% c("Test", "Validation"))    #
+slong = filter(long, #
+    cutoff %in% c("Smoothed"))#
+nlong = filter(slong, app %in% "Native")#
+llong = select(nlong, mod, #
+    dice, sens, accur,#
+    spec, iimg, group)#
+llong = melt(llong, #
+    id.vars = c("iimg", "group", "mod"))#
+relev2 = c("dice" = "Dice Similarity Index",#
+        "accur" = "Accuracy",#
+        "sens" = "Sensitivity",#
+        "spec" = "Specificity")#
+llong$variable = revalue(llong$variable, #
+    relev2#
+    )#
+llong$variable = factor(llong$variable, #
+    levels = relev2)#
+native = filter(slong, app %in% "Native")#
+qs = quantile(native$dice)#
+ranks = rank(native$dice)#
+inds = floor(quantile(1:nrow(fdf.run)))#
+pick = which(ranks %in% inds)#
+pick = pick[ order(ranks[pick])]
+library(plyr)
+library(dplyr)
+library(reshape2)
+load("Reseg_Results.Rda")#
+run_group = c("Test", "Validation")#
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+slong = filter(long, #
+    group %in% c("Test", "Validation"))    #
+slong = filter(long, #
+    cutoff %in% c("Smoothed"))#
+nlong = filter(slong, app %in% "Native")#
+llong = select(nlong, mod, #
+    dice, sens, accur,#
+    spec, iimg, group)#
+llong = melt(llong, #
+    id.vars = c("iimg", "group", "mod"))#
+relev2 = c("dice" = "Dice Similarity Index",#
+        "accur" = "Accuracy",#
+        "sens" = "Sensitivity",#
+        "spec" = "Specificity")#
+llong$variable = revalue(llong$variable, #
+    relev2#
+    )#
+llong$variable = factor(llong$variable, #
+    levels = relev2)#
+native = filter(slong, app %in% "Native")#
+qs = quantile(native$dice)#
+ranks = rank(native$dice)#
+inds = floor(quantile(1:nrow(fdf.run)))#
+pick = which(ranks %in% inds)#
+pick = pick[ order(ranks[pick])]
+dim(native)
+head(native)
+dice = filater(native, mod %in% "rf")#
+qs = quantile(dice$dice)#
+ranks = rank(dice$dice)#
+inds = floor(quantile(1:nrow(fdf.run)))
+dice = filter(native, mod %in% "rf")#
+qs = quantile(dice$dice)#
+ranks = rank(dice$dice)#
+inds = floor(quantile(1:nrow(fdf.run)))#
+pick = which(ranks %in% inds)
+dice
+dim(dice)
+oad("Reseg_Results.Rda")#
+run_group = c("Test", "Validation")#
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+long = filter(long, #
+    group %in% c("Test", "Validation"))    #
+slong = filter(long, #
+    cutoff %in% c("Smoothed"))#
+nlong = filter(slong, app %in% "Native")#
+llong = select(nlong, mod, #
+    dice, sens, accur,#
+    spec, iimg, group)#
+llong = melt(llong, #
+    id.vars = c("iimg", "group", "mod"))#
+relev2 = c("dice" = "Dice Similarity Index",#
+        "accur" = "Accuracy",#
+        "sens" = "Sensitivity",#
+        "spec" = "Specificity")#
+llong$variable = revalue(llong$variable, #
+    relev2#
+    )#
+llong$variable = factor(llong$variable, #
+    levels = relev2)#
+native = filter(slong, app %in% "Native")#
+#
+dice = filter(native, mod %in% "rf")#
+qs = quantile(dice$dice)#
+ranks = rank(dice$dice)#
+inds = floor(quantile(1:nrow(fdf.run)))#
+pick = which(ranks %in% inds)#
+pick = pick[ order(ranks[pick])]
+rm(list=ls())
+load("Reseg_Results.Rda")#
+run_group = c("Test", "Validation")#
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+long = filter(long, #
+    group %in% c("Test", "Validation"))    #
+slong = filter(long, #
+    cutoff %in% c("Smoothed"))#
+nlong = filter(slong, app %in% "Native")#
+llong = select(nlong, mod, #
+    dice, sens, accur,#
+    spec, iimg, group)#
+llong = melt(llong, #
+    id.vars = c("iimg", "group", "mod"))#
+relev2 = c("dice" = "Dice Similarity Index",#
+        "accur" = "Accuracy",#
+        "sens" = "Sensitivity",#
+        "spec" = "Specificity")#
+llong$variable = revalue(llong$variable, #
+    relev2#
+    )#
+llong$variable = factor(llong$variable, #
+    levels = relev2)#
+native = filter(slong, app %in% "Native")#
+#
+dice = filter(native, mod %in% "rf")#
+qs = quantile(dice$dice)#
+ranks = rank(dice$dice)#
+inds = floor(quantile(1:nrow(dice)))#
+pick = which(ranks %in% inds)#
+pick = pick[ order(ranks[pick])]
+pick
+dice = dice[pick, , drop=FALSE]
+dice
+qs
+?quantile
+dice$quantile = names(qs)
+head(dice)
+q('no')

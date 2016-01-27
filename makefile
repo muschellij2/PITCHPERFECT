@@ -10,7 +10,7 @@ ${name}.pdf: ${name}.Rnw ${name}.tex \
 	then \
 	rm ${name}.aux; \
 	fi;
-	Rscript -e "library(knitr); knit('${name}.Rnw')"
+	Rscript -e "library(knitr); knit('${name}.Rnw'); purl('${name}.Rnw')"
 	pdflatex ${name}
 	bibtex ${name}
 	bibtex ${name}

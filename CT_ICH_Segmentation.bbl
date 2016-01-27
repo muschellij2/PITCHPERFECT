@@ -658,6 +658,44 @@
   \field{urlyear}{2014}
 \endentry
 
+\entry{carhuapoma2003brain}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Carhuapoma}{C.}%
+     {Ricardo~J}{R.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {Daniel~F}{D.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Banerjee}{B.}%
+     {Mousumi}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Beauchamp}{B.}%
+     {Norman~J}{N.~J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {LWW}%
+  }
+  \strng{namehash}{CRJ+1}
+  \strng{fullhash}{CRJHDFBMBNJ1}
+  \field{sortinit}{C}
+  \field{number}{3}
+  \field{pages}{230\bibrangedash 233}
+  \field{title}{Brain Edema After Human Cerebral Hemorrhage A Magnetic
+  Resonance Imaging Volumetric Analysis}
+  \field{volume}{15}
+  \field{journaltitle}{Journal of neurosurgical anesthesiology}
+  \field{year}{2003}
+\endentry
+
 \entry{castellanos_predictors_2005}{article}{}
   \name{author}{6}{}{%
     {{}%
@@ -752,6 +790,45 @@
   \field{urlday}{17}
   \field{urlmonth}{11}
   \field{urlyear}{2015}
+\endentry
+
+\entry{shiny}{manual}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Chang}{C.}%
+     {Winston}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cheng}{C.}%
+     {Joe}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Allaire}{A.}%
+     {JJ}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Xie}{X.}%
+     {Yihui}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {McPherson}{M.}%
+     {Jonathan}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CW+1}
+  \strng{fullhash}{CWCJAJXYMJ1}
+  \field{sortinit}{C}
+  \field{note}{R package version 0.12.2}
+  \field{title}{shiny: Web Application Framework for {R}}
+  \verb{url}
+  \verb http://CRAN.R-project.org/package=shiny
+  \endverb
+  \field{year}{2015}
 \endentry
 
 \entry{dice_measures_1945}{article}{}
@@ -1867,6 +1944,63 @@
   \field{year}{2015}
 \endentry
 
+\entry{muschelli2015quantitative}{article}{}
+  \name{author}{8}{}{%
+    {{}%
+     {Muschelli}{M.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ullman}{U.}%
+     {Natalie~L}{N.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sweeney}{S.}%
+     {Elizabeth~M}{E.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Eloyan}{E.}%
+     {Ani}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Martin}{M.}%
+     {Neil}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vespa}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {Daniel~F}{D.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Crainiceanu}{C.}%
+     {Ciprian~M}{C.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Am Heart Assoc}%
+  }
+  \strng{namehash}{MJ+1}
+  \strng{fullhash}{MJUNLSEMEAMNVPHDFCCM1}
+  \field{sortinit}{M}
+  \field{number}{11}
+  \field{pages}{3270\bibrangedash 3273}
+  \field{title}{Quantitative Intracerebral Hemorrhage Localization}
+  \field{volume}{46}
+  \field{journaltitle}{Stroke}
+  \field{year}{2015}
+\endentry
+
 \entry{muschelli_validated_2015}{article}{}
   \name{author}{6}{}{%
     {{}%
@@ -2075,6 +2209,36 @@
   \field{urlday}{21}
   \field{urlmonth}{01}
   \field{urlyear}{2015}
+\endentry
+
+\entry{perona1994anisotropic}{incollection}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Perona}{P.}%
+     {Pietro}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shiota}{S.}%
+     {Takahiro}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Malik}{M.}%
+     {Jitendra}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{PPSTMJ1}
+  \strng{fullhash}{PPSTMJ1}
+  \field{sortinit}{P}
+  \field{booktitle}{Geometry-driven diffusion in computer vision}
+  \field{pages}{73\bibrangedash 92}
+  \field{title}{Anisotropic diffusion}
+  \field{year}{1994}
 \endentry
 
 \entry{prakash_segmentation_2012}{article}{}
@@ -2923,6 +3087,93 @@
   \field{urlday}{09}
   \field{urlmonth}{12}
   \field{urlyear}{2014}
+\endentry
+
+\entry{wang_hematoma_2013}{article}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Wang}{W.}%
+     {Shuo}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lou}{L.}%
+     {Min}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Liu}{L.}%
+     {Tian}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cui}{C.}%
+     {Deqi}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chen}{C.}%
+     {Xiaomei}{X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wang}{W.}%
+     {Yi}{Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{gradient echo, hematoma volume, Intracerebral hemorrhage, Magnetic
+  Resonance Imaging, quantitative susceptibility mapping}
+  \strng{namehash}{WS+1}
+  \strng{fullhash}{WSLMLTCDCXWY1}
+  \field{sortinit}{W}
+  \field{abstract}{%
+  Background and Purpose—A novel quantitative susceptibility mapping ({QSM})
+  processing technology has been developed to map tissue susceptibility
+  property without blooming artifacts. We hypothesize that hematoma volume
+  measurement on {QSM} is independent of imaging parameters, eliminating its
+  echo time dependence on gradient echo {MRI}. Methods—Gradient echo {MRI} of
+  16 patients with intracerebral hemorrhage was processed with
+  susceptibility-weighted imaging, R2* (=1/T2*) mapping, and {QSM} at various
+  echo times. Hematoma volumes were measured from these images.
+  Results—Linear regression of hematoma volume versus echo time showed
+  substantial slopes for gradient echo magnitude (0.45±0.31 L/s),
+  susceptibility-weighted imaging (0.52±0.46), and R2* (0.39±0.30) but nearly
+  zero slope for {QSM} (0.01±0.05). At echo time=20 ms, hematoma volume on
+  {QSM} was 0.80× that on gradient echo magnitude image (R2=0.99).
+  Conclusions—{QSM} can provide reliable measurement of hematoma volume,
+  which can be performed rapidly and accurately using a semiautomated
+  segmentation tool.%
+  }
+  \verb{doi}
+  \verb 10.1161/STROKEAHA.113.001638
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{note}{00006 {PMID}: 23704111}
+  \field{number}{8}
+  \field{pages}{2315\bibrangedash 2317}
+  \field{shortjournal}{Stroke}
+  \field{title}{Hematoma Volume Measurement in Gradient Echo {MRI} Using
+  Quantitative Susceptibility Mapping}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/44/8/2315
+  \endverb
+  \field{volume}{44}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/NPMHDUQH/Wang et al. - 2013 - H
+  \verb ematoma Volume Measurement in Gradient Echo MRI U.pdf:application/pdf;S
+  \verb napshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profile
+  \verb s/9yinbn16.default/zotero/storage/5TJ4JKM4/2315.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{08}
+  \field{year}{2013}
+  \field{urlday}{23}
+  \field{urlmonth}{04}
+  \field{urlyear}{2015}
 \endentry
 
 \entry{webb_accuracy_2015}{article}{}
