@@ -1,15 +1,20 @@
-# date=2014Nov18
 name=CT_ICH_Segmentation
-${name}.pdf: ${name}.Rnw ${name}.tex \
-	Reseg_Dice_Comparison.png \
-	Reseg_Volume_Comparison.png \
-	CT_Skull_Stripping_Bib.bib \
-	extra_bibs_addon.bib \
-	CT_ICH_Segmentation.bib
+flowname=Imaging_Pipeline_Flowchart_with_Rigid
+all: ${name}.pdf 
+# date=2014Nov18
+${flowname}.pdf: ${flowname}.tex
+	pdflatex ${flowname}.tex
+
+${name}.pdf: ${name}.Rnw \
+	${flowname}.pdf	\
+	figures/Reseg_Dice_Comparison.png \
+	figures/Reseg_Volume_Comparison.png \
+	ich_chapter.bib 
 	if [ -e ${name}.aux ]; \
 	then \
 	rm ${name}.aux; \
 	fi;
+	Rscript parser.R;
 	Rscript -e "library(knitr); knit('${name}.Rnw'); purl('${name}.Rnw')"
 	pdflatex ${name}
 	bibtex ${name}
@@ -24,10 +29,18 @@ ${name}.pdf: ${name}.Rnw ${name}.tex \
 	fi;		
 	pdflatex ${name}
 	pdflatex ${name}
+	Rscript copier.R;
 	open ${name}.pdf
+
+cleanall: 
+	rm ${name}.pdf
+	rm ${flowname}.pdf
 
 clean: 
 	rm ${name}.pdf
+copy: 
+	Rscript copier.R;
+
 open: 
 	open ${name}.pdf
 adobe:

@@ -28,10 +28,10 @@ options(matlab.path = '/Applications/MATLAB_R2014b.app/bin')
 rootdir = path.expand("~/CT_Registration")
 
 
-basedir = file.path(rootdir, "Segmentation")
-resdir = file.path(basedir, "results")
-paperdir = file.path(basedir, "Segmentation_Paper")
-figdir = file.path(paperdir, "figure")
+# basedir = file.path(rootdir, "Segmentation")
+# resdir = file.path(basedir, "results")
+# paperdir = file.path(basedir, "Segmentation_Paper")
+# figdir = file.path(paperdir, "figure")
 
 # total_rda = file.path(basedir, "111_Filenames_with_volumes_stats.Rda")
 # load(total_rda)
@@ -44,7 +44,7 @@ figdir = file.path(paperdir, "figure")
 # 
 # setdiff(fdf$patientName, imag$patientName)
 
-rda = file.path(resdir, "Scanning_Parameters.Rda")
+rda = "Scanning_Parameters.Rda"
 load(rda)
 fdf$site_number = sapply(strsplit(fdf$id, "-"), `[[`, 1)
 fdf$pid = as.numeric(gsub("-", "", fdf$id))
@@ -90,7 +90,7 @@ check.na(tilt)
 n.gant = sum(tilt != 0)
 #"102-323" added over the 111 pts
 
-demog = read.csv(file.path(basedir, "Patient_Demographics.csv"), 
+demog = read.csv("Patient_Demographics.csv", 
                  stringsAsFactors = FALSE)
 demog = demog[,c("Age", "Gender", "Ethnicity", "patientName")]
 demog_icc = demog[ demog$patientName %in% unique(fdf$pid), ]
@@ -113,7 +113,7 @@ pvaller = function(x, min.pval = 0.05){
 }
 
 ## ------------------------------------------------------------------------
-xx = load(file.path(paperdir, "Reseg_Aggregate_data_cutoffs_Rigid.Rda"))
+xx = load("Reseg_Aggregate_data_cutoffs_Rigid.Rda")
 
 ## ----threshes------------------------------------------------------------
 lthresh = 40
@@ -121,7 +121,7 @@ uthresh = 80
 
 ## ------------------------------------------------------------------------
 nsub_voxels = 1e5
-nsub_voxels = formatC(nsub_voxels, digits=7, big.mark=",~")
+nsub_voxels = formatC(nsub_voxels, digits=7, big.mark="{,}")
 prop = 0.25
 pct_prop = sprintf("%02.2f", prop * 100)
 
@@ -131,7 +131,7 @@ if ("fdf" %in% ls()){
 	xfdf = fdf
 }
 total_N = nrow(fdf)
-load(file.path(paperdir, "Reseg_111_Filenames_with_Exclusions.Rda"))
+load("Reseg_111_Filenames_with_Exclusions.Rda")
 voldf = fdf
 if (reset) {
   stopifnot(all.equal(sort(voldf$id), sort(xfdf$id)))
@@ -309,7 +309,7 @@ figstr = paste0('\\begin{figure}
 \\centering
 \\includegraphics[width=0.75\\linewidth,keepaspectratio]{Reseg_Figure_DSI_Quantile_', zero, '_native.png}
 \\caption{{\\bf Patient with  ', names, ' Dice Similarity Index}. We present the patient with the ', lnames, ' Dice Similarity Index (DSI), a measure of spatial overlap, from the chosen predictor model fit with a random forest.  The ', lnames, ' DSI was ', qqs, '. The green indicates a correct classification of ICH from the model, blue indicates a false negative, where the manual segmentation denoted the area to be ICH but the predicted one did not, and red indicates a false positive, where the predicted segmentation denoted the area to be ICH but the manual one did not. }
-\\label{fig:dice_img0}
+\\label{fig:dice_img', vals, '}
 \\end{figure}
 
 ')

@@ -363,3 +363,108 @@ qs
 dice$quantile = names(qs)
 head(dice)
 q('no')
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+ktest = kruskal.test( dice ~ mod, data = native)
+load("Reseg_Results.Rda")#
+run_group = c("Test", "Validation")#
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+long = filter(long, #
+    group %in% c("Test", "Validation"))    #
+slong = filter(long, #
+    cutoff %in% c("Smoothed"))#
+nlong = filter(slong, app %in% "Native")#
+llong = select(nlong, mod, #
+    dice, sens, accur,#
+    spec, iimg, group)#
+llong = melt(llong, #
+    id.vars = c("iimg", "group", "mod"))#
+relev2 = c("dice" = "Dice Similarity Index",#
+        "accur" = "Accuracy",#
+        "sens" = "Sensitivity",#
+        "spec" = "Specificity")#
+llong$variable = revalue(llong$variable, #
+    relev2#
+    )#
+llong$variable = factor(llong$variable, #
+    levels = relev2)#
+native = filter(slong, app %in% "Native")
+library(plyr)
+library(dplyr)
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+load("Reseg_Results.Rda")#
+run_group = c("Test", "Validation")#
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+long = filter(long, #
+    group %in% c("Test", "Validation"))    #
+slong = filter(long, #
+    cutoff %in% c("Smoothed"))#
+nlong = filter(slong, app %in% "Native")#
+llong = select(nlong, mod, #
+    dice, sens, accur,#
+    spec, iimg, group)#
+llong = melt(llong, #
+    id.vars = c("iimg", "group", "mod"))#
+relev2 = c("dice" = "Dice Similarity Index",#
+        "accur" = "Accuracy",#
+        "sens" = "Sensitivity",#
+        "spec" = "Specificity")#
+llong$variable = revalue(llong$variable, #
+    relev2#
+    )#
+llong$variable = factor(llong$variable, #
+    levels = relev2)#
+native = filter(slong, app %in% "Native")
+library(reshape2)
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+load("Reseg_Results.Rda")#
+run_group = c("Test", "Validation")#
+long = filter(long, #
+    cutoff %in% c("cc", "scc"))#
+long$cutoff = revalue(long$cutoff, #
+    c("cc"= "Unsmoothed",#
+    "scc" = "Smoothed")#
+    )#
+long = mutate(long, #
+    mean = (tvol + evol) /2,#
+    diff = tvol - evol#
+    )#
+long = filter(long, #
+    group %in% c("Test", "Validation"))    #
+slong = filter(long, #
+    cutoff %in% c("Smoothed"))#
+nlong = filter(slong, app %in% "Native")#
+llong = select(nlong, mod, #
+    dice, sens, accur,#
+    spec, iimg, group)#
+llong = melt(llong, #
+    id.vars = c("iimg", "group", "mod"))#
+relev2 = c("dice" = "Dice Similarity Index",#
+        "accur" = "Accuracy",#
+        "sens" = "Sensitivity",#
+        "spec" = "Specificity")#
+llong$variable = revalue(llong$variable, #
+    relev2#
+    )#
+llong$variable = factor(llong$variable, #
+    levels = relev2)#
+native = filter(slong, app %in% "Native")
+ktest = kruskal.test( dice ~ mod, data = native)
+ktest[["p.value"]]

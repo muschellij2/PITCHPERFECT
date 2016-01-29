@@ -41,7 +41,14 @@ Registration};
 
 \node [bblock, below=1.5cm of smooth] (probthresh) {Binary\\ Prediction Image};
 
-\node [bblock, below left=0.8cm and -.5cm of probthresh] (Dice) {Dice \\ Similarity \\ Index};
+\node [bblock, below=1.5cm of probthresh] (native_probthresh) {Binary\\ Prediction Image (native space)};
+
+
+
+\node [bblock, below of=BET]  (rigid_make) {Rigid\\
+Registration};
+
+\node [bblock, below left=0.8cm and -.5cm of native_probthresh] (Dice) {Dice \\ Similarity \\ Index};
 %\node [bblock, below left=0.8cm and -.5cm of probthresh] (Dice) {
 %  \begin{tabular}{c}
 %     Dice \\
@@ -50,7 +57,7 @@ Registration};
 %  \end{tabular}};
 
 
-\node [bblock, below right=0.8cm and -.5cm of probthresh] (Volume) {ICH Volume Estimate};
+\node [bblock, below right=0.8cm and -.5cm of native_probthresh] (Volume) {ICH Volume Estimate};
 
 
 % Draw edges
@@ -74,8 +81,11 @@ Registration};
 \path [line] (predictors) -- (Models);
 \path [line] (Models) -- (smooth);
 \path [line] (smooth) -- node {Threshold, Keep Connected Components} (probthresh);
-\path [line] (probthresh) -- (Dice);
-\path [line] (probthresh) -- (Volume);
+
+\path [line] (probthresh) -- node {Apply Rigid Transformation Inverse} (native_probthresh);
+
+\path [line] (native_probthresh) -- (Dice);
+\path [line] (native_probthresh) -- (Volume);
 
 \end{tikzpicture}
 

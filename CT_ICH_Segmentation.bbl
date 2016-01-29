@@ -205,12 +205,12 @@
   \strng{fullhash}{ACSHYAHHESCPMWPBLQSSTQLLYCJJDTLWZJLXECYMLBCJWJG1}
   \field{sortinit}{A}
   \field{abstract}{%
-  Background and Purpose—The Intensive Blood Pressure Reduction In Acute
+  Background and Purpose-The Intensive Blood Pressure Reduction In Acute
   Cerebral Haemorrhage Trial ({INTERACT}) study suggests that early intensive
   blood pressure ({BP}) lowering can attenuate hematoma growth at 24 hours
   after intracerebral hemorrhage. The present analyses aimed to determine the
   effects of treatment on hematoma and perihematomal edema over 72 hours.
-  Methods—{INTERACT} included 404 patients with {CT}-confirmed intracerebral
+  Methods{INTERACT} included 404 patients with {CT}-confirmed intracerebral
   hemorrhage, elevated systolic {BP} (150 to 220 mm Hg), and capacity to start
   {BP}-lowering treatment within 6 hours of intracerebral hemorrhage. Patients
   were randomly assigned to an intensive (target systolic {BP} 140 {mmHg}) or
@@ -218,17 +218,17 @@
   using routine intravenous agents. Baseline and repeat {CTs} (24 and 72 hours)
   were performed using standardized techniques with digital images analyzed
   centrally. Outcomes were increases in hematoma and perihematomal edema
-  volumes over 72 hours. Results—Overall, 296 patients had all 3 {CT} scans
+  volumes over 72 hours. Results-Overall, 296 patients had all 3 {CT} scans
   available for the hematoma and 270 for the edema analyses. Mean systolic {BP}
   was 11.7 mm Hg lower in the intensive group than in the guideline group
   during 1 to 24 hours. Adjusted mean absolute increases in hematoma volumes
   ({mL}) at 24 and 72 hours were 2.40 and 0.15 in the guideline group compared
-  with −0.74 and −2.31 in the intensive group, respectively, an overall
+  with -0.74 and -2.31 in the intensive group, respectively, an overall
   difference of 2.80 (95\% {CI}, 1.04 to 4.56; P=0.002). Adjusted mean absolute
   increases in edema volumes ({mL}) at 24 and 72 hours were 6.27 and 10.02 in
   the guideline group compared with 4.19 and 7.34 in the intensive group,
-  respectively, for an overall difference of 2.38 (95\% {CI}, −0.45 to 5.22;
-  P=0.10). Conclusion—Early intensive {BP}-lowering treatment attenuated
+  respectively, for an overall difference of 2.38 (95\% {CI}, -0.45 to 5.22;
+  P=0.10). Conclusion-Early intensive {BP}-lowering treatment attenuated
   hematoma growth over 72 hours in intracerebral hemorrhage. There were no
   appreciable effects on perihematomal edema.%
   }
@@ -298,20 +298,20 @@
   characterization of neurodegeneration. Quantifying spatial and longitudinal
   atrophy patterns is an important component of this process. These
   spatiotemporal signals will aid in discriminating between related diseases,
-  such as frontotemporal dementia ({FTD}) and Alzheimer’s disease ({AD}),
-  which manifest themselves in the same at-risk population. Here, we develop a
-  novel symmetric image normalization method ({SyN}) for maximizing the
+  such as frontotemporal dementia ({FTD}) and Alzheimer's disease ({AD}), which
+  manifest themselves in the same at-risk population. Here, we develop a novel
+  symmetric image normalization method ({SyN}) for maximizing the
   cross-correlation within the space of diffeomorphic maps and provide the
-  Euler–Lagrange equations necessary for this optimization. We then turn to a
+  Euler-Lagrange equations necessary for this optimization. We then turn to a
   careful evaluation of our method. Our evaluation uses gold standard, human
-  cortical segmentation to contrast {SyN}’s performance with a related
-  elastic method and with the standard {ITK} implementation of Thirion’s
-  Demons algorithm. The new method compares favorably with both approaches, in
+  cortical segmentation to contrast {SyN}'s performance with a related elastic
+  method and with the standard {ITK} implementation of Thirion's Demons
+  algorithm. The new method compares favorably with both approaches, in
   particular when the distance between the template brain and the target brain
   is large. We then report the correlation of volumes gained by algorithmic
   cortical labelings of {FTD} and control subjects with those gained by the
   manual rater. This comparison shows that, of the three methods tested,
-  {SyN}’s volume measurements are the most strongly correlated with volume
+  {SyN}'s volume measurements are the most strongly correlated with volume
   measurements gained by expert labeling. This study indicates that {SyN}, with
   cross-correlation, is a reliable method for normalizing and making anatomical
   measurements in volumetric {MRI} of patients and at-risk elderly
@@ -325,7 +325,7 @@
   \field{number}{1}
   \field{pages}{26\bibrangedash 41}
   \field{series}{Special Issue on The Third International Workshop on
-  Biomedical Image Registration – {WBIR} 2006}
+  Biomedical Image Registration - {WBIR} 2006}
   \field{shortjournal}{Medical Image Analysis}
   \field{shorttitle}{Symmetric diffeomorphic image registration with
   cross-correlation}
@@ -494,7 +494,7 @@
 \entry{bergstrom_variation_1977}{article}{}
   \name{author}{5}{}{%
     {{}%
-     {Bergström}{B.}%
+     {Bergstr\"om}{B.}%
      {M}{M}%
      {}{}%
      {}{}}%
@@ -719,7 +719,7 @@
      {}{}%
      {}{}}%
     {{}%
-     {Dávalos}{D.}%
+     {D\`avalos}{D.}%
      {A.}{A.}%
      {}{}%
      {}{}}%
@@ -989,7 +989,7 @@
   \name{author}{3}{}{%
     {{}%
      {Gillebert}{G.}%
-     {Céline~R.}{C.~R.}%
+     {C\'eline~R.}{C.~R.}%
      {}{}%
      {}{}}%
     {{}%
@@ -1165,30 +1165,29 @@
   \strng{fullhash}{HJCBDCBLMGTJSC1}
   \field{sortinit}{H}
   \field{abstract}{%
-  Background and Purpose—Intracerebral hemorrhage ({ICH}) constitutes 10\% to
+  Background and Purpose-Intracerebral hemorrhage ({ICH}) constitutes 10\% to
   15\% of all strokes and remains without a treatment of proven benefit.
   Despite several existing outcome prediction models for {ICH}, there is no
   standard clinical grading scale for {ICH} analogous to those for traumatic
-  brain injury, subarachnoid hemorrhage, or ischemic stroke. Methods—Records
-  of all patients with acute {ICH} presenting to the University of California,
-  San Francisco during 1997–1998 were reviewed. Independent predictors of
-  30-day mortality were identified by logistic regression. A risk
-  stratification scale (the {ICH} Score) was developed with weighting of
-  independent predictors based on strength of association. Results—Factors
-  independently associated with 30-day mortality were Glasgow Coma Scale score
-  (P{\textless}0.001), age ≥80 years (P=0.001), infratentorial origin of
-  {ICH} (P=0.03), {ICH} volume (P=0.047), and presence of intraventricular
-  hemorrhage (P=0.052). The {ICH} Score was the sum of individual points
-  assigned as follows: {GCS} score 3 to 4 (=2 points), 5 to 12 (=1), 13 to 15
-  (=0); age ≥80 years yes (=1), no (=0); infratentorial origin yes (=1), no
-  (=0); {ICH} volume ≥30 cm3 (=1), {\textless}30 cm3 (=0); and
-  intraventricular hemorrhage yes (=1), no (=0). All 26 patients with an {ICH}
-  Score of 0 survived, and all 6 patients with an {ICH} Score of 5 died.
-  Thirty-day mortality increased steadily with {ICH} Score (P{\textless}0.005).
-  Conclusions—The {ICH} Score is a simple clinical grading scale that allows
-  risk stratification on presentation with {ICH}. The use of a scale such as
-  the {ICH} Score could improve standardization of clinical treatment protocols
-  and clinical research studies in {ICH}.%
+  brain injury, subarachnoid hemorrhage, or ischemic stroke. Methods-Records of
+  all patients with acute {ICH} presenting to the University of California, San
+  Francisco during 1997-1998 were reviewed. Independent predictors of 30-day
+  mortality were identified by logistic regression. A risk stratification scale
+  (the {ICH} Score) was developed with weighting of independent predictors
+  based on strength of association. Results-Factors independently associated
+  with 30-day mortality were Glasgow Coma Scale score (P{\textless}0.001), age
+  ≥80 years (P=0.001), infratentorial origin of {ICH} (P=0.03), {ICH} volume
+  (P=0.047), and presence of intraventricular hemorrhage (P=0.052). The {ICH}
+  Score was the sum of individual points assigned as follows: {GCS} score 3 to
+  4 (=2 points), 5 to 12 (=1), 13 to 15 (=0); age ≥80 years yes (=1), no
+  (=0); infratentorial origin yes (=1), no (=0); {ICH} volume ≥30 cm3 (=1),
+  {\textless}30 cm3 (=0); and intraventricular hemorrhage yes (=1), no (=0).
+  All 26 patients with an {ICH} Score of 0 survived, and all 6 patients with an
+  {ICH} Score of 5 died. Thirty-day mortality increased steadily with {ICH}
+  Score (P{\textless}0.005). Conclusions-The {ICH} Score is a simple clinical
+  grading scale that allows risk stratification on presentation with {ICH}. The
+  use of a scale such as the {ICH} Score could improve standardization of
+  clinical treatment protocols and clinical research studies in {ICH}.%
   }
   \verb{doi}
   \verb 10.1161/01.STR.32.4.891
@@ -1249,11 +1248,11 @@
   \strng{fullhash}{HHMTNAPYYQAI1}
   \field{sortinit}{H}
   \field{abstract}{%
-  Background and Purpose—The reliability of hematoma volume ({HV})
-  measurement using the {ABC}/2 method in multicenter clinical trials is
-  unknown. We determined the accuracy of {ABC}/2 method as an on-site test in
-  comparison with the gold standard central {HV}-assessment and semiautomatic
-  {HV}-assessment. Method—We analyzed data from an acute intracerebral
+  Background and Purpose-The reliability of hematoma volume ({HV}) measurement
+  using the {ABC}/2 method in multicenter clinical trials is unknown. We
+  determined the accuracy of {ABC}/2 method as an on-site test in comparison
+  with the gold standard central {HV}-assessment and semiautomatic
+  {HV}-assessment. Method-We analyzed data from an acute intracerebral
   hemorrhage multicenter clinical trial. {HV} was measured by site
   investigators to determine enrollment eligibility ({\textless}60 cm3) using
   the {ABC}/2 method (on-site {HV}), and independently by the core-imaging
@@ -1261,7 +1260,7 @@
   and Visualization [{MIPAV}] {HV}). {HV} was also measured by {ABC}/2 method
   (central {HV}) at the core-imaging laboratory to assess the difference in
   measurements between on-site (multiple raters with variable experiences) and
-  central (single experienced rater) {HVs}. Results—Fifty-six subjects were
+  central (single experienced rater) {HVs}. Results-Fifty-six subjects were
   analyzed (mean age 62±15 years; 45\% women). On-site {HV} values showed a
   significantly lower correlation with the {MIPAV} {HV} (r=0.63) than central
   {HV} and {MIPAV} {HV} (r=0.93) values. The correlation between on-site {HV}
@@ -1269,12 +1268,11 @@
   {HVs} were within 25\% of the corresponding {MIPAV} {HVs}, whereas only 46\%
   of the on-site {HVs} were within 25\% of the corresponding {MIPAV} {HVs}
   (P{\textless}0.001). One protocol violation occurred as a result of
-  inaccuracy of on-site {HV} measurement. Conclusion—On-site {HV}
-  measurements showed high variability, but the impact on the eligibility
-  determination was small. Centralized remeasurements of {HVs} with feedback to
-  the sites may increase the reliability of the on-site {HV} measurements.
-  Clinical Trial Registration—{URL}:
-  http://www.clinicaltrials.gov/ct2/show/{NCT}00415610 or
+  inaccuracy of on-site {HV} measurement. Conclusion-On-site {HV} measurements
+  showed high variability, but the impact on the eligibility determination was
+  small. Centralized remeasurements of {HVs} with feedback to the sites may
+  increase the reliability of the on-site {HV} measurements. Clinical Trial
+  Registration-{URL}: http://www.clinicaltrials.gov/ct2/show/{NCT}00415610 or
   http://www.atach-2.com. Unique identifier: {NCT}00415610.%
   }
   \verb{doi}
@@ -1381,6 +1379,39 @@
   \field{urlday}{15}
   \field{urlmonth}{01}
   \field{urlyear}{2014}
+\endentry
+
+\entry{jordan2009intracerebral}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Jordan}{J.}%
+     {Lori~C}{L.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kleinman}{K.}%
+     {Jonathan~T}{J.~T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hillis}{H.}%
+     {Argye~E}{A.~E.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Am Heart Assoc}%
+  }
+  \strng{namehash}{JLCKJTHAE1}
+  \strng{fullhash}{JLCKJTHAE1}
+  \field{sortinit}{J}
+  \field{number}{5}
+  \field{pages}{1666\bibrangedash 1671}
+  \field{title}{Intracerebral hemorrhage volume predicts poor neurologic
+  outcome in children}
+  \field{volume}{40}
+  \field{journaltitle}{Stroke}
+  \field{year}{2009}
 \endentry
 
 \entry{kothari_abcs_1996}{article}{}
@@ -1552,7 +1583,7 @@
      {}{}%
      {}{}}%
     {{}%
-     {Kovačević}{K.}%
+     {Kova\vcevi\'c}{K.}%
      {Domagoj}{D.}%
      {}{}%
      {}{}}%
@@ -1646,7 +1677,7 @@
   is currently no effective treatment for intracerebral hemorrhage.2 The volume
   of the hematoma is a critical determinant of mortality and functional outcome
   after intracerebral hemorrhage,3,4 and early hematoma growth is an important
-  cause of neurologic deterioration.5–8 An increase in volume of more than 33
+  cause of neurologic deterioration.5-8 An increase in volume of more than 33
   percent is detectable on repeated computed tomography ({CT}) in 38 percent of
   patients initially scanned within three . . .%
   }
@@ -1846,17 +1877,17 @@
   \strng{fullhash}{MWACJRMJLKMTCMNABHAJUNLVPMNAAIZMHDF1}
   \field{sortinit}{M}
   \field{abstract}{%
-  Background and Purpose—Perihematomal edema ({PHE}) can worsen outcomes
-  after intracerebral hemorrhage ({ICH}). Reports suggest that blood
-  degradation products lead to {PHE}. We hypothesized that hematoma evacuation
-  will reduce {PHE} volume and that treatment with recombinant tissue-type
-  plasminogen activator (rt-{PA}) will not exacerbate it. Methods—Minimally
-  invasive surgery and rt-{PA} in {ICH} evacuation ({MISTIE}) phase {II} tested
-  safety and efficacy of hematoma evacuation after {ICH}. We conducted a
+  Background and Purpose-Perihematomal edema ({PHE}) can worsen outcomes after
+  intracerebral hemorrhage ({ICH}). Reports suggest that blood degradation
+  products lead to {PHE}. We hypothesized that hematoma evacuation will reduce
+  {PHE} volume and that treatment with recombinant tissue-type plasminogen
+  activator (rt-{PA}) will not exacerbate it. Methods-Minimally invasive
+  surgery and rt-{PA} in {ICH} evacuation ({MISTIE}) phase {II} tested safety
+  and efficacy of hematoma evacuation after {ICH}. We conducted a
   semiautomated, computerized volumetric analysis on computed tomography to
   assess impact of hematoma removal on {PHE} and effects of rt-{PA} on {PHE}.
   Volumetric analyses were performed on baseline stability and end of treatment
-  scans. Results—Seventy-nine surgical and 39 medical patients from minimally
+  scans. Results-Seventy-nine surgical and 39 medical patients from minimally
   invasive surgery and rt-{PA} in {ICH} evacuation phase {II} ({MISTIE} {II})
   were analyzed. Mean hematoma volume at end of treatment was 19.6±14.5 cm3
   for the surgical cohort and 40.7±13.9 cm3 for the medical cohort
@@ -1871,7 +1902,7 @@
   cohorts achieved similar clot reduction: surgical aspiration and rt-{PA},
   18.9±14.5 cm3; and surgical aspiration only, 24.5±14.0 cm3 (P=0.26). Edema
   at end of treatment in surgical aspiration and rt-{PA} was 28.1±13.8 cm3 and
-  24.4±8.6 cm3 in surgical aspiration only (P=0.41). Conclusions—Hematoma
+  24.4±8.6 cm3 in surgical aspiration only (P=0.41). Conclusions-Hematoma
   evacuation is associated with significant reduction in {PHE}. Furthermore,
   {PHE} does not seem to be exacerbated by rt-{PA}, making such neurotoxic
   effects unlikely when the drug is delivered to intracranial clot.%
@@ -2042,7 +2073,7 @@
   {AbstractBackground} X-ray computed tomography ({CT}) imaging of the brain is
   commonly used in diagnostic settings. Although {CT} scans are primarily used
   in clinical practice, they are increasingly used in research. A fundamental
-  processing step in brain imaging research is brain extraction — the process
+  processing step in brain imaging research is brain extraction - the process
   of separating the brain tissue from all other tissues. Methods for brain
   extraction have either been 1) validated but not fully automated, or 2) fully
   automated and informally proposed, but never formally validated. Aim To
@@ -2052,10 +2083,10 @@
   results of several versions of automatic brain extraction and by estimating
   the reliability of automated segmentation of longitudinal scans. The effects
   of the choice of {BET} parameters and data smoothing is studied and reported.
-  Methods All images were thresholded using a 0–100 Hounsfield unit ({HU})
+  Methods All images were thresholded using a 0-100 Hounsfield unit ({HU})
   range. In one variant of the pipeline, data were smoothed using a
-  3-dimensional Gaussian kernel (σ = 1 mm3) and re-thresholded to 0–100
-  {HU}; in the other, data were not smoothed. {BET} was applied using 1 of 3
+  3-dimensional Gaussian kernel (σ = 1 mm3) and re-thresholded to 0-100 {HU};
+  in the other, data were not smoothed. {BET} was applied using 1 of 3
   fractional intensity ({FI}) thresholds: 0.01, 0.1, or 0.35 and any holes in
   the brain mask were filled. For validation against a manual segmentation, 36
   images from patients with intracranial hemorrhage were selected from 19
@@ -2075,24 +2106,24 @@
   from visual inspection. {ICV} of each scan was estimated and an intraclass
   correlation ({ICC}) was estimated using a one-way {ANOVA}. Results Smoothing
   images improves brain extraction results using {BET} for all measures except
-  specificity (all p \&lt; 0.01, uncorrected), irrespective of the {FI}
-  threshold. Using an {FI} of 0.01 or 0.1 performed better than 0.35. Thus, all
-  reported results refer only to smoothed data using an {FI} of 0.01 or 0.1.
-  Using an {FI} of 0.01 had a higher median sensitivity (0.9901) than an {FI}
-  of 0.1 (0.9884, median difference: 0.0014, p \&lt; 0.001), accuracy (0.9971
-  vs. 0.9971; median difference: 0.0001, p \&lt; 0.001), and {DSI} (0.9895 vs.
-  0.9894; median difference: 0.0004, p \&lt; 0.001) and lower specificity
-  (0.9981 vs. 0.9982; median difference: − 0.0001, p \&lt; 0.001). These
-  measures are all very high indicating that a range of {FI} values may produce
-  visually indistinguishable brain extractions. Using smoothed data and an {FI}
-  of 0.01, the mean ({SD}) {ICV} ratio was 1.002 (0.008); the mean being close
-  to 1 indicates the {ICV} estimates are similar for automated and manual
-  segmentation. In the 1095 longitudinal scans, this pipeline had a low failure
-  rate (5.2\%) and the {ICC} estimate was high (0.929, 95\% {CI}: 0.91, 0.945)
-  for successfully extracted brains. Conclusion {BET} performs well at brain
-  extraction on thresholded, 1 mm3 smoothed {CT} images with an {FI} of 0.01 or
-  0.1. Smoothing before applying {BET} is an important step not previously
-  discussed in the literature. Analysis code is provided.%
+  specificity (all p < 0.01, uncorrected), irrespective of the {FI} threshold.
+  Using an {FI} of 0.01 or 0.1 performed better than 0.35. Thus, all reported
+  results refer only to smoothed data using an {FI} of 0.01 or 0.1. Using an
+  {FI} of 0.01 had a higher median sensitivity (0.9901) than an {FI} of 0.1
+  (0.9884, median difference: 0.0014, p < 0.001), accuracy (0.9971 vs. 0.9971;
+  median difference: 0.0001, p < 0.001), and {DSI} (0.9895 vs. 0.9894; median
+  difference: 0.0004, p < 0.001) and lower specificity (0.9981 vs. 0.9982;
+  median difference: - 0.0001, p < 0.001). These measures are all very high
+  indicating that a range of {FI} values may produce visually indistinguishable
+  brain extractions. Using smoothed data and an {FI} of 0.01, the mean ({SD})
+  {ICV} ratio was 1.002 (0.008); the mean being close to 1 indicates the {ICV}
+  estimates are similar for automated and manual segmentation. In the 1095
+  longitudinal scans, this pipeline had a low failure rate (5.2\%) and the
+  {ICC} estimate was high (0.929, 95\% {CI}: 0.91, 0.945) for successfully
+  extracted brains. Conclusion {BET} performs well at brain extraction on
+  thresholded, 1 mm3 smoothed {CT} images with an {FI} of 0.01 or 0.1.
+  Smoothing before applying {BET} is an important step not previously discussed
+  in the literature. Analysis code is provided.%
   }
   \verb{doi}
   \verb 10.1016/j.neuroimage.2015.03.074
@@ -2158,7 +2189,7 @@
      {}{}}%
     {{}%
      {Serena}{S.}%
-     {Joaquín}{J.}%
+     {Joaqu\'in}{J.}%
      {}{}%
      {}{}}%
   }
@@ -2209,6 +2240,74 @@
   \field{urlday}{21}
   \field{urlmonth}{01}
   \field{urlyear}{2015}
+\endentry
+
+\entry{perez_set_2007}{incollection}{}
+  \name{author}{5}{}{%
+    {{}%
+     {P\'erez}{P.}%
+     {Noel}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vald\'es}{V.}%
+     {Jos\'e~A.}{J.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Guevara}{G.}%
+     {Miguel~A.}{M.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rodr\'iguez}{R.}%
+     {Luis~A.}{L.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Molina}{M.}%
+     {J.~M.}{J.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \keyw{3D mathematic morphology, Artificial Intelligence (incl. Robotics),
+  Computer Imaging, Vision, Pattern Recognition and Graphics, deformable
+  models, Image Processing and Computer Vision, Intracerebral hemorrhage,
+  medical images analysis, Pattern Recognition, segmentation and tracking}
+  \strng{namehash}{PN+1}
+  \strng{fullhash}{PNVJAGMARLAMJM1}
+  \field{sortinit}{P}
+  \field{booktitle}{Progress in Pattern Recognition, Image Analysis and
+  Applications}
+  \field{pages}{212\bibrangedash 220}
+  \field{title}{Set of methods for spontaneous {ICH} segmentation and tracking
+  from {CT} head images}
+  \verb{url}
+  \verb http://link.springer.com/chapter/10.1007/978-3-540-76725-1_23
+  \endverb
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/RKKMSTKW/P\'erez et al. - 2007
+  \verb - Set of Methods for Spontaneous ICH Segmentation an.pdf:application/pd
+  \verb f;Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero
+  \verb /Profiles/9yinbn16.default/zotero/storage/CB92A9I7/P\'erez et al. - 200
+  \verb 7 - Set of Methods for Spontaneous ICH Segmentation an.pdf:application/
+  \verb pdf;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Pr
+  \verb ofiles/9yinbn16.default/zotero/storage/N23UUZZV/978-3-540-76725-1_23.ht
+  \verb ml:text/html;Snapshot:/Users/johnmuschelli/Library/Application Support/
+  \verb Zotero/Profiles/9yinbn16.default/zotero/storage/2PWPJGZ3/978-3-540-7672
+  \verb 5-1_23.html:text/html;Snapshot:/Users/johnmuschelli/Library/Application
+  \verb  Support/Zotero/Profiles/9yinbn16.default/zotero/storage/6GCVRHP6/Pére
+  \verb z et al. - 2007 - Set of Methods for Spontaneous ICH Segmentation an.ht
+  \verb ml:text/html
+  \endverb
+  \field{year}{2007}
+  \field{urlday}{17}
+  \field{urlmonth}{06}
+  \field{urlyear}{2014}
 \endentry
 
 \entry{perona1994anisotropic}{incollection}{}
@@ -2336,74 +2435,6 @@
   \field{urlyear}{2014}
 \endentry
 
-\entry{perez_set_2007}{incollection}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Pérez}{P.}%
-     {Noel}{N.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Valdés}{V.}%
-     {José~A.}{J.~A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Guevara}{G.}%
-     {Miguel~A.}{M.~A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rodríguez}{R.}%
-     {Luis~A.}{L.~A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Molina}{M.}%
-     {J.~M.}{J.~M.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Springer}%
-  }
-  \keyw{3D mathematic morphology, Artificial Intelligence (incl. Robotics),
-  Computer Imaging, Vision, Pattern Recognition and Graphics, deformable
-  models, Image Processing and Computer Vision, Intracerebral hemorrhage,
-  medical images analysis, Pattern Recognition, segmentation and tracking}
-  \strng{namehash}{PN+1}
-  \strng{fullhash}{PNVJAGMARLAMJM1}
-  \field{sortinit}{P}
-  \field{booktitle}{Progress in Pattern Recognition, Image Analysis and
-  Applications}
-  \field{pages}{212\bibrangedash 220}
-  \field{title}{Set of methods for spontaneous {ICH} segmentation and tracking
-  from {CT} head images}
-  \verb{url}
-  \verb http://link.springer.com/chapter/10.1007/978-3-540-76725-1_23
-  \endverb
-  \verb{file}
-  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
-  \verb rofiles/9yinbn16.default/zotero/storage/RKKMSTKW/Pérez et al. - 2007 -
-  \verb  Set of Methods for Spontaneous ICH Segmentation an.pdf:application/pdf
-  \verb ;Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/
-  \verb Profiles/9yinbn16.default/zotero/storage/CB92A9I7/Pérez et al. - 2007
-  \verb - Set of Methods for Spontaneous ICH Segmentation an.pdf:application/pd
-  \verb f;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Prof
-  \verb iles/9yinbn16.default/zotero/storage/N23UUZZV/978-3-540-76725-1_23.html
-  \verb :text/html;Snapshot:/Users/johnmuschelli/Library/Application Support/Zo
-  \verb tero/Profiles/9yinbn16.default/zotero/storage/2PWPJGZ3/978-3-540-76725-
-  \verb 1_23.html:text/html;Snapshot:/Users/johnmuschelli/Library/Application S
-  \verb upport/Zotero/Profiles/9yinbn16.default/zotero/storage/6GCVRHP6/Pérez
-  \verb et al. - 2007 - Set of Methods for Spontaneous ICH Segmentation an.html
-  \verb :text/html
-  \endverb
-  \field{year}{2007}
-  \field{urlday}{17}
-  \field{urlmonth}{06}
-  \field{urlyear}{2014}
-\endentry
-
 \entry{qureshi_association_2011}{article}{}
   \name{author}{14}{}{%
     {{}%
@@ -2497,13 +2528,13 @@
   between admission and 24 hour glucose concentration, and estimated parameters
   (slope and intercept) were entered in the logistic regression model
   separately to predict the functional outcome as measured by modified Rankin
-  scale ({mRS}) at 90 days (0–3 vs. 4–6); hematoma expansion at 24 h (≤33
-  vs. {\textgreater}33\%); and relative perihematomal edema expansion at 24 h
+  scale ({mRS}) at 90 days (0-3 vs. 4-6); hematoma expansion at 24 h (≤33 vs.
+  {\textgreater}33\%); and relative perihematomal edema expansion at 24 h
   (≤40 vs. {\textgreater}40\%). Results A total of 60 subjects were recruited
   (aged 62.0 ±15.1 years; 56.7\% men). The mean of initial glucose
   concentration (±standard deviation) was 136.7 mg/dl (±58.1). Thirty-five
   out of 60 (58\%) subjects had a declining glucose over time (negative slope).
-  The risk of poor outcome ({mRS} 4–6) in those with increasing serum glucose
+  The risk of poor outcome ({mRS} 4-6) in those with increasing serum glucose
   levels was over two-fold relative to those who had declining serum glucose
   levels ({RR} = 2.64, 95\% confidence interval [{CI}]: 1.03, 6.75). The {RRs}
   were 2.59 (95\% {CI}: 1.27, 5.30) for hematoma expansion {\textgreater}33\%;
@@ -2778,29 +2809,29 @@
   \strng{fullhash}{RNSSEECYSRWCRSKFEWLGJNGSMRJ1}
   \field{sortinit}{R}
   \field{abstract}{%
-  Background and Purpose— Intracerebral hemorrhage ({ICH}) is the most fatal
+  Background and Purpose- Intracerebral hemorrhage ({ICH}) is the most fatal
   and disabling stroke subtype. Widely used tools for prediction of mortality
   are fundamentally limited in that they do not account for effects of
   withdrawal of care and are not designed to predict functional recovery. We
   developed an acute clinical score to predict likelihood of functional
-  independence. Methods— We prospectively characterized 629 consecutive
+  independence. Methods- We prospectively characterized 629 consecutive
   patients with {ICH} at hospital presentation. Predictors of functional
   independence (Glasgow Outcome Score ≥4) at 90 days were used to develop a
   logistic regression-based risk stratification scale in a random subset of two
-  thirds and validated in the remaining one third of the cohort. Results— At
-  90 days, 162 (26\%) patients achieved independence. Age, Glasgow Coma Scale,
+  thirds and validated in the remaining one third of the cohort. Results- At 90
+  days, 162 (26\%) patients achieved independence. Age, Glasgow Coma Scale,
   {ICH} location, volume (all P{\textless}0.0001), and pre-{ICH} cognitive
   impairment (P=0.005) were independently associated with Glasgow Outcome Score
-  ≥4. The {FUNC} score was developed as a sum of individual points (0–11)
+  ≥4. The {FUNC} score was developed as a sum of individual points (0-11)
   based on strength of association with outcome. In both the development and
   validation cohorts, the proportion of patients who achieved Glasgow Outcome
   Score ≥4 increased steadily with {FUNC} score. No patient assigned a {FUNC}
   score ≤4 achieved functional independence, whereas {\textgreater}80\% with
   a score of 11 did. The predictive accuracy of the {FUNC} score remained
   unchanged when restricted to {ICH} survivors only, consistent with absence of
-  confounding by early withdrawal of care. Conclusions— {FUNC} score is a
-  valid clinical assessment tool that identifies patients with {ICH} who will
-  attain functional independence and thus, can provide guidance in clinical
+  confounding by early withdrawal of care. Conclusions- {FUNC} score is a valid
+  clinical assessment tool that identifies patients with {ICH} who will attain
+  functional independence and thus, can provide guidance in clinical
   decision-making and patient selection for clinical trials.%
   }
   \verb{doi}
@@ -2956,7 +2987,7 @@
   applied. We describe the new method and give examples of results and the
   results of extensive quantitative testing against “gold-standard” hand
   segmentations, and two other popular automated methods. Hum. Brain Mapping
-  17:143–155, 2002. © 2002 Wiley-Liss, Inc.%
+  17:143-155, 2002. © 2002 Wiley-Liss, Inc.%
   }
   \verb{doi}
   \verb 10.1002/hbm.10062
@@ -3128,22 +3159,21 @@
   \strng{fullhash}{WSLMLTCDCXWY1}
   \field{sortinit}{W}
   \field{abstract}{%
-  Background and Purpose—A novel quantitative susceptibility mapping ({QSM})
+  Background and Purpose-A novel quantitative susceptibility mapping ({QSM})
   processing technology has been developed to map tissue susceptibility
   property without blooming artifacts. We hypothesize that hematoma volume
   measurement on {QSM} is independent of imaging parameters, eliminating its
-  echo time dependence on gradient echo {MRI}. Methods—Gradient echo {MRI} of
+  echo time dependence on gradient echo {MRI}. Methods-Gradient echo {MRI} of
   16 patients with intracerebral hemorrhage was processed with
   susceptibility-weighted imaging, R2* (=1/T2*) mapping, and {QSM} at various
-  echo times. Hematoma volumes were measured from these images.
-  Results—Linear regression of hematoma volume versus echo time showed
-  substantial slopes for gradient echo magnitude (0.45±0.31 L/s),
-  susceptibility-weighted imaging (0.52±0.46), and R2* (0.39±0.30) but nearly
-  zero slope for {QSM} (0.01±0.05). At echo time=20 ms, hematoma volume on
-  {QSM} was 0.80× that on gradient echo magnitude image (R2=0.99).
-  Conclusions—{QSM} can provide reliable measurement of hematoma volume,
-  which can be performed rapidly and accurately using a semiautomated
-  segmentation tool.%
+  echo times. Hematoma volumes were measured from these images. Results-Linear
+  regression of hematoma volume versus echo time showed substantial slopes for
+  gradient echo magnitude (0.45±0.31 L/s), susceptibility-weighted imaging
+  (0.52±0.46), and R2* (0.39±0.30) but nearly zero slope for {QSM}
+  (0.01±0.05). At echo time=20 ms, hematoma volume on {QSM} was 0.80× that on
+  gradient echo magnitude image (R2=0.99). Conclusions-{QSM} can provide
+  reliable measurement of hematoma volume, which can be performed rapidly and
+  accurately using a semiautomated segmentation tool.%
   }
   \verb{doi}
   \verb 10.1161/STROKEAHA.113.001638
@@ -3575,20 +3605,20 @@
   \strng{fullhash}{WAJSUNLMTCMJKJAIAMSRMZWZMAFJSHSLGBWCWCVPBRHSJCFSTSHMDNRHDFTAHDATHAMAASMMRGKIVPPPTCMFJCPSDBFWHALCSKSDGMLDTMCKADLJGMNCHMLDVCWMJJRMBKLJAAAOCLWKBJTFAHHCKTWLGPDDBDGNCJLHCASLAAFGRSTK1}
   \field{sortinit}{W}
   \field{abstract}{%
-  Background and Purpose—The {ABC}/2 score estimates intracerebral hemorrhage
+  Background and Purpose-The {ABC}/2 score estimates intracerebral hemorrhage
   ({ICH}) volume, yet validations have been limited by small samples and
   inappropriate outcome measures. We determined accuracy of the {ABC}/2 score
   calculated at a specialized reading center ({RC}-{ABC}) or local site
-  (site-{ABC}) versus the reference-standard computed tomography–based
-  planimetry ({CTP}). Methods—In Minimally Invasive Surgery Plus Recombinant
+  (site-{ABC}) versus the reference-standard computed tomography-based
+  planimetry ({CTP}). Methods-In Minimally Invasive Surgery Plus Recombinant
   Tissue-Type Plasminogen Activator for Intracerebral Hemorrhage
   Evacuation-{II} ({MISTIE}-{II}), Clot Lysis Evaluation of Accelerated
   Resolution of Intraventricular Hemorrhage ({CLEAR}-{IVH}) and {CLEAR}-{III}
   trials. {ICH} volume was prospectively calculated by {CTP}, {RC}-{ABC}, and
   site-{ABC}. Agreement between {CTP} and {ABC}/2 was defined as an absolute
   difference up to 5 {mL} and relative difference within 20\%. Determinants of
-  {ABC}/2 accuracy were assessed by logistic regression. Results—In 4369
-  scans from 507 patients, {CTP} was more strongly correlated with {RC}-{ABC}
+  {ABC}/2 accuracy were assessed by logistic regression. Results-In 4369 scans
+  from 507 patients, {CTP} was more strongly correlated with {RC}-{ABC}
   (r2=0.93) than with site-{ABC} (r2=0.87). Although {RC}-{ABC} overestimated
   {CTP}-based volume on average ({RC}-{ABC}, 15.2 cm3; {CTP}, 12.7 cm3),
   agreement was reasonable when categorized into mild, moderate, and severe
@@ -3599,11 +3629,11 @@
   accuracy for detecting ≥5 {mL} change in {CTP} volume between consecutive
   scans (sensitivity, 0.76; specificity, 0.86) and was more accurate with
   smaller {ICH}, thalamic hemorrhage, and homogeneous clots.
-  Conclusions—{ABC}/2 scores at local or central sites are sufficiently
+  Conclusions-{ABC}/2 scores at local or central sites are sufficiently
   accurate to categorize {ICH} volume and assess eligibility for the
   {CLEAR}-{III} and {MISTIE} {III} studies and moderately accurate for change
   in {ICH} volume. However, accuracy decreases with large, irregular, or lobar
-  clots. Clinical Trial Registration—{URL}: http://www.clinicaltrials.gov.
+  clots. Clinical Trial Registration-{URL}: http://www.clinicaltrials.gov.
   Unique identifier: {MISTIE}-{II} {NCT}00224770; {CLEAR}-{III} {NCT}00784134.%
   }
   \verb{doi}

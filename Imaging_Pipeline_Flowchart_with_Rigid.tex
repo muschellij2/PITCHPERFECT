@@ -35,7 +35,7 @@ Registration};
 
 
 
-\node [bblock, below of=predictors] (Models) {Prediction Models};
+\node [bblock, below=1.5cm of predictors] (Models) {Prediction Models};
 
 \node [bblock, below of=Models] (smooth) {Smoothed Probability Image};
 
@@ -78,7 +78,8 @@ Registration};
 %\path [line] (native) -- (predictors);
 \path [line] (rigid) -- (predictors);
 
-\path [line] (predictors) -- (Models);
+\path [line] (predictors) -- node {Sample Voxels} (Models);
+
 \path [line] (Models) -- (smooth);
 \path [line] (smooth) -- node {Threshold, Keep Connected Components} (probthresh);
 
