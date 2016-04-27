@@ -118,6 +118,7 @@
 
 
 
+\graphicspath{{figures/}} % OK
 
 
 \begin{frontmatter}
@@ -187,7 +188,6 @@ CT \sep ICH Segmentation
 
 \renewcommand{\thesubfigure}{\Alph{subfigure}} % OK
 
-\graphicspath{{figures/}} % OK
 
 \newcommand{\mywidth}{0.23}
 
@@ -212,14 +212,15 @@ CT \sep ICH Segmentation
 
 Intracerebral hemorrhage (ICH) is a neurological condition that results from a blood vessel rupturing into the tissue and possibly the ventricles of the brain.   The use of X-ray computed tomography (CT) scans allows clinicians and researchers to qualitatively and quantitatively describe the characteristics of a hemorrhage to guide interventions and treatments.  CT scanning is widely available and is the most commonly used diagnostic tool in patients with ICH \citep{sahni_management_2007}.  The volume of ICH has been consistently demonstrated to be an important diagnostic predictor of stroke severity, long-term functional outcome, and mortality \citep{broderick_volume_1993, hemphill_ich_2001, tuhrim_volume_1999}.  ICH volume change is also common primary outcome \citep{anderson_intensive_2008, anderson_effects_2010, qureshi_association_2011, mayer_recombinant_2005} and secondary outcome \citep{morgan_preliminary_2008_mistie, anderson_intensive_2008, morgan_preliminary_2008_clear} in clinical trials.  Moreover, the location of the ICH has been shown to affect functional outcome in patients with stroke \citep{rost_prediction_2008, castellanos_predictors_2005}.
 
-ICH volume can be rapidly measured using techniques such as the ABC/2 method \citep{broderick_volume_1993}.  In this method, a reader chooses which slice has the largest area of hemorrhage, draws a line along the longest axis of the hemorrhage (denoted A) and the orthogonal line that bisects the hemorrhage (B).  The reader then counts the number of slices where hemorrhage is present (C).  The volume estimate is $\frac{A\times B\times C}{2}$, which is an approximation of an ellipsoid \citep{kothari_abcs_1996}.  As this method only requires 3 measurements, this method can be done rapidly. 
+ICH volume can be estimated quickly, for example,  using the ABC/2 method \citep{broderick_volume_1993}.  In this method, a reader chooses the slice with the largest area of hemorrhage.  The length of the intersection between this first axis and the hemorrhage is denoted by A. The next step is to draw an orthogonal line  at the middle of the segment of length A in the same plane that contains the largest hemorrhage area. The length of the intersection between this second orthogonal axis and the hemorrhage is denoted by B.  The reader then counts the number of slices where hemorrhage is present (C).  The volume estimate is $\frac{A\times B\times C}{2}$, which is an approximation of the volume under the assumption that the hemorrhage shape is well approximated by an ellipsoid \citep{kothari_abcs_1996}.  As this method is relatively easy to implement in practice, it can be used to quickly produce estimates of hemorrhage volume. 
 
-Although ABC/2 is widely used, \citet{divani_abcs_2011} found that volume measurement errors using ABC/2 were significantly greater than those using planimetry measurements at measuring the true volume of a hemorrhage, especially for irregularly shaped ICH and for smaller thickness (i.e.~higher resolution) scans.  Recently, \citet{webb_accuracy_2015} found that ABC/2 measurements at a clinical site, 81\% of the $4,369$ scans were within 5 milliliters (mL) of ICH volume compared to planimetry methods, but only 41\% were within 20\%.   Moreover, ICH may initially have a regular shape where ABC/2 performs well, but many surgical intervention and procedure targets the removal of ICH, which changes its shape or cause re-bleeding and additional ICH.  ABC/2 does not perform well in these cases.  Moreover, ABC/2 also does not take into account any intraventricular hemorrhage (IVH) present within the image, which has been shown to be prognostic of 30-day mortality \citep{hemphill_ich_2001, tuhrim_volume_1999}.  ABC/2 also been shown to consistently over-estimate infarct volume \citep{pedraza_reliability_2012}, and can have significant inter-rater variability \citep{hussein_reliability_2013}. Therefore, we believe a rapid, automated method for estimating hemorrhage from CT scans has diagnostic and prognostic value.
+Although ABC/2 is widely used, \citet{divani_abcs_2011} found that the measurement error associated with the ABC/2 method were significantly greater than those using planimetry, which requires slice-by-slice hemorrhage segmentation by trained readers. Planimetry is much more labor intensive and time consuming, but it tends to significantly outperform the ABC/2 approach, especially for irregularly shaped ICH and for smaller thickness (i.e.~higher resolution) scans.  Recently, \citet{webb_accuracy_2015} found that ABC/2 measurements at a clinical site, 81\% of the $4,369$ scans were within 5 milliliters (mL) of ICH volume compared to planimetry methods, but only 41\% were within 20\%.   Another problem that has not been discussed in the literature is that ICH may change over time. The shape of the ICH may initially be well approximated by an ellipsoid but the approximation may become increasingly inaccurate over time as the lesion changes shape, migrates through the surrounding tissues, or breaks down.  Surgical interventions that target the removal of ICH may also change the shape of the ICH or cause additional bleeding. This is particularly worrying in clinical trials where the ICH exposure may be measured with substantial bias and reduce the power of the tests.  An additional problem is that the ABC/2 method does not take into account intraventricular hemorrhage (IVH), which has been shown to be prognostic of 30-day mortality \citep{hemphill_ich_2001, tuhrim_volume_1999}.  Moreover, the ABC/2 method has been shown to consistently over-estimate infarct volume \citep{pedraza_reliability_2012} and may have significant inter-rater variability \citep{hussein_reliability_2013}. Therefore, a rapid, automated, and validated method for estimating hemorrhage location and its volume from CT scans is highly relevant in clinical trials and has both diagnostic and prognostic value.
 
-Methods have been proposed for segmentation of ICH on magnetic resonance images (MRI) \citep{wang_hematoma_2013, carhuapoma2003brain}.  In our current study and most clinical settings, protocol are not standardized for MRI scans as these are not uniform across clinical sites for which sequences are taken and which scans are standard of care for ICH.  Therefore, we required a method that relied solely on CT scan information.
+Methods have been proposed for segmentation of ICH using magnetic resonance images (MRI) \citep{wang_hematoma_2013, carhuapoma2003brain}.  However, in most clinical settings,
+the protocol is not standardized for MRI scans.  MRI sequences and protocols may vary across sites and there is no general, standardized, agreed-upon MRI modality for ICH standard-of-care.
+Thus, there is a need for ICH segmentation that relies only on CT scan information, is reliable, reproducible, available, and well validated against planimetry.
 
-We wish to create an algorithm that can estimate the probability of ICH at a voxel-level, a binary ICH image, and the volume of ICH.  We will compare our predicted ICH maps to the gold standard -- manual segmentation.  Other methods have been presented for automated methods for estimating ICH from CT scans \citep{ gillebert_automated_2014, prakash_segmentation_2012, loncaric_hierarchical_1996, loncaric_quantitative_1999, perez_set_2007}.  These methods include fuzzy clustering \citep{prakash_segmentation_2012, loncaric_hierarchical_1996}, simulated annealing \citep{loncaric_quantitative_1999}, 3-dimensional (3D) mathematical morphology operations \citep{perez_set_2007}, and template-based comparisons \citep{gillebert_automated_2014}.  With the exception of \citet{gillebert_automated_2014} (with request), no software for ICH segmentation is publicly available.  In addition, this software requires varied level of technical knowledge.  Therefore, we provide a completely automated pipeline of analysis from raw images to binary hemorrhage masks and volume estimates, and provide a webpage to test the software. 
-
+We propose an algorithm that can estimate the probability of ICH at the voxel level, a binary ICH image, and the ICH volume.  We will compare our predicted ICH maps to the gold standard -- manual segmentation.  Several methods have been presented for automated methods for estimating ICH from CT scans \citep{ gillebert_automated_2014, prakash_segmentation_2012, loncaric_hierarchical_1996, loncaric_quantitative_1999, perez_set_2007}.  These methods include fuzzy clustering \citep{prakash_segmentation_2012, loncaric_hierarchical_1996}, simulated annealing \citep{loncaric_quantitative_1999}, 3-dimensional (3D) mathematical morphology operations \citep{perez_set_2007}, and template-based comparisons \citep{gillebert_automated_2014}.  Unfortunately, no software for ICH segmentation is publicly available.   The only software that we were able to obtain after requesting it was the one presented in \citet{gillebert_automated_2014}. This software requires a moderate level of technical knowledge.  We provide a completely automated pipeline of analysis from raw images to binary hemorrhage masks and volume estimates, and provide a public webpage to test the software. 
 
 \section{Methods}
 
@@ -228,11 +229,11 @@ We wish to create an algorithm that can estimate the probability of ICH at a vox
 We used CT images from patients enrolled in the MISTIE (Minimally Invasive Surgery plus recombinant-tissue plasminogen activator for Intracerebral Evacuation) stroke trial \citep{morgan_preliminary_2008_mistie}. We analyzed $112$ scans taken prior to randomization and treatment, corresponding to the first scan acquired post-stroke for $112$ unique patients.  Inclusion criteria into the study included: $18$ to $80$ years of age, spontaneous supratentorial intracerebral hemorrhage above $20$ milliliters (mL) in size (for full criteria, see \citet{mould_minimally_2013}).  The population analyzed here had a mean (SD) age was $60.7$ $(11.2)$ years, was $68.8\%$ male, and was 53.6\% Caucasian, 31.2\% African American, 10.7\% Hispanic, and 4.5\% Asian or Pacific islander.  CT data were collected as part of the Johns Hopkins Medicine IRB-approved MISTIE research studies with written consent from participants.  
 
 % Do not wrap $ in man.tab. 
-The study protocol was executed with minor, but important, differences across the $26$ sites.  Scans were acquired using $4$ scanner manufacturers: GE ($N=46$),  Siemens ($N=38$),  Philips ($N=20$),  and Toshiba ($N=8$).   In head CT scanning, the gantry may be tilted so that sensitive organs, such as the eyes, are not exposed to X-ray radiation.  This causes scan slices to be acquired at an oblique angle with respect to the patient.  This gantry tilt was observed in $88$ scans.
+The study protocol was executed with minor, but important, differences across the $26$ sites.  Scans were acquired using $4$ scanner manufacturers: GE ($N=46$),  Siemens ($N=38$),  Philips ($N=20$),  and Toshiba ($N=8$).   In head CT scanning, the gantry may be tilted so that sensitive organs, such as the eyes, are not exposed to X-ray radiation.  This causes scan slices to be acquired at an oblique angle with respect to the patient.  Gantry tilt was observed in $88$ scans.
 %n.gant scans.  
 Slice thickness of the image varied within the scan for 14 scans.
 %n.var.slice scans. 
-For example, a scan may have $10$ millimeter (mm) slices at the top and bottom of the brain and $5$mm slices in the middle of the brain.  Therefore, the original scans analyzed had different voxel (volume element) dimensions.  These conditions represent how scans are presented for evaluation in many diagnostic cases.
+For example, a scan may have $10$ millimeter (mm) slices at the top and bottom of the brain and $5$mm slices in the middle of the brain.  Therefore, the original scans analyzed had different voxel (volume element) dimensions.  These conditions are characteristic of how scan are presented in many diagnostic cases.
 
 % All CT scans used in template creation were acquired on the same Siemens Sensation 64, peak 120 kV, 348 mA X-ray Tube Current. The reconstructed resolution of all the images ranged from 0.69 × 0.69 × 0.5 mm to 0.45 × 0.45 × 0.5 mm with full brain coverage. 
 
@@ -247,7 +248,7 @@ CT images and binary hemorrhage masks were exported from OsiriX to DICOM (Digita
 
 All image analysis was done in the R statistical software \citep{RCORE}, using the \pkg{fslr} \citep{muschelli2015fslr} package to call functions from the FSL \citep{jenkinson_fsl_2012} neuroimaging software (version 5.0.4), and the \pkg{ANTsR} package to call functions from the ANTs (Advanced Normalization Tools) neuroimaging software \citep{avants_reproducible_2011}.
 
-Brains were extracted to remove skull, eyes, facial and nasal features, extracranial skin, and more importantly non-human elements of the image captured by the CT scanner, such as the gantry, pillows, or medical devices.  Removal of these elements was performed using the brain extraction tool (BET) \citep{smith_fast_2002}, a function of FSL, using a previously published validated CT-specific brain extraction protocol \citep{muschelli_validated_2015}.  
+Brains were extracted to remove skull, eyes, facial and nasal features, extracranial skin, and non-human elements of the image captured by the CT scanner, such as the gantry, pillows, or medical devices.  Removal of these elements was performed using the brain extraction tool (BET) \citep{smith_fast_2002}, a function of FSL, using a previously published validated CT-specific brain extraction protocol \citep{muschelli_validated_2015}.  
 
 %Different reconstructions of CT images are not available via the data-acquiring center, and 
 
@@ -327,78 +328,88 @@ Brains were extracted to remove skull, eyes, facial and nasal features, extracra
 \end{figure}
 
 \subsection{Image Registration}
-\citet{rorden_age-specific_2012} introduced a CT template based on $35$ individuals who presented with specific neurological deficits that were suspected to be caused by a stroke, but were later found to be due to a metabolic abnormality.  This CT template is represented in MNI (Montreal Neurological Institute) space and brain-extraction was performed on the template.  Prior to image processing, brain-extracted images were registered to this brain-extracted template using a rigid-body (6 degrees of freedom) and linearly interpolated to a $1\times1\times1$mm voxel resolution.  Transformed hemorrhage masks and brain masks were thresholded using a value of $0.5$ to preserve mask volume \cite{flirt_reg}. This operation reoriented the image, ensured isotropic voxel sizes for smoothing and other operations below, and preserved the relative volume of the ICH.  All image preprocessing and analysis are done in MNI space, described as template space, unless otherwise specified.
+\citet{rorden_age-specific_2012} introduced a CT template based on $35$ individuals who presented with specific neurological deficits that were suspected to be caused by a stroke, but were later found to be due to a metabolic abnormality.  This CT template is represented in MNI (Montreal Neurological Institute) space and brain-extraction was performed on the template.  Prior to image processing, brain-extracted images were registered to this brain-extracted template using a rigid-body (6 degrees of freedom) and linearly interpolated to a $1\times1\times1$mm voxel resolution.  Transformed hemorrhage masks and brain masks were thresholded using a value of $0.5$ to preserve mask volume \cite{flirt_reg}. This operation reoriented the image, ensured isotropic voxel sizes for smoothing and other operations described below, and preserved the relative volume of the ICH.  All image preprocessing and analysis are done in MNI space, described as template space, unless otherwise specified.
 
 
 \subsection{Brain Mask Erosion}
-Each brain mask was eroded by a box kernel ($3\times3\times1$mm).  Though this erosion may exclude voxels from superficial bleeds towards the cortical surface, it excludes voxels with similar ranges as ICH voxels, caused by 1) incomplete skull stripping or 2) partial voluming effects with the skull.  If any voxels from the hemorrhage mask was removed due to brain extraction or brain mask erosion, these voxels were included in estimating model performance but their predicted probability of ICH was set to $0$.  Therefore, these deleted ICH voxels will always be incorrectly predicted as not ICH.  
+Each brain mask was eroded by a box kernel ($3\times3\times1$mm).  Though this erosion may exclude voxels from superficial bleeds towards the cortical surface, it excludes voxels with similar ranges as ICH voxels, caused by 1) incomplete skull stripping or 2) partial voluming effects with the skull.  If any voxels from the hemorrhage mask was removed due to brain extraction or brain mask erosion, these voxels were included in estimating model performance but their predicted probability of ICH was set to $0$.  Therefore, these deleted ICH voxels will always be incorrectly predicted by our approach as not ICH.  
 
 %This eroded mask and any excluded ICH voxels contained all voxels used for exploratory analysis and model fitting, which we will refer to as candidate voxels.
 
 
 
 \subsection{Imaging Predictors}
-We derived a set of imaging predictors from each CT scan.  We will describe each here with their rationale for use.  These features make up the potential set of predictors for image segmentation.
+We derived a set of imaging predictors from each CT scan.  We will describe each predictor together with the rationale for their use.  These features make up the potential set of predictors (features) for image segmentation.  Below we provide the definition of thess predictors, while Figure~\ref{fig:pred} displays them for one axial slice of one subject. 
 %Note that the corresponding images have roughly a distribution of between $0$ and $100$ HU as they have been skull stripped.  
 
-\subsubsection{CT voxel intensity information} The raw voxel intensity value in HU was included $x(v)$, as it is the main predictor used in visual inspection; high HU values are indicative of hemorrhage. We created an indicator if the value was greater than $40$ and less than $80$ HU, similar to the criteria used for manual segmentation, denoted $I_{\text{thresh}}(v)$. 
+\subsubsection{CT voxel intensity information} The first predictor is the raw voxel intensity value in HU denoted by $x(v)$. This is the main predictor used in visual inspection, with high HU values being indicative of hemorrhage. Based on the voxel intensity we have also created an indicator for the HU intensity value to be between $40$ and $80$ (inclusive), to mimic the criterion used for screening in manual segmentation. More precisely, we have introduced the predictor $$
+I_{\text{thresh}}(v) = \begin{cases}
+1 & \text{if } 40 \leq x(v) \leq 80 \\
+0 & \text{otherwise}
+\end{cases}
+$$. 
 
-\subsubsection{Local Moment Information} For each voxel, we extracted a neighborhood, denoted $N(v)$, of all adjacent neighboring voxels in $3$ dimensions and the voxel itself.  Let $x_k(v)$ denote the voxel intensity in HU for voxel neighbor $k$, where $k = 1, \dots, 27$.  We created the voxel neighborhood mean intensity ($\bar{x}(v)$):
+\subsubsection{Local Moment Information} For each voxel, we extracted a neighborhood, denoted $N(v)$, of all adjacent voxels along the $3$ dimensions together with the voxel itself.  If $x_k(v)$ denotes the voxel intensity in HU for voxel neighbor $k$, where $k = 1, \dots, N(v) = 27$, then the local mean intensity is defined as:
 \begin{equation}
-\bar{x}(v) = \frac{1}{N(v)} \sum_{k \in N(v)} x_k(v) \label{eq:mean}
+\bar{x}(v) = \frac{1}{N(v)} \sum_{k \in N(v)} x_k(v). \label{eq:mean}
 \end{equation}
-We calculated the voxel neighborhood standard deviation (SD), skew, and kurtosis using the following method of moments estimators:
+Based on similar ideas we have also calculated statistics based on higher order moments and define the local standard deviation (SD), skew, and kurtosis as:
 \begin{eqnarray*}
-\text{SD}(v) &=& \sqrt{ \frac{1}{N(v)} \sum_{k \in N(v)} \left(x_k(v) - \bar{x}(v)\right)^2 } \\
-\text{Skew}(v) &=& \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} (x_k(v)-\bar{x}(v) )^3 } {\left[ \frac{1}{N(v)} \sum\limits_{k \in N(v)} (x_k(v)- \bar{x}(v))^2\right]^{3/2}} \\
-\text{Kurtosis}(v) &=& \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} (x_k(v)-\bar{x}(v) )^4 }{ \left( \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left(x_k(v) - \bar{x}(v)\right)^2\right)^2} \\
+\text{SD}(v) &=& \sqrt{ \frac{1}{N(v)} \sum_{k \in N(v)} \left\{x_k(v) - \bar{x}(v)\right\}^2 } \\
+\text{Skew}(v) &=& \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)-\bar{x}(v) \right\}^3 } {\left[ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^2\right]^{3/2}} \\
+\text{Kurtosis}(v) &=& \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^4 }{ \left[ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^2\right]^2} \\
 \label{eq:moment}
 \end{eqnarray*}
-We acknowledge that we did not divide by $N(v) - 1$ for standard deviation and skew, nor did we subtract by $3$ for kurtosis.  As $N(v)$ should be the same per voxel, this should not affect the estimates for prediction: it will be accounted for in any generalized linear model by the intercept and scaling of the beta coefficients and a tree-based decision algorithm will simply have a different cutoff value for binning.
+We did not divide by $\{N(v) - 1\}$ in standard deviation and skew formula and did not subtract by $3$ for kurtosis.  As $N(v)$ is the same at every voxel, these simplified choices will have no effect on modeling or prediction. 
 
-Voxels higher in their local mean correspond to voxels adjacent to higher HU voxels on average, which are more likely to be ICH.  The higher order moments can provide information about how homogeneous the intensities in the neighborhood are and where edges occur.  We also calculate the percentage of voxels in each neighborhood ($p_{\text{thresh}}(v)$) that have HU values between $40$ and $80$:
+
+Voxels with a larger local mean have higher HU neighboring voxels, which increases their likelihood to be in or adjacent to the ICH.  The higher order moments can provide information about how homogeneous the intensities in the neighborhood are and where edges may be located.  We also introduce the variable of the percentage of voxels in each neighborhood that have HU values between $40$ and $80$:
 \begin{equation}
 p_{\text{thresh}}(v) = \frac{1}{N(v)} \sum_{k \in N(v)} I\{ 40 \leq x_k(v) \leq 80 \} \label{eq:pct}
 \end{equation}
-which should be higher for ICH voxels as they are surrounded by high HU values.  
+which should be higher for ICH voxels as they are surrounded by neighbors with higher HU values.  
 
-Voxels that are on the surface or surrounded by non-brain tissue are less likely to be ICH.  Voxels not within the eroded mask are set to $0$; the following predictors assume that voxels close to many voxels with intensity $0$ are less likely to be ICH.    
-We calculated the percentage of voxels that have neighbors of value of $0$:
+Voxels that are on the surface or are surrounded by non-brain tissue are less likely to be in the ICH.  Thus, voxels not in eroded mask are set to $0$.    
+We also introduce the variable percentage of voxels that have neighbors of value of $0$:
 \begin{equation}
-p_{0}(v) = \frac{1}{N(v)} \sum_{k \in N(v)} I\{ x_k(v) = 0 \} \label{eq:pct0}
+p_{0}(v) = \frac{1}{N(v)} \sum_{k \in N(v)} I\{ x_k(v) = 0 \}, \label{eq:pct0}
 \end{equation}
 and an indicator of whether any voxels in the neighborhood had a value of $0$:
 \begin{equation}
-\bar{I}_{0}(v) = I\{ p_{0}(v) > 0 \} \label{eq:I0}
+\bar{I}_{0}(v) = I\{ p_{0}(v) > 0 \}. \label{eq:I0}
 \end{equation}
- 
-\subsubsection{Within-plane Standard Scores} Some brain structures have high HU values but are not ICH, such as the falx cerebri, which lies largely on the mid-sagittal plane.  Moreover, tissues in the top of the brain may have a higher average HU than those in the middle or bottom of the brain.  Thus, if values are standardized within each plane (axial, sagittal, coronal), these standard-plane scores may distinguish high values within a plane regardless of a mean shift, which may indicate ICH voxels.
 
-We created standard-plane scores for each voxel on a slice-based level for axial, sagittal, and coronal planes. For each plane $o \in \{$axial, sagittal, and coronal$\}$, we calculated the standard-plane score as follows: 
+The reason for introducing these predictors is that we expect that voxels that have neighbors with intensity zero are less likely to be ICH. Our approach will not assume that the probability of voxels with neighbors with HU intensity equal to zero are not in the ICH. Instead, we will model the probability of belonging to the ICH as a function of the predictors described in this section. 
+ 
+\subsubsection{Within-plane Standard Scores} Some brain structures have high HU values but are not ICH, such as the falx cerebri, which lies largely on the mid-sagittal plane.  Moreover, raw CT images may contain substantial inhomogeneity. For example, tissues closer to the top of the brain may have a higher observed intensities (measured in HU) than those in the middle or bottom of the brain.  Thus, if values are standardized within each plane (axial, sagittal, coronal), the resulting plane-specific z-scores may discriminate better high relative values within the plane, which may attenuate the effect of low-frequency HU intensity inhomogeneities.
+
+Thus, for each voxel and slice (axial, sagittal, and coronal) planes, we defined 
 \begin{equation}
 z_{o}(v) = \frac{x(v) - \bar{x}(v, o)}{\sigma(v, o)} \label{eq:z}
 \end{equation}
-where $\bar{x}(v, o)$ and $\sigma(v, o)$ denote the mean and standard deviation of plane $o$ which contains voxel $v$, excluding voxels outside the brain mask.   In addition to the standardized images within plane we created a Winsorized standardized image, using the Winsorized mean and standard deviation, with a 20\% trimming of the distribution, which may allow for better standardization with artifacts of the distribution (such as gross hyperintensities). 
+where $o \in \{$axial, sagittal, and coronal$\}$, $\bar{x}(v, o)$ and $\sigma(v, o)$ denote the mean and standard deviation of the intensities of voxels in the plane $o$ that contains the voxel $v$, excluding voxels outside the brain mask.   In addition to the standardized images within each plane we have also calculated standardized scores based on the Winsorized mean and standard deviation.  More precisely, we calculated the same formula as in equation~\eqref{eq:z}, but used only voxels with HU values between the 10th and 90th percentile of intensity within the slice to calculate the slice-specific mean and standard deviation. This approach is expected to be more robust to small and moderate artifacts in the image.. 
 
-\subsubsection{First-pass Segmentation} We used a previously-published, open-source, general segmentation tool based on Markov random fields for image segmentation, called Atropos \citep{atropos}.  We used a 4-tissue class segmentation, and added the top probability values from the top 2 classes to combine them into one class.  We used this probability image as a predictor, denoted by $\text{prior}(v)$.  Although this tool has been shown to perform well in other studies for tissue-class segmentation, it did not perform adequately as a standalone segmentation tool for ICH in CT.  
+\subsubsection{First-pass Segmentation} A major advantage of our approach is that it can use the results of other segmentation algorithms as covariates in our model. Consider, for example, Atropos \citep{atropos}, a previously published, open source, general segmentation tool based on Markov random fields for image segmentation.  We used used Atropos to conduct a 4-tissue class segmentation and combined the top 2 probability classes into one class.  The probability of the resulting class was then used a predictor, denoted by $\text{Atropos}(v)$.  Although Atropos has been shown to perform well in other studies for tissue-class segmentation \citep{atropos, menze2015multimodal}, the Atropos segmentation did not perform adequately in our ICH CT data. However, using the Atropos segmentation probabilities as predictors can be done seamlessly in our approach. Similarly, the results of any other segmentation approach can be incorporated in our approach and the relative performance of methods can be compared.
 
-\subsubsection{Contralateral Difference Images}  As most hemorrhages are constrained to one side of the brain, the contralateral side should have lower HU values.  For non-hemorrhage voxels, however, the contralateral voxels would have similar HU values, and thus their difference would be small or negative.  Thus, we right-left flipped the image, and took a difference image: 
+\subsubsection{Contralateral Difference Images}  As most hemorrhages are constrained to one side of the brain, the contralateral side tends to have lower HU values.  In contrast, for non-hemorrhage voxels, the contralateral voxels tend to have similar HU values due to the quasi-symmetry of the brain. To take advantage of this property, we right-left flipped the image, and computed a difference image 
 \begin{equation}
-f(v) = x(v) - x(v^{*}) \label{eq:flip}
+f(v) = x(v) - x(v^{*}), \label{eq:flip}
 \end{equation}
-where $v^{*}$ is the voxel from the contralateral side.  
+where $v^{*}$ is the contralateral voxel of $v$.  
 
 
 
-\subsubsection{Global Head Information} We used the distance to the brain centroid ($d(v)$) to potentially down-weight voxels that are very far from the brain center, which may be artifacts.    We also created $3$ images that were obtained by smoothing the original image using large Gaussian kernels ($\sigma = 5mm^3, 10mm^3, 20mm^3$), which can capture any potential homogeneity throughout the scan, denoted by $s_{5}(v)$, $s_{10}(v)$ and $s_{20}(v)$, respectively.   
+\subsubsection{Global Head Information} Another potential predictor was the distance to the center of the brain, $d(v)$, account for voxels that are far from the brain center but may contain artifacts.  We also created $3$ images by smoothing the original image using large Gaussian kernels ($\sigma = 5mm^3, 10mm^3, 20mm^3$) to account for potential heterogeneity in intensity. These smooth images we denoted by $s_{5}(v)$, $s_{10}(v)$ and $s_{20}(v)$, respectively.   
 
 \subsubsection{Standardized-to-template Intensity}  
-Although standardizing voxels compared to within-scan measurements can detect anomalous tissue, one powerful tool is to use a measure how different a voxel is compared to that voxel in a person from a non-stroke population.  We registered the brain-extracted image to the brain-extracted CT template using an affine transformation, followed by a non-linear transformation estimated using Symmetric Normalization (SyN) \citep{avants_symmetric_2008}.  
-From $30$ CT images from non-stroke patients from Dr.~Rorden (personal communication), we registered these non-stroke, brain-extracted scans to the CT template, and created a voxel-wise mean image $M$ and voxel-wise standard deviation $S$ image in template space.  For each scan in our study, we created a standardized voxel intensity with respect to this population ($z_{\text{template}}$) using the following equation:
+We have also incorporated predictors that contrast the scan HU intensities with those of an average brain obtained from healthy individuals.  Using $30$ CT images from non-stroke patients from Dr.~Rorden (personal communication), we registered the brain-extracted scans to a CT template, and created a voxel-wise mean image $M$ and voxel-wise standard deviation $S$ image across registered images in template space.  Each scan in our ICH study, we registered (using affine transformations followed by SyN \citep{avants_symmetric_2008}) it to the same CT template. We then  created a standardized voxel intensity with respect to this population, $z_{\text{template}}$, using the following equation:
 $$
 z_{\text{template}}(v) = \frac{x(v) - M(v)}{S(v)}
 $$
-This image is warped back into the rigid-body-registered space so that these standardized voxels are aligned with other predictors.  This predictor is similar to that used in \citet{gillebert_automated_2014}.  
+The image was then warped back into the original space to align this predictor with the other predictors.  This predictor is similar to that used in \citet{gillebert_automated_2014}.  
+
+
+%Although standardizing voxels compared to within-scan measurements can detect anomalous tissue, one powerful tool is to use a measure how different a voxel is compared to that voxel in a person from a non-stroke population.  We registered the brain-extracted image to the brain-extracted CT template using an affine transformation, followed by a non-linear transformation estimated using Symmetric Normalization (SyN) \citep{avants_symmetric_2008}.  
 
 
 \begin{figure}
@@ -416,8 +427,9 @@ $s_{5}(v)$ & $s_{10}(v)$  & $s_{20}(v)$& $z_{\text{template}}(v)$ \\
 \end{tabular}
 \end{center}
 \caption{{\bf Predictor Images}. Here we display one slice from one patient for predictor images.  
-The within-plane and Winsorized predictor images were not shown as they are within-subject scaled version of the image $x(v)$ and would appear very similar.  Although they appear similar at a subject level, the distribution of these predictors is different across patients.  The images that visually separate the areas of ICH compared to the rest of the image are likely to be better predictors. 
+The within-plane standardized and Winsorized predictor images were not shown as they are within-subject scaled versions of the image $x(v)$ and appear very similar.  Although they appear similar at a subject level, the distribution of these predictors is different across patients.  Images that visually separate the areas of ICH compared to the rest of the images are likely to be better predictors. 
 }
+\label{fig:pred}
 \end{figure}
 
 
@@ -430,11 +442,11 @@ The within-plane and Winsorized predictor images were not shown as they are with
 
 
 \subsection{Voxel Selection Procedure}
-We chose $10$ scans from $10$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs, denoted as training data. We used the $102$ remaining scans as test data to estimate performance.
+We chose $10$ scans from $10$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data. We used the $102$ remaining scans as test data to evaluate the performance of the proposed approaches.
 %Of the non_nmods remaining scans, we split the data into $groups["Validation"]$ validation scans and  $groups["Test"]$ test scans.  
 
 
-From the training data we estimated the $0.5\%$ and $99.5\%$ quantiles for all ICH voxels in the predictors.  Voxels that were jointly within these quantiles for $z_{\text{axial}}$, $z_{\text{coronal}}$, $p_{\text{thresh}}$, and within HU between $30$ and $100$ were considered candidate voxels of ICH; voxels outside of the intersection of these ranges were given a $0$ probability of ICH. These cutoffs empirically found to be robust in the test scans; they excluded a mean 63.6 (min: 37.1, max: 89.8) percentage of non-ICH voxels, while including a mean 97.9 (min: 91.6, max: 99.9) percentage of ICH voxels.  This voxel selection procedure should improve the specificity of model predictions, and improve computational speed.  
+Using the training data we estimated the $0.5\%$ and $99.5\%$ quantiles for all predictors across ICH voxels. The voxel selection procedure consisted of choosing all voxels that had all of predictors $z_{\text{axial}}$, $z_{\text{coronal}}$, and $p_{\text{thresh}}$ within the corresponding $0.5$ and $99.5$ quantiles as well as values of HU intensity between $30$ and $100$. Voxels that did not meet these criteria were assigned a $0$ probability of ICH. These cutoffs were found empirically to work well in the test scans. This approach excluded a mean of  63.6 (min: 37.1, max: 89.8) percentage of non-ICH voxels and included a mean of 97.9 (min: 91.6, max: 99.9) percentage of ICH voxels.  We have found that this voxel selection procedure improves computational speed as well as the performance of the algorithms.  
 
 \subsection{Models}
 
@@ -493,7 +505,7 @@ In Figure~\ref{fig:dice_img}, we display the CT scan of the patient in the test 
 \begin{figure}
 \centering
 \includegraphics[width=0.75\linewidth,keepaspectratio]{Reseg_Dice_Comparison.png}
-\caption{{\bf Distribution of Dice Similarity in Test Scans}.  Here we display the boxplot of the Dice Similarity Index (DSI), a measure of spatial overlap between the estimated hemorrhage mask and the manually-delineated hemorrhage mask, in the $102$ test scans.  We present the DSI distribution for each model fit: a logistic regression, a logistic model penalized with the Least Absolute Shrinkage and Selection Operator penalty (LASSO), a generalized additive model (GAM), and a random forest algorithm.  Overall, we see high agreement between the manual and estimated hemorrhage masks with the median of $0.89$ for the logistic model, $0.885$ for the LASSO, $0.88$ for the GAM, and $0.899$ for the random forest. The median DSI for the random forest was significantly higher than those of the other 3 models, after adjusting for multiplicity using a Bonferroni correction (all $p < 0.05$).   }
+\caption{{\bf Distribution of Dice Similarity in Test Scans}.  Here we display the boxplot of the Dice Similarity Index (DSI), a measure of spatial overlap between the estimated hemorrhage mask and the manually delineated hemorrhage mask, in the $102$ test scans.  We present the DSI distribution for each model fit: a logistic regression, a logistic model penalized with the Least Absolute Shrinkage and Selection Operator penalty (LASSO), a generalized additive model (GAM), and a random forest algorithm.  Overall, we see high agreement between the manual and estimated hemorrhage masks with the median of $0.89$ for the logistic model, $0.885$ for the LASSO, $0.88$ for the GAM, and $0.899$ for the random forest. The median DSI for the random forest was significantly higher than those of the other 3 models, after adjusting for multiplicity using a Bonferroni correction (all $p < 0.05$).   }
 \label{fig:dice}
 \end{figure}
 
@@ -518,7 +530,7 @@ $0.932$ (95\% CI: $0.901, 0.954$) for the random forest.  The RMSE for all the l
 \centering
 
 \includegraphics[width=\linewidth,keepaspectratio]{Reseg_Volume_Comparison.png}
-\caption{{\bf Comparison of Estimated and Manual Intracerebral Hemorrhage Volume for Each Model}.  In each panel, we show the volume of intracerebral hemorrhage (ICH) estimated from each model (x-axis) versus that from the gold-standard manual segmentation (y-axis) in the $102$ test scans.  The pink line represents the $X=Y$ line, which represents perfect agreement.  The blue line represents a linear fit of the data, and the estimated slope equation is displayed along with the Pearson correlation.  Panel A represents the volume from the logistic regression model, B represents that from logistic model penalized with the LASSO, C represents that from a generalized additive model (GAM), and D represents that from a random forest algorithm.  Overall, we see high agreement between the estimated volume from automated segmentation from each model as all correlations are above $0.9$.  The farther away the slope of the equation is from $1$ represents a multiplicative bias, where values greater than $1$ represents larger estimated volumes.  The farther the intercept is from $0$ represents and additive bias in the estimated volume, where values greater than $0$ again represent larger estimated volumes.  }
+\caption{{\bf Comparison of Estimated and Manual Intracerebral Hemorrhage Volume for Each Model}.  In each panel, we show the volume of intracerebral hemorrhage (ICH) estimated from each model (x-axis) versus that from the gold-standard manual segmentation (y-axis) in the $102$ test scans.  The pink line represents the $X=Y$ line, which represents perfect agreement.  The blue line represents a linear fit of the data, and the estimated slope equation is displayed along with the Pearson correlation.  Panel A represents the volume from the logistic regression model, B represents that from logistic model penalized with the LASSO, C represents that from a generalized additive model (GAM), and D represents that from a random forest algorithm.  Overall, we see high agreement between the estimated volumes from automated segmentation from each model as all correlations are above $0.9$.  The farther away the slope of the equation is from $1$ represents a multiplicative bias, where values greater than $1$ represents larger estimated volumes.  The farther the intercept is from $0$ represents and additive bias in the estimated volume, where values greater than $0$ again represent larger estimated volumes.  }
 \label{fig:vol}
 \end{figure}
 
@@ -541,7 +553,7 @@ Other methods have been presented for segmentation of ICH from CT scans \citep{ 
 Only \citet{gillebert_automated_2014} responded with any requests for software to perform the segmentation.  Although we believe that the method from \citet{gillebert_automated_2014} is comparable, it has not been packaged for general use.  As the analysis above was done in R, we have released a package that can perform ICH segmentation (\url{https://github.com/muschellij2/ichseg}), 
 including the models for prediction, CT template from \citet{rorden_age-specific_2012}, standardized mean and standard deviation images, and functions to register the images, create the predictors, predict from the models, and return a binary hemorrhage mask.  Although a package is ideal for prediction on a large number of images, we believe that this limits those who can test or try the software.  Therefore, we have released a Shiny \citep{shiny} R application online (\url{http://bit.ly/ICH_SEG}) for researchers to input CT scans and the application will output ICH segmentation masks, while giving an image depicting each processing step.  
 
-One of the potential concerns with image registration with patients with ICH is image registration.  Although this method uses non-linear registration for one predictor, the standardized-to-template intensity, this predictor is transformed back to the rigid-to-template space after standardization.  The method generally relies only rigid-body registration to a template.  This registration is largely done for head reorientation and resampling to isotropic voxel sizes across patients.  Thus, when morphological operations  are performed, such as smoothing using millimeter specifications, they do not depend on the original voxel sizes.  Although the models were fit in the rigid-to-template space, voxels from the same space in template space are not compared across patients in the models.  Also, the method returns hemorrhage masks in the native space of the patient, so they are easily comparable to any segmentation method performed on the original scan, such as clustering.  Thus, we use non-linear registration in one step, but do not rely on highly accurate image registration for comparability of voxels across patients, which can be problematic with patients with large hemorrhages.
+One of the potential concerns with image registration with patients with ICH is image registration.  Although this method uses non-linear registration for one predictor, the standardized-to-template intensity, this predictor is transformed back to the rigid-to-template space after standardization.  The method generally relies only rigid-body registration to a template.  This registration is largely done for head reorientation and resampling to isotropic voxel sizes across patients.  Thus, when morphological operations  are performed, such as smoothing using millimeter specifications, they do not depend on the original voxel sizes.  Although the models were fit in the rigid-to-template space, voxels are not compared across patients in the models.  Also, the method returns hemorrhage masks in the native space of the patient, so they are easily comparable to any segmentation method performed on the original scan, such as clustering.  Thus, we use non-linear registration in one step, but do not rely on highly accurate image registration for comparability of voxels across patients, which can be problematic with patients with large hemorrhages.
 
 
 Another concern from the process above is that the algorithm was only fit on $10$ patient scans.  Moreover, it was only fit with the sampled $100{,}000$ voxels that passed the voxel selection procedure from these scans.  Although this is a small sample, the models have shown to have high out-of-sample accuracy.  As this was the original procedure done, the training and test sets were not changed after this analysis to help avoid overfitting the models to the test set.  If a cross-validation approach was done across the entire set of scans,  the models must also be combined in some way to give a final prediction.  Validation of this method on additional data is required, but the test scans used are from multiple sites, different scanners, and have patients with heterogeneous hemorrhages both heterogeneous in size and location.  Thus, we believe this method to have good out-of-sample accuracy in a similar population.
@@ -614,8 +626,8 @@ $$
 
 The coefficients for the logistic model are (in log odds or log odds ratios):
 
-% latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Fri Jan 29 01:17:28 2016
+% latex table generated in R 3.2.4 by xtable 1.8-2 package
+% Mon Apr 25 15:25:25 2016
 \begin{table}[ht]
 \centering
 \begin{tabular}{lr}

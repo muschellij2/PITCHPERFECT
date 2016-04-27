@@ -1,6 +1,7 @@
 outdir = path.expand("~/Dropbox/PhD_Thesis/ich_chapter")
 fnames = c("ich_chapter.Rnw",
-  "Reseg_Result_Formats_Rigid.Rda",
+           "ich_chapter.bib",
+           "Reseg_Result_Formats_Rigid.Rda",
            "Scanning_Parameters.Rda",
            "Reseg_Aggregate_data_cutoffs_Rigid.Rda",
            "Reseg_111_Filenames_with_Exclusions.Rda",

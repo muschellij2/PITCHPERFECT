@@ -468,3 +468,8 @@ llong$variable = factor(llong$variable, #
 native = filter(slong, app %in% "Native")
 ktest = kruskal.test( dice ~ mod, data = native)
 ktest[["p.value"]]
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/logistic_modlist.rda")
+logistic_modlist$pauc
+logistic_modlist$mod.pauc
+logistic_modlist$mod.acc
+q('no')

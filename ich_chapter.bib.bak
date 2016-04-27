@@ -241,7 +241,7 @@ Conclusions: More than one-third of individuals die in the first month after hem
 	number = {6},
 	journaltitle = {Neurology},
 	shortjournal = {Neurology},
-	author = {Gonz\`alez-P\'erez, Antonio and Gaist, David and Wallander, Mari-Ann and {McFeat}, Gillian and García-Rodríguez, Luis A.},
+	author = {Gonz\`alez-P\'erez, Antonio and Gaist, David and Wallander, Mari-Ann and {McFeat}, Gillian and Garc\'ia-Rodr\'iguez, Luis A.},
 	urldate = {2014-10-14},
 	date = {2013-08-06},
 	langid = {english},
@@ -404,7 +404,7 @@ Conclusions We conclude that {ICH} volume can be accurately estimated in less th
 	pages = {886--894},
 	booktitle = {Medical Imaging'99},
 	publisher = {International Society for Optics and Photonics},
-	author = {Loncaric, Sven and Dhawan, Atam P. and Cosic, Dubravko and Kovačević, Domagoj and Broderick, Joseph and Brott, Thomas},
+	author = {Loncaric, Sven and Dhawan, Atam P. and Cosic, Dubravko and Kova\vcevi\'c, Domagoj and Broderick, Joseph and Brott, Thomas},
 	urldate = {2014-06-17},
 	date = {1999},
 	file = {[PDF] from researchgate.net:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/ERSCI8IU/Loncaric et al. - 1999 - Quantitative intracerebral brain hemorrhage analys.pdf:application/pdf}
@@ -429,10 +429,10 @@ Conclusions We conclude that {ICH} volume can be accurately estimated in less th
 	pages = {388--395},
 	booktitle = {Image Analysis and Processing},
 	publisher = {Springer},
-	author = {Lončarić, Sven and Kovačević, Domagoj},
+	author = {Lon\vcari\'c, Sven and Kova\vcevi\'c, Domagoj},
 	urldate = {2014-04-28},
 	date = {1997},
-	file = {Lončarić and Kovačević - 1997 - A method for segmentation of CT head images.pdf:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/VJXVRA2C/Lončarić and Kovačević - 1997 - A method for segmentation of CT head images.pdf:application/pdf;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/5U37BQD3/3-540-63508-4_147.html:text/html;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/FH353KAC/3-540-63508-4_147.html:text/html}
+	file = {Lon\vcari\'c and Kova\vcevi\'c - 1997 - A method for segmentation of CT head images.pdf:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/VJXVRA2C/Lon\vcari\'c and Kova\vcevi\'c - 1997 - A method for segmentation of CT head images.pdf:application/pdf;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/5U37BQD3/3-540-63508-4_147.html:text/html;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/FH353KAC/3-540-63508-4_147.html:text/html}
 }
 
 @article{loncarica_segmentation_1996,
@@ -451,7 +451,7 @@ Conclusions We conclude that {ICH} volume can be accurately estimated in less th
 	doi = {10.1117/12.2043494},
 	abstract = {Automatic segmentation of ischemic stroke lesions in magnetic resonance ({MR}) images is important in clinical practice and for neuroscientific trials. The key problem is to detect largely inhomogeneous regions of varying sizes, shapes and locations. We present a stroke lesion segmentation method based on local features extracted from multi-spectral {MR} data that are selected to model a human observer's discrimination criteria. A support vector machine classifier is trained on expert-segmented examples and then used to classify formerly unseen images. Leave-one-out cross validation on eight datasets with lesions of varying appearances is performed, showing our method to compare favourably with other published approaches in terms of accuracy and robustness. Furthermore, we compare a number of feature selectors and closely examine each feature's and {MR} sequence's contribution.},
 	pages = {903504--903504--12},
-	author = {Maier, Oskar and Wilms, Matthias and von der Gablentz, Janina and Krämer, Ulrike and Handels, Heinz},
+	author = {Maier, Oskar and Wilms, Matthias and von der Gablentz, Janina and Kr\"amer, Ulrike and Handels, Heinz},
 	urldate = {2014-04-07},
 	date = {2014},
 	file = {Maier et al. - 2014 - Ischemic stroke lesion segmentation in multi-spect.pdf:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/39963RXF/Maier et al. - 2014 - Ischemic stroke lesion segmentation in multi-spect.pdf:application/pdf;Maier et al. - 2014 - Ischemic stroke lesion segmentation in multi-spect.pdf:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/9N6TMJVS/Maier et al. - 2014 - Ischemic stroke lesion segmentation in multi-spect.pdf:application/pdf}
@@ -596,7 +596,7 @@ The {ABC}/2 technique overestimated infarct volume by a median false increase (v
 	pages = {155--159},
 	number = {2},
 	journaltitle = {Journal of Neuroimaging},
-	author = {Pedraza, Salvador and Puig, Josep and Blasco, Gerard and Daunis-i-Estadella, Josep and Boada, Imma and Bardera, Anton and Castellanos, Mar and Serena, Joaquín},
+	author = {Pedraza, Salvador and Puig, Josep and Blasco, Gerard and Daunis-i-Estadella, Josep and Boada, Imma and Bardera, Anton and Castellanos, Mar and Serena, Joaqu\'in},
 	urldate = {2015-01-21},
 	date = {2012},
 	langid = {english},
@@ -737,7 +737,7 @@ The {ABC}/2 technique overestimated infarct volume by a median false increase (v
 	number = {1},
 	journaltitle = {{NeuroImage}: Clinical},
 	shortjournal = {{NeuroImage}: Clinical},
-	author = {Rekik, Islem and Allassonnière, St\'ephanie and Carpenter, Trevor K. and Wardlaw, Joanna M.},
+	author = {Rekik, Islem and Allassonni\`ere, St\'ephanie and Carpenter, Trevor K. and Wardlaw, Joanna M.},
 	urldate = {2014-10-15},
 	date = {2012},
 	note = {00006},
@@ -1256,7 +1256,7 @@ Conclusions- Risk factors for {ICH} appeared to be age, male sex, hypertension, 
 	number = {4},
 	journaltitle = {Journal of Neurosurgery},
 	shortjournal = {Journal of Neurosurgery},
-	author = {Auer, Ludwig M. and Deinsberger, Wolfgang and Niederkorn, Kurt and Gell, G\"unther and Kleinert, Reinhold and Schneider, Gerhard and Holzer, Peter and Bone, Gertraude and Mokry, Michael and Körner, Eva and Kleinert, Gertrude and Hanusch, Susanna},
+	author = {Auer, Ludwig M. and Deinsberger, Wolfgang and Niederkorn, Kurt and Gell, G\"unther and Kleinert, Reinhold and Schneider, Gerhard and Holzer, Peter and Bone, Gertraude and Mokry, Michael and K\"orner, Eva and Kleinert, Gertrude and Hanusch, Susanna},
 	urldate = {2014-04-23},
 	date = {1989-04-01},
 	file = {Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/PC596J6T/Auer et al. - 1989 - Endoscopic surgery versus medical treatment for sp.pdf:application/pdf;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/E38NUV8A/jns.1989.70.4.html:text/html}
@@ -2202,7 +2202,7 @@ Conclusions We concluded that despite clinical similarity among the four types o
 	date = {1995-04-01},
 	langid = {english},
 	keywords = {30-day mortality, intracerebral hemorrhage, prognostic factors},
-	file = {Masè et al. - 1995 - Immediate prognosis of primary intracerebral hemor.pdf:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/F37CDAK8/Masè et al. - 1995 - Immediate prognosis of primary intracerebral hemor.pdf:application/pdf;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/J68W9IB7/abstract\;jsessionid=C8671A7F121CFA6B49BDFFBE393707B2.html:text/html}
+	file = {Mas\`e et al. - 1995 - Immediate prognosis of primary intracerebral hemor.pdf:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/F37CDAK8/Mas\`e et al. - 1995 - Immediate prognosis of primary intracerebral hemor.pdf:application/pdf;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/J68W9IB7/abstract\;jsessionid=C8671A7F121CFA6B49BDFFBE393707B2.html:text/html}
 }
 
 @inproceedings{matesin_rule-based_2001,
@@ -3198,7 +3198,7 @@ Conclusions Wallerian degeneration along the {CST} is common in spontaneous supr
 	issn = {2041-210X},
 	url = {http://onlinelibrary.wiley.com/doi/10.1111/j.2041-210X.2011.00125.x/abstract},
 	doi = {10.1111/j.2041-210X.2011.00125.x},
-	abstract = {1. Researchers frequently take repeated measurements of individuals in a sample with the goal of quantifying the proportion of the total variation that can be attributed to variation among individuals vs. variation among measurements within individuals. The proportion of the variation attributed to variation among individuals is known as repeatability and is most frequently estimated as the intraclass correlation coefficient ({ICC}). The goal of our study is to provide guidelines for determining the sample size (number of individuals and number of measurements per individual) required to accurately estimate the {ICC}. 2. We report a range of {ICCs} from the literature and estimate 95\% confidence intervals for these estimates. We introduce a predictive equation derived by Bonett (2002), and we test the assumptions of this equation through simulation. Finally, we create an R statistical package for the planning of experiments and estimation of {ICCs}. 3. Repeatability estimates were reported in 1·5\% of the articles published in the journals surveyed. Repeatabilities tended to be highest when the {ICC} was used to estimate measurement error and lowest when it was used to estimate repeatability of behavioural and physiological traits. Few authors report confidence intervals, but our estimated 95\% confidence intervals for published {ICCs} generally indicated a low level of precision associated with these estimates. This survey demonstrates the need for a protocol to estimate repeatability. 4. Analysis of the predictions from Bonett's equation over a range of sample sizes, expected repeatabilities and desired confidence interval widths yields both analytical and intuitive guidelines for designing experiments to estimate repeatability. However, we find a tendency for the confidence interval to be underestimated by the equation when {ICCs} are high and overestimated when {ICCs} and the number of measurements per individual are low. 5. The sample size to use when estimating repeatability is a question pitting investigator effort against expected precision of the estimate. We offer guidelines that apply over a wide variety of ecological and evolutionary studies estimating repeatability, measurement error or heritability. Additionally, we provide the R package, icc, to facilitate analyses and determine the most economic use of resources when planning experiments to estimate repeatability.},
+	abstract = {1.Researchers frequently take repeated measurements of individuals in a sample with the goal of quantifying the proportion of the total variation that can be attributed to variation among individuals vs. variation among measurements within individuals. The proportion of the variation attributed to variation among individuals is known as repeatability and is most frequently estimated as the intraclass correlation coefficient ({ICC}). The goal of our study is to provide guidelines for determining the sample size (number of individuals and number of measurements per individual) required to accurately estimate the {ICC}. 2. We report a range of {ICCs} from the literature and estimate 95\% confidence intervals for these estimates. We introduce a predictive equation derived by Bonett (2002), and we test the assumptions of this equation through simulation. Finally, we create an R statistical package for the planning of experiments and estimation of {ICCs}. 3. Repeatability estimates were reported in 1·5\% of the articles published in the journals surveyed. Repeatabilities tended to be highest when the {ICC} was used to estimate measurement error and lowest when it was used to estimate repeatability of behavioural and physiological traits. Few authors report confidence intervals, but our estimated 95\% confidence intervals for published {ICCs} generally indicated a low level of precision associated with these estimates. This survey demonstrates the need for a protocol to estimate repeatability. 4. Analysis of the predictions from Bonett's equation over a range of sample sizes, expected repeatabilities and desired confidence interval widths yields both analytical and intuitive guidelines for designing experiments to estimate repeatability. However, we find a tendency for the confidence interval to be underestimated by the equation when {ICCs} are high and overestimated when {ICCs} and the number of measurements per individual are low. 5. The sample size to use when estimating repeatability is a question pitting investigator effort against expected precision of the estimate. We offer guidelines that apply over a wide variety of ecological and evolutionary studies estimating repeatability, measurement error or heritability. Additionally, we provide the R package, icc, to facilitate analyses and determine the most economic use of resources when planning experiments to estimate repeatability.},
 	pages = {129--137},
 	number = {1},
 	journaltitle = {Methods in Ecology and Evolution},

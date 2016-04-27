@@ -1583,7 +1583,7 @@
      {}{}%
      {}{}}%
     {{}%
-     {Kova\vcevi\'c}{K.}%
+     {Kovacevi\'c}{K.}%
      {Domagoj}{D.}%
      {}{}%
      {}{}}%
@@ -1708,6 +1708,75 @@
   \field{urlday}{09}
   \field{urlmonth}{12}
   \field{urlyear}{2014}
+\endentry
+
+\entry{menze2015multimodal}{article}{}
+  \true{moreauthor}
+  \name{author}{10}{}{%
+    {{}%
+     {Menze}{M.}%
+     {Bjoern~H}{B.~H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jakab}{J.}%
+     {Andras}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bauer}{B.}%
+     {Stefan}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kalpathy-Cramer}{K.-C.}%
+     {Jayashree}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Farahani}{F.}%
+     {Keyvan}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kirby}{K.}%
+     {Justin}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Burren}{B.}%
+     {Yuliya}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Porz}{P.}%
+     {Nicole}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Slotboom}{S.}%
+     {Johannes}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wiest}{W.}%
+     {Roland}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{MBH+1}
+  \strng{fullhash}{MBHJABSKCJFKKJBYPNSJWR+1}
+  \field{sortinit}{M}
+  \field{number}{10}
+  \field{pages}{1993\bibrangedash 2024}
+  \field{title}{The multimodal brain tumor image segmentation benchmark
+  (BRATS)}
+  \field{volume}{34}
+  \field{journaltitle}{Medical Imaging, IEEE Transactions on}
+  \field{year}{2015}
 \endentry
 
 \entry{morgan_preliminary_2008_mistie}{incollection}{}

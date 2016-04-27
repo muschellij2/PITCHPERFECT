@@ -13,51 +13,51 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 12228 items from 5000.
+Reallocated field_info (elt_size=4) to 12367 items from 5000.
 Database file #1: CT_ICH_Segmentation-blx.bib
 Database file #2: ich_chapter.bib
 Reallocated str_pool (elt_size=1) to 130000 items from 65000.
 Biblatex version: 2.9
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
-You've used 52 entries,
+You've used 53 entries,
             6047 wiz_defined-function locations,
-            1652 strings with 79950 characters,
-and the built_in function-call counts, 364574 in all, are:
-= -- 9055
-> -- 35842
-< -- 2854
-+ -- 29019
-- -- 29124
-* -- 24093
-:= -- 42548
+            1659 strings with 80292 characters,
+and the built_in function-call counts, 369114 in all, are:
+= -- 9213
+> -- 35998
+< -- 2880
++ -- 29083
+- -- 29207
+* -- 24607
+:= -- 42855
 add.period$ -- 0
-call.type$ -- 52
-change.case$ -- 729
+call.type$ -- 53
+change.case$ -- 744
 chr.to.int$ -- 2290
-cite$ -- 102
-duplicate$ -- 31686
-empty$ -- 25963
-format.name$ -- 5927
-if$ -- 54216
+cite$ -- 104
+duplicate$ -- 32236
+empty$ -- 26409
+format.name$ -- 6084
+if$ -- 55149
 int.to.chr$ -- 0
-int.to.str$ -- 121
+int.to.str$ -- 124
 missing$ -- 0
-newline$ -- 3203
-num.names$ -- 2330
-pop$ -- 16860
+newline$ -- 3271
+num.names$ -- 2378
+pop$ -- 17211
 preamble$ -- 1
-purify$ -- 1074
+purify$ -- 1099
 quote$ -- 0
-skip$ -- 12765
+skip$ -- 12969
 stack$ -- 0
-substring$ -- 11937
-swap$ -- 12293
-text.length$ -- 2521
-text.prefix$ -- 61
+substring$ -- 12012
+swap$ -- 12491
+text.length$ -- 2552
+text.prefix$ -- 62
 top$ -- 1
-type$ -- 1964
+type$ -- 2002
 warning$ -- 0
-while$ -- 2793
+while$ -- 2812
 width$ -- 0
-write$ -- 3150
+write$ -- 3217
