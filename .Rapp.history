@@ -473,3 +473,8 @@ logistic_modlist$pauc
 logistic_modlist$mod.pauc
 logistic_modlist$mod.acc
 q('no')
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Aggregate_data_cutoffs_Rigid.Rda")
+ls()
+multiplier_col
+quants
+q('no')

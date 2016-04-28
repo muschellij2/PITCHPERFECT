@@ -200,6 +200,10 @@ native = filter(slong, app %in% "Native")
 
 dice = filter(native, mod %in% "rf")
 n_under_50 = sum(dice$dice < 0.5)
+L = length(dice$dice)
+stopifnot(L == non_nmods)
+fail_rate = sprintf("%3.1f", 
+	n_under_50/non_nmods*100)
 qs = quantile(dice$dice)
 ranks = rank(dice$dice)
 inds = floor(quantile(1:nrow(dice)))
