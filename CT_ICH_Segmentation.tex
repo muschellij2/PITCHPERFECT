@@ -545,7 +545,7 @@ $0.932$ (95\% CI: $0.901, 0.954$) for the random forest.  The RMSE for logistic 
 \end{figure}
 
 \subsection{Model Choice}
-Overall, all models perform well for ICH segmentation.  A small percentage of failures were observed with DSI < 0.5 (N = XXXX), but the random forest algorithm had a slightly higher median DSI, slightly lower RMSE, and a higher slightly correlation than the other models.  Therefore, when implementing the algorithm, we will use the random forest model.
+Overall, all models perform well for ICH segmentation.  A small percentage ($1.0\%$) of failures were observed with DSI $< 0.5$ ($N = 1$ out of $102$ scans), but the random forest algorithm had a slightly higher median DSI, slightly lower RMSE, and a higher slightly correlation than the other models.  Therefore, when implementing the algorithm, we will use the random forest model.
 
 
 
@@ -642,7 +642,7 @@ $$
 The coefficients for the logistic model are (in log odds or log odds ratios):
 
 % latex table generated in R 3.2.4 by xtable 1.8-2 package
-% Thu Apr 28 12:33:19 2016
+% Thu Apr 28 12:37:11 2016
 \begin{table}[ht]
 \centering
 \begin{tabular}{lr}

@@ -775,7 +775,7 @@ $\Sexpr{corrdata["rf", "cor"]}$ (95\% CI: $\Sexpr{corrdata["rf", "cor.lower"]}, 
 \end{figure}
 
 \subsection{Model Choice}
-Overall, all models perform well for ICH segmentation.  A small percentage of failures were observed with DSI < 0.5 (N = XXXX), but the random forest algorithm had a slightly higher median DSI, slightly lower RMSE, and a higher slightly correlation than the other models.  Therefore, when implementing the algorithm, we will use the random forest model.
+Overall, all models perform well for ICH segmentation.  A small percentage ($\Sexpr{fail_rate}\%$) of failures were observed with DSI $< 0.5$ ($N = \Sexpr{n_under_50}$ out of $\Sexpr{non_nmods}$ scans), but the random forest algorithm had a slightly higher median DSI, slightly lower RMSE, and a higher slightly correlation than the other models.  Therefore, when implementing the algorithm, we will use the random forest model.
 
 
 
