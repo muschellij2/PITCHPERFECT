@@ -152,35 +152,41 @@
 \address[ucla]{Department of Neurosurgery, David Geffen School of Medicine at UCLA, Los Angeles, CA, USA}
 
 
+
+
+
+
+
+
+
+
+
+
 \begin{abstract}
 
-%
-%\section*{Introduction}
-%Intracerebral hemorrhage (ICH) is a neurological condition that results from a blood vessel rupturing into the tissue and possibly the ventricles of the brain; it accounts for approximately 10-15\% of all strokes and 5 million cases worldwide \citep{krishnamurthi_global_2014}. 
-%
-%Manual segmentation using planimetry is the gold standard for volume estimation but is time-consuming and has within- and across-reader variability.  We wish to create an algorithm that can estimate the probability of ICH at a voxel-level, the volume of ICH, and the level of uncertainty in these estimates.  We propose an automated segmentation using logistic regression with features extracted from X-ray computed tomography (CT) scans.  
-%\vspace{-1em}
-%\section*{Data}
-%The Minimally Invasive Surgery and rt-PA in ICH Evacuation (MISTIE) trial was a multi-site, multi-national, randomized Phase II clinical trial. We used 112 patients from MISTIE, one scan per patient, using the first scan acquired.  We used 10 scans for model estimation and 102 scans for model validation.  
-%\vspace{-1em}
-%\subsection*{Manual ICH Segmentation}
-%ICH was manually segmented on CT scans by expert readers. Binary hemorrhage masks were created by setting voxel intensity to $1$ if the voxel was classified as hemorrhage, regardless of location, and $0$ otherwise.  CT images were preprocessed and brains were extracted using a validated CT-specific brain extraction protocol \citep{muschelli_iii_validated_2015}, and eroded.  We derived a set of imaging predictors from each scan.  We used the first $10$ scans as a training set: we aggregated voxels, performed a voxel selection procedure and fit the model: 
-%$$\mbox{logit}(Y(v)) = \alpha + X(v) \beta$$
-%where $X(v)$ is a set of features for voxel $v$ and $Y(v)$ is the binary presence of ICH.  We validated this model on another $51$ scans: we estimated the probability a voxel is ICH, and thresholded the probability to give a binary prediction. We used the Dice Similarity Index (DSI) \citep{dice_measures_1945} to estimate performance where $DSI = \frac{2 \times \text{TP} }{ 2\times \text{TP} + \text{FN} + \text{FP}}$, which ranges from $0$ to $1$, where TN/TP are true negatives/positives, and FN/FP are false negatives/positives, respectively.
-%
-%\section*{Results} 
-%
-%The mean (SD) DSI was $0.861$ ($0.052$) for the $51$ test scans had a high, with a minimum DSI of $0.686$.   These results indicate that the approach described can achieve accurate segmentation of ICH in a population of patients from a variety of imaging centers.  
-%
-%\vspace{-1em}
-%\section*{Future Work}
-%Although we have shown the ability to segment hemorrhage well on a number of CT scans, there is room for improvement in the algorithm.  Many of the covariates likely represent redundant or non-orthogonal information.  We can drop groups of variables to detect which are important for accurate prediction at the population level. We must also compare our results to those previously published.
 
+\section*{Introduction}
+
+Intracerebral hemorrhage (ICH), where a blood vessel ruptures into areas of the brain, accounts for approximately 10-15\% of all strokes.  X-ray computed tomography (CT) scans is largely used to assess the location and volume of the hemorrhage.
+
+Manual segmentation of the CT scan using planimetry by an expert reader is the gold standard for volume estimation but is time-consuming and has within- and across-reader variability.  We propose an automated segmentation approach using a random forest algorithm with features extracted from X-ray computed tomography (CT) scans.  
+\vspace{-1em}
+\section*{Methods}
+The Minimally Invasive Surgery and rt-PA in ICH Evacuation (MISTIE) trial was a multi-site Phase II clinical trial. We used $112$ patients from MISTIE, one CT scan per patient, using the first scan acquired.  ICH was manually segmented on CT scans by expert readers. We derived a set of imaging predictors from each scan. 
+
+Using $10$ scans, we used a first-pass voxel selection procedure based on quantiles of a set of predictors and then built $4$ models estimating the voxel-level probability of ICH.  The models used were: 1) logistic regression, 2) logistic regression with a penalty on the model parameters using LASSO, 3) a generalized additive model (GAM) and 4) a random forest classifier.   We used $10$ scans for model estimation and $102$ scans for model validation.  
+
+For each validation scan, the model predicted the probability of ICH, which was thresholded using a cutoff derived from the training data to a binary image mask.  This mask was compared to the manual segmentation mask using the correlation of the volume of the hemorrhage and the Dice Similarity Index (DSI), an overlap measure.  We tested equality of median DSI using the Kruskal-Wallis test and median pairs using the Wilcoxon rank-sum test. 
+
+\vspace{-1em}
+
+\section*{Results} 
+The median DSI for each model was: $0.89$ (logistic), $0.885$  (LASSO), $0.88$ (GAM), and $0.899$ (random forest).  Using the random forest results in a slightly higher median DSI compared to the other models. After Bonferroni correction, the hypothesis of equality of median DSI was rejected only when comparing the random forest DSI to the DSI from the logistic ($p < 0.001$), LASSO ($p < 0.001$), or GAM ($p < 0.001$) models.  In practical terms the difference between the random forest and the logistic regression is quite small.  The correlation (95\% CI) between the volume from manual segmentation and the predicted volume was $0.932$ ($0.901, 0.954$) for the random forest model. These results indicate that the approach can achieve accurate segmentation of ICH in a population of patients from a variety of imaging centers.  
 
 \end{abstract}
 
 \begin{keyword}
-CT \sep ICH Segmentation
+CT \sep ICH Segmentation \sep Intracerebral Hemorrhage 
 \end{keyword}
 
 \end{frontmatter}
@@ -194,12 +200,6 @@ CT \sep ICH Segmentation
 \newcommand{\stubber}[1]{figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head#1.png}
 %trim = 3in 10in 4in 3in, clip, 
 \newcommand{\makeimg}[2]{\includegraphics[width=#1\linewidth]{\stubber{#2}}}
-
-
-
-
-
-
 
 
 
@@ -529,7 +529,7 @@ To better understand the DSI measurements in our data, Figure~\ref{fig:dice_img}
 \subsection{ICH Volume Estimation}
 In Figure~\ref{fig:vol}, we show the estimated ICH volume versus that from the manual segmentation.  The pink line represents the $X = Y$ line, where the estimated and true volume are identical.  The blue line represents the linear fit; the estimated linear regression equation and correlation are printed on the plot.  The farther away the slope of the equation is from $1$ the larger the bias with values larger than $1$ representing over-estimated volumes.  
 %The farther the intercept is from $0$ represents and additive bias in the estimated volume, where values greater than $0$ again represent larger estimated volumes.  
-The correlation (95\% confidence interval (CI)) between the true volume and the volume predicted volume were $0.92$ (95\% CI: $0.884, 0.945$) for the logistic model, 
+The correlation (95\% confidence interval (CI)) between the true volume and the predicted volume were $0.92$ (95\% CI: $0.884, 0.945$) for the logistic model, 
 $0.916$ ($0.878, 0.942$) for the LASSO, 
 $0.908$ (95\% CI: $0.866, 0.937$) for the GAM, and  
 $0.932$ (95\% CI: $0.901, 0.954$) for the random forest.  The RMSE for logistic (RMSE: $10.67$ mL), LASSO ($10.83$ mL), and random forest ($10.27$ mL) models were relatively close, but was slightly higher for the GAM model ($11.36$ mL).  The  Kruskal-Wallis test indicated no significant difference in the median absolute value of the difference in estimated versus true volume over models ($\chi^{2}(3)=2.3$, $p = 0.51$).  
@@ -641,8 +641,8 @@ $$
 
 The coefficients for the logistic model are (in log odds or log odds ratios):
 
-% latex table generated in R 3.2.4 by xtable 1.8-2 package
-% Thu Apr 28 14:26:15 2016
+% latex table generated in R 3.3.0 by xtable 1.8-2 package
+% Wed Jun  8 16:01:05 2016
 \begin{table}[ht]
 \centering
 \begin{tabular}{lr}
@@ -679,8 +679,6 @@ The specification for the functional form of the model fit with the LASSO penalt
 $$
 \min_{\beta} - \left( \frac{1}{\sum_{i}V_i} \sum_i Y_{i}(v) \times X_i(v)\beta - \log \left(1 + e^{X_i(v)\beta}\right) \right) +\lambda\sum_{k}\left|\beta_k\right|
 $$
-
-
 
 
 

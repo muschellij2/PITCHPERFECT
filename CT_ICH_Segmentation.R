@@ -10,6 +10,32 @@ xx = load(rda)
 Nmods = non.aggmods
 rm(list=xx)
 
+## ----echo = FALSE--------------------------------------------------------
+loader = function(x, varnames, replacer = " ") {
+	L = vector(mode = "list", length = length(varnames))
+	names(L) = varnames
+	for (i in varnames) {
+		L[[i]] = replacer
+	}
+	if (file.exists(x)) {
+		rr = load(x)
+		for (i in varnames) {
+			xx = get(i)
+			if (is.null(xx)){
+				xx = replacer
+			}
+			L[[i]] = xx
+		}		
+	}
+	return(L)
+}
+L = loader("Number_of_Non_Nmods_Abstract.rda", c("non_nmods", "total_N"))
+non_nmods = L$non_nmods
+total_N = L$total_N
+med_dice = loader("Median_Dice_Abstract.rda", "med_dice")$med_dice
+wt_pvals = loader("Wilcoxon_Rank_pvalues_Abstract.rda", "wt_pvals")$wt_pvals
+corrdata = loader("Correlation_data_Abstract.rda", "corrdata", replacer = NULL)$corrdata
+
 ## ----label=setup_dir, echo=FALSE-----------------------------------------
 ll = ls()
 ll = ll[ !ll %in% c("encoding", "Nmods")]
@@ -159,6 +185,7 @@ rn = gsub("%", "", rn)
 groups = table(voldf$group)
 groups = groups[ names(groups) %in% c("Validation", "Test")]
 non_nmods = total_N - Nmods
+save(non_nmods, total_N, file = "Number_of_Non_Nmods_Abstract.rda")
 
 ## ----dice_res------------------------------------------------------------
 load("Reseg_Results.Rda")
@@ -221,6 +248,7 @@ nn = as.character(med_dice$mod)
 med_dice = med_dice$med
 names(med_dice) = nn
 med_dice = round(med_dice, 3)
+save(med_dice, file = "Median_Dice_Abstract.rda")
 
 ## ----wt_pvals------------------------------------------------------------
 #######################################
@@ -248,6 +276,7 @@ wt_pvals = sapply(c("logistic", "lasso", "gam"), function(x){
 	row$adj
 	})
 wt_pvals = pvaller(wt_pvals, 0.001)
+save(wt_pvals, file = "Wilcoxon_Rank_pvalues_Abstract.rda")
 
 ## ----vol_wt_pvals--------------------------------------------------------
 native$abs_diff = abs(native$diff)
@@ -288,6 +317,7 @@ names(rmse) = nn
 rm(list = "nn")
 corrdata = corrs %>% select(cor, cor.lower, cor.upper)
 corrdata = round(corrdata, 3)
+save(corrdata, file = "Correlation_data_Abstract.rda")
 
 ## ----loncaric------------------------------------------------------------
 library(reshape2)

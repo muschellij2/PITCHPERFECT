@@ -478,3 +478,8 @@ ls()
 multiplier_col
 quants
 q('no')
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Median_Dice_Abstract.rda")
+dir()
+ls()
+med_dice
+q('no')
