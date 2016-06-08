@@ -642,7 +642,7 @@ $$
 The coefficients for the logistic model are (in log odds or log odds ratios):
 
 % latex table generated in R 3.3.0 by xtable 1.8-2 package
-% Wed Jun  8 16:01:05 2016
+% Wed Jun  8 16:41:18 2016
 \begin{table}[ht]
 \centering
 \begin{tabular}{lr}
@@ -655,23 +655,25 @@ Intercept & 1.008 \\
   Neighborhood skew & 0.065 \\ 
   Neighborhood kurtosis & -0.352 \\ 
   Image intensity (HU) & -0.172 \\ 
-  Threshold ($>$= 40 and $<$= 80) & -0.151 \\ 
-  Within-plane Coronal & -0.632 \\ 
-  Within-plane Sagittal & -0.249 \\ 
-  Within-plane Axial & 1.037 \\ 
-  Winsorized standardized (20$\backslash$\% trim) & 0.547 \\ 
+  Threshold ($\geq$ 40 and $\leq$ 80) & -0.151 \\ 
+  Within-plane coronal & -0.632 \\ 
+  Within-plane sagittal & -0.249 \\ 
+  Within-plane axial & 1.037 \\ 
+  Winsorized standardized (20\% trim) & 0.547 \\ 
   Percentage thresholded neighbors & 2.061 \\ 
   Atropos probability image & 0.150 \\ 
   Percent of zero neighbors & -9.180 \\ 
   Indicator of any zero neighbors & 0.071 \\ 
-  Distance to Image centroid & -0.087 \\ 
-  Gaussian smooth (5mm\verb|^|3) & -0.051 \\ 
-  Gaussian smooth (10mm\verb|^|3) & 0.550 \\ 
-  Gaussian smooth (20mm\verb|^|3) & -0.390 \\ 
-  Standardized-to-template Intensity & 1.460 \\ 
+  Distance to image centroid & -0.087 \\ 
+  Gaussian smooth ($\sigma = 5$mm$^3$) & -0.051 \\ 
+  Gaussian smooth ($\sigma = 10$mm$^3$) & 0.550 \\ 
+  Gaussian smooth ($\sigma = 20$mm$^3$) & -0.390 \\ 
+  Standardized-to-template intensity & 1.460 \\ 
   Contralateral difference & 0.033 \\ 
    \hline
 \end{tabular}
+\caption{Beta coefficients (log odds ratio) for the logistic regression model for all coefficients.  Combining these for each voxel value and using the inverse logit transformation yields the probability that voxel is ICH.After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was 0.5481.} 
+\label{tab:modspec}
 \end{table}
 
 

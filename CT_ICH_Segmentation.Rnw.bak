@@ -121,29 +121,30 @@ rm(list=xx)
 
 
 <<echo = FALSE>>=
-loader = function(x, varnames) {
+loader = function(x, varnames, replacer = " ") {
 	L = vector(mode = "list", length = length(varnames))
 	names(L) = varnames
 	for (i in varnames) {
-		L[i] = " "
+		L[[i]] = replacer
 	}
 	if (file.exists(x)) {
 		rr = load(x)
 		for (i in varnames) {
 			xx = get(i)
 			if (is.null(xx)){
-				xx = " "
+				xx = replacer
 			}
 			L[[i]] = xx
 		}		
 	}
 	return(L)
 }
-L = loader("Number_of_Non_Nmods.rda", c("non_nmods", "total_N"))
+L = loader("Number_of_Non_Nmods_Abstract.rda", c("non_nmods", "total_N"))
 non_nmods = L$non_nmods
 total_N = L$total_N
 med_dice = loader("Median_Dice_Abstract.rda", "med_dice")$med_dice
-wt_pvals = loader("Wilcoxon_Rank_pvalues.rda", "wt_pvals")$wt_pvals
+wt_pvals = loader("Wilcoxon_Rank_pvalues_Abstract.rda", "wt_pvals")$wt_pvals
+corrdata = loader("Correlation_data_Abstract.rda", "corrdata", replacer = NULL)$corrdata
 @
 
 \begin{abstract}
@@ -568,7 +569,7 @@ rn = gsub("%", "", rn)
 groups = table(voldf$group)
 groups = groups[ names(groups) %in% c("Validation", "Test")]
 non_nmods = total_N - Nmods
-save(non_nmods, total_N, file = "Number_of_Non_Nmods.rda")
+save(non_nmods, total_N, file = "Number_of_Non_Nmods_Abstract.rda")
 @
 
 
@@ -707,7 +708,7 @@ wt_pvals = sapply(c("logistic", "lasso", "gam"), function(x){
 	row$adj
 	})
 wt_pvals = pvaller(wt_pvals, 0.001)
-save(wt_pvals, file = "Wilcoxon_Rank_pvalues.rda")
+save(wt_pvals, file = "Wilcoxon_Rank_pvalues_Abstract.rda")
 @
 For each of the remaining $\Sexpr{non_nmods}$ scans in the test data, the voxel selection described in Section~\ref{sec:voxsel} was applied. Using the prediction process described in Section~\ref{sec:mods} an ICH probability map was estimated using each of the four models.  Using the probability thresholds calculated on the training data, as described in Section~\ref{sec:cutoffs}, we obtained a binary ICH map for each of the four methods. For evaluation, all results are provided in 
 the native space of the patient, not in the template space, as the manual segmentation was
@@ -765,6 +766,7 @@ names(rmse) = nn
 rm(list = "nn")
 corrdata = corrs %>% select(cor, cor.lower, cor.upper)
 corrdata = round(corrdata, 3)
+save(corrdata, file = "Correlation_data_Abstract.rda")
 @
 
 \begin{figure}
@@ -891,6 +893,9 @@ cat(figstr)
 \subsection{Model Specification}
 \label{sec:modspec}
 <<mod_list>>=
+load("smoothed_logistic_cutoffs.rda")
+cutoff = smoothed_logistic_cutoffs$mod.dice.coef[, "cutoff"]
+
 load("logistic_modlist.rda")
 npred = length(coef(logistic_modlist$mod)) - 1
 # npred for intercept
@@ -902,25 +907,30 @@ coefs$term = plyr::revalue(coefs$term, c("(Intercept)" = "Intercept",
 "skew" = "Neighborhood skew", 
 "kurtosis" = "Neighborhood kurtosis", 
 "value" = "Image intensity (HU)",
-"thresh" = paste0("Threshold (>= ", lthresh, " and <= ", uthresh, ")"), 
-"zscore1" = "Within-plane Coronal", 
-"zscore2" = "Within-plane Sagittal", 
-"zscore3" = "Within-plane Axial", 
+"thresh" = paste0("Threshold ($\\geq$ ", lthresh, " and $\\leq$ ", uthresh, ")"), 
+"zscore1" = "Within-plane coronal", 
+"zscore2" = "Within-plane sagittal", 
+"zscore3" = "Within-plane axial", 
 "win_z" = "Winsorized standardized (20\\% trim)", 
 "pct_thresh" = "Percentage thresholded neighbors", 
 "prob_img" = "Atropos probability image", 
 "pct_zero_neighbor" = "Percent of zero neighbors", 
 "any_zero_neighbor" = "Indicator of any zero neighbors", 
-"dist_centroid" = "Distance to Image centroid", 
-"smooth5" = "Gaussian smooth (5mm^3)", 
-"smooth10" = "Gaussian smooth (10mm^3)", 
-"smooth20" = "Gaussian smooth (20mm^3)", 
-"zscore_template" = "Standardized-to-template Intensity", 
+"dist_centroid" = "Distance to image centroid", 
+"smooth5" = "Gaussian smooth ($\\sigma = 5$mm$^3$)", 
+"smooth10" = "Gaussian smooth ($\\sigma = 10$mm$^3$)", 
+"smooth20" = "Gaussian smooth ($\\sigma = 20$mm$^3$)", 
+"zscore_template" = "Standardized-to-template intensity", 
 "flipped_value" = "Contralateral difference"
 )
 )
 colnames(coefs) = c("Predictor", "Beta")
-xtab = xtable(coefs, digits = 3)
+coefcap = paste0( "Beta coefficients (log odds ratio) for the logistic regression model for all coefficients.  ", 
+"Combining these for each voxel value and using the inverse logit transformation yields the probability that ",
+"voxel is ICH.", 
+"After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was ", 
+round(cutoff, 4), ".")
+xtab = xtable(coefs, digits = 3, caption = coefcap, label = "tab:modspec")
 @
 Let $Y_{i}(v)$ represent the binary hemorrhage mask indicator for voxel $v$, from patient $i$, and $x_{i,v}(k)$ represent the predictor image for image $k$, $k = 1, \dots 21$.
 $$
@@ -930,7 +940,7 @@ $$
 The coefficients for the logistic model are (in log odds or log odds ratios):
 
 <<results = "asis">>=
-print.xtable(xtab, include.rownames = FALSE)
+print.xtable(xtab, include.rownames = FALSE, sanitize.text.function = identity)
 @
 
 The specification for the functional form of the model fit with the LASSO penalty, is the same, but optimizes the following criteria:

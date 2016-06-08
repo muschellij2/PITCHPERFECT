@@ -483,3 +483,4 @@ dir()
 ls()
 med_dice
 q('no')
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/smoothed_logistic_cutoffs.rda")
