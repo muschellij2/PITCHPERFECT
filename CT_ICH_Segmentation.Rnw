@@ -102,50 +102,6 @@
 \address[ucla]{Department of Neurosurgery, David Geffen School of Medicine at UCLA, Los Angeles, CA, USA}
 
 
-\begin{abstract}
-
-%
-%\section*{Introduction}
-%Intracerebral hemorrhage (ICH) is a neurological condition that results from a blood vessel rupturing into the tissue and possibly the ventricles of the brain; it accounts for approximately 10-15\% of all strokes and 5 million cases worldwide \citep{krishnamurthi_global_2014}. 
-%
-%Manual segmentation using planimetry is the gold standard for volume estimation but is time-consuming and has within- and across-reader variability.  We wish to create an algorithm that can estimate the probability of ICH at a voxel-level, the volume of ICH, and the level of uncertainty in these estimates.  We propose an automated segmentation using logistic regression with features extracted from X-ray computed tomography (CT) scans.  
-%\vspace{-1em}
-%\section*{Data}
-%The Minimally Invasive Surgery and rt-PA in ICH Evacuation (MISTIE) trial was a multi-site, multi-national, randomized Phase II clinical trial. We used 112 patients from MISTIE, one scan per patient, using the first scan acquired.  We used 10 scans for model estimation and 102 scans for model validation.  
-%\vspace{-1em}
-%\subsection*{Manual ICH Segmentation}
-%ICH was manually segmented on CT scans by expert readers. Binary hemorrhage masks were created by setting voxel intensity to $1$ if the voxel was classified as hemorrhage, regardless of location, and $0$ otherwise.  CT images were preprocessed and brains were extracted using a validated CT-specific brain extraction protocol \citep{muschelli_iii_validated_2015}, and eroded.  We derived a set of imaging predictors from each scan.  We used the first $10$ scans as a training set: we aggregated voxels, performed a voxel selection procedure and fit the model: 
-%$$\mbox{logit}(Y(v)) = \alpha + X(v) \beta$$
-%where $X(v)$ is a set of features for voxel $v$ and $Y(v)$ is the binary presence of ICH.  We validated this model on another $51$ scans: we estimated the probability a voxel is ICH, and thresholded the probability to give a binary prediction. We used the Dice Similarity Index (DSI) \citep{dice_measures_1945} to estimate performance where $DSI = \frac{2 \times \text{TP} }{ 2\times \text{TP} + \text{FN} + \text{FP}}$, which ranges from $0$ to $1$, where TN/TP are true negatives/positives, and FN/FP are false negatives/positives, respectively.
-%
-%\section*{Results} 
-%
-%The mean (SD) DSI was $0.861$ ($0.052$) for the $51$ test scans had a high, with a minimum DSI of $0.686$.   These results indicate that the approach described can achieve accurate segmentation of ICH in a population of patients from a variety of imaging centers.  
-%
-%\vspace{-1em}
-%\section*{Future Work}
-%Although we have shown the ability to segment hemorrhage well on a number of CT scans, there is room for improvement in the algorithm.  Many of the covariates likely represent redundant or non-orthogonal information.  We can drop groups of variables to detect which are important for accurate prediction at the population level. We must also compare our results to those previously published.
-
-
-\end{abstract}
-
-\begin{keyword}
-CT \sep ICH Segmentation
-\end{keyword}
-
-\end{frontmatter}
-
-
-\renewcommand{\thesubfigure}{\Alph{subfigure}} % OK
-
-
-\newcommand{\mywidth}{0.23}
-
-\newcommand{\stubber}[1]{figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head#1.png}
-%trim = 3in 10in 4in 3in, clip, 
-\newcommand{\makeimg}[2]{\includegraphics[width=#1\linewidth]{\stubber{#2}}}
-
-
 
 
 <<label=opts, results='hide', echo=FALSE, message = FALSE, warning=FALSE>>=
@@ -162,6 +118,75 @@ xx = load(rda)
 Nmods = non.aggmods
 rm(list=xx)
 @
+
+
+<<echo = FALSE>>=
+loader = function(x, varnames, replacer = " ") {
+	L = vector(mode = "list", length = length(varnames))
+	names(L) = varnames
+	for (i in varnames) {
+		L[[i]] = replacer
+	}
+	if (file.exists(x)) {
+		rr = load(x)
+		for (i in varnames) {
+			xx = get(i)
+			if (is.null(xx)){
+				xx = replacer
+			}
+			L[[i]] = xx
+		}		
+	}
+	return(L)
+}
+L = loader("Number_of_Non_Nmods_Abstract.rda", c("non_nmods", "total_N"))
+non_nmods = L$non_nmods
+total_N = L$total_N
+med_dice = loader("Median_Dice_Abstract.rda", "med_dice")$med_dice
+wt_pvals = loader("Wilcoxon_Rank_pvalues_Abstract.rda", "wt_pvals")$wt_pvals
+corrdata = loader("Correlation_data_Abstract.rda", "corrdata", replacer = NULL)$corrdata
+@
+
+\begin{abstract}
+
+
+\section*{Introduction}
+
+Intracerebral hemorrhage (ICH), where a blood vessel ruptures into areas of the brain, accounts for approximately 10-15\% of all strokes.  X-ray computed tomography (CT) scans is largely used to assess the location and volume of the hemorrhage.
+
+Manual segmentation of the CT scan using planimetry by an expert reader is the gold standard for volume estimation but is time-consuming and has within- and across-reader variability.  We propose an automated segmentation approach using a random forest algorithm with features extracted from X-ray computed tomography (CT) scans.  
+\vspace{-1em}
+\section*{Methods}
+The Minimally Invasive Surgery and rt-PA in ICH Evacuation (MISTIE) trial was a multi-site Phase II clinical trial. We used $\Sexpr{total_N}$ patients from MISTIE, one CT scan per patient, using the first scan acquired.  ICH was manually segmented on CT scans by expert readers. We derived a set of imaging predictors from each scan. 
+
+Using $\Sexpr{Nmods}$ scans, we used a first-pass voxel selection procedure based on quantiles of a set of predictors and then built $4$ models estimating the voxel-level probability of ICH.  The models used were: 1) logistic regression, 2) logistic regression with a penalty on the model parameters using LASSO, 3) a generalized additive model (GAM) and 4) a random forest classifier.   We used $\Sexpr{Nmods}$ scans for model estimation and $\Sexpr{non_nmods}$ scans for model validation.  
+
+For each validation scan, the model predicted the probability of ICH, which was thresholded using a cutoff derived from the training data to a binary image mask.  This mask was compared to the manual segmentation mask using the correlation of the volume of the hemorrhage and the Dice Similarity Index (DSI), an overlap measure.  We tested equality of median DSI using the Kruskal-Wallis test and median pairs using the Wilcoxon rank-sum test. 
+
+\vspace{-1em}
+
+\section*{Results} 
+The median DSI for each model was: $\Sexpr{med_dice["logistic"]}$ (logistic), $\Sexpr{med_dice["lasso"]}$  (LASSO), $\Sexpr{med_dice["gam"]}$ (GAM), and $\Sexpr{med_dice["rf"]}$ (random forest).  Using the random forest results in a slightly higher median DSI compared to the other models. After Bonferroni correction, the hypothesis of equality of median DSI was rejected only when comparing the random forest DSI to the DSI from the logistic ($p \Sexpr{wt_pvals["logistic"]}$), LASSO ($p \Sexpr{wt_pvals["lasso"]}$), or GAM ($p \Sexpr{wt_pvals["gam"]}$) models.  In practical terms the difference between the random forest and the logistic regression is quite small.  The correlation (95\% CI) between the volume from manual segmentation and the predicted volume was $\Sexpr{corrdata["rf", "cor"]}$ ($\Sexpr{corrdata["rf", "cor.lower"]}, \Sexpr{corrdata["rf", "cor.upper"]}$) for the random forest model. These results indicate that the approach can achieve accurate segmentation of ICH in a population of patients from a variety of imaging centers.  
+
+\end{abstract}
+
+\begin{keyword}
+CT \sep ICH Segmentation \sep Intracerebral Hemorrhage 
+\end{keyword}
+
+\end{frontmatter}
+
+
+\renewcommand{\thesubfigure}{\Alph{subfigure}} % OK
+
+
+\newcommand{\mywidth}{0.23}
+
+\newcommand{\stubber}[1]{figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head#1.png}
+%trim = 3in 10in 4in 3in, clip, 
+\newcommand{\makeimg}[2]{\includegraphics[width=#1\linewidth]{\stubber{#2}}}
+
+
 
 <<label=setup_dir, echo=FALSE >>=
 ll = ls()
@@ -275,7 +300,7 @@ Intracerebral hemorrhage (ICH) is a neurological condition that results from a b
 
 ICH volume can be estimated quickly, for example,  using the ABC/2 method \citep{broderick_volume_1993}.  In this method, a reader chooses the slice with the largest area of hemorrhage.  The length of the intersection between this first axis and the hemorrhage is denoted by A. The next step is to draw an orthogonal line  at the middle of the segment of length A in the same plane that contains the largest hemorrhage area. The length of the intersection between this second orthogonal axis and the hemorrhage is denoted by B.  The reader then counts the number of slices where hemorrhage is present (C).  The volume estimate is $\frac{A\times B\times C}{2}$, which is an approximation of the volume under the assumption that the hemorrhage shape is well approximated by an ellipsoid \citep{kothari_abcs_1996}.  As this method is relatively easy to implement in practice, it can be used to quickly produce estimates of hemorrhage volume. 
 
-Although ABC/2 is widely used, \citet{divani_abcs_2011} found that the measurement error associated with the ABC/2 method were significantly greater than those using planimetry, which requires slice-by-slice hemorrhage segmentation by trained readers. Planimetry is much more labor intensive and time consuming, but it tends to significantly outperform the ABC/2 approach, especially for irregularly shaped ICH and for smaller thickness (i.e.~higher resolution) scans.  Recently, \citet{webb_accuracy_2015} found that ABC/2 measurements at a clinical site, 81\% of the $4,369$ scans were within 5 milliliters (mL) of ICH volume compared to planimetry methods, but only 41\% were within 20\%.   Another problem that has not been discussed in the literature is that ICH may change over time. The shape of the ICH may initially be well approximated by an ellipsoid but the approximation may become increasingly inaccurate over time as the lesion changes shape, migrates through the surrounding tissues, or breaks down.  Surgical interventions that target the removal of ICH may also change the shape of the ICH or cause additional bleeding. This is particularly worrying in clinical trials where the ICH exposure may be measured with substantial bias and reduce the power of the tests.  An additional problem is that the ABC/2 method does not take into account intraventricular hemorrhage (IVH), which has been shown to be prognostic of 30-day mortality \citep{hemphill_ich_2001, tuhrim_volume_1999}.  Moreover, the ABC/2 method has been shown to consistently over-estimate infarct volume \citep{pedraza_reliability_2012} and may have significant inter-rater variability \citep{hussein_reliability_2013}. Therefore, a rapid, automated, and validated method for estimating hemorrhage location and its volume from CT scans is highly relevant in clinical trials and has both diagnostic and prognostic value.
+Although ABC/2 is widely used, \citet{divani_abcs_2011} found that the measurement error associated with the ABC/2 method were significantly greater than those using planimetry, which requires slice-by-slice hemorrhage segmentation by trained readers. Planimetry is much more labor intensive and time consuming, but it tends to significantly outperform the ABC/2 approach, especially for irregularly shaped ICH and for smaller thickness (i.e.~higher resolution) scans.  Recently, \citet{webb_accuracy_2015} found that ABC/2 measurements at a clinical site, 81\% of the $4,369$ scans were within 5 milliliters (mL) of ICH volume compared to planimetry methods.  Using a relative difference (absolute difference in ABC/2 and planimetry volumes divided by the planimetry volume times 100\%), only 41\% of the $4,369$ were within 20\% of the relative difference.   Another problem that has not been discussed in the literature is that ICH may change over time. The shape of the ICH may initially be well approximated by an ellipsoid but the approximation may become increasingly inaccurate over time as the lesion changes shape, migrates through the surrounding tissues, or breaks down.  Surgical interventions that target the removal of ICH may also change the shape of the ICH or cause additional bleeding. This is particularly worrying in clinical trials where the ICH exposure may be measured with substantial bias and reduce the power of the tests.  An additional problem is that the ABC/2 method does not take into account intraventricular hemorrhage (IVH), which has been shown to be prognostic of 30-day mortality \citep{hemphill_ich_2001, tuhrim_volume_1999}.  Moreover, the ABC/2 method has been shown to consistently over-estimate infarct volume \citep{pedraza_reliability_2012} and may have significant inter-rater variability \citep{hussein_reliability_2013}. Therefore, a rapid, automated, and validated method for estimating hemorrhage location and its volume from CT scans is highly relevant in clinical trials and has both diagnostic and prognostic value.
 
 Methods have been proposed for segmentation of ICH using magnetic resonance images (MRI) \citep{wang_hematoma_2013, carhuapoma2003brain}.  However, in most clinical settings,
 the protocol is not standardized for MRI scans.  MRI sequences and protocols may vary across sites and there is no general, standardized, agreed-upon MRI modality for ICH standard-of-care.
@@ -454,7 +479,7 @@ Thus, for each voxel and slice (axial, sagittal, and coronal) planes, we defined
 \begin{equation}
 z_{o}(v) = \frac{x(v) - \bar{x}(v, o)}{\sigma(v, o)} \label{eq:z}
 \end{equation}
-where $o \in \{$axial, sagittal, and coronal$\}$, $\bar{x}(v, o)$ and $\sigma(v, o)$ denote the mean and standard deviation of the intensities of voxels in the plane $o$ that contains the voxel $v$, excluding voxels outside the brain mask.   In addition to the standardized images within each plane we have also calculated standardized scores based on the Winsorized mean and standard deviation.  More precisely, we calculated the same formula as in equation~\eqref{eq:z}, but used only voxels with HU values between the 10th and 90th percentile of intensity within the slice to calculate the slice-specific mean and standard deviation. This approach is expected to be more robust to small and moderate artifacts in the image.. 
+where $o \in \{$axial, sagittal, and coronal$\}$, $\bar{x}(v, o)$ and $\sigma(v, o)$ denote the mean and standard deviation of the intensities of voxels in the plane $o$ that contains the voxel $v$, excluding voxels outside the brain mask.   In addition to the standardized images within each plane we have also calculated standardized scores based on the Winsorized mean and standard deviation.  More precisely, we calculated the same formula as in equation~\eqref{eq:z}, but used only voxels with HU values between the 10th and 90th percentile of intensity within the slice to calculate the slice-specific mean and standard deviation. This approach is expected to be more robust to small and moderate artifacts in the image.
 
 \subsubsection{First-pass Segmentation} A major advantage of our approach is that it can use the results of other segmentation algorithms as covariates in our model. Consider, for example, Atropos \citep{atropos}, a previously published, open source, general segmentation tool based on Markov random fields for image segmentation.  We used used Atropos to conduct a 4-tissue class segmentation and combined the top 2 probability classes into one class.  The probability of the resulting class was then used a predictor, denoted by $\text{Atropos}(v)$.  Although Atropos has been shown to perform well in other studies for tissue-class segmentation \citep{atropos, menze2015multimodal}, the Atropos segmentation did not perform adequately in our ICH CT data. However, using the Atropos segmentation probabilities as predictors can be done seamlessly in our approach. Similarly, the results of any other segmentation approach can be incorporated in our approach and the relative performance of methods can be compared.
 
@@ -544,6 +569,7 @@ rn = gsub("%", "", rn)
 groups = table(voldf$group)
 groups = groups[ names(groups) %in% c("Validation", "Test")]
 non_nmods = total_N - Nmods
+save(non_nmods, total_N, file = "Number_of_Non_Nmods_Abstract.rda")
 @
 
 
@@ -652,6 +678,7 @@ nn = as.character(med_dice$mod)
 med_dice = med_dice$med
 names(med_dice) = nn
 med_dice = round(med_dice, 3)
+save(med_dice, file = "Median_Dice_Abstract.rda")
 @
 
 
@@ -681,6 +708,7 @@ wt_pvals = sapply(c("logistic", "lasso", "gam"), function(x){
 	row$adj
 	})
 wt_pvals = pvaller(wt_pvals, 0.001)
+save(wt_pvals, file = "Wilcoxon_Rank_pvalues_Abstract.rda")
 @
 For each of the remaining $\Sexpr{non_nmods}$ scans in the test data, the voxel selection described in Section~\ref{sec:voxsel} was applied. Using the prediction process described in Section~\ref{sec:mods} an ICH probability map was estimated using each of the four models.  Using the probability thresholds calculated on the training data, as described in Section~\ref{sec:cutoffs}, we obtained a binary ICH map for each of the four methods. For evaluation, all results are provided in 
 the native space of the patient, not in the template space, as the manual segmentation was
@@ -738,6 +766,7 @@ names(rmse) = nn
 rm(list = "nn")
 corrdata = corrs %>% select(cor, cor.lower, cor.upper)
 corrdata = round(corrdata, 3)
+save(corrdata, file = "Correlation_data_Abstract.rda")
 @
 
 \begin{figure}
@@ -759,7 +788,7 @@ corrdata = round(corrdata, 3)
 \subsection{ICH Volume Estimation}
 In Figure~\ref{fig:vol}, we show the estimated ICH volume versus that from the manual segmentation.  The pink line represents the $X = Y$ line, where the estimated and true volume are identical.  The blue line represents the linear fit; the estimated linear regression equation and correlation are printed on the plot.  The farther away the slope of the equation is from $1$ the larger the bias with values larger than $1$ representing over-estimated volumes.  
 %The farther the intercept is from $0$ represents and additive bias in the estimated volume, where values greater than $0$ again represent larger estimated volumes.  
-The correlation (95\% confidence interval (CI)) between the true volume and the volume predicted volume were $\Sexpr{corrdata["logistic", "cor"]}$ (95\% CI: $\Sexpr{corrdata["logistic", "cor.lower"]}, \Sexpr{corrdata["logistic", "cor.upper"]}$) for the logistic model, 
+The correlation (95\% confidence interval (CI)) between the true volume and the predicted volume were $\Sexpr{corrdata["logistic", "cor"]}$ (95\% CI: $\Sexpr{corrdata["logistic", "cor.lower"]}, \Sexpr{corrdata["logistic", "cor.upper"]}$) for the logistic model, 
 $\Sexpr{corrdata["lasso", "cor"]}$ ($\Sexpr{corrdata["lasso", "cor.lower"]}, \Sexpr{corrdata["lasso", "cor.upper"]}$) for the LASSO, 
 $\Sexpr{corrdata["gam", "cor"]}$ (95\% CI: $\Sexpr{corrdata["gam", "cor.lower"]}, \Sexpr{corrdata["gam", "cor.upper"]}$) for the GAM, and  
 $\Sexpr{corrdata["rf", "cor"]}$ (95\% CI: $\Sexpr{corrdata["rf", "cor.lower"]}, \Sexpr{corrdata["rf", "cor.upper"]}$) for the random forest.  The RMSE for logistic (RMSE: $\Sexpr{rmse["logistic"]}$ mL), LASSO ($\Sexpr{rmse["lasso"]}$ mL), and random forest ($\Sexpr{rmse["rf"]}$ mL) models were relatively close, but was slightly higher for the GAM model ($\Sexpr{rmse["gam"]}$ mL).  The  Kruskal-Wallis test indicated no significant difference in the median absolute value of the difference in estimated versus true volume over models ($\chi^{2}(\Sexpr{vol_ktest$parameter})=\Sexpr{round(vol_ktest$statistic,2)}$, $p \Sexpr{pvaller(vol_ktest[["p.value"]])}$).  
@@ -864,6 +893,9 @@ cat(figstr)
 \subsection{Model Specification}
 \label{sec:modspec}
 <<mod_list>>=
+load("smoothed_logistic_cutoffs.rda")
+cutoff = smoothed_logistic_cutoffs$mod.dice.coef[, "cutoff"]
+
 load("logistic_modlist.rda")
 npred = length(coef(logistic_modlist$mod)) - 1
 # npred for intercept
@@ -875,25 +907,30 @@ coefs$term = plyr::revalue(coefs$term, c("(Intercept)" = "Intercept",
 "skew" = "Neighborhood skew", 
 "kurtosis" = "Neighborhood kurtosis", 
 "value" = "Image intensity (HU)",
-"thresh" = paste0("Threshold (>= ", lthresh, " and <= ", uthresh, ")"), 
-"zscore1" = "Within-plane Coronal", 
-"zscore2" = "Within-plane Sagittal", 
-"zscore3" = "Within-plane Axial", 
+"thresh" = paste0("Threshold ($\\geq$ ", lthresh, " and $\\leq$ ", uthresh, ")"), 
+"zscore1" = "Within-plane coronal", 
+"zscore2" = "Within-plane sagittal", 
+"zscore3" = "Within-plane axial", 
 "win_z" = "Winsorized standardized (20\\% trim)", 
 "pct_thresh" = "Percentage thresholded neighbors", 
 "prob_img" = "Atropos probability image", 
 "pct_zero_neighbor" = "Percent of zero neighbors", 
 "any_zero_neighbor" = "Indicator of any zero neighbors", 
-"dist_centroid" = "Distance to Image centroid", 
-"smooth5" = "Gaussian smooth (5mm^3)", 
-"smooth10" = "Gaussian smooth (10mm^3)", 
-"smooth20" = "Gaussian smooth (20mm^3)", 
-"zscore_template" = "Standardized-to-template Intensity", 
+"dist_centroid" = "Distance to image centroid", 
+"smooth5" = "Gaussian smooth ($\\sigma = 5$mm$^3$)", 
+"smooth10" = "Gaussian smooth ($\\sigma = 10$mm$^3$)", 
+"smooth20" = "Gaussian smooth ($\\sigma = 20$mm$^3$)", 
+"zscore_template" = "Standardized-to-template intensity", 
 "flipped_value" = "Contralateral difference"
 )
 )
 colnames(coefs) = c("Predictor", "Beta")
-xtab = xtable(coefs, digits = 3)
+coefcap = paste0( "Beta coefficients (log odds ratio) for the logistic regression model for all coefficients.  ", 
+"Combining these for each voxel value and using the inverse logit transformation yields the probability that ",
+"voxel is ICH.", 
+"After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was ", 
+round(cutoff, 4), ".")
+xtab = xtable(coefs, digits = 3, caption = coefcap, label = "tab:modspec")
 @
 Let $Y_{i}(v)$ represent the binary hemorrhage mask indicator for voxel $v$, from patient $i$, and $x_{i,v}(k)$ represent the predictor image for image $k$, $k = 1, \dots 21$.
 $$
@@ -903,15 +940,13 @@ $$
 The coefficients for the logistic model are (in log odds or log odds ratios):
 
 <<results = "asis">>=
-print.xtable(xtab, include.rownames = FALSE)
+print.xtable(xtab, include.rownames = FALSE, sanitize.text.function = identity)
 @
 
 The specification for the functional form of the model fit with the LASSO penalty, is the same, but optimizes the following criteria:
 $$
 \min_{\beta} - \left( \frac{1}{\sum_{i}V_i} \sum_i Y_{i}(v) \times X_i(v)\beta - \log \left(1 + e^{X_i(v)\beta}\right) \right) +\lambda\sum_{k}\left|\beta_k\right|
 $$
-
-
 
 
 
