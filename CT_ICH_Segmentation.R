@@ -1,0 +1,394 @@
+## ----label=opts, results='hide', echo=FALSE, message = FALSE, warning=FALSE----
+library(knitr)
+# knit_hooks$set(webgl = hook_webgl) 
+opts_chunk$set(echo=FALSE, prompt=FALSE, message=FALSE, warning=FALSE, comment="", results='hide')
+
+## ----load_res, eval = TRUE, echo = FALSE---------------------------------
+#rda = file.path(resdir, "Result_Formats.Rda")
+rda = "Reseg_Result_Formats_Rigid.Rda"
+xx = load(rda)
+Nmods = non.aggmods
+rm(list=xx)
+
+## ----echo = FALSE--------------------------------------------------------
+loader = function(x, varnames, replacer = " ") {
+	L = vector(mode = "list", length = length(varnames))
+	names(L) = varnames
+	for (i in varnames) {
+		L[[i]] = replacer
+	}
+	if (file.exists(x)) {
+		rr = load(x)
+		for (i in varnames) {
+			xx = get(i)
+			if (is.null(xx)){
+				xx = replacer
+			}
+			L[[i]] = xx
+		}		
+	}
+	return(L)
+}
+L = loader("Number_of_Non_Nmods_Abstract.rda", c("non_nmods", "total_N"))
+non_nmods = L$non_nmods
+total_N = L$total_N
+med_dice = loader("Median_Dice_Abstract.rda", "med_dice")$med_dice
+wt_pvals = loader("Wilcoxon_Rank_pvalues_Abstract.rda", "wt_pvals")$wt_pvals
+corrdata = loader("Correlation_data_Abstract.rda", "corrdata", replacer = NULL)$corrdata
+
+## ----label=setup_dir, echo=FALSE-----------------------------------------
+ll = ls()
+ll = ll[ !ll %in% c("encoding", "Nmods")]
+rm(list = ll)
+library(tidyr)
+library(cttools)
+library(fslr)
+library(plyr)
+library(dplyr)
+library(reshape2)
+library(broom)
+library(xtable)
+options(matlab.path = '/Applications/MATLAB_R2014b.app/bin')
+
+# username <- Sys.info()["user"][[1]]
+rootdir = path.expand("~/CT_Registration")
+
+
+# basedir = file.path(rootdir, "Segmentation")
+# resdir = file.path(basedir, "results")
+# paperdir = file.path(basedir, "Segmentation_Paper")
+# figdir = file.path(paperdir, "figure")
+
+# total_rda = file.path(basedir, "111_Filenames_with_volumes_stats.Rda")
+# load(total_rda)
+# fdf$patientName = as.numeric(gsub("-", "", fdf$id))
+
+# csvname = file.path(rootdir, "data", "Imaging_Information.csv")
+# imag = read.csv(csvname, stringsAsFactors = FALSE)
+# imag$patientName = imag$id
+# imag$id = NULL
+# 
+# setdiff(fdf$patientName, imag$patientName)
+
+rda = "Scanning_Parameters.Rda"
+load(rda)
+fdf$site_number = sapply(strsplit(fdf$id, "-"), `[[`, 1)
+fdf$pid = as.numeric(gsub("-", "", fdf$id))
+
+man = lapply(alltabs, `[[`, "0008-0070-Manufacturer")
+man = sapply(man, unique)
+
+stopifnot(nrow(fdf) == 112)
+stopifnot(length(unique(fdf$id)) == 112)
+#####################
+# Running manufacturers
+#####################
+man.tab = sort(table(man), decreasing=TRUE)
+stopifnot(length(man.tab) == 4)
+manu = names(man.tab)
+manu[manu == 'TOSHIBA'] = "Toshiba"
+manu[manu == 'SIEMENS'] = "Siemens"
+
+man.tab = paste0(manu, " ($N=", man.tab, "$)")
+man.tab[length(man.tab)] = paste0('and ', man.tab[length(man.tab)] )
+man.tab[seq(length(man.tab)-1)] = paste0(man.tab[seq(length(man.tab)-1)], ", " )
+man.tab = paste(man.tab, collapse= " ")
+
+#####################
+# Running slice thickness
+#####################
+slices = lapply(alltabs, `[[`, "0018-0050-SliceThickness")
+slices = sapply(slices, function(x) {
+	stopifnot(all(!is.na(x)))
+	stopifnot(all(x != ""))
+	length(unique(x))
+})
+n.slices = sum(slices > 1)
+
+tilt = lapply(alltabs, `[[`, "0018-1120-GantryDetectorTilt")
+tilt = sapply(tilt, unique)
+tilt = as.numeric(tilt)
+
+check.na = function(x){
+  stopifnot(all(!is.na(x))) 
+}
+check.na(tilt)
+n.gant = sum(tilt != 0)
+#"102-323" added over the 111 pts
+
+demog = read.csv("Patient_Demographics.csv", 
+                 stringsAsFactors = FALSE)
+demog = demog[,c("Age", "Gender", "Ethnicity", "patientName")]
+demog_icc = demog[ demog$patientName %in% unique(fdf$pid), ]
+mean.age = round(mean(demog_icc$Age), 1)
+sd.age = round(sd(demog_icc$Age), 1)
+
+mean.male = round(prop.table(table(demog_icc$Gender))['Male'] * 100, 1)
+race = sort(round(prop.table(table(demog_icc$Ethnicity)) * 100, 1), decreasing = TRUE)
+
+race = paste0(race, "\\% ", names(race))
+race[length(race)] = paste0("and ", race[length(race)])
+race = gsub(" not Hispanic", "", race)
+race = gsub("Islander", "islander", race)
+race = paste0(race, collapse = ", ")
+
+pvaller = function(x, min.pval = 0.05){
+	mp = signif(min.pval, 1)
+	ifelse(x < min.pval, paste0("< ", mp),
+	paste0("= ", signif(x, 2)))
+}
+
+## ------------------------------------------------------------------------
+xx = load("Reseg_Aggregate_data_cutoffs_Rigid.Rda")
+
+## ----threshes------------------------------------------------------------
+lthresh = 40
+uthresh = 80
+
+## ------------------------------------------------------------------------
+nsub_voxels = 1e5
+nsub_voxels = formatC(nsub_voxels, digits=7, big.mark="{,}")
+prop = 0.25
+pct_prop = sprintf("%02.2f", prop * 100)
+
+## ------------------------------------------------------------------------
+reset = FALSE
+if ("fdf" %in% ls()){
+	xfdf = fdf
+}
+total_N = nrow(fdf)
+load("Reseg_111_Filenames_with_Exclusions.Rda")
+voldf = fdf
+if (reset) {
+  stopifnot(all.equal(sort(voldf$id), sort(xfdf$id)))
+	fdf = xfdf
+}
+sp_pct = function(x, digits = 1, addpct = FALSE){
+  x = sprintf(paste0("%02.", digits, "f"), x * 100)
+  if (addpct){
+    x = paste0(x, "%")
+  }
+  x
+}
+vol_res = ddply(voldf, .(group), summarise,
+                mean_includeY1 = sp_pct(mean(includeY1)),
+                min_includeY1 = sp_pct(min(includeY1)),
+                max_includeY1 = sp_pct(max(includeY1)),
+                mean_excludeY0 = sp_pct(mean(1-includeY0)),
+                min_excludeY0 = sp_pct(min(1-includeY0)),
+                max_excludeY0 = sp_pct(max(1-includeY0))
+                )
+rownames(vol_res) = vol_res$group
+vol_res$group = NULL
+rn = rownames(est.cutoffs)
+rn = gsub("%", "", rn)
+groups = table(voldf$group)
+groups = groups[ names(groups) %in% c("Validation", "Test")]
+non_nmods = total_N - Nmods
+save(non_nmods, total_N, file = "Number_of_Non_Nmods_Abstract.rda")
+
+## ----dice_res------------------------------------------------------------
+load("Reseg_Results.Rda")
+run_group = c("Test", "Validation")
+
+
+long = filter(long, 
+    cutoff %in% c("cc", "scc"))
+long$cutoff = revalue(long$cutoff, 
+    c("cc"= "Unsmoothed",
+    "scc" = "Smoothed")
+    )
+long = mutate(long, 
+    mean = (tvol + evol) /2,
+    diff = tvol - evol
+    )
+long = filter(long, 
+    group %in% c("Test", "Validation"))    
+slong = filter(long, 
+    cutoff %in% c("Smoothed"))
+
+
+nlong = filter(slong, app %in% "Native")
+llong = select(nlong, mod, 
+    dice, sens, accur,
+    spec, iimg, group)
+llong = melt(llong, 
+    id.vars = c("iimg", "group", "mod"))
+relev2 = c("dice" = "Dice Similarity Index",
+        "accur" = "Accuracy",
+        "sens" = "Sensitivity",
+        "spec" = "Specificity")
+llong$variable = revalue(llong$variable, 
+    relev2
+    )
+llong$variable = factor(llong$variable, 
+    levels = relev2)
+native = filter(slong, app %in% "Native")
+
+dice = filter(native, mod %in% "rf")
+n_under_50 = sum(dice$dice < 0.5)
+L = length(dice$dice)
+stopifnot(L == non_nmods)
+fail_rate = sprintf("%3.1f", 
+	n_under_50/non_nmods*100)
+qs = quantile(dice$dice)
+ranks = rank(dice$dice)
+inds = floor(quantile(1:nrow(dice)))
+pick = which(ranks %in% inds)
+pick = pick[ order(ranks[pick])]
+
+qs = round(qs, 3)
+
+dice = dice[pick, , drop=FALSE]
+dice$quantile = names(qs)
+
+med_dice = group_by(native, mod) %>% summarise(med = median(dice))
+med_dice = as.data.frame(med_dice)
+nn = as.character(med_dice$mod)
+med_dice = med_dice$med
+names(med_dice) = nn
+med_dice = round(med_dice, 3)
+save(med_dice, file = "Median_Dice_Abstract.rda")
+
+## ----wt_pvals------------------------------------------------------------
+#######################################
+# P-values for median tests
+#######################################
+ktest = kruskal.test( dice ~ mod, data = native)
+eg = t(
+  combn(as.character(unique(native$mod)), 
+  2))
+eg = as.data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("x", "y")
+
+wt_pvals = mdply(eg, function(x, y){
+  nat = filter(native, mod %in% c(x,y))
+  wt = wilcox.test(dice ~ mod, data = nat, paired = TRUE)
+  c(pvalue = wt$p.value)
+}) 
+wt_pvals$adj = p.adjust(wt_pvals$pvalue, 
+method = "bonferroni")
+sig_rows = wt_pvals[wt_pvals$adj < 0.05,]
+stopifnot(all("rf" %in% sig_rows$x | "rf" %in% sig_rows$y))
+
+wt_pvals = sapply(c("logistic", "lasso", "gam"), function(x){
+	row = sig_rows[ sig_rows$x %in% x | sig_rows$y %in% x,, drop = FALSE]
+	row$adj
+	})
+wt_pvals = pvaller(wt_pvals, 0.001)
+save(wt_pvals, file = "Wilcoxon_Rank_pvalues_Abstract.rda")
+
+## ----vol_wt_pvals--------------------------------------------------------
+native$abs_diff = abs(native$diff)
+native$abs_pct = abs(native$diff/ native$tvol)
+
+# vol_ktest = kruskal.test( diff ~ mod, data = native)
+pct_ktest = kruskal.test( abs_pct ~ mod, data = native)
+vol_ktest = kruskal.test( abs_diff ~ mod, data = native)
+
+# 
+# vol_wt_pvals = mdply(eg, function(x, y){
+#   nat = filter(native, mod %in% c(x,y))
+#   wt = wilcox.test(abs_diff ~ mod, data = nat, paired = TRUE)
+#   c(pvalue = wt$p.value)
+# }) 
+# vol_wt_pvals$adj = p.adjust(vol_wt_pvals$pvalue, 
+# method = "bonferroni")
+# vol_sig_rows = vol_wt_pvals[vol_wt_pvals$adj < 0.05,]
+# stopifnot(all("rf" %in% vol_sig_rows$x | "rf" %in% vol_sig_rows$y))
+# 
+# runs = unique(c(vol_sig_rows$x, vol_sig_rows$y))
+# runs = runs[ !runs %in% "rf"]
+# 
+# vol_wt_pvals = sapply(runs, function(x){
+#     row = vol_sig_rows[ vol_sig_rows$x %in% x | vol_sig_rows$y %in% x,, drop = FALSE]
+#     row$adj
+#     })
+# vol_wt_pvals = pvaller(vol_wt_pvals, 0.001)
+
+## ----corrs---------------------------------------------------------------
+rda = "Reseg_Correlation_Results.Rda"
+load(rda)
+rmse = corrs[, "rmse", drop = FALSE]
+rmse = round(rmse, 2)
+nn = rownames(rmse);
+rmse = unlist(rmse)
+names(rmse) = nn
+rm(list = "nn")
+corrdata = corrs %>% select(cor, cor.lower, cor.upper)
+corrdata = round(corrdata, 3)
+save(corrdata, file = "Correlation_data_Abstract.rda")
+
+## ----loncaric------------------------------------------------------------
+library(reshape2)
+df = read.table("loncaric_data.txt")
+colnames(df) = c(paste0("manual_", 1:3), paste0("auto_", 1:3))
+df$id = 1:5
+df = melt(df, id.vars = "id")
+df = tidyr::separate(df, variable, sep = "_", into = c("type", "visit"))
+df = spread(df, type, value)
+lonc_cor = cor(df$manual, df$auto)
+lonc_cor1 = with(df[ df$visit==1,], cor(manual, auto))
+lonc_cor2 = with(df[ df$visit==2,], cor(manual, auto))
+lonc_cor3 = with(df[ df$visit==3,], cor(manual, auto))
+
+## ----results = 'asis'----------------------------------------------------
+vals = c(0, 25, 75, 100)
+zero = sprintf("%03.0f", vals)
+qqs = qs[ paste0(vals, "%")]
+names = c("Lowest", "25$^{\\text{th}}$ Quantile", "75$^{\\text{th}}$ Quantile", "Highest")
+lnames = tolower(names)
+
+figstr = paste0('\\begin{figure}
+\\centering
+\\includegraphics[width=0.75\\linewidth,keepaspectratio]{Reseg_Figure_DSI_Quantile_', zero, '_native.png}
+\\caption{{\\bf Patient with  ', names, ' Dice Similarity Index}. We present the patient with the ', lnames, ' Dice Similarity Index (DSI), a measure of spatial overlap, from the chosen predictor model fit with a random forest.  The ', lnames, ' DSI was ', qqs, '. The green indicates a correct classification of ICH from the model, blue indicates a false negative, where the manual segmentation denoted the area to be ICH but the predicted one did not, and red indicates a false positive, where the predicted segmentation denoted the area to be ICH but the manual one did not. }
+\\label{fig:dice_img', vals, '}
+\\end{figure}
+
+')
+cat(figstr)
+
+## ----mod_list------------------------------------------------------------
+load("smoothed_logistic_cutoffs.rda")
+cutoff = smoothed_logistic_cutoffs$mod.dice.coef[, "cutoff"]
+
+load("logistic_modlist.rda")
+npred = length(coef(logistic_modlist$mod)) - 1
+# npred for intercept
+stopifnot(npred == 20)
+coefs = broom::tidy(logistic_modlist$mod, quick = TRUE)
+coefs$term = plyr::revalue(coefs$term, c("(Intercept)" = "Intercept", 
+"moment1" = "Neighborhood mean", 
+"moment2" = "Neighborhood sd", 
+"skew" = "Neighborhood skew", 
+"kurtosis" = "Neighborhood kurtosis", 
+"value" = "Image intensity (HU)",
+"thresh" = paste0("Threshold ($\\geq$ ", lthresh, " and $\\leq$ ", uthresh, ")"), 
+"zscore1" = "Within-plane coronal", 
+"zscore2" = "Within-plane sagittal", 
+"zscore3" = "Within-plane axial", 
+"win_z" = "Winsorized standardized (20\\% trim)", 
+"pct_thresh" = "Percentage thresholded neighbors", 
+"prob_img" = "Atropos probability image", 
+"pct_zero_neighbor" = "Percent of zero neighbors", 
+"any_zero_neighbor" = "Indicator of any zero neighbors", 
+"dist_centroid" = "Distance to image centroid", 
+"smooth5" = "Gaussian smooth ($\\sigma = 5$mm$^3$)", 
+"smooth10" = "Gaussian smooth ($\\sigma = 10$mm$^3$)", 
+"smooth20" = "Gaussian smooth ($\\sigma = 20$mm$^3$)", 
+"zscore_template" = "Standardized-to-template intensity", 
+"flipped_value" = "Contralateral difference"
+)
+)
+colnames(coefs) = c("Predictor", "Beta")
+coefcap = paste0( "Beta coefficients (log odds ratio) for the logistic regression model for all coefficients.  ", 
+"Combining these for each voxel value and using the inverse logit transformation yields the probability that ",
+"voxel is ICH.", 
+"After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was ", 
+round(cutoff, 4), ".")
+xtab = xtable(coefs, digits = 3, caption = coefcap, label = "tab:modspec")
+
+## ----results = "asis"----------------------------------------------------
+print.xtable(xtab, include.rownames = FALSE, sanitize.text.function = identity)
+
