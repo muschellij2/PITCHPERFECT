@@ -1,6 +1,6 @@
 ## ----label=opts, results='hide', echo=FALSE, message = FALSE, warning=FALSE----
 library(knitr)
-# knit_hooks$set(webgl = hook_webgl) 
+# knit_hooks$set(webgl = hook_webgl)
 opts_chunk$set(echo=FALSE, prompt=FALSE, message=FALSE, warning=FALSE, comment="", results='hide')
 
 ## ----load_res, eval = TRUE, echo = FALSE---------------------------------
@@ -25,7 +25,7 @@ loader = function(x, varnames, replacer = " ") {
 				xx = replacer
 			}
 			L[[i]] = xx
-		}		
+		}
 	}
 	return(L)
 }
@@ -67,7 +67,7 @@ rootdir = path.expand("~/CT_Registration")
 # imag = read.csv(csvname, stringsAsFactors = FALSE)
 # imag$patientName = imag$id
 # imag$id = NULL
-# 
+#
 # setdiff(fdf$patientName, imag$patientName)
 
 rda = "Scanning_Parameters.Rda"
@@ -110,13 +110,13 @@ tilt = sapply(tilt, unique)
 tilt = as.numeric(tilt)
 
 check.na = function(x){
-  stopifnot(all(!is.na(x))) 
+  stopifnot(all(!is.na(x)))
 }
 check.na(tilt)
 n.gant = sum(tilt != 0)
 #"102-323" added over the 111 pts
 
-demog = read.csv("Patient_Demographics.csv", 
+demog = read.csv("Patient_Demographics.csv",
                  stringsAsFactors = FALSE)
 demog = demog[,c("Age", "Gender", "Ethnicity", "patientName")]
 demog_icc = demog[ demog$patientName %in% unique(fdf$pid), ]
@@ -192,36 +192,36 @@ load("Reseg_Results.Rda")
 run_group = c("Test", "Validation")
 
 
-long = filter(long, 
+long = filter(long,
     cutoff %in% c("cc", "scc"))
-long$cutoff = revalue(long$cutoff, 
+long$cutoff = revalue(long$cutoff,
     c("cc"= "Unsmoothed",
     "scc" = "Smoothed")
     )
-long = mutate(long, 
+long = mutate(long,
     mean = (tvol + evol) /2,
     diff = tvol - evol
     )
-long = filter(long, 
-    group %in% c("Test", "Validation"))    
-slong = filter(long, 
+long = filter(long,
+    group %in% c("Test", "Validation"))
+slong = filter(long,
     cutoff %in% c("Smoothed"))
 
 
 nlong = filter(slong, app %in% "Native")
-llong = select(nlong, mod, 
+llong = select(nlong, mod,
     dice, sens, accur,
     spec, iimg, group)
-llong = melt(llong, 
+llong = melt(llong,
     id.vars = c("iimg", "group", "mod"))
 relev2 = c("dice" = "Dice Similarity Index",
         "accur" = "Accuracy",
         "sens" = "Sensitivity",
         "spec" = "Specificity")
-llong$variable = revalue(llong$variable, 
+llong$variable = revalue(llong$variable,
     relev2
     )
-llong$variable = factor(llong$variable, 
+llong$variable = factor(llong$variable,
     levels = relev2)
 native = filter(slong, app %in% "Native")
 
@@ -229,7 +229,7 @@ dice = filter(native, mod %in% "rf")
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)
 stopifnot(L == non_nmods)
-fail_rate = sprintf("%3.1f", 
+fail_rate = sprintf("%3.1f",
 	n_under_50/non_nmods*100)
 qs = quantile(dice$dice)
 ranks = rank(dice$dice)
@@ -256,7 +256,7 @@ save(med_dice, file = "Median_Dice_Abstract.rda")
 #######################################
 ktest = kruskal.test( dice ~ mod, data = native)
 eg = t(
-  combn(as.character(unique(native$mod)), 
+  combn(as.character(unique(native$mod)),
   2))
 eg = as.data.frame(eg, stringsAsFactors = FALSE)
 colnames(eg) = c("x", "y")
@@ -265,8 +265,8 @@ wt_pvals = mdply(eg, function(x, y){
   nat = filter(native, mod %in% c(x,y))
   wt = wilcox.test(dice ~ mod, data = nat, paired = TRUE)
   c(pvalue = wt$p.value)
-}) 
-wt_pvals$adj = p.adjust(wt_pvals$pvalue, 
+})
+wt_pvals$adj = p.adjust(wt_pvals$pvalue,
 method = "bonferroni")
 sig_rows = wt_pvals[wt_pvals$adj < 0.05,]
 stopifnot(all("rf" %in% sig_rows$x | "rf" %in% sig_rows$y))
@@ -286,20 +286,20 @@ native$abs_pct = abs(native$diff/ native$tvol)
 pct_ktest = kruskal.test( abs_pct ~ mod, data = native)
 vol_ktest = kruskal.test( abs_diff ~ mod, data = native)
 
-# 
+#
 # vol_wt_pvals = mdply(eg, function(x, y){
 #   nat = filter(native, mod %in% c(x,y))
 #   wt = wilcox.test(abs_diff ~ mod, data = nat, paired = TRUE)
 #   c(pvalue = wt$p.value)
-# }) 
-# vol_wt_pvals$adj = p.adjust(vol_wt_pvals$pvalue, 
+# })
+# vol_wt_pvals$adj = p.adjust(vol_wt_pvals$pvalue,
 # method = "bonferroni")
 # vol_sig_rows = vol_wt_pvals[vol_wt_pvals$adj < 0.05,]
 # stopifnot(all("rf" %in% vol_sig_rows$x | "rf" %in% vol_sig_rows$y))
-# 
+#
 # runs = unique(c(vol_sig_rows$x, vol_sig_rows$y))
 # runs = runs[ !runs %in% "rf"]
-# 
+#
 # vol_wt_pvals = sapply(runs, function(x){
 #     row = vol_sig_rows[ vol_sig_rows$x %in% x | vol_sig_rows$y %in% x,, drop = FALSE]
 #     row$adj
@@ -341,7 +341,7 @@ lnames = tolower(names)
 
 figstr = paste0('\\begin{figure}
 \\centering
-\\includegraphics[width=0.75\\linewidth,keepaspectratio]{Reseg_Figure_DSI_Quantile_', zero, '_native.png}
+\\includegraphics[width=\\linewidth,keepaspectratio]{figures/Long/Reseg_Figure_DSI_Quantile_', zero, '_native.png}
 \\caption{{\\bf Patient with  ', names, ' Dice Similarity Index}. We present the patient with the ', lnames, ' Dice Similarity Index (DSI), a measure of spatial overlap, from the chosen predictor model fit with a random forest.  The ', lnames, ' DSI was ', qqs, '. The green indicates a correct classification of ICH from the model, blue indicates a false negative, where the manual segmentation denoted the area to be ICH but the predicted one did not, and red indicates a false positive, where the predicted segmentation denoted the area to be ICH but the manual one did not. }
 \\label{fig:dice_img', vals, '}
 \\end{figure}
@@ -357,38 +357,45 @@ load("logistic_modlist.rda")
 npred = length(coef(logistic_modlist$mod)) - 1
 # npred for intercept
 stopifnot(npred == 20)
-coefs = broom::tidy(logistic_modlist$mod, quick = TRUE)
-coefs$term = plyr::revalue(coefs$term, c("(Intercept)" = "Intercept", 
-"moment1" = "Neighborhood mean", 
-"moment2" = "Neighborhood sd", 
-"skew" = "Neighborhood skew", 
-"kurtosis" = "Neighborhood kurtosis", 
+rename_vec = c("(Intercept)" = "Intercept",
+"moment1" = "Neighborhood mean",
+"moment2" = "Neighborhood sd",
+"skew" = "Neighborhood skew",
+"kurtosis" = "Neighborhood kurtosis",
 "value" = "Image intensity (HU)",
-"thresh" = paste0("Threshold ($\\geq$ ", lthresh, " and $\\leq$ ", uthresh, ")"), 
-"zscore1" = "Within-plane coronal", 
-"zscore2" = "Within-plane sagittal", 
-"zscore3" = "Within-plane axial", 
-"win_z" = "Winsorized standardized (20\\% trim)", 
-"pct_thresh" = "Percentage thresholded neighbors", 
-"prob_img" = "Atropos probability image", 
-"pct_zero_neighbor" = "Percent of zero neighbors", 
-"any_zero_neighbor" = "Indicator of any zero neighbors", 
-"dist_centroid" = "Distance to image centroid", 
-"smooth5" = "Gaussian smooth ($\\sigma = 5$mm$^3$)", 
-"smooth10" = "Gaussian smooth ($\\sigma = 10$mm$^3$)", 
-"smooth20" = "Gaussian smooth ($\\sigma = 20$mm$^3$)", 
-"zscore_template" = "Standardized-to-template intensity", 
+"thresh" = paste0("Threshold ($\\geq$ ", lthresh, " and $\\leq$ ", uthresh, ")"),
+"zscore1" = "Within-plane coronal",
+"zscore2" = "Within-plane sagittal",
+"zscore3" = "Within-plane axial",
+"win_z" = "Winsorized standardized (20\\% trim)",
+"pct_thresh" = "Percentage thresholded neighbors",
+"prob_img" = "Atropos probability image",
+"pct_zero_neighbor" = "Percent of zero neighbors",
+"any_zero_neighbor" = "Indicator of any zero neighbors",
+"dist_centroid" = "Distance to image centroid",
+"smooth5" = "Gaussian smooth ($\\sigma = 5$mm$^3$)",
+"smooth10" = "Gaussian smooth ($\\sigma = 10$mm$^3$)",
+"smooth20" = "Gaussian smooth ($\\sigma = 20$mm$^3$)",
+"zscore_template" = "Standardized-to-template intensity",
 "flipped_value" = "Contralateral difference"
 )
+
+coefs = broom::tidy(logistic_modlist$mod, quick = TRUE)
+coefs$term = plyr::revalue(coefs$term,
+	rename_vec
 )
 colnames(coefs) = c("Predictor", "Beta")
-coefcap = paste0( "Beta coefficients (log odds ratio) for the logistic regression model for all coefficients.  ", 
+coefcap = paste0( "Beta coefficients (log odds ratio) for the logistic regression model for all coefficients.  ",
 "Combining these for each voxel value and using the inverse logit transformation yields the probability that ",
-"voxel is ICH.", 
-"After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was ", 
+"voxel is ICH. ",
+"After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was ",
 round(cutoff, 4), ".")
 xtab = xtable(coefs, digits = 3, caption = coefcap, label = "tab:modspec")
 
 ## ----results = "asis"----------------------------------------------------
 print.xtable(xtab, include.rownames = FALSE, sanitize.text.function = identity)
+
+## ----cutoff_rf-----------------------------------------------------------
+library(ichseg)
+cutoff = smoothed_rf_cutoffs$mod.dice.coef[1,"cutoff"]
 

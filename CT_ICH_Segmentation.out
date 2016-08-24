@@ -10,14 +10,14 @@
 \BOOKMARK [3][-]{subsubsection.2.7.1}{CT voxel intensity information}{subsection.2.7}% 10
 \BOOKMARK [3][-]{subsubsection.2.7.2}{Local Moment Information}{subsection.2.7}% 11
 \BOOKMARK [3][-]{subsubsection.2.7.3}{Within-plane Standard Scores}{subsection.2.7}% 12
-\BOOKMARK [3][-]{subsubsection.2.7.4}{First-pass Segmentation}{subsection.2.7}% 13
+\BOOKMARK [3][-]{subsubsection.2.7.4}{Initial Segmentation}{subsection.2.7}% 13
 \BOOKMARK [3][-]{subsubsection.2.7.5}{Contralateral Difference Images}{subsection.2.7}% 14
 \BOOKMARK [3][-]{subsubsection.2.7.6}{Global Head Information}{subsection.2.7}% 15
 \BOOKMARK [3][-]{subsubsection.2.7.7}{Standardized-to-template Intensity}{subsection.2.7}% 16
 \BOOKMARK [2][-]{subsection.2.8}{Voxel Selection Procedure}{section.2}% 17
 \BOOKMARK [2][-]{subsection.2.9}{Models}{section.2}% 18
 \BOOKMARK [2][-]{subsection.2.10}{Estimating a Cutoff for Model Probability}{section.2}% 19
-\BOOKMARK [2][-]{subsection.2.11}{Measuring and Testing ICH Prediction Performance}{section.2}% 20
+\BOOKMARK [2][-]{subsection.2.11}{Testing ICH Prediction and Measuring Model Performance}{section.2}% 20
 \BOOKMARK [1][-]{section.3}{Results}{}% 21
 \BOOKMARK [2][-]{subsection.3.1}{Dice Similarity Index}{section.3}% 22
 \BOOKMARK [2][-]{subsection.3.2}{ICH Volume Estimation}{section.3}% 23
@@ -27,3 +27,4 @@
 \BOOKMARK [1][-]{section.5}{Supplemental Material}{}% 27
 \BOOKMARK [2][-]{subsection.5.1}{Examples of Dice Similarity Index in Test Scans}{section.5}% 28
 \BOOKMARK [2][-]{subsection.5.2}{Model Specification}{section.5}% 29
+\BOOKMARK [2][-]{subsection.5.3}{Variable Importance Plot}{section.5}% 30

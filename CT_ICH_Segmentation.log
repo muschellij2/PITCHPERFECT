@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.1.4)  21 JUL 2016 13:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.1.4)  24 AUG 2016 17:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1374,29 +1374,29 @@ File: english.lbx 2014/06/25 v2.9a biblatex localization (PK/JW/AB)
 (./CT_ICH_Segmentation.aux)
 \openout1 = `CT_ICH_Segmentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 117.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 117.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 118.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 118.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 117.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 118.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1477,10 +1477,10 @@ Package biblatex Warning: Data encoding is 'utf8'.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'CT_ICH_Segmentation.bbl' found.
 (./CT_ICH_Segmentation.bbl)
-Package biblatex Info: Reference section=0 on input line 117.
-Package biblatex Info: Reference segment=0 on input line 117.
+Package biblatex Info: Reference section=0 on input line 118.
+Package biblatex Info: Reference segment=0 on input line 118.
 \AtBeginShipoutBox=\box66
-Package hyperref Info: Link coloring OFF on input line 117.
+Package hyperref Info: Link coloring OFF on input line 118.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1490,9 +1490,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count314
 )
-LaTeX Info: Redefining \ref on input line 117.
-LaTeX Info: Redefining \pageref on input line 117.
-LaTeX Info: Redefining \nameref on input line 117.
+LaTeX Info: Redefining \ref on input line 118.
+LaTeX Info: Redefining \pageref on input line 118.
+LaTeX Info: Redefining \nameref on input line 118.
 
 (./CT_ICH_Segmentation.out) (./CT_ICH_Segmentation.out)
 \@outlinefile=\write6
@@ -1501,41 +1501,41 @@ LaTeX Info: Redefining \nameref on input line 117.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 168.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 172.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 168.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 172.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 168
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 172
 .
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 168
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 172
 .
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 168.
+(Font)              <10> on input line 172.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 168.
+(Font)              <7> on input line 172.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 168.
+(Font)              <5> on input line 172.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 192.
+(Font)              <8> on input line 196.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 192.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 192.
+(Font)              <6> on input line 196.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 196.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd
@@ -1544,171 +1544,177 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<Imaging_Pipeline_Flowchart_with_Rigid.pdf, id=226, 213.00879pt x 455.99863pt>
+Overfull \hbox (3.01839pt too wide) in paragraph at lines 238--239
+[]\T1/lmr/m/n/10 We used CT im-ages from pa-tients en-rolled in the MISTIE II (
+Min-i-mally In-va-sive Surgery plus recombinant-
+ []
+
+
+<Imaging_Pipeline_Flowchart_with_Rigid.pdf, id=227, 213.00879pt x 455.99863pt>
 File: Imaging_Pipeline_Flowchart_with_Rigid.pdf Graphic file (type pdf)
 
 <use Imaging_Pipeline_Flowchart_with_Rigid.pdf>
 Package pdftex.def Info: Imaging_Pipeline_Flowchart_with_Rigid.pdf used on inpu
-t line 325.
+t line 334.
 (pdftex.def)             Requested size: 234.8775pt x 502.8316pt.
  [3] [4 <./Imaging_Pipeline_Flowchart_with_Rigid.pdf>] [5] [6]
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_SS.png, id=280, 4215.75pt x
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_SS.png, id=281, 4215.75pt x
  4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_SS.png Graphic file (t
 ype png)
  <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_SS.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_SS.
-png used on input line 421.
+png used on input line 431.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_prob_img.png, id=282, 4215.
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_prob_img.png, id=283, 4215.
 75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_prob_img.png Graphic f
 ile (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_prob_img.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_pro
-b_img.png used on input line 421.
+b_img.png used on input line 431.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_flipped_value.png, id=283, 
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_flipped_value.png, id=284, 
 4215.75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_flipped_value.png Grap
 hic file (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_flipped_value.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_fli
-pped_value.png used on input line 421.
+pped_value.png used on input line 431.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_dist_centroid.png, id=284, 
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_dist_centroid.png, id=285, 
 4215.75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_dist_centroid.png Grap
 hic file (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_dist_centroid.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_dis
-t_centroid.png used on input line 421.
+t_centroid.png used on input line 431.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_moment1.png, id=285, 4215.7
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_moment1.png, id=286, 4215.7
 5pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_moment1.png Graphic fi
 le (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_moment1.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_mom
-ent1.png used on input line 423.
+ent1.png used on input line 433.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_moment2.png, id=286, 4215.7
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_moment2.png, id=287, 4215.7
 5pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_moment2.png Graphic fi
 le (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_moment2.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_mom
-ent2.png used on input line 423.
+ent2.png used on input line 433.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_skew.png, id=287, 4215.75pt
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_skew.png, id=288, 4215.75pt
  x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_skew.png Graphic file 
 (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_skew.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_ske
-w.png used on input line 423.
+w.png used on input line 433.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_kurtosis.png, id=288, 4215.
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_kurtosis.png, id=289, 4215.
 75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_kurtosis.png Graphic f
 ile (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_kurtosis.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_kur
-tosis.png used on input line 423.
+tosis.png used on input line 433.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
 <figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_pct_zero_neighbor.png, id=2
-89, 4215.75pt x 4215.75pt>
+90, 4215.75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_pct_zero_neighbor.png 
 Graphic file (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_pct_zero_neighbor.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_pct
-_zero_neighbor.png used on input line 425.
+_zero_neighbor.png used on input line 435.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
 <figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_any_zero_neighbor.png, id=2
-90, 4215.75pt x 4215.75pt>
+91, 4215.75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_any_zero_neighbor.png 
 Graphic file (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_any_zero_neighbor.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_any
-_zero_neighbor.png used on input line 425.
+_zero_neighbor.png used on input line 435.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
 <figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_pct_thresh_40_80.png, id=29
-1, 4215.75pt x 4215.75pt>
+2, 4215.75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_pct_thresh_40_80.png G
 raphic file (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_pct_thresh_40_80.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_pct
-_thresh_40_80.png used on input line 425.
+_thresh_40_80.png used on input line 435.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_thresh_40_80.png, id=292, 4
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_thresh_40_80.png, id=293, 4
 215.75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_thresh_40_80.png Graph
 ic file (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_thresh_40_80.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_thr
-esh_40_80.png used on input line 425.
+esh_40_80.png used on input line 435.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth5.png, id=293, 4215.7
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth5.png, id=294, 4215.7
 5pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth5.png Graphic fi
 le (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth5.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smo
-oth5.png used on input line 427.
+oth5.png used on input line 437.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth10.png, id=294, 4215.
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth10.png, id=295, 4215.
 75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth10.png Graphic f
 ile (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth10.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smo
-oth10.png used on input line 427.
+oth10.png used on input line 437.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth20.png, id=295, 4215.
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth20.png, id=296, 4215.
 75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth20.png Graphic f
 ile (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smooth20.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_smo
-oth20.png used on input line 427.
+oth20.png used on input line 437.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
-<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_zscore_template.png, id=296
+<figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_zscore_template.png, id=297
 , 4215.75pt x 4215.75pt>
 File: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_zscore_template.png Gr
 aphic file (type png)
 
 <use figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_zscore_template.png>
 Package pdftex.def Info: figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_zsc
-ore_template.png used on input line 427.
+ore_template.png used on input line 437.
 (pdftex.def)             Requested size: 108.04164pt x 108.00517pt.
 
 [7] [8 <./figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Head_SS.png> <./figures
@@ -1726,85 +1732,101 @@ Reseg_161-413_20110710_1619_CT_2_HEAD_Head_thresh_40_80.png> <./figures/Reseg_1
 710_1619_CT_2_HEAD_Head_smooth10.png> <./figures/Reseg_161-413_20110710_1619_CT
 _2_HEAD_Head_smooth20.png> <./figures/Reseg_161-413_20110710_1619_CT_2_HEAD_Hea
 d_zscore_template.png>] [9]
-<figures/Reseg_Dice_Comparison.png, id=365, 505.89pt x 505.89pt>
+<figures/Reseg_Dice_Comparison.png, id=366, 505.89pt x 505.89pt>
 File: figures/Reseg_Dice_Comparison.png Graphic file (type png)
 
 <use figures/Reseg_Dice_Comparison.png>
 Package pdftex.def Info: figures/Reseg_Dice_Comparison.png used on input line 5
-15.
+26.
 (pdftex.def)             Requested size: 352.31625pt x 352.32199pt.
 
-<figures/Reseg_Figure_DSI_Quantile_050_native.png, id=366, 505.89pt x 505.89pt>
-File: figures/Reseg_Figure_DSI_Quantile_050_native.png Graphic file (type png)
-<use figures/Reseg_Figure_DSI_Quantile_050_native.png>
-Package pdftex.def Info: figures/Reseg_Figure_DSI_Quantile_050_native.png used 
-on input line 524.
-(pdftex.def)             Requested size: 352.31625pt x 352.32199pt.
-
-<figures/Reseg_Volume_Comparison.png, id=368, 505.89pt x 505.89pt>
+<figures/Long/Reseg_Figure_DSI_Quantile_050_native.png, id=367, 505.89pt x 252.
+945pt>
+File: figures/Long/Reseg_Figure_DSI_Quantile_050_native.png Graphic file (type 
+png)
+ <use figures/Long/Reseg_Figure_DSI_Quantile_050_native.png>
+Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_050_native.png 
+used on input line 535.
+(pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
+ [10]
+[11 <./figures/Reseg_Dice_Comparison.png>]
+<figures/Reseg_Volume_Comparison.png, id=386, 505.89pt x 505.89pt>
 File: figures/Reseg_Volume_Comparison.png Graphic file (type png)
 
 <use figures/Reseg_Volume_Comparison.png>
 Package pdftex.def Info: figures/Reseg_Volume_Comparison.png used on input line
- 542.
+ 553.
 (pdftex.def)             Requested size: 469.75502pt x 469.76265pt.
- [10] [11 <./figures/Reseg_Dice_Comparison.png>] [12 <./figures/Reseg_Figure_DS
-I_Quantile_050_native.png (PNG copy)>] [13 <./figures/Reseg_Volume_Comparison.p
-ng (PNG copy)>] [14] [15] [16]
-[17] [18]
-<figures/Reseg_Figure_DSI_Quantile_000_native.png, id=447, 505.89pt x 505.89pt>
-File: figures/Reseg_Figure_DSI_Quantile_000_native.png Graphic file (type png)
-<use figures/Reseg_Figure_DSI_Quantile_000_native.png>
-Package pdftex.def Info: figures/Reseg_Figure_DSI_Quantile_000_native.png used 
-on input line 605.
-(pdftex.def)             Requested size: 352.31625pt x 352.32199pt.
+ [12 <./figures/Long/Reseg_Figure_DSI_Quantile_050_native.png (PNG copy)>] [13 
+<./figures/Reseg_Volume_Comparison.png (PNG copy)>] [14] [15] [16] [17] [18]
+<figures/Long/Reseg_Figure_DSI_Quantile_000_native.png, id=448, 505.89pt x 252.
+945pt>
+File: figures/Long/Reseg_Figure_DSI_Quantile_000_native.png Graphic file (type 
+png)
+ <use figures/Long/Reseg_Figure_DSI_Quantile_000_native.png>
+Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_000_native.png 
+used on input line 616.
+(pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
 
-<figures/Reseg_Figure_DSI_Quantile_025_native.png, id=448, 505.89pt x 505.89pt>
-File: figures/Reseg_Figure_DSI_Quantile_025_native.png Graphic file (type png)
-<use figures/Reseg_Figure_DSI_Quantile_025_native.png>
-Package pdftex.def Info: figures/Reseg_Figure_DSI_Quantile_025_native.png used 
-on input line 612.
-(pdftex.def)             Requested size: 352.31625pt x 352.32199pt.
+<figures/Long/Reseg_Figure_DSI_Quantile_025_native.png, id=449, 505.89pt x 252.
+945pt>
+File: figures/Long/Reseg_Figure_DSI_Quantile_025_native.png Graphic file (type 
+png)
+ <use figures/Long/Reseg_Figure_DSI_Quantile_025_native.png>
+Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_025_native.png 
+used on input line 623.
+(pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
 
-<figures/Reseg_Figure_DSI_Quantile_075_native.png, id=449, 505.89pt x 505.89pt>
-File: figures/Reseg_Figure_DSI_Quantile_075_native.png Graphic file (type png)
-<use figures/Reseg_Figure_DSI_Quantile_075_native.png>
-Package pdftex.def Info: figures/Reseg_Figure_DSI_Quantile_075_native.png used 
-on input line 619.
-(pdftex.def)             Requested size: 352.31625pt x 352.32199pt.
+<figures/Long/Reseg_Figure_DSI_Quantile_075_native.png, id=450, 505.89pt x 252.
+945pt>
+File: figures/Long/Reseg_Figure_DSI_Quantile_075_native.png Graphic file (type 
+png)
+ <use figures/Long/Reseg_Figure_DSI_Quantile_075_native.png>
+Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_075_native.png 
+used on input line 630.
+(pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
 
-<figures/Reseg_Figure_DSI_Quantile_100_native.png, id=450, 505.89pt x 505.89pt>
-File: figures/Reseg_Figure_DSI_Quantile_100_native.png Graphic file (type png)
-<use figures/Reseg_Figure_DSI_Quantile_100_native.png>
-Package pdftex.def Info: figures/Reseg_Figure_DSI_Quantile_100_native.png used 
-on input line 626.
-(pdftex.def)             Requested size: 352.31625pt x 352.32199pt.
+<figures/Long/Reseg_Figure_DSI_Quantile_100_native.png, id=451, 505.89pt x 252.
+945pt>
+File: figures/Long/Reseg_Figure_DSI_Quantile_100_native.png Graphic file (type 
+png)
+ <use figures/Long/Reseg_Figure_DSI_Quantile_100_native.png>
+Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_100_native.png 
+used on input line 637.
+(pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
+
+<figures/Reseg_VarImpPlot.png, id=453, 445.54456pt x 428.5611pt>
+File: figures/Reseg_VarImpPlot.png Graphic file (type png)
+
+<use figures/Reseg_VarImpPlot.png>
+Package pdftex.def Info: figures/Reseg_VarImpPlot.png used on input line 703.
+(pdftex.def)             Requested size: 352.31625pt x 338.89305pt.
  [19
 
- <./figures/Reseg_Figure_DSI_Quantile_000_native.png (PNG copy)>] [20 <./figure
-s/Reseg_Figure_DSI_Quantile_025_native.png (PNG copy)>] [21 <./figures/Reseg_Fi
-gure_DSI_Quantile_075_native.png (PNG copy)>] [22 <./figures/Reseg_Figure_DSI_Q
-uantile_100_native.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 687.
- [23]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 687.
+ <./figures/Long/Reseg_Figure_DSI_Quantile_000_native.png (PNG copy)>] [20 <./f
+igures/Long/Reseg_Figure_DSI_Quantile_025_native.png (PNG copy)> <./figures/Lon
+g/Reseg_Figure_DSI_Quantile_075_native.png (PNG copy)>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 710.
+ [21 <./figures/Long/Reseg_Figure_DSI_Quantile_100_native.png (PNG copy)>] [22 
+<./figures/Reseg_VarImpPlot.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 710.
  (./CT_ICH_Segmentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 687.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 687.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 710.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 710.
 Package rerunfilecheck Info: File `CT_ICH_Segmentation.out' has not changed.
-(rerunfilecheck)             Checksum: 7BD9D8E39E0FF7A52082D1E820271CC3;2132.
+(rerunfilecheck)             Checksum: 26896A4417750A6D200B5C5B2E7D4C3B;2209.
 Package logreq Info: Writing requests to 'CT_ICH_Segmentation.run.xml'.
 \openout1 = `CT_ICH_Segmentation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26210 strings out of 493109
- 506971 string characters out of 6135005
- 770392 words of memory out of 5000000
- 29035 multiletter control sequences out of 15000+600000
+ 26221 strings out of 493109
+ 507304 string characters out of 6135005
+ 769912 words of memory out of 5000000
+ 29043 multiletter control sequences out of 15000+600000
  63967 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,67p,2126b,1076s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,13n,67p,1398b,1076s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
 texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
 14/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2014/texmf-d
@@ -1826,10 +1848,10 @@ al/texlive/2014/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive
 lic/lm/lmsy6.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy
 7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></us
 r/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on CT_ICH_Segmentation.pdf (23 pages, 6532776 bytes).
+Output written on CT_ICH_Segmentation.pdf (22 pages, 6613226 bytes).
 PDF statistics:
  570 PDF objects out of 1000 (max. 8388607)
  480 compressed objects within 5 object streams
- 131 named destinations out of 1000 (max. 500000)
- 365 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 132 named destinations out of 1000 (max. 500000)
+ 378 words of extra memory for PDF output out of 10000 (max. 10000000)
 

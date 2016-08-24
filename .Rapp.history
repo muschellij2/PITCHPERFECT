@@ -484,3 +484,8 @@ ls()
 med_dice
 q('no')
 load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/smoothed_logistic_cutoffs.rda")
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Differences_Results.Rda")
+diffs
+diffs[, c("mod","mn_diff", "sd_diff")]
+pander(diffs[, c("mod","mn_diff", "sd_diff")])
+library(pander)

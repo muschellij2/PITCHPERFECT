@@ -19,10 +19,10 @@
 \begin{tikzpicture}[node distance = 1.5cm, every node/.style={rectangle,fill=white}, scale=0.75, transform shape]
 
 % Place nodes
-\node [bblock] (raw) {DICOM images};
-\node [bblock, below = 2.5cm of raw] (dcmnii) {NIfTI image};
+\node [bblock] (raw) {DICOM Images};
+\node [bblock, below = 2.5cm of raw] (dcmnii) {NIfTI Image};
 %\node [bblock, below of=dcmnii] (thresh) {Threshold to 0-100 HU };
-\node [bblock, above right=1cm and 1.25cm of dcmnii] (gantry) {Gantry tilt correction};
+\node [bblock, above right=1cm and 1.25cm of dcmnii] (gantry) {Gantry Tilt Correction};
 \node [bblock, below of=dcmnii] (BET) {BET for CT};
 
 %\node [block, below left=2cm and -4em of BET] (native) {Native Image};
@@ -41,7 +41,7 @@ Registration};
 
 \node [bblock, below=1.5cm of smooth] (probthresh) {Binary\\ Prediction Image};
 
-\node [bblock, below=1.5cm of probthresh] (native_probthresh) {Binary\\ Prediction Image (native space)};
+\node [bblock, below=1.5cm of probthresh] (native_probthresh) {Binary\\ Prediction Image (Native Space)};
 
 
 
