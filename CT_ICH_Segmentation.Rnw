@@ -485,7 +485,7 @@ The reason for introducing these predictors is that we expect that voxels that h
 
 Thus, for each voxel and slice (axial, sagittal, and coronal) planes, we defined
 \begin{equation}
-z_{o}(v) = \frac{x(v) - \bar{x}(v, o)}{\hat{sigma}(v, o)} \label{eq:z}
+z_{o}(v) = \frac{x(v) - \bar{x}(v, o)}{\hat{\sigma}(v, o)} \label{eq:z}
 \end{equation}
 where $o \in \{$axial, sagittal, and coronal$\}$, $\bar{x}(v, o)$ and $\hat{\sigma}(v, o)$ denote the mean and standard deviation of the intensities of voxels in the plane $o$ that contains the voxel $v$, excluding voxels outside the brain mask.   In addition to the standardized images within each plane we have also calculated standardized scores based on the Winsorized mean and standard deviation.  More precisely, we used the same formula as in equation~\eqref{eq:z}, we set any HU values below the $10^{\text{th}}$ percentile to the $10^{\text{th}}$ percentile value and above the $90^{\text{th}}$ percentile to the $90^{\text{th}}$ percentile value within that slice and calculated the slice-specific mean and standard deviation,. This approach is expected to be more robust to small and moderate artifacts in the image.
 
