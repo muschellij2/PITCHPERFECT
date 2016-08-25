@@ -989,6 +989,11 @@ cutoff = smoothed_rf_cutoffs$mod.dice.coef[1,"cutoff"]
 \label{fig:varimp}
 \end{figure}
 
+<<dice_by_man>>=
+g = ggplot(man_dice, aes(x = man, y = dice)) + 
+  geom_boxplot()
+# print(g)
+@
 
 
 \end{document}
