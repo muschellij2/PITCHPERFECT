@@ -489,3 +489,5 @@ diffs
 diffs[, c("mod","mn_diff", "sd_diff")]
 pander(diffs[, c("mod","mn_diff", "sd_diff")])
 library(pander)
+load("/Users/johnmuschelli/Dropbox/CTR/DHanley/CT_Registration/Segmentation/Segmentation_Paper/Reseg_Results.Rda")
+head(long)

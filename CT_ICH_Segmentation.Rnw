@@ -169,7 +169,7 @@ For each validation scan, the model predicted the probability of ICH at each vox
 \vspace{-1em}
 
 \section*{Results}
-All results presented are for the $\Sexpr{non_nmods}$ scans in the validation set.  The median DSI for each model was: $\Sexpr{med_dice["logistic"]}$ (logistic), $\Sexpr{med_dice["lasso"]}$  (LASSO), $\Sexpr{med_dice["gam"]}$ (GAM), and $\Sexpr{med_dice["rf"]}$ (random forest).  Using the random forest results in a slightly higher median DSI compared to the other models. After Bonferroni correction, the hypothesis of equality of median DSI was rejected only when comparing the random forest DSI to the DSI from the logistic ($p \Sexpr{wt_pvals["logistic"]}$), LASSO ($p \Sexpr{wt_pvals["lasso"]}$), or GAM ($p \Sexpr{wt_pvals["gam"]}$) models.  In practical terms the difference between the random forest and the logistic regression is quite small.  The correlation (95\% CI) between the volume from manual segmentation and the predicted volume was $\Sexpr{corrdata["rf", "cor"]}$ ($\Sexpr{corrdata["rf", "cor.lower"]}, \Sexpr{corrdata["rf", "cor.upper"]}$) for the random forest model. These results indicate that the approach can achieve accurate segmentation of ICH in a population of patients from a variety of imaging centers.
+All results presented are for the $\Sexpr{non_nmods}$ scans in the validation set.  The median DSI for each model was: $\Sexpr{med_dice["logistic"]}$ (logistic), $\Sexpr{med_dice["lasso"]}$  (LASSO), $\Sexpr{med_dice["gam"]}$ (GAM), and $\Sexpr{med_dice["rf"]}$ (random forest).  Using the random forest results in a slightly higher median DSI compared to the other models. After Bonferroni correction, the hypothesis of equality of median DSI was rejected only when comparing the random forest DSI to the DSI from the logistic ($p \Sexpr{wt_pvals["logistic"]}$), LASSO ($p \Sexpr{wt_pvals["lasso"]}$), or GAM ($p \Sexpr{wt_pvals["gam"]}$) models.  In practical terms the difference between the random forest and the logistic regression is quite small.  The correlation (95\% CI) between the volume from manual segmentation and the predicted volume was $\Sexpr{corrdata["rf", "cor"]}$ ($\Sexpr{corrdata["rf", "cor.lower"]}, \Sexpr{corrdata["rf", "cor.upper"]}$) for the random forest model. These results indicate that random forest approach can achieve accurate segmentation of ICH in a population of patients from a variety of imaging centers.  We provide an R package and a webpage for implementing and testing the approach.
 
 \end{abstract}
 
@@ -227,11 +227,20 @@ rootdir = path.expand("~/CT_Registration")
 
 rda = "Scanning_Parameters.Rda"
 load(rda)
+
 fdf$site_number = sapply(strsplit(fdf$id, "-"), `[[`, 1)
 fdf$pid = as.numeric(gsub("-", "", fdf$id))
 
-man = lapply(alltabs, `[[`, "0008-0070-Manufacturer")
-man = sapply(man, unique)
+man = lapply(alltabs, function(x) {
+  unique(x[["0008-0070-Manufacturer"]])
+})
+stopifnot(all(sapply(man, length) == 1))
+man = unlist(man)
+fdf$man = man
+fdf$man[fdf$man == 'TOSHIBA'] = "Toshiba"
+fdf$man[fdf$man == 'SIEMENS'] = "Siemens"
+man_fdf = fdf[, c("id", "pid", "man")]
+# man = sapply(man, unique)
 
 stopifnot(nrow(fdf) == 112)
 stopifnot(length(unique(fdf$id)) == 112)
@@ -309,7 +318,7 @@ Another problem that has not been discussed in the literature is that ICH may ch
 %This is particularly important in clinical trials where the ICH exposure may be measured with substantial bias and reduce the power of the tests.  An additional problem is that the ABC/2 method does not take into account intraventricular hemorrhage (IVH), which has been shown to be prognostic of 30-day mortality \citep{hemphill_ich_2001, tuhrim_volume_1999}.
 Moreover, the ABC/2 method has been shown to consistently over-estimate infarct volume \citep{pedraza_reliability_2012} and may have significant inter-rater variability \citep{hussein_reliability_2013}. Therefore, a rapid, automated, and validated method for estimating hemorrhage location and its volume from CT scans is highly relevant in clinical trials and clinical care.  Accuracy is accompanied by increase of both diagnostic and prognostic value.
 
-Methods have been proposed for segmentation of ICH using magnetic resonance images (MRI) \citep{wang_hematoma_2013, carhuapoma2003brain}.  However, in most clinical settings CT, not MRI, is the image of choice.  Furthermore, there is no agreed-upon MRI scanning protocol for ICH patients.  MRI sequences and protocols may vary across sites and there is no general, standardized, agreed-upon MRI modality for ICH standard-of-care.
+Methods have been proposed for segmentation of ICH using magnetic resonance images (MRI) \citep{wang_hematoma_2013, carhuapoma2003brain}.  However, in most clinical settings CT, not MRI, is the image of choice.  Furthermore, MRI sequences and protocols may vary across sites and there is no general, standardized, agreed-upon MRI modality for ICH standard-of-care.
 Thus, there is a need for ICH segmentation that relies only on CT scan information, is reliable, reproducible, available, and well validated against planimetry.
 
 We propose an algorithm that can estimate the probability of ICH at the voxel level, produce a binary image of ICH location, and estimate ICH volume.  We will compare our predicted ICH maps to the gold standard -- manual segmentation.  Several methods have been presented for automated methods for estimating ICH from CT scans \citep{ gillebert_automated_2014, prakash_segmentation_2012, loncaric_hierarchical_1996, loncaric_quantitative_1999, perez_set_2007}.  These methods include fuzzy clustering \citep{prakash_segmentation_2012, loncaric_hierarchical_1996}, simulated annealing \citep{loncaric_quantitative_1999}, 3-dimensional (3D) mathematical morphology operations \citep{perez_set_2007}, and template-based comparisons \citep{gillebert_automated_2014}.  Unfortunately, no software for ICH segmentation is publicly available.
@@ -449,15 +458,15 @@ I_{\text{thresh}}(v) = \begin{cases}
 \end{cases}
 $$.
 
-\subsubsection{Local Moment Information} For each voxel, we extracted a neighborhood of voxels: all adjacent voxels along the $3$ dimensions together with the voxel itself, indexed by $k$: $k = 1, \dots, N(v) = 27$.  If $x_k(v)$ denotes the voxel intensity in HU for voxel neighbor $k$, then the local mean intensity is defined as:
+\subsubsection{Local Moment Information} For each voxel, we extracted a neighborhood of voxels: all adjacent voxels along the $3$ dimensions together with the voxel itself, indexed by $k$: $k = 1, \dots, N(v) = 27$, where $N(v)$ is the number of neighboring voxels.  If $x_k(v)$ denotes the voxel intensity in HU for voxel neighbor $k$, then the local mean intensity is defined as:
 \begin{equation}
 \bar{x}(v) = \frac{1}{N(v)} \sum_{k \in N(v)} x_k(v). \label{eq:mean}
 \end{equation}
 We also calculate statistics based on higher order moments and define the local SD, skew, and kurtosis as:
 \begin{eqnarray*}
 \text{SD}(v) &=& \sqrt{ \frac{1}{N(v)} \sum_{k \in N(v)} \left\{x_k(v) - \bar{x}(v)\right\}^2 } \\
-\text{Skew}(v) &=& \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)-\bar{x}(v) \right\}^3 } {\left[ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^2\right]^{3/2}} \\
-\text{Kurtosis}(v) &=& \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^4 }{ \left[ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^2\right]^2} \\
+\text{Skew}(v) &=& \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)-\bar{x}(v) \right\}^3 } {\left[ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^2\right]^{3/2}} = \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)-\bar{x}(v) \right\}^3 } {SD(v)^3} \\
+\text{Kurtosis}(v) &=& \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^4 }{ \left[ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^2\right]^2} = \frac{ \frac{1}{N(v)} \sum\limits_{k \in N(v)} \left\{x_k(v)- \bar{x}(v)\right\}^4 }{ SD(v)^4 } \\
 \label{eq:moment}
 \end{eqnarray*}
 We did not divide by $\{N(v) - 1\}$ in standard deviation and skew formula and did not subtract by $3$ for kurtosis.  As $N(v)$ is the same at every voxel, these simplified choices will have no effect on modeling or prediction.
@@ -481,7 +490,7 @@ and an indicator of whether any voxels in the neighborhood had a value of $0$:
 
 The reason for introducing these predictors is that we expect that voxels that have neighbors with intensity zero are less likely to be ICH. Our approach will not assume that the probability of voxels with neighbors with HU intensity equal to zero are not in the ICH. Instead, we will model the probability of belonging to the ICH as a function of the predictors described in this section.
 
-\subsubsection{Within-plane Standard Scores} Some brain structures have high HU values but are not ICH, such as the falx cerebri, which lies largely on the mid-sagittal plane.  Moreover, raw CT images may contain substantial inhomogeneity. For example, tissues closer to the top of the brain may have a higher observed intensities (measured in HU) than those in the middle or bottom of the brain.  Thus, if values are standardized within each plane (axial, sagittal, coronal), the resulting plane-specific z-scores may discriminate better high relative values within the plane, which may attenuate the effect of low-frequency HU intensity inhomogeneities.
+\subsubsection{Within-plane Standard Scores} Some brain structures have high HU values but are not ICH, such as the falx cerebri, which lies largely on the mid-sagittal plane.  Moreover, raw CT images may contain substantial inhomogeneity. For example, tissues closer to the top of the brain may have a higher observed intensities (measured in HU) than those in the middle or bottom of the brain.  Thus, if values are standardized within each plane (axial, sagittal, coronal), the resulting plane-specific z-scores may discriminate better high relative values within the plane, which may attenuate the effect of HU intensity inhomogeneities.
 
 Thus, for each voxel and slice (axial, sagittal, and coronal) planes, we defined
 \begin{equation}
@@ -592,7 +601,7 @@ Using the training data we estimated the $\Sexpr{rn[1]}\%$ and $\Sexpr{rn[2]}\%$
 
 \subsection{Models}
 \label{sec:mods}
-Using the $\Sexpr{Nmods}$ training scans we obtained all voxels passing the voxel selection procedure described in Section~$\ref{sec:voxsel}$.  We then randomly sub-sampled $\Sexpr{nsub_voxels}$ voxels, which were used for model fitting, model selection, and exploratory analysis, to reduce computational burden and increase speed of model fitting and exploratory analysis.  The rest of the remaining voxels were used for model calibration.   All models were fit with all the predictors described in Sections~\ref{sec:predictors}.
+Using the $\Sexpr{Nmods}$ training scans we obtained all voxels passing the voxel selection procedure described in Section~$\ref{sec:voxsel}$.  We then randomly sub-sampled $\Sexpr{nsub_voxels}$ voxels, which were used for model fitting, model selection, and exploratory analysis, to reduce computational burden and increase speed of model fitting and exploratory analysis.  The rest of the remaining voxels from the training data were used for model calibration.   All models were fit with all the predictors described in Sections~\ref{sec:predictors}.
 
 % get Reseg_Aggregate_data Rda for nunmber of voxels
 
@@ -620,7 +629,8 @@ Here $TP$ denotes the number of ``true positive'' voxels, where the manual and p
 For each model, the probability image was smoothed by taking the average over the neighborhood voxels (1 voxel in every direction).
 For each threshold, we used the voxels in the training data that were not used for estimating the model, and found the threshold that maximized the DSI compared to the manual segmentation at those voxels.  This threshold was applied to the smoothed probability maps to produce binary ICH images.
 
-After thresholding the smoothed image using these DSI-optimized thresholds, we discarded regions with fewer than $100$ ($0.1$mL) connected voxels.  This removal was done to eliminate speckling, which helped improve the false positive rate of images.  For each model, the predicted ICH binary mask was transformed back to the original (i.e.~native) space using the inverse of the rigid-body transformation.  As the linear interpolation associated with this step results in a non-binary mask, we thresholded the image at $0.5$ to preserve volume \cite{flirt_reg}.  The estimation was done on the training data ($\Sexpr{Nmods}$ subjects) using the approaches described here.
+After thresholding the smoothed image using these DSI-optimized thresholds, we discarded regions with fewer than $100$ ($0.1$mL) connected voxels.  This removal was done to eliminate speckling, which helped improve the false positive rate of images.  For each model, the predicted ICH binary mask was transformed back to the original (i.e.~native) space using the inverse of the rigid-body transformation.  As the linear interpolation associated with this step results in a non-binary mask, we thresholded the image at $0.5$ to preserve volume \cite{flirt_reg}.
+% The estimation was done on the training data ($\Sexpr{Nmods}$ subjects) using the approaches described here.
 
 %For each scan in the test data, this voxel selection and prediction process was performed and each scan has a corresponding binary prediction  image.  For evaluation of all measures, the comparison was done in the native space of the patient, not in the template space, as this was where the manual segmentation was done.
 
@@ -666,6 +676,8 @@ llong$variable = factor(llong$variable,
 native = filter(slong, app %in% "Native")
 
 dice = filter(native, mod %in% "rf")
+man_dice = left_join(dice, man_fdf, by = "id")
+
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)
 stopifnot(L == non_nmods)
@@ -681,6 +693,7 @@ qs = round(qs, 3)
 
 dice = dice[pick, , drop=FALSE]
 dice$quantile = names(qs)
+
 
 med_dice = group_by(native, mod) %>% summarise(med = median(dice))
 med_dice = as.data.frame(med_dice)
@@ -724,11 +737,11 @@ For each of the remaining $\Sexpr{non_nmods}$ scans in the test data, the voxel 
 the native space of the patient, not in the template space, as the manual segmentation was
 done in the native space.
 
-Model performance was evaluated on the validation data using the DSI and the ICH volume. The large number of true negatives (non-ICH voxels) artificially inflates specificity and overall accuracy measures, which are not reported.  The global equality median DSI across models was tested using the Kruskal-Wallis test.  If a difference was present, we tested the null hypothesis of no difference in the medians for each combination of models ($\Sexpr{nrow(eg)}$ combinations) using a Wilcoxon signed rank test, and corrected the p-value using a Bonferroni correction.
+Model performance was evaluated on the validation data using the DSI and the ICH volume.  The ICH volume was estimated counting the number of ICH voxels multiplied by product of the voxel sizes, divided by (1000 mm$^3$ per 1 mL), provided in mL.  The large number of true negatives (non-ICH voxels) artificially inflates specificity and overall accuracy measures, which are not reported.  The global equality median DSI across models was tested using the Kruskal-Wallis test.  If a difference was present, we tested the null hypothesis of no difference in the medians for each combination of models ($\Sexpr{nrow(eg)}$ combinations) using a Wilcoxon signed rank test, and corrected the p-value using a Bonferroni correction.
 
 <<vol_wt_pvals>>=
 native$abs_diff = abs(native$diff)
-native$abs_pct = abs(native$diff/ native$tvol)
+native$abs_pct = abs(native$diff / native$tvol)
 
 # vol_ktest = kruskal.test( diff ~ mod, data = native)
 pct_ktest = kruskal.test( abs_pct ~ mod, data = native)
@@ -769,13 +782,13 @@ To better understand the DSI measurements in our data, Figure~\ref{fig:dice_img}
 rda = "Reseg_Correlation_Results.Rda"
 load(rda)
 rmse = corrs[, "rmse", drop = FALSE]
-rmse = round(rmse, 2)
+rmse = round(rmse, 1)
 nn = rownames(rmse);
 rmse = unlist(rmse)
 names(rmse) = nn
 rm(list = "nn")
 corrdata = corrs %>% select(cor, cor.lower, cor.upper)
-corrdata = round(corrdata, 3)
+corrdata = round(corrdata, 2)
 save(corrdata, file = "Correlation_data_Abstract.rda")
 @
 
@@ -844,7 +857,7 @@ lonc_cor3 = with(df[ df$visit==3,], cor(manual, auto))
 
 Several other methods have been proposed for segmentation of ICH from CT scans \citep{ gillebert_automated_2014, prakash_segmentation_2012, loncaric_hierarchical_1996, loncaric_quantitative_1999, perez_set_2007}.  \citet{loncaric_hierarchical_1996} performed the analysis on only one 2-dimensional scan and could not be compared with our approach.  The method proposed by \citet{perez_set_2007} is semiautomated and was only validated by visual inspection.  They reported segmentation failure in $6$ out of $36$ scans ($16.7\%$) compared to $\Sexpr{n_under_50}$ out of $\Sexpr{non_nmods}$ scans ($\Sexpr{fail_rate}\%$) for our method.   Our reported median DSI ($\Sexpr{med_dice["rf"]}$) is much larger than the one reported by \citet{gillebert_automated_2014} (approximately $0.62$ and $0.78$ for hemorrhagic strokes as read from their graphs). Our results were comparable to those reported by \citep{prakash_segmentation_2012} ($0.897$, $0.858$, and $0.9173$ for different groups with hemorrhage). \citet{loncaric_quantitative_1999} did not compare hemorrhage and manual segmentation masks; instead they compared ICH volumes from $5$ subjects measured at $3$ timepoints.  Their reported Pearson correlation was $\Sexpr{round(lonc_cor, 3)}$ for the $15$ scans, similar to our results using the random forest (R = $\Sexpr{corrdata["rf", "cor"]}$).
 
-Only \citet{gillebert_automated_2014} responded to our requests for segmentation software to perform the segmentation and we could not find any software online.  Although the method of \citet{gillebert_automated_2014} is comparable to ours, their approach has not been packaged for general use.  We have released an open source package that can perform ICH segmentation (\url{https://github.com/muschellij2/ichseg}).  Our software includes the models for prediction, the CT template from \citet{rorden_age-specific_2012}, template-level standardized mean and standard deviation images, as well as functions to register the images, create the predictors, predict from the models, and return a binary hemorrhage mask.  Although an R package is ideal for prediction on a large number of images and for researchers who prefer scripting, releasing easy to use graphic user interfaces (GUIs) may increase the appeal of the methods proposed. Therefore, we have also released a Shiny \citep{shiny} R application online (\url{http://johnmuschelli.com/ich_seg}) that takes an input CT scan and outputs ICH segmentation mask and provides a representation of each processing step.
+Only \citet{gillebert_automated_2014} responded to our requests for segmentation software to perform the segmentation and we could not find any software online.  Although the method of \citet{gillebert_automated_2014} is comparable to ours, their approach has not been packaged for general use.  We have released an open source package that can perform ICH segmentation (\url{https://github.com/muschellij2/ichseg}).  Our software includes the models for prediction, the CT template from \citet{rorden_age-specific_2012}, template-level standardized mean and standard deviation images, as well as functions to register the images, create the predictors, predict from the models, and return a binary hemorrhage mask.  Although an R package is ideal for prediction on a large number of images and for researchers who prefer scripting, releasing easy to use graphic user interfaces may increase the appeal of the methods proposed. Therefore, we have also released a Shiny \citep{shiny} R application online (\url{http://johnmuschelli.com/ich_seg}) that takes an input CT scan and outputs ICH segmentation mask and provides a representation of each processing step.
 
 A potential issue for CT images that contain ICH is image registration.  Indeed, methods developed for registration of healthy brains can fail in brains exhibiting pathology.  The only predictor that used non-linear registration was the standardized-to-template intensity. The potential problems associated with this transformation are mitigated by the transformation back to the native space.
 %Although this method uses non-linear registration for one predictor, the standardized-to-template intensity, this predictor is transformed back to the rigid-to-template space after standardization.  The method generally relies only rigid-body registration to a template.  This registration is largely done for head reorientation and resampling to isotropic voxel sizes across patients.  Thus, when morphological operations  are performed, such as smoothing using millimeter specifications, they do not depend on the original voxel sizes.  Although the models were fit in the rigid-to-template space, voxels are not compared across patients in the models.  Also, the method returns hemorrhage masks in the native space of the patient, so they are easily comparable to any segmentation method performed on the original scan, such as clustering.
@@ -864,7 +877,7 @@ We have implemented and validated a fully automated segmentation algorithm of IC
 
 
 \section*{Acknowledgments}
-We would like to thank the patients and families who volunteered for this study, Genentech Inc. for the donation of the study drug (Alteplase), and the readers who manually segmented the ICH (W. Andrew Mould, Tim Morgan, Natalie Ullman, Saman Nekoovaght-Tak).  Dr. Chris Rorden was also extremely helpful in adapting his \code{dcm2nii} software to some issues specific to CT scans.
+We would like to thank the patients and families who volunteered for this study, Genentech Inc. for the donation of the study drug (Alteplase), and the readers who manually segmented the ICH (W. Andrew Mould, Tim Morgan, Natalie Ullman, Saman Nekoovaght-Tak).  Dr. Chris Rorden was also extremely helpful in adapting his \code{dcm2nii} software to some issues specific to CT scans and the data for the population moment images.
 
 \section*{Sources of Funding}
 The project described was supported by the NIH grant RO1EB012547 from the National Institute of Biomedical Imaging And Bioengineering, T32AG000247 from the National Institute on Aging, R01NS046309, RO1NS060910, RO1NS085211, R01NS046309, U01NS080824 and U01NS062851 from the National Institute of Neurological Disorders and Stroke, and RO1MH095836 from the National Institute of Mental Health. Minimally Invasive Surgery and rt-PA in ICH Evacuation Phase II (MISTIE II) was supported by grants R01NS046309 and U01NS062851 awarded to Dr. Daniel Hanley from the National Institutes of Health (NIH)/National Institute of Neurological Disorders and Stroke (NINDS).  Minimally Invasive Surgery and rt-PA in ICH Evacuation Phase III (MISTIE III) is supported by the grant U01 NS080824 awarded to Dr. Daniel Hanley from the National Institutes of Health (NIH)/National Institute of Neurological Disorders and Stroke (NINDS). Clot Lysis: Evaluating Accelerated Resolution of Intraventricular Hemorrhage Phase III (CLEAR III) is supported by the grant U01 NS062851 awarded to Dr. Daniel Hanley from the National Institutes of Health (NIH)/National Institute of Neurological Disorders and Stroke (NINDS).

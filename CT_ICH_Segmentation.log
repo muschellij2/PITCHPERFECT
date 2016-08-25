@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.1.4)  24 AUG 2016 17:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.1.4)  25 AUG 2016 18:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1737,7 +1737,7 @@ File: figures/Reseg_Dice_Comparison.png Graphic file (type png)
 
 <use figures/Reseg_Dice_Comparison.png>
 Package pdftex.def Info: figures/Reseg_Dice_Comparison.png used on input line 5
-26.
+27.
 (pdftex.def)             Requested size: 352.31625pt x 352.32199pt.
 
 <figures/Long/Reseg_Figure_DSI_Quantile_050_native.png, id=367, 505.89pt x 252.
@@ -1746,26 +1746,27 @@ File: figures/Long/Reseg_Figure_DSI_Quantile_050_native.png Graphic file (type
 png)
  <use figures/Long/Reseg_Figure_DSI_Quantile_050_native.png>
 Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_050_native.png 
-used on input line 535.
+used on input line 536.
 (pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
- [10]
-[11 <./figures/Reseg_Dice_Comparison.png>]
-<figures/Reseg_Volume_Comparison.png, id=386, 505.89pt x 505.89pt>
+
+<figures/Reseg_Volume_Comparison.png, id=369, 505.89pt x 505.89pt>
 File: figures/Reseg_Volume_Comparison.png Graphic file (type png)
 
 <use figures/Reseg_Volume_Comparison.png>
 Package pdftex.def Info: figures/Reseg_Volume_Comparison.png used on input line
- 553.
+ 554.
 (pdftex.def)             Requested size: 469.75502pt x 469.76265pt.
- [12 <./figures/Long/Reseg_Figure_DSI_Quantile_050_native.png (PNG copy)>] [13 
-<./figures/Reseg_Volume_Comparison.png (PNG copy)>] [14] [15] [16] [17] [18]
+ [10] [11 <./figures/Reseg_Dice_Comparison.png>] [12 <./figures/Long/Reseg_Figu
+re_DSI_Quantile_050_native.png (PNG copy)>] [13 <./figures/Reseg_Volume_Compari
+son.png (PNG copy)>] [14] [15]
+[16] [17] [18]
 <figures/Long/Reseg_Figure_DSI_Quantile_000_native.png, id=448, 505.89pt x 252.
 945pt>
 File: figures/Long/Reseg_Figure_DSI_Quantile_000_native.png Graphic file (type 
 png)
  <use figures/Long/Reseg_Figure_DSI_Quantile_000_native.png>
 Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_000_native.png 
-used on input line 616.
+used on input line 617.
 (pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
 
 <figures/Long/Reseg_Figure_DSI_Quantile_025_native.png, id=449, 505.89pt x 252.
@@ -1774,7 +1775,7 @@ File: figures/Long/Reseg_Figure_DSI_Quantile_025_native.png Graphic file (type
 png)
  <use figures/Long/Reseg_Figure_DSI_Quantile_025_native.png>
 Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_025_native.png 
-used on input line 623.
+used on input line 624.
 (pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
 
 <figures/Long/Reseg_Figure_DSI_Quantile_075_native.png, id=450, 505.89pt x 252.
@@ -1783,7 +1784,7 @@ File: figures/Long/Reseg_Figure_DSI_Quantile_075_native.png Graphic file (type
 png)
  <use figures/Long/Reseg_Figure_DSI_Quantile_075_native.png>
 Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_075_native.png 
-used on input line 630.
+used on input line 631.
 (pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
 
 <figures/Long/Reseg_Figure_DSI_Quantile_100_native.png, id=451, 505.89pt x 252.
@@ -1792,27 +1793,27 @@ File: figures/Long/Reseg_Figure_DSI_Quantile_100_native.png Graphic file (type
 png)
  <use figures/Long/Reseg_Figure_DSI_Quantile_100_native.png>
 Package pdftex.def Info: figures/Long/Reseg_Figure_DSI_Quantile_100_native.png 
-used on input line 637.
+used on input line 638.
 (pdftex.def)             Requested size: 469.75502pt x 234.88133pt.
 
 <figures/Reseg_VarImpPlot.png, id=453, 445.54456pt x 428.5611pt>
 File: figures/Reseg_VarImpPlot.png Graphic file (type png)
 
 <use figures/Reseg_VarImpPlot.png>
-Package pdftex.def Info: figures/Reseg_VarImpPlot.png used on input line 703.
+Package pdftex.def Info: figures/Reseg_VarImpPlot.png used on input line 704.
 (pdftex.def)             Requested size: 352.31625pt x 338.89305pt.
  [19
 
  <./figures/Long/Reseg_Figure_DSI_Quantile_000_native.png (PNG copy)>] [20 <./f
 igures/Long/Reseg_Figure_DSI_Quantile_025_native.png (PNG copy)> <./figures/Lon
 g/Reseg_Figure_DSI_Quantile_075_native.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 710.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 711.
  [21 <./figures/Long/Reseg_Figure_DSI_Quantile_100_native.png (PNG copy)>] [22 
 <./figures/Reseg_VarImpPlot.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 710.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 711.
  (./CT_ICH_Segmentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 710.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 710.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 711.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 711.
 Package rerunfilecheck Info: File `CT_ICH_Segmentation.out' has not changed.
 (rerunfilecheck)             Checksum: 26896A4417750A6D200B5C5B2E7D4C3B;2209.
 Package logreq Info: Writing requests to 'CT_ICH_Segmentation.run.xml'.
@@ -1822,7 +1823,7 @@ Package logreq Info: Writing requests to 'CT_ICH_Segmentation.run.xml'.
 Here is how much of TeX's memory you used:
  26221 strings out of 493109
  507304 string characters out of 6135005
- 769912 words of memory out of 5000000
+ 770912 words of memory out of 5000000
  29043 multiletter control sequences out of 15000+600000
  63967 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1848,7 +1849,7 @@ al/texlive/2014/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive
 lic/lm/lmsy6.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy
 7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></us
 r/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on CT_ICH_Segmentation.pdf (22 pages, 6613226 bytes).
+Output written on CT_ICH_Segmentation.pdf (22 pages, 6613160 bytes).
 PDF statistics:
  570 PDF objects out of 1000 (max. 8388607)
  480 compressed objects within 5 object streams

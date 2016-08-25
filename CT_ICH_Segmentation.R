@@ -72,11 +72,20 @@ rootdir = path.expand("~/CT_Registration")
 
 rda = "Scanning_Parameters.Rda"
 load(rda)
+
 fdf$site_number = sapply(strsplit(fdf$id, "-"), `[[`, 1)
 fdf$pid = as.numeric(gsub("-", "", fdf$id))
 
-man = lapply(alltabs, `[[`, "0008-0070-Manufacturer")
-man = sapply(man, unique)
+man = lapply(alltabs, function(x) {
+  unique(x[["0008-0070-Manufacturer"]])
+})
+stopifnot(all(sapply(man, length) == 1))
+man = unlist(man)
+fdf$man = man
+fdf$man[fdf$man == 'TOSHIBA'] = "Toshiba"
+fdf$man[fdf$man == 'SIEMENS'] = "Siemens"
+man_fdf = fdf[, c("id", "pid", "man")]
+# man = sapply(man, unique)
 
 stopifnot(nrow(fdf) == 112)
 stopifnot(length(unique(fdf$id)) == 112)
@@ -226,6 +235,8 @@ llong$variable = factor(llong$variable,
 native = filter(slong, app %in% "Native")
 
 dice = filter(native, mod %in% "rf")
+man_dice = left_join(dice, man_fdf, by = "id")
+
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)
 stopifnot(L == non_nmods)
@@ -241,6 +252,7 @@ qs = round(qs, 3)
 
 dice = dice[pick, , drop=FALSE]
 dice$quantile = names(qs)
+
 
 med_dice = group_by(native, mod) %>% summarise(med = median(dice))
 med_dice = as.data.frame(med_dice)
@@ -280,7 +292,7 @@ save(wt_pvals, file = "Wilcoxon_Rank_pvalues_Abstract.rda")
 
 ## ----vol_wt_pvals--------------------------------------------------------
 native$abs_diff = abs(native$diff)
-native$abs_pct = abs(native$diff/ native$tvol)
+native$abs_pct = abs(native$diff / native$tvol)
 
 # vol_ktest = kruskal.test( diff ~ mod, data = native)
 pct_ktest = kruskal.test( abs_pct ~ mod, data = native)
@@ -310,13 +322,13 @@ vol_ktest = kruskal.test( abs_diff ~ mod, data = native)
 rda = "Reseg_Correlation_Results.Rda"
 load(rda)
 rmse = corrs[, "rmse", drop = FALSE]
-rmse = round(rmse, 2)
+rmse = round(rmse, 1)
 nn = rownames(rmse);
 rmse = unlist(rmse)
 names(rmse) = nn
 rm(list = "nn")
 corrdata = corrs %>% select(cor, cor.lower, cor.upper)
-corrdata = round(corrdata, 3)
+corrdata = round(corrdata, 2)
 save(corrdata, file = "Correlation_data_Abstract.rda")
 
 ## ----loncaric------------------------------------------------------------
