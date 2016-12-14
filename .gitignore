@@ -10,3 +10,7 @@ Patient_Demographics\.csv
 
 *.Rda
 *.rda
+
+*\.bak
+*\.aux
+*\.run\.xml
