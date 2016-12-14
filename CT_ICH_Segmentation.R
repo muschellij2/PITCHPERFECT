@@ -81,10 +81,20 @@ man = lapply(alltabs, function(x) {
 })
 stopifnot(all(sapply(man, length) == 1))
 man = unlist(man)
+models = lapply(alltabs, function(x) {
+  unique(x[[ "0008-1090-ManufacturerModelName"]])
+})
+stopifnot(all(sapply(models, length) == 1))
+models = unlist(models)
+
+fdf$model = models
+fdf$model[fdf$id == "131-354"] = ""
+fdf$model[fdf$id == "179-402"] = ""
+
 fdf$man = man
 fdf$man[fdf$man == 'TOSHIBA'] = "Toshiba"
 fdf$man[fdf$man == 'SIEMENS'] = "Siemens"
-man_fdf = fdf[, c("id", "pid", "man")]
+man_fdf = fdf[, c("id", "pid", "man", "model")]
 # man = sapply(man, unique)
 
 stopifnot(nrow(fdf) == 112)
@@ -124,6 +134,9 @@ check.na = function(x){
 check.na(tilt)
 n.gant = sum(tilt != 0)
 #"102-323" added over the 111 pts
+
+ivh = read.csv("All_Patients.csv", stringsAsFactors = FALSE)
+ivh = ivh[, c("Pre_Rand_IVHvol", "Pre_Rand_ICHvol", "patientName")]
 
 demog = read.csv("Patient_Demographics.csv",
                  stringsAsFactors = FALSE)
@@ -197,6 +210,9 @@ non_nmods = total_N - Nmods
 save(non_nmods, total_N, file = "Number_of_Non_Nmods_Abstract.rda")
 
 ## ----dice_res------------------------------------------------------------
+load("Reseg_111_Filenames_with_volumes.Rda")
+hu_df = fdf[, c("id", "mean", "median", "sd")]
+
 load("Reseg_Results.Rda")
 run_group = c("Test", "Validation")
 
@@ -235,7 +251,16 @@ llong$variable = factor(llong$variable,
 native = filter(slong, app %in% "Native")
 
 dice = filter(native, mod %in% "rf")
-man_dice = left_join(dice, man_fdf, by = "id")
+man_dice = left_join(
+  dice %>% 
+    select(iimg, id, dice, group, truevol, estvol) %>% 
+    mutate(truevol = truevol / 1000,
+           estvol = estvol / 1000), 
+  man_fdf, by = "id")
+man_dice = left_join(
+  man_dice,
+  hu_df,
+  by = "id")
 
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)
@@ -248,9 +273,9 @@ inds = floor(quantile(1:nrow(dice)))
 pick = which(ranks %in% inds)
 pick = pick[ order(ranks[pick])]
 
-qs = round(qs, 3)
+qs = round(qs, 2)
 
-dice = dice[pick, , drop=FALSE]
+dice = dice[pick, , drop = FALSE]
 dice$quantile = names(qs)
 
 
@@ -365,8 +390,16 @@ cat(figstr)
 load("smoothed_logistic_cutoffs.rda")
 cutoff = smoothed_logistic_cutoffs$mod.dice.coef[, "cutoff"]
 
+x = load("Reseg_Aggregate_models_Rigid_logistic.Rda")
+logistic_summary = smod
+n_sum_pred = nrow(coef(logistic_summary))-1
+stopifnot(n_sum_pred == 20)
+rm(list = x)
+
 load("logistic_modlist.rda")
-npred = length(coef(logistic_modlist$mod)) - 1
+# mod = logistic_modlist$mod
+mod = logistic_summary
+npred = length(coef(mod)) - 1
 # npred for intercept
 stopifnot(npred == 20)
 rename_vec = c("(Intercept)" = "Intercept",
@@ -392,11 +425,25 @@ rename_vec = c("(Intercept)" = "Intercept",
 "flipped_value" = "Contralateral difference"
 )
 
-coefs = broom::tidy(logistic_modlist$mod, quick = TRUE)
+if (inherits(mod, "summary.glm")) {
+  is_sum = TRUE
+  mod = coef(mod)
+}
+coefs = broom::tidy(mod, quick = TRUE)
+if (is_sum) {
+  colnames(coefs)[1] = "term"
+}
 coefs$term = plyr::revalue(coefs$term,
 	rename_vec
 )
-colnames(coefs) = c("Predictor", "Beta")
+add = NULL
+if (is_sum) {
+  add = c("SE", "Z", "p.value")
+}
+colnames(coefs) = c("Predictor", "Beta", add)
+if (is_sum) {
+  coefs = coefs[, c("Predictor", "Beta", "SE", "Z")]
+}
 coefcap = paste0( "Beta coefficients (log odds ratio) for the logistic regression model for all coefficients.  ",
 "Combining these for each voxel value and using the inverse logit transformation yields the probability that ",
 "voxel is ICH. ",
@@ -410,4 +457,17 @@ print.xtable(xtab, include.rownames = FALSE, sanitize.text.function = identity)
 ## ----cutoff_rf-----------------------------------------------------------
 library(ichseg)
 cutoff = smoothed_rf_cutoffs$mod.dice.coef[1,"cutoff"]
+
+## ----dice_by_man---------------------------------------------------------
+library(ggplot2)
+g = man_dice %>% filter(dice > 0.5) %>% 
+  ggplot(aes(x = man, y = dice)) + 
+  geom_boxplot() 
+g = g + ylim(c(0.5, 1)) + 
+  xlab("Manufacturer") +
+  ylab("Dice Similarity Index") +
+  theme(text = element_text(size = 24))
+
+g %+% man_dice[ man_dice$dice > 0.5,]
+# print(g)
 
