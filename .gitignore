@@ -14,5 +14,6 @@ Patient_Demographics\.csv
 *\.bak
 *\.aux
 *\.run\.xml
+*\.log
 
 *\.synctex\.gz
