@@ -7,3 +7,6 @@ All_Patients\.csv
 ABC2_Data\.csv
 All_ABC2_Data\.csv
 Patient_Demographics\.csv
+
+*.Rda
+*.rda
