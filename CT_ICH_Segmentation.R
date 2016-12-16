@@ -123,6 +123,10 @@ man.tab[seq(length(man.tab)-1)] = paste0(man.tab[seq(length(man.tab)-1)], ", " )
 man.tab = paste(man.tab, collapse= " ")
 
 train.man.tab = table(man_fdf$man[ man_fdf$group == "Train"])
+train.man.tab = paste0(names(train.man.tab), " (N = ", train.man.tab, "),")
+train.man.tab[length(train.man.tab)] = paste0("and ", train.man.tab[length(train.man.tab)])
+train.man.tab[length(train.man.tab)] = gsub(",$", "", train.man.tab[length(train.man.tab)])
+train.man.tab = paste(train.man.tab, collapse = " ")
 man_fdf$group = NULL
 
 
@@ -312,6 +316,7 @@ stopifnot(all(!is.na(man_dice$ich_cat)))
 stopifnot(all(!is.na(man_dice$pre_ich_cat)))
 
 large_ivh = man_dice %>% arrange(-Pre_Rand_IVHvol) %>% head(2)
+man_dice %>% filter(truevol > 100)
 
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)

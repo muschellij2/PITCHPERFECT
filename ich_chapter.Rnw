@@ -98,6 +98,10 @@ man.tab[seq(length(man.tab)-1)] = paste0(man.tab[seq(length(man.tab)-1)], ", " )
 man.tab = paste(man.tab, collapse= " ")
 
 train.man.tab = table(man_fdf$man[ man_fdf$group == "Train"])
+train.man.tab = paste0(names(train.man.tab), " (N = ", train.man.tab, "),")
+train.man.tab[length(train.man.tab)] = paste0("and ", train.man.tab[length(train.man.tab)])
+train.man.tab[length(train.man.tab)] = gsub(",$", "", train.man.tab[length(train.man.tab)])
+train.man.tab = paste(train.man.tab, collapse = " ")
 man_fdf$group = NULL
 
 
@@ -195,7 +199,7 @@ For example, a scan may have $10$ millimeter (mm) slices at the top and bottom o
 
 
 \subsection{Hemorrhage Segmentation and Location Identification}
-ICH was manually segmented on CT scans using the OsiriX imaging software by expert readers (OsiriX v. 4.1, Pixmeo; Geneva, Switzerland).  After image quality review, continuous, non-overlapping slices of the entire ICH were segmented.  Readers employed a semiautomated threshold-based approach using a Hounsfield unit (HU) range of $40$ to $80$ to select potential regions of ICH \citep{bergstrom_variation_1977, smith_imaging_2006}; these regions were then further quality controlled and refined by readers using direct inspection of images.  Binary hemorrhage masks were created by setting voxel intensity to $1$ if the voxel was classified as hemorrhage, regardless of location, and $0$ otherwise.
+ICH was manually segmented on CT scans using the OsiriX imaging software by expert readers (OsiriX v. 4.1, Pixmeo; Geneva, Switzerland).  After image quality review, continuous, non-overlapping slices of the entire hemorrhage were segmented.  Readers employed a semiautomated threshold-based approach using a Hounsfield unit (HU) range of $40$ to $80$ to select potential regions of hemorrhage \citep{bergstrom_variation_1977, smith_imaging_2006}; these regions were then further quality controlled and refined by readers using direct inspection of images.  Binary hemorrhage masks were created by setting voxel intensity to $1$ if the voxel was classified as hemorrhage, regardless of location, and $0$ otherwise.
 %previous to this analysis as a standard hemorrhage characteristic.
 
 \subsection{Image Processing: Brain Extraction, Registration}
@@ -446,53 +450,6 @@ save(non_nmods, total_N, file = "Number_of_Non_Nmods_Abstract.rda")
 @
 
 
-\subsection{Voxel Selection Procedure}
-\label{sec:voxsel}
-We chose $\Sexpr{Nmods}$ scans from $\Sexpr{Nmods}$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data.  These scans were randomly selected.   
-We used the $\Sexpr{non_nmods}$ remaining scans as test data to evaluate the performance of the proposed approaches.
-%Of the \Sexpr{non_nmods} remaining scans, we split the data into $\Sexpr{groups["Validation"]}$ validation scans and  $\Sexpr{groups["Test"]}$ test scans.
-
-
-Using the training data, we estimated the $\Sexpr{rn[1]}\%$ and $\Sexpr{rn[2]}\%$ quantiles for all predictors across ICH voxels. The voxel selection procedure consisted of choosing all voxels that had all of predictors $z_{\text{axial}}$, $z_{\text{coronal}}$, and $p_{\text{thresh}}$ within the corresponding $0.5$ and $99.5$ quantiles as well as values of HU intensity between $30$ and~$100$. Voxels that did not meet these criteria were assigned a $0$ probability of ICH. These cutoffs were found empirically to work well in the test scans. This approach excluded a mean of  \Sexpr{vol_res["Test", "mean_excludeY0"]} (min: \Sexpr{vol_res["Test", "min_excludeY0"]}, max: \Sexpr{vol_res["Test", "max_excludeY0"]}) percentage of non-ICH voxels and included a mean of \Sexpr{vol_res["Test", "mean_includeY1"]} (min: \Sexpr{vol_res["Test", "min_includeY1"]}, max: \Sexpr{vol_res["Test", "max_includeY1"]}) percentage of ICH voxels.  We have found that this voxel selection procedure improves computational speed as well as the performance of the algorithms.
-
-\subsection{Models}
-\label{sec:mods}
-Using the $\Sexpr{Nmods}$ training scans we obtained all voxels passing the voxel selection procedure described in Section~$\ref{sec:voxsel}$.  We then randomly sub-sampled $\Sexpr{nsub_voxels}$ voxels, which were used for model fitting, model selection, and exploratory analysis, to reduce computational burden and increase speed of model fitting and exploratory analysis.  The rest of the remaining voxels from the training data were used for model calibration.   All models were fit with all the predictors described in Sections~\ref{sec:predictors}.
-
-% get Reseg_Aggregate_data Rda for nunmber of voxels
-
-We fit several different models on the $\Sexpr{nsub_voxels}$ sub-sampled voxels: 1) logistic regression with all covariates used as main effects (without interactions or nonlinear effects), 2) logistic regression model with a penalty on the model parameters to reduce the potential effect of high correlations between predictors, 3) generalized additive model (GAM) \citep{hastie_generalized_1986, hastie_generalized_1990}, which is similar to the logistic regression, but allows for non-linear effects on the linear predictor scale, and 4) random forest classifier \citep{breiman2001random}.  All models were fit using R.
-
-For the standard and penalized logistic regression model, we used all predictors.  The penalized model was fit using the LASSO (Least Absolute Shrinkage and Selection Operator) penalty \citep{tibshirani_regression_1996} using the \pkg{glmnet} package \citep{friedman_regularization_2010}.  The tuning parameter, $\lambda$, was chosen using 10-fold cross-validation on the training voxels; the cost function used was the misclassification rate.  The parameter was chosen using the largest value of $\lambda$ where that the misclassification rate is within 1 standard error of its minimum; this approach led to superior out-of-sample stability.
-
-The generalized additive model (GAM) \citep{hastie_generalized_1986, hastie_generalized_1990} was also fit using indicator variables for binary variables and thin-plate splines for all continuous measures. The model was fit using fast-estimation of the restricted maximum likelihood (fREML) implemented in the \pkg{mgcv} package \citep{wood_fast_2011, wood_generalized_2015}.   Detailed model specifications are provided in Section~\ref{sec:modspec}.
-
-
-The random forest \citep{breiman2001random} classification algorithm was implemented using the \pkg{randomForest} package in R \citep{randomForest} with the default pruning parameters and number of trees (\code{ntree=500}, \code{mtry=4}).
-
-
-
-\subsection{Estimating a Cutoff for Model Probability}
-\label{sec:cutoffs}
-Each model described in Section~\ref{sec:mods} provides an estimate of the probability for each voxel to be in ICH.
-
-To choose probability thresholds to create a binary segmentation, we chose the Dice Similarity Index (DSI) \citep{dice_measures_1945} as a measure of the quality of segmentation.  The DSI is a measure of overlap that is insensitive to areas where neither the true nor the predicted segmentation were labeled ICH, and will be used as a performance measure when comparing models on the test data.  DSI for scan $i$ is calculated by
- $$
- DSI_i = \frac{2 \times TP}{2\times TP + FN + FP}
- $$
-where $TP$ denotes the number of ``true positive'' voxels, where the manual and predicted segmentation agree that the voxel is in ICH, $FP$ denotes the number of ``false positive'' voxels, where the predicted segmentation indicates that there is no lesion when the manual segmentation indicates lesion, and $FN$ denotes the number of ``false negative'' voxels, where the predicted segmentation indicates that there is lesion when the manual segmentation indicates that there is not. DSI ranges from $0$ to $1$, where $0$ indicates no overlap and $1$ denotes perfect overlap.
-
-For each model, the probability image was smoothed by taking the average over the neighborhood voxels (1 voxel in every direction).
-For each threshold, we used the voxels in the training data that were not used for estimating the model, and found the threshold that maximized the DSI compared to the manual segmentation at those voxels.  This threshold was applied to the smoothed probability maps to produce binary ICH images.
-
-After thresholding the smoothed image using these DSI-optimized thresholds, we discarded regions with fewer than $100$ ($0.1$mL) connected voxels.  This removal was done to eliminate speckling, which helped improve the false positive rate of images.  For each model, the predicted ICH binary mask was transformed back to the original (i.e.~native) space using the inverse of the rigid-body transformation.  As the linear interpolation associated with this step results in a non-binary mask, we thresholded the image at $0.5$ to preserve volume \cite{flirt_reg}.
-% The estimation was done on the training data ($\Sexpr{Nmods}$ subjects) using the approaches described here.
-
-%For each scan in the test data, this voxel selection and prediction process was performed and each scan has a corresponding binary prediction  image.  For evaluation of all measures, the comparison was done in the native space of the patient, not in the template space, as this was where the manual segmentation was done.
-
-
-\subsection{Testing ICH Prediction and Measuring Model Performance}
-
 <<dice_res>>=
 load("Reseg_111_Filenames_with_volumes.Rda")
 hu_df = fdf[, c("id", "mean", "median", "sd")]
@@ -576,6 +533,7 @@ stopifnot(all(!is.na(man_dice$ich_cat)))
 stopifnot(all(!is.na(man_dice$pre_ich_cat)))
 
 large_ivh = man_dice %>% arrange(-Pre_Rand_IVHvol) %>% head(2)
+man_dice %>% filter(truevol > 100)
 
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)
@@ -602,6 +560,55 @@ names(med_dice) = nn
 med_dice = round(med_dice, 3)
 save(med_dice, file = "Median_Dice_Abstract.rda")
 @
+
+
+
+\subsection{Voxel Selection Procedure}
+\label{sec:voxsel}
+We chose $\Sexpr{Nmods}$ scans from $\Sexpr{Nmods}$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data.  These scans were randomly selected.  These selected patients had a mean (SD) hemorrhage volume of $\Sexpr{round(mean(train_man$truevol), 1)}$ ($\Sexpr{round(sd(train_man$truevol), 1)}$), had an average HU intensity of $\Sexpr{round(mean(train_man$mean), 1)}$ HU and were scanned on the following scanners: \Sexpr{train.man.tab}.
+We used the $\Sexpr{non_nmods}$ remaining scans as test data to evaluate the performance of the proposed approaches.
+%Of the \Sexpr{non_nmods} remaining scans, we split the data into $\Sexpr{groups["Validation"]}$ validation scans and  $\Sexpr{groups["Test"]}$ test scans.
+
+
+Using the training data, we estimated the $\Sexpr{rn[1]}\%$ and $\Sexpr{rn[2]}\%$ quantiles for all predictors across ICH voxels. The voxel selection procedure consisted of choosing all voxels that had all of predictors $z_{\text{axial}}$, $z_{\text{coronal}}$, and $p_{\text{thresh}}$ within the corresponding $0.5$ and $99.5$ quantiles as well as values of HU intensity between $30$ and~$100$. Voxels that did not meet these criteria were assigned a $0$ probability of ICH. These cutoffs were found empirically to work well in the test scans. This approach excluded a mean of  \Sexpr{vol_res["Test", "mean_excludeY0"]} (min: \Sexpr{vol_res["Test", "min_excludeY0"]}, max: \Sexpr{vol_res["Test", "max_excludeY0"]}) percentage of non-ICH voxels and included a mean of \Sexpr{vol_res["Test", "mean_includeY1"]} (min: \Sexpr{vol_res["Test", "min_includeY1"]}, max: \Sexpr{vol_res["Test", "max_includeY1"]}) percentage of ICH voxels.  We have found that this voxel selection procedure improves computational speed as well as the performance of the algorithms.
+
+\subsection{Models}
+\label{sec:mods}
+Using the $\Sexpr{Nmods}$ training scans we obtained all voxels passing the voxel selection procedure described in Section~$\ref{sec:voxsel}$.  We then randomly sub-sampled $\Sexpr{nsub_voxels}$ voxels, which were used for model fitting, model selection, and exploratory analysis, to reduce computational burden and increase speed of model fitting and exploratory analysis.  The rest of the remaining voxels from the training data were used for model calibration.   All models were fit with all the predictors described in Sections~\ref{sec:predictors}.
+
+% get Reseg_Aggregate_data Rda for nunmber of voxels
+
+We fit several different models on the $\Sexpr{nsub_voxels}$ sub-sampled voxels: 1) logistic regression with all covariates used as main effects (without interactions or nonlinear effects), 2) logistic regression model with a penalty on the model parameters to reduce the potential effect of high correlations between predictors, 3) generalized additive model (GAM) \citep{hastie_generalized_1986, hastie_generalized_1990}, which is similar to the logistic regression, but allows for non-linear effects on the linear predictor scale, and 4) random forest classifier \citep{breiman2001random}.  All models were fit using R.
+
+For the standard and penalized logistic regression model, we used all predictors.  The penalized model was fit using the LASSO (Least Absolute Shrinkage and Selection Operator) penalty \citep{tibshirani_regression_1996} using the \pkg{glmnet} package \citep{friedman_regularization_2010}.  The tuning parameter, $\lambda$, was chosen using 10-fold cross-validation on the training voxels; the cost function used was the misclassification rate.  The parameter was chosen using the largest value of $\lambda$ where that the misclassification rate is within 1 standard error of its minimum; this approach led to superior out-of-sample stability.
+
+The generalized additive model (GAM) \citep{hastie_generalized_1986, hastie_generalized_1990} was also fit using indicator variables for binary variables and thin-plate splines for all continuous measures. The model was fit using fast-estimation of the restricted maximum likelihood (fREML) implemented in the \pkg{mgcv} package \citep{wood_fast_2011, wood_generalized_2015}.   Detailed model specifications are provided in Section~\ref{sec:modspec}.
+
+
+The random forest \citep{breiman2001random} classification algorithm was implemented using the \pkg{randomForest} package in R \citep{randomForest} with the default pruning parameters and number of trees (\code{ntree=500}, \code{mtry=4}).
+
+
+
+\subsection{Estimating a Cutoff for Model Probability}
+\label{sec:cutoffs}
+Each model described in Section~\ref{sec:mods} provides an estimate of the probability for each voxel to be in ICH.
+
+To choose probability thresholds to create a binary segmentation, we chose the Dice Similarity Index (DSI) \citep{dice_measures_1945} as a measure of the quality of segmentation.  The DSI is a measure of overlap that is insensitive to areas where neither the true nor the predicted segmentation were labeled ICH, and will be used as a performance measure when comparing models on the test data.  DSI for scan $i$ is calculated by
+ $$
+ DSI_i = \frac{2 \times TP}{2\times TP + FN + FP}
+ $$
+where $TP$ denotes the number of ``true positive'' voxels, where the manual and predicted segmentation agree that the voxel is in ICH, $FP$ denotes the number of ``false positive'' voxels, where the predicted segmentation indicates that there is no lesion when the manual segmentation indicates lesion, and $FN$ denotes the number of ``false negative'' voxels, where the predicted segmentation indicates that there is lesion when the manual segmentation indicates that there is not. DSI ranges from $0$ to $1$, where $0$ indicates no overlap and $1$ denotes perfect overlap.
+
+For each model, the probability image was smoothed by taking the average over the neighborhood voxels (1 voxel in every direction).
+For each threshold, we used the voxels in the training data that were not used for estimating the model, and found the threshold that maximized the DSI compared to the manual segmentation at those voxels.  This threshold was applied to the smoothed probability maps to produce binary ICH images.
+
+After thresholding the smoothed image using these DSI-optimized thresholds, we discarded regions with fewer than $100$ ($0.1$mL) connected voxels.  This removal was done to eliminate speckling, which helped improve the false positive rate of images.  For each model, the predicted ICH binary mask was transformed back to the original (i.e.~native) space using the inverse of the rigid-body transformation.  As the linear interpolation associated with this step results in a non-binary mask, we thresholded the image at $0.5$ to preserve volume \cite{flirt_reg}.
+% The estimation was done on the training data ($\Sexpr{Nmods}$ subjects) using the approaches described here.
+
+%For each scan in the test data, this voxel selection and prediction process was performed and each scan has a corresponding binary prediction  image.  For evaluation of all measures, the comparison was done in the native space of the patient, not in the template space, as this was where the manual segmentation was done.
+
+
+\subsection{Testing ICH Prediction and Measuring Model Performance}
 
 
 <<wt_pvals>>=
@@ -834,9 +841,9 @@ We started by creating a rich set of predictors that are likely to capture the m
 
 The approach failed on a very small subset of the validation set ($N = \Sexpr{n_under_50}$ out of $\Sexpr{non_nmods}$ with DSI below $0.5$). Most discrepancies observed occur at the edges of the hemorrhage.  This ``edge effect'' may be due to the isotropic, non edge-preserving smoothing.  Anisotropic smoothing, as proposed by \citet{perona1994anisotropic}, may improve segmentation.
 
-As the obstructive intraventricular hemorrhage (IVH) requiring external ventricular drainage was in the exclusion criteria in MISTIE II \citep{mould_minimally_2013}, no cases with large intraventricular hemorrhage were included.  We believe the model would perform reasonably well for IVH, but not necessarily subarachnoid hemorrhages (SAH), two other forms of hemorrhagic stroke.  
+As the obstructive intraventricular hemorrhage (IVH) requiring external ventricular drainage was in the exclusion criteria in MISTIE II \citep{mould_minimally_2013}, no cases with primary intraventricular hemorrhage were included.  The 3 cases with the largest overall volume had some considerable IVH extensions, the largest being around 20mL.  This leads to an overall understimation of the hemorrhage volume in our models.  We believe the model may perform reasonably well with patients with IVH, yet may require a separate model, but not necessarily subarachnoid hemorrhages (SAH), two other forms of hemorrhagic stroke.  
 
-Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, larger IVHs may cause larger deformations than seen in cases with ICH only, which may negatively affect any registration process. The process of mask erosion may considerably remove voxels from the SAH, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we may also need to re-fit the model using additional cases of IVH and/or SAH.
+Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, larger IVHs may cause larger deformations than seen in cases with ICH only, which may negatively affect any registration process. The process of mask erosion may considerably remove voxels from the SAH, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we can perform the same procedure and re-fit the model using additional cases of IVH and/or SAH.
 
 <<loncaric>>=
 library(reshape2)
@@ -1141,7 +1148,7 @@ dev.off()
 \includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_A.png}
 \includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_B.png}
 \caption{{\bf Dice Similarity Index (DSI) by Hemorrhage Volume Category}.  Here we present the DSI for all patients in the test set for the different hemorrhage voxel categories, described above (panel A).  We will denote the categories as small, medium and large.  We note that the failed segmentation was in the small category.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by category (note the y-axis begins at $0.5$ DSI).  All median DSI is relatively high. We see the lowest median DSI for patients with small hemorrhages, followed by large hemorrhages, and the highest median DSI is in the medium hemorrhages.}
-\label{fig:dsi_man}
+\label{fig:dsi_ich_cat}
 \end{figure}
 
 

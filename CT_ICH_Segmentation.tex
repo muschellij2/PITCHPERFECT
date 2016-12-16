@@ -181,7 +181,7 @@ The Minimally Invasive Surgery plus rt-PA in ICH Evacuation (MISTIE) trial was a
 
 We derived a set of imaging predictors from each scan.  Using $10$ scans, we used a first-pass voxel selection procedure based on quantiles of a set of predictors and then built $4$ models estimating the voxel-level probability of ICH.  The models used were: 1) logistic regression, 2) logistic regression with a penalty on the model parameters using LASSO, 3) a generalized additive model (GAM) and 4) a random forest classifier.   The remaining $102$ scans were used for model validation.
 
-For each validation scan, the model predicted the probability of ICH at each voxel.  These voxel-level probabilities were then thresholded to produce binary segmentations of ICH hemorrhage. These masks were compared to the manual segmentations using the Dice Similarity Index (DSI) and the correlation of ICH volume of between the two segmentations.  We tested equality of median DSI using the Kruskal-Wallis test across the 4 models.  We tested equality of the median DSI from sets of 2 models using a Wilcoxon signed-rank test.
+For each validation scan, the model predicted the probability of ICH at each voxel.  These voxel-level probabilities were then thresholded to produce binary segmentations of the hemorrhage. These masks were compared to the manual segmentations using the Dice Similarity Index (DSI) and the correlation of hemorrhage volume of between the two segmentations.  We tested equality of median DSI using the Kruskal-Wallis test across the 4 models.  We tested equality of the median DSI from sets of 2 models using a Wilcoxon signed-rank test.
 
 \vspace{-1em}
 
@@ -249,7 +249,7 @@ For example, a scan may have $10$ millimeter (mm) slices at the top and bottom o
 
 
 \subsection{Hemorrhage Segmentation and Location Identification}
-ICH was manually segmented on CT scans using the OsiriX imaging software by expert readers (OsiriX v. 4.1, Pixmeo; Geneva, Switzerland).  After image quality review, continuous, non-overlapping slices of the entire ICH were segmented.  Readers employed a semiautomated threshold-based approach using a Hounsfield unit (HU) range of $40$ to $80$ to select potential regions of ICH \citep{bergstrom_variation_1977, smith_imaging_2006}; these regions were then further quality controlled and refined by readers using direct inspection of images.  Binary hemorrhage masks were created by setting voxel intensity to $1$ if the voxel was classified as hemorrhage, regardless of location, and $0$ otherwise.
+ICH was manually segmented on CT scans using the OsiriX imaging software by expert readers (OsiriX v. 4.1, Pixmeo; Geneva, Switzerland).  After image quality review, continuous, non-overlapping slices of the entire hemorrhage were segmented.  Readers employed a semiautomated threshold-based approach using a Hounsfield unit (HU) range of $40$ to $80$ to select potential regions of hemorrhage \citep{bergstrom_variation_1977, smith_imaging_2006}; these regions were then further quality controlled and refined by readers using direct inspection of images.  Binary hemorrhage masks were created by setting voxel intensity to $1$ if the voxel was classified as hemorrhage, regardless of location, and $0$ otherwise.
 %previous to this analysis as a standard hemorrhage characteristic.
 
 \subsection{Image Processing: Brain Extraction, Registration}
@@ -455,9 +455,13 @@ The within-plane standardized and Winsorized predictor images were not shown as 
 
 
 
+
+
+
+
 \subsection{Voxel Selection Procedure}
 \label{sec:voxsel}
-We chose $10$ scans from $10$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data.  These scans were randomly selected.   
+We chose $10$ scans from $10$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data.  These scans were randomly selected.  These selected patients had a mean (SD) hemorrhage volume of $37.8$ ($6$), had an average HU intensity of $58.8$ HU and were scanned on the following scanners: GE (N = 6), Philips (N = 2), Siemens (N = 1), and Toshiba (N = 1).
 We used the $102$ remaining scans as test data to evaluate the performance of the proposed approaches.
 %Of the non_nmods remaining scans, we split the data into $groups["Validation"]$ validation scans and  $groups["Test"]$ test scans.
 
@@ -501,8 +505,6 @@ After thresholding the smoothed image using these DSI-optimized thresholds, we d
 
 
 \subsection{Testing ICH Prediction and Measuring Model Performance}
-
-
 
 
 
@@ -602,9 +604,9 @@ We started by creating a rich set of predictors that are likely to capture the m
 
 The approach failed on a very small subset of the validation set ($N = 1$ out of $102$ with DSI below $0.5$). Most discrepancies observed occur at the edges of the hemorrhage.  This ``edge effect'' may be due to the isotropic, non edge-preserving smoothing.  Anisotropic smoothing, as proposed by \citet{perona1994anisotropic}, may improve segmentation.
 
-As the obstructive intraventricular hemorrhage (IVH) requiring external ventricular drainage was in the exclusion criteria in MISTIE II \citep{mould_minimally_2013}, no cases with large intraventricular hemorrhage were included.  We believe the model would perform reasonably well for IVH, but not necessarily subarachnoid hemorrhages (SAH), two other forms of hemorrhagic stroke.  
+As the obstructive intraventricular hemorrhage (IVH) requiring external ventricular drainage was in the exclusion criteria in MISTIE II \citep{mould_minimally_2013}, no cases with primary intraventricular hemorrhage were included.  The 3 cases with the largest overall volume had some considerable IVH extensions, the largest being around 20mL.  This leads to an overall understimation of the hemorrhage volume in our models.  We believe the model may perform reasonably well with patients with IVH, yet may require a separate model, but not necessarily subarachnoid hemorrhages (SAH), two other forms of hemorrhagic stroke.  
 
-Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, larger IVHs may cause larger deformations than seen in cases with ICH only, which may negatively affect any registration process. The process of mask erosion may considerably remove voxels from the SAH, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we may also need to re-fit the model using additional cases of IVH and/or SAH.
+Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, larger IVHs may cause larger deformations than seen in cases with ICH only, which may negatively affect any registration process. The process of mask erosion may considerably remove voxels from the SAH, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we can perform the same procedure and re-fit the model using additional cases of IVH and/or SAH.
 
 
 
@@ -689,7 +691,7 @@ $$
 The coefficients for the logistic model are (in log odds or log odds ratios):
 
 % latex table generated in R 3.3.1 by xtable 1.8-2 package
-% Fri Dec 16 15:25:40 2016
+% Fri Dec 16 16:04:25 2016
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrrr}
@@ -772,7 +774,7 @@ $$
 \includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_A.png}
 \includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_B.png}
 \caption{{\bf Dice Similarity Index (DSI) by Hemorrhage Volume Category}.  Here we present the DSI for all patients in the test set for the different hemorrhage voxel categories, described above (panel A).  We will denote the categories as small, medium and large.  We note that the failed segmentation was in the small category.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by category (note the y-axis begins at $0.5$ DSI).  All median DSI is relatively high. We see the lowest median DSI for patients with small hemorrhages, followed by large hemorrhages, and the highest median DSI is in the medium hemorrhages.}
-\label{fig:dsi_man}
+\label{fig:dsi_ich_cat}
 \end{figure}
 
 
