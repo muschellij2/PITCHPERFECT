@@ -1,0 +1,3798 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.4 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{sahni_management_2007}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Sahni}{S.}%
+     {Ramandeep}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Weinberger}{W.}%
+     {Jesse}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SRWJ1}
+  \strng{fullhash}{SRWJ1}
+  \field{abstract}{%
+  Currently, intracerebral hemorrhage ({ICH}) has the highest mortality rate of
+  all stroke subtypes (; ). Hematoma growth is a principal cause of early
+  neurological deterioration. Prospective and retrospective studies indicate
+  that up to 38\% hematoma expansion is noted within three hours of {ICH} onset
+  and that hematoma volume is an important predictor of 30-day mortality (; ).
+  This article will review current standard of care measures for {ICH} patients
+  and new research directed at early hemostatic therapy and minimally invasive
+  surgery.%
+  }
+  \field{issn}{1176-6344}
+  \field{number}{5}
+  \field{pages}{701\bibrangedash 709}
+  \field{shortjournal}{Vasc Health Risk Manag}
+  \field{title}{Management of intracerebral hemorrhage}
+  \verb{url}
+  \verb http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2291314/
+  \endverb
+  \field{volume}{3}
+  \verb{file}
+  \verb PubMed Central Full Text PDF:/Users/johnmuschelli/Library/Application S
+  \verb upport/Zotero/Profiles/9yinbn16.default/zotero/storage/R9DRS5EW/Sahni a
+  \verb nd Weinberger - 2007 - Management of intracerebral hemorrhage.pdf:appli
+  \verb cation/pdf
+  \endverb
+  \field{journaltitle}{Vascular Health and Risk Management}
+  \field{month}{10}
+  \field{year}{2007}
+  \field{urlday}{04}
+  \field{urlmonth}{04}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{broderick_volume_1993}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Broderick}{B.}%
+     {J.~P.}{J.~P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Brott}{B.}%
+     {T.~G.}{T.~G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Duldner}{D.}%
+     {J.~E.}{J.~E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tomsick}{T.}%
+     {T.}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Huster}{H.}%
+     {G.}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BJP+1}
+  \strng{fullhash}{BJPBTGDJETTHG1}
+  \field{abstract}{%
+  The aim of this study was to determine the 30-day mortality and morbidity of
+  intracerebral hemorrhage in a large metropolitan population and to determine
+  the most important predictors of 30-day outcome. We reviewed the medical
+  records and computed tomographic films for all cases of spontaneous
+  intracerebral hemorrhage in Greater Cincinnati during 1988. Independent
+  predictors of 30-day mortality were determined using univariate and
+  multivariate statistical analyses. The 30-day mortality for the 188 cases of
+  intracerebral hemorrhage was 44\%, with half of deaths occurring within the
+  first 2 days of onset. Volume of intracerebral hemorrhage was the strongest
+  predictor of 30-day mortality for all locations of intracerebral hemorrhage.
+  Using three categories of parenchymal hemorrhage volume (0 to 29 cm3, 30 to
+  60 cm3, and 61 cm3 or more), calculated by a quick and easy-to-use ellipsoid
+  method, and two categories of the Glasgow Coma Scale (9 or more and 8 or
+  less), 30-day mortality was predicted correctly with a sensitivity of 96\%
+  and a specificity of 98\%. Patients with a parenchymal hemorrhage volume of
+  60 cm3 or more on their initial computed tomogram and a Glasgow Coma Scale
+  score of 8 or less had a predicted 30-day mortality of 91\%. Patients with a
+  volume of less than 30 cm3 and a Glasgow Coma Scale score of 9 or more had a
+  predicted 30-day mortality of 19\%. Only one of the 71 patients with a volume
+  of parenchymal hemorrhage of 30 cm3 or more could function independently at
+  30 days. Volume of intracerebral hemorrhage, in combination with the initial
+  Glasgow Coma Scale score, is a powerful and easy-to-use predictor of 30-day
+  mortality and morbidity in patients with spontaneous intracerebral
+  hemorrhage.%
+  }
+  \verb{doi}
+  \verb 10.1161/01.STR.24.7.987
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{number}{7}
+  \field{pages}{987\bibrangedash 993}
+  \field{shortjournal}{Stroke}
+  \field{title}{Volume of intracerebral hemorrhage. A powerful and easy-to-use
+  predictor of 30-day mortality.}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/24/7/987
+  \endverb
+  \field{volume}{24}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/PTSXEFCU/Broderick et al. - 199
+  \verb 3 - Volume of intracerebral hemorrhage. A powerful and.pdf:application/
+  \verb pdf;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Pr
+  \verb ofiles/9yinbn16.default/zotero/storage/ACXEM87E/987.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{07}
+  \field{year}{1993}
+  \field{urlday}{24}
+  \field{urlmonth}{04}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{hemphill_ich_2001}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Hemphill}{H.}%
+     {J.~Claude}{J.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bonovich}{B.}%
+     {David~C.}{D.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Besmertis}{B.}%
+     {Lavrentios}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Manley}{M.}%
+     {Geoffrey~T.}{G.~T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Johnston}{J.}%
+     {S.~Claiborne}{S.~C.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{intracerebral hemorrhage, Medical management, Outcome, prognosis,
+  surgery}
+  \strng{namehash}{HJC+1}
+  \strng{fullhash}{HJCBDCBLMGTJSC1}
+  \field{abstract}{%
+  Background and Purpose-Intracerebral hemorrhage ({ICH}) constitutes 10\% to
+  15\% of all strokes and remains without a treatment of proven benefit.
+  Despite several existing outcome prediction models for {ICH}, there is no
+  standard clinical grading scale for {ICH} analogous to those for traumatic
+  brain injury, subarachnoid hemorrhage, or ischemic stroke. Methods-Records of
+  all patients with acute {ICH} presenting to the University of California, San
+  Francisco during 1997-1998 were reviewed. Independent predictors of 30-day
+  mortality were identified by logistic regression. A risk stratification scale
+  (the {ICH} Score) was developed with weighting of independent predictors
+  based on strength of association. Results-Factors independently associated
+  with 30-day mortality were Glasgow Coma Scale score (P{\textless}0.001), age
+  ≥80 years (P=0.001), infratentorial origin of {ICH} (P=0.03), {ICH} volume
+  (P=0.047), and presence of intraventricular hemorrhage (P=0.052). The {ICH}
+  Score was the sum of individual points assigned as follows: {GCS} score 3 to
+  4 (=2 points), 5 to 12 (=1), 13 to 15 (=0); age ≥80 years yes (=1), no
+  (=0); infratentorial origin yes (=1), no (=0); {ICH} volume ≥30 cm3 (=1),
+  {\textless}30 cm3 (=0); and intraventricular hemorrhage yes (=1), no (=0).
+  All 26 patients with an {ICH} Score of 0 survived, and all 6 patients with an
+  {ICH} Score of 5 died. Thirty-day mortality increased steadily with {ICH}
+  Score (P{\textless}0.005). Conclusions-The {ICH} Score is a simple clinical
+  grading scale that allows risk stratification on presentation with {ICH}. The
+  use of a scale such as the {ICH} Score could improve standardization of
+  clinical treatment protocols and clinical research studies in {ICH}.%
+  }
+  \verb{doi}
+  \verb 10.1161/01.STR.32.4.891
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{number}{4}
+  \field{pages}{891\bibrangedash 897}
+  \field{shortjournal}{Stroke}
+  \field{title}{The {ICH} Score A Simple, Reliable Grading Scale for
+  Intracerebral Hemorrhage}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/32/4/891
+  \endverb
+  \field{volume}{32}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/FFVX69AB/Hemphill et al. - 2001
+  \verb  - The ICH Score A Simple, Reliable Grading Scale for.pdf:application/p
+  \verb df;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Pro
+  \verb files/9yinbn16.default/zotero/storage/2I4EZ463/891.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{04}
+  \field{year}{2001}
+  \field{urlday}{25}
+  \field{urlmonth}{03}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{tuhrim_volume_1999}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Tuhrim}{T.}%
+     {Stanley}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Horowitz}{H.}%
+     {Deborah~R.}{D.~R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sacher}{S.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Godbold}{G.}%
+     {James~H.}{J.~H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{TS+1}
+  \strng{fullhash}{TSHDRSMGJH1}
+  \field{note}{00305}
+  \field{number}{3}
+  \field{pages}{617\bibrangedash 621}
+  \field{title}{Volume of ventricular blood is an important determinant of
+  outcome in supratentorial intracerebral hemorrhage}
+  \verb{url}
+  \verb http://journals.lww.com/ccmjournal/Abstract/1999/03000/Volume_of_ventri
+  \verb cular_blood_is_an_important.45.aspx
+  \endverb
+  \field{volume}{27}
+  \verb{file}
+  \verb Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profil
+  \verb es/9yinbn16.default/zotero/storage/3R8DRPAA/Volume_of_ventricular_blood
+  \verb _is_an_important.45.html:text/html;Volume_of_ventricular_blood_is_an_im
+  \verb portant_determinant_of_outcome_in_sup.html:/Users/johnmuschelli/Library
+  \verb /Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/FI
+  \verb XMEM3V/Volume_of_ventricular_blood_is_an_important_determinant_of_outco
+  \verb me_in_sup.html:text/html
+  \endverb
+  \field{journaltitle}{Critical care medicine}
+  \field{year}{1999}
+  \field{urlday}{09}
+  \field{urlmonth}{12}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{anderson_intensive_2008}{article}{}
+  \name{author}{11}{}{%
+    {{}%
+     {Anderson}{A.}%
+     {Craig~S.}{C.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Huang}{H.}%
+     {Yining}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wang}{W.}%
+     {Ji~Guang}{J.~G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Arima}{A.}%
+     {Hisatomi}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Neal}{N.}%
+     {Bruce}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Peng}{P.}%
+     {Bin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Heeley}{H.}%
+     {Emma}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Skulina}{S.}%
+     {Christian}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Parsons}{P.}%
+     {Mark~W.}{M.~W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kim}{K.}%
+     {Jong~Sung}{J.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {{others}}{o.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ACS+1}
+  \strng{fullhash}{ACSHYWJGAHNBPBHESCPMWKJSo1}
+  \field{number}{5}
+  \field{pages}{391\bibrangedash 399}
+  \field{shorttitle}{Intensive blood pressure reduction in acute cerebral
+  haemorrhage trial ({INTERACT})}
+  \field{title}{Intensive blood pressure reduction in acute cerebral
+  haemorrhage trial ({INTERACT}): a randomised pilot trial}
+  \verb{url}
+  \verb http://www.sciencedirect.com/science/article/pii/S1474442208700693
+  \endverb
+  \field{volume}{7}
+  \verb{file}
+  \verb [HTML] from sciencedirect.com:/Users/johnmuschelli/Library/Application
+  \verb Support/Zotero/Profiles/9yinbn16.default/zotero/storage/2XR4BJ3Q/S14744
+  \verb 42208700693.html:text/html;ScienceDirect Snapshot:/Users/johnmuschelli/
+  \verb Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero/sto
+  \verb rage/AFHWZJPI/S1474442208700693.html:text/html
+  \endverb
+  \field{journaltitle}{The Lancet Neurology}
+  \field{year}{2008}
+  \field{urlday}{08}
+  \field{urlmonth}{07}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{anderson_effects_2010}{article}{}
+  \name{author}{19}{}{%
+    {{}%
+     {Anderson}{A.}%
+     {Craig~S.}{C.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Huang}{H.}%
+     {Yining}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Arima}{A.}%
+     {Hisatomi}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Heeley}{H.}%
+     {Emma}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Skulina}{S.}%
+     {Christian}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Parsons}{P.}%
+     {Mark~W.}{M.~W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Peng}{P.}%
+     {Bin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Li}{L.}%
+     {Qiang}{Q.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Su}{S.}%
+     {Steve}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tao}{T.}%
+     {Qing~Ling}{Q.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Li}{L.}%
+     {Yue~Chun}{Y.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jiang}{J.}%
+     {Jian~Dong}{J.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tai}{T.}%
+     {Li~Wen}{L.~W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhang}{Z.}%
+     {Jin~Li}{J.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Xu}{X.}%
+     {En}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cheng}{C.}%
+     {Yan}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Morgenstern}{M.}%
+     {Lewis~B.}{L.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chalmers}{C.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wang}{W.}%
+     {Ji~Guang}{J.~G.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{blood pressure, clinical trial, Hypertension, Intracerebral hemorrhage,
+  treatment}
+  \strng{namehash}{ACS+1}
+  \strng{fullhash}{ACSHYAHHESCPMWPBLQSSTQLLYCJJDTLWZJLXECYMLBCJWJG1}
+  \field{abstract}{%
+  Background and Purpose-The Intensive Blood Pressure Reduction In Acute
+  Cerebral Haemorrhage Trial ({INTERACT}) study suggests that early intensive
+  blood pressure ({BP}) lowering can attenuate hematoma growth at 24 hours
+  after intracerebral hemorrhage. The present analyses aimed to determine the
+  effects of treatment on hematoma and perihematomal edema over 72 hours.
+  Methods{INTERACT} included 404 patients with {CT}-confirmed intracerebral
+  hemorrhage, elevated systolic {BP} (150 to 220 mm Hg), and capacity to start
+  {BP}-lowering treatment within 6 hours of intracerebral hemorrhage. Patients
+  were randomly assigned to an intensive (target systolic {BP} 140 {mmHg}) or
+  standard guideline-based management of {BP} (target systolic {BP} 180 mm Hg)
+  using routine intravenous agents. Baseline and repeat {CTs} (24 and 72 hours)
+  were performed using standardized techniques with digital images analyzed
+  centrally. Outcomes were increases in hematoma and perihematomal edema
+  volumes over 72 hours. Results-Overall, 296 patients had all 3 {CT} scans
+  available for the hematoma and 270 for the edema analyses. Mean systolic {BP}
+  was 11.7 mm Hg lower in the intensive group than in the guideline group
+  during 1 to 24 hours. Adjusted mean absolute increases in hematoma volumes
+  ({mL}) at 24 and 72 hours were 2.40 and 0.15 in the guideline group compared
+  with -0.74 and -2.31 in the intensive group, respectively, an overall
+  difference of 2.80 (95\% {CI}, 1.04 to 4.56; P=0.002). Adjusted mean absolute
+  increases in edema volumes ({mL}) at 24 and 72 hours were 6.27 and 10.02 in
+  the guideline group compared with 4.19 and 7.34 in the intensive group,
+  respectively, for an overall difference of 2.38 (95\% {CI}, -0.45 to 5.22;
+  P=0.10). Conclusion-Early intensive {BP}-lowering treatment attenuated
+  hematoma growth over 72 hours in intracerebral hemorrhage. There were no
+  appreciable effects on perihematomal edema.%
+  }
+  \verb{doi}
+  \verb 10.1161/STROKEAHA.109.561795
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{note}{00000 {PMID}: 20044534}
+  \field{number}{2}
+  \field{pages}{307\bibrangedash 312}
+  \field{shortjournal}{Stroke}
+  \field{title}{Effects of Early Intensive Blood Pressure-Lowering Treatment on
+  the Growth of Hematoma and Perihematomal Edema in Acute Intracerebral
+  Hemorrhage The Intensive Blood Pressure Reduction in Acute Cerebral
+  Haemorrhage Trial ({INTERACT})}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/41/2/307
+  \endverb
+  \field{volume}{41}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/MPXFMCI3/Anderson et al. - 2010
+  \verb  - Effects of Early Intensive Blood Pressure-Lowering.pdf:application/p
+  \verb df;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Pro
+  \verb files/9yinbn16.default/zotero/storage/9UPUWCG9/307.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{02}
+  \field{year}{2010}
+  \field{urlday}{09}
+  \field{urlmonth}{12}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{qureshi_association_2011}{article}{}
+  \name{author}{14}{}{%
+    {{}%
+     {Qureshi}{Q.}%
+     {Adnan~I.}{A.~I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Palesch}{P.}%
+     {Yuko~Y.}{Y.~Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Martin}{M.}%
+     {Renee}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Novitzke}{N.}%
+     {Jill}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cruz-Flores}{C.-F.}%
+     {Salvador}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ehtisham}{E.}%
+     {Asad}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ezzeddine}{E.}%
+     {Mustapha~A.}{M.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goldstein}{G.}%
+     {Joshua~N.}{J.~N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kirmani}{K.}%
+     {Jawad~F.}{J.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hussein}{H.}%
+     {Haitham~M.}{H.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Suri}{S.}%
+     {M.~Fareed~K.}{M.~F.~K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tariq}{T.}%
+     {Nauman}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Liu}{L.}%
+     {Yuan}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Investigators}{I.}%
+     {Atach}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Edema, Hematoma expansion, Hyperglycemia, Internal Medicine,
+  Intracerebral hemorrhage, Modified Rankin scale, Neurology}
+  \strng{namehash}{QAI+1}
+  \strng{fullhash}{QAIPYYMRNJCFSEAEMAGJNKJFHHMSMFKTNLYIA1}
+  \field{abstract}{%
+  Background There is some evidence that hyperglycemia increases the rate of
+  poor outcomes in patients with intracerebral hemorrhage ({ICH}). We explored
+  the relationship between various parameters of serum glucose concentrations
+  measured during acute hospitalization and hematoma expansion, perihematomal
+  edema, and three month outcome among subjects with {ICH}. Methods A post-hoc
+  analysis of a multicenter prospective study recruiting subjects with {ICH}
+  and elevated systolic blood pressure ({SBP}) ≥170 {mmHg} who presented
+  within 6 h of symptom onset was performed. The serum glucose concentration
+  was measured repeatedly up to 5 times over 3 days after admission and change
+  over time was characterized using a summary statistic by fitting the linear
+  regression model for each subject. The admission glucose, glucose change
+  between admission and 24 hour glucose concentration, and estimated parameters
+  (slope and intercept) were entered in the logistic regression model
+  separately to predict the functional outcome as measured by modified Rankin
+  scale ({mRS}) at 90 days (0-3 vs. 4-6); hematoma expansion at 24 h (≤33 vs.
+  {\textgreater}33\%); and relative perihematomal edema expansion at 24 h
+  (≤40 vs. {\textgreater}40\%). Results A total of 60 subjects were recruited
+  (aged 62.0 ±15.1 years; 56.7\% men). The mean of initial glucose
+  concentration (±standard deviation) was 136.7 mg/dl (±58.1). Thirty-five
+  out of 60 (58\%) subjects had a declining glucose over time (negative slope).
+  The risk of poor outcome ({mRS} 4-6) in those with increasing serum glucose
+  levels was over two-fold relative to those who had declining serum glucose
+  levels ({RR} = 2.64, 95\% confidence interval [{CI}]: 1.03, 6.75). The {RRs}
+  were 2.59 (95\% {CI}: 1.27, 5.30) for hematoma expansion {\textgreater}33\%;
+  and 1.25 (95\% {CI}: 0.73, 2.13) for relative edema expansion
+  {\textgreater}40\%. Conclusions Decline in serum glucose concentration
+  correlated with reduction in proportion of subjects with hematoma expansion
+  and poor clinical outcome. These results provide a justification for a
+  randomized controlled clinical trial to evaluate the efficacy of aggressive
+  serum glucose reduction in reducing death and disability among patients with
+  {ICH}.%
+  }
+  \verb{doi}
+  \verb 10.1007/s12028-011-9541-8
+  \endverb
+  \field{issn}{1541-6933, 1556-0961}
+  \field{note}{00014}
+  \field{number}{3}
+  \field{pages}{428\bibrangedash 435}
+  \field{shortjournal}{Neurocrit Care}
+  \field{title}{Association of Serum Glucose Concentrations During Acute
+  Hospitalization with Hematoma Expansion, Perihematomal Edema, and Three Month
+  Outcome Among Patients with Intracerebral Hemorrhage}
+  \verb{url}
+  \verb http://link.springer.com/article/10.1007/s12028-011-9541-8
+  \endverb
+  \field{volume}{15}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/5GUI6DA2/Qureshi et al. - 2011
+  \verb - Association of Serum Glucose Concentrations During.pdf:application/pd
+  \verb f;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Prof
+  \verb iles/9yinbn16.default/zotero/storage/KR84KP7C/s12028-011-9541-8.html:te
+  \verb xt/html
+  \endverb
+  \field{journaltitle}{Neurocritical Care}
+  \field{day}{01}
+  \field{month}{12}
+  \field{year}{2011}
+  \field{urlday}{09}
+  \field{urlmonth}{12}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{mayer_recombinant_2005}{article}{}
+  \name{author}{8}{}{%
+    {{}%
+     {Mayer}{M.}%
+     {Stephan~A.}{S.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Brun}{B.}%
+     {Nikolai~C.}{N.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Begtrup}{B.}%
+     {Kamilla}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Broderick}{B.}%
+     {Joseph}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Davis}{D.}%
+     {Stephen}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diringer}{D.}%
+     {Michael~N.}{M.~N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Skolnick}{S.}%
+     {Brett~E.}{B.~E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Steiner}{S.}%
+     {Thorsten}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MSA+1}
+  \strng{fullhash}{MSABNCBKBJDSDMNSBEST1}
+  \field{abstract}{%
+  Intracerebral hemorrhage is one of the most disabling forms of stroke. More
+  than one third of patients with this disorder die within one month after the
+  onset of symptoms, and only 20 percent regain functional independence.1 There
+  is currently no effective treatment for intracerebral hemorrhage.2 The volume
+  of the hematoma is a critical determinant of mortality and functional outcome
+  after intracerebral hemorrhage,3,4 and early hematoma growth is an important
+  cause of neurologic deterioration.5-8 An increase in volume of more than 33
+  percent is detectable on repeated computed tomography ({CT}) in 38 percent of
+  patients initially scanned within three . . .%
+  }
+  \verb{doi}
+  \verb 10.1056/NEJMoa042991
+  \endverb
+  \field{issn}{0028-4793}
+  \field{note}{01189 {PMID}: 15728810}
+  \field{number}{8}
+  \field{pages}{777\bibrangedash 785}
+  \field{title}{Recombinant Activated Factor {VII} for Acute Intracerebral
+  Hemorrhage}
+  \verb{url}
+  \verb http://www.nejm.org/doi/full/10.1056/NEJMoa042991
+  \endverb
+  \field{volume}{352}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/MSD779R7/Mayer et al. - 2005 -
+  \verb Recombinant Activated Factor VII for Acute Intrace.pdf:application/pdf;
+  \verb Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profil
+  \verb es/9yinbn16.default/zotero/storage/P3P3UGEU/NEJMoa042991.html:text/html
+  \endverb
+  \field{journaltitle}{New England Journal of Medicine}
+  \field{day}{24}
+  \field{month}{02}
+  \field{year}{2005}
+  \field{urlday}{09}
+  \field{urlmonth}{12}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{morgan_preliminary_2008_mistie}{incollection}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Morgan}{M.}%
+     {T.}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuccarello}{Z.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Narayan}{N.}%
+     {R.}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Keyl}{K.}%
+     {P.}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lane}{L.}%
+     {K.}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {D.}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{MT+1}
+  \strng{fullhash}{MTZMNRKPLKHD1}
+  \field{booktitle}{Cerebral Hemorrhage}
+  \field{pages}{147\bibrangedash 151}
+  \field{title}{Preliminary findings of the minimally-invasive surgery plus
+  {rtPA} for intracerebral hemorrhage evacuation ({MISTIE}) clinical trial}
+  \verb{url}
+  \verb http://link.springer.com/chapter/10.1007/978-3-211-09469-3_30
+  \endverb
+  \field{year}{2008}
+  \field{urlday}{09}
+  \field{urlmonth}{09}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{morgan_preliminary_2008_clear}{incollection}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Morgan}{M.}%
+     {T}{T}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Awad}{A.}%
+     {I}{I}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Keyl}{K.}%
+     {P}{P}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lane}{L.}%
+     {K}{K}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {D}{D}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{MT+2}
+  \strng{fullhash}{MTAIKPLKHD1}
+  \field{booktitle}{Cerebral Hemorrhage}
+  \field{pages}{217\bibrangedash 220}
+  \field{title}{Preliminary report of the clot lysis evaluating accelerated
+  resolution of intraventricular hemorrhage (CLEAR-IVH) clinical trial}
+  \field{year}{2008}
+\endentry
+
+\entry{rost_prediction_2008}{article}{}
+  \name{author}{11}{}{%
+    {{}%
+     {Rost}{R.}%
+     {Natalia~S.}{N.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Smith}{S.}%
+     {Eric~E.}{E.~E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chang}{C.}%
+     {Yuchiao}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Snider}{S.}%
+     {Ryan~W.}{R.~W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chanderraj}{C.}%
+     {Rishi}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Schwab}{S.}%
+     {Kristin}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {{FitzMaurice}}{F.}%
+     {Emily}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wendell}{W.}%
+     {Lauren}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goldstein}{G.}%
+     {Joshua~N.}{J.~N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Greenberg}{G.}%
+     {Steven~M.}{S.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rosand}{R.}%
+     {Jonathan}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Intracerebral hemorrhage, models, outcome, statistical}
+  \strng{namehash}{RNS+1}
+  \strng{fullhash}{RNSSEECYSRWCRSKFEWLGJNGSMRJ1}
+  \field{abstract}{%
+  Background and Purpose- Intracerebral hemorrhage ({ICH}) is the most fatal
+  and disabling stroke subtype. Widely used tools for prediction of mortality
+  are fundamentally limited in that they do not account for effects of
+  withdrawal of care and are not designed to predict functional recovery. We
+  developed an acute clinical score to predict likelihood of functional
+  independence. Methods- We prospectively characterized 629 consecutive
+  patients with {ICH} at hospital presentation. Predictors of functional
+  independence (Glasgow Outcome Score ≥4) at 90 days were used to develop a
+  logistic regression-based risk stratification scale in a random subset of two
+  thirds and validated in the remaining one third of the cohort. Results- At 90
+  days, 162 (26\%) patients achieved independence. Age, Glasgow Coma Scale,
+  {ICH} location, volume (all P{\textless}0.0001), and pre-{ICH} cognitive
+  impairment (P=0.005) were independently associated with Glasgow Outcome Score
+  ≥4. The {FUNC} score was developed as a sum of individual points (0-11)
+  based on strength of association with outcome. In both the development and
+  validation cohorts, the proportion of patients who achieved Glasgow Outcome
+  Score ≥4 increased steadily with {FUNC} score. No patient assigned a {FUNC}
+  score ≤4 achieved functional independence, whereas {\textgreater}80\% with
+  a score of 11 did. The predictive accuracy of the {FUNC} score remained
+  unchanged when restricted to {ICH} survivors only, consistent with absence of
+  confounding by early withdrawal of care. Conclusions- {FUNC} score is a valid
+  clinical assessment tool that identifies patients with {ICH} who will attain
+  functional independence and thus, can provide guidance in clinical
+  decision-making and patient selection for clinical trials.%
+  }
+  \verb{doi}
+  \verb 10.1161/STROKEAHA.107.512202
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{note}{00164 {PMID}: 18556582}
+  \field{number}{8}
+  \field{pages}{2304\bibrangedash 2309}
+  \field{shortjournal}{Stroke}
+  \field{title}{Prediction of Functional Outcome in Patients With Primary
+  Intracerebral Hemorrhage The {FUNC} Score}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/39/8/2304
+  \endverb
+  \field{volume}{39}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/4C9BQ5UT/Rost et al. - 2008 - P
+  \verb rediction of Functional Outcome in Patients With .pdf:application/pdf;S
+  \verb napshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profile
+  \verb s/9yinbn16.default/zotero/storage/M8XASWVM/2304.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{08}
+  \field{year}{2008}
+  \field{urlday}{17}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{castellanos_predictors_2005}{article}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Castellanos}{C.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Leira}{L.}%
+     {R.}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tejada}{T.}%
+     {J.}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gil-Peralta}{G.-P.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {D\`avalos}{D.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Castillo}{C.}%
+     {J.}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{{CSS}, Canadian stroke scale, {ICH}, intracerebral haemorrhage,
+  intracerebral haemorrhage, {mRS}, modified Rankin score, outcome, Stroke}
+  \strng{namehash}{CM+1}
+  \strng{fullhash}{CMLRTJGPADACJ1}
+  \field{abstract}{%
+  Objective: To determine potential predictors of good outcome in primary
+  medium to large intracerebral haemorrhages ({ICH}) which could be useful for
+  selecting patients for surgical procedures. Methods: Subjects were 138
+  patients with spontaneous hemispheric {ICH} {\textgreater}20 ml. They were
+  non-surgically treated and were admitted consecutively to 15 hospitals within
+  the first 12 hours of symptom onset (mean ({SD}), 5.8 (3.1) hours). Haematoma
+  volume was measured on computed tomography ({CT}) at admission. Stroke
+  severity was assessed by the Canadian stroke scale ({CSS}). Good outcome was
+  defined as modified Rankin score ⩽2 at three months. Results: At the end of
+  the follow up period, 45 patients (32.6\%) had good outcome. Baseline stroke
+  severity, systolic and diastolic blood pressure, body temperature, and acute
+  phase reaction biochemical markers ({ESR}, C-reactive protein, fibrinogen,
+  neutrophil count) were significantly associated with good outcome in
+  bivariate analyses. Of the initial {CT} scan variables, intraventricular
+  contamination, deep location, mass effect, and greater {ICH} volume were
+  related to poor outcome. On multiple logistic regression analysis, cortical
+  location of bleeding (odds ratio 3.79 (95\% confidence interval 1.2 to
+  12.01); p = 0.023), high {CSS} score ({OR} 2.3 (1.6 to 3.1);
+  p{\textless}0.0001), and low fibrinogen concentrations ({OR} 0.92 (0.87 to
+  0.97); p = 0.001) were independent predictors of good outcome. These three
+  factors correctly classified 85\% of patients. Conclusions: Good outcome in
+  medium to large {ICH} can be predicted on admission by three readily
+  assessable factors ({CSS} score, {ICH} location, and fibrinogen levels).
+  These predictors may be helpful in selecting patients for surgical
+  treatment.%
+  }
+  \verb{doi}
+  \verb 10.1136/jnnp.2004.044347
+  \endverb
+  \field{issn}{, 1468-330X}
+  \field{note}{00093 {PMID}: 15834028}
+  \field{number}{5}
+  \field{pages}{691\bibrangedash 695}
+  \field{shortjournal}{J Neurol Neurosurg Psychiatry}
+  \field{title}{Predictors of good outcome in medium to large spontaneous
+  supratentorial intracerebral haemorrhages}
+  \verb{url}
+  \verb http://jnnp.bmj.com/content/76/5/691
+  \endverb
+  \field{volume}{76}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/5FKA45BW/Castellanos et al. - 2
+  \verb 005 - Predictors of good outcome in medium to large spon.pdf:applicatio
+  \verb n/pdf;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/
+  \verb Profiles/9yinbn16.default/zotero/storage/PX9P6P5J/691.html:text/html
+  \endverb
+  \field{journaltitle}{Journal of Neurology, Neurosurgery \& Psychiatry}
+  \field{day}{01}
+  \field{month}{05}
+  \field{year}{2005}
+  \field{urlday}{17}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{kothari_abcs_1996}{article}{}
+  \name{author}{7}{}{%
+    {{}%
+     {Kothari}{K.}%
+     {Rashmi~U.}{R.~U.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Brott}{B.}%
+     {Thomas}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Broderick}{B.}%
+     {Joseph~P.}{J.~P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Barsan}{B.}%
+     {William~G.}{W.~G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sauerbeck}{S.}%
+     {Laura~R.}{L.~R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuccarello}{Z.}%
+     {Mario}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Khoury}{K.}%
+     {Jane}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{blood volume, computed tomography, Intracerebral hemorrhage}
+  \strng{namehash}{KRU+1}
+  \strng{fullhash}{KRUBTBJPBWGSLRZMKJ1}
+  \field{abstract}{%
+  Background and Purpose Hemorrhage volume is a powerful predictor of 30-day
+  mortality after spontaneous intracerebral hemorrhage ({ICH}). We compared a
+  bedside method of measuring {CT} {ICH} volume with measurements made by
+  computer-assisted planimetric image analysis. Methods The formula {ABC}/2 was
+  used, where A is the greatest hemorrhage diameter by {CT}, B is the diameter
+  90° to A, and C is the approximate number of {CT} slices with hemorrhage
+  multiplied by the slice thickness. Results The {ICH} volumes for 118 patients
+  were evaluated in a mean of 38 seconds and correlated with planimetric
+  measurements (R2=.96). Interrater and intrarater reliability were excellent,
+  with an intraclass correlation of .99 for both. Conclusions We conclude that
+  {ICH} volume can be accurately estimated in less than 1 minute with the
+  simple formula {ABC}/2.%
+  }
+  \verb{doi}
+  \verb 10.1161/01.STR.27.8.1304
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{note}{00842 {PMID}: 8711791}
+  \field{number}{8}
+  \field{pages}{1304\bibrangedash 1305}
+  \field{shortjournal}{Stroke}
+  \field{title}{The {ABCs} of Measuring Intracerebral Hemorrhage Volumes}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/27/8/1304
+  \endverb
+  \field{volume}{27}
+  \field{langid}{english}
+  \verb{file}
+  \verb Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profil
+  \verb es/9yinbn16.default/zotero/storage/DXPGCVZ7/1304.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{08}
+  \field{year}{1996}
+  \field{urlday}{09}
+  \field{urlmonth}{12}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{webb_accuracy_2015}{article}{}
+  \name{author}{78}{}{%
+    {{}%
+     {Webb}{W.}%
+     {Alastair J.~S.}{A.~J.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ullman}{U.}%
+     {Natalie~L.}{N.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Morgan}{M.}%
+     {Tim~C.}{T.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Muschelli}{M.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kornbluth}{K.}%
+     {Joshua}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Awad}{A.}%
+     {Issam~A.}{I.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mayo}{M.}%
+     {Stephen}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rosenblum}{R.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ziai}{Z.}%
+     {Wendy}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuccarrello}{Z.}%
+     {Mario}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Aldrich}{A.}%
+     {Francois}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {John}{J.}%
+     {Sayona}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Harnof}{H.}%
+     {Sagi}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lopez}{L.}%
+     {George}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Broaddus}{B.}%
+     {William~C.}{W.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wijman}{W.}%
+     {Christine}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vespa}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bullock}{B.}%
+     {Ross}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Haines}{H.}%
+     {Stephen~J.}{S.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cruz-Flores}{C.-F.}%
+     {Salvador}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tuhrim}{T.}%
+     {Stan}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hill}{H.}%
+     {Michael~D.}{M.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Narayan}{N.}%
+     {Raj}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {Daniel~F.}{D.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tayal}{T.}%
+     {Ashis~H.}{A.~H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Diaz}{D.}%
+     {Alberto~Torres}{A.~T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hoffer}{H.}%
+     {Alan}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Moheet}{M.}%
+     {Asma}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Agarwal}{A.}%
+     {Sachin}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Markowski}{M.}%
+     {Mason}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rosenthal}{R.}%
+     {Guy}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kureshi}{K.}%
+     {Inam}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Varelas}{V.}%
+     {Panayiotis}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pinto}{P.}%
+     {Pedro Telles~Cougo}{P.~T.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Marti-Fabregas}{M.-F.}%
+     {Joan}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Camarata}{C.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Seder}{S.}%
+     {David~B.}{D.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Freeman}{F.}%
+     {William}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Helms}{H.}%
+     {Ann}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lazaridis}{L.}%
+     {Christos}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shahi}{S.}%
+     {Kavian}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sinclair}{S.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gizzi}{G.}%
+     {Martin}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {{LeDoux}}{L.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Torbey}{T.}%
+     {Michel}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cockroft}{C.}%
+     {Kevin}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Antezana}{A.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Latorre}{L.}%
+     {Julius~Gene}{J.~G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Margalit}{M.}%
+     {Nevo}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Crabtree}{C.}%
+     {H.~Mark}{H.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lovick}{L.}%
+     {Darren}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Venkatasubramanian}{V.}%
+     {Chitra}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Weaver}{W.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jallo}{J.}%
+     {Jack}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Reinert}{R.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Butcher}{B.}%
+     {Ken}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Leonardo}{L.}%
+     {Jody}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ardelt}{A.}%
+     {Agnieszka}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Adeoye}{A.}%
+     {Opeolu}{O.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Csiba}{C.}%
+     {Laszlo}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wartenberg}{W.}%
+     {Katja}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bosel}{B.}%
+     {Julian}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Testai}{T.}%
+     {Fernando}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Adams}{A.}%
+     {Harold}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hobohm}{H.}%
+     {Carsten}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kerz}{K.}%
+     {Thomas}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wechsler}{W.}%
+     {Lawrence}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gardner}{G.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Decker}{D.}%
+     {David}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bulters}{B.}%
+     {Diederik}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gonzales}{G.}%
+     {Nicole}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Caron}{C.}%
+     {Jean-Louis}{J.-L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hall}{H.}%
+     {Christiana}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ansari}{A.}%
+     {Safdar}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Luft}{L.}%
+     {Andreas}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Arikan}{A.}%
+     {Fuat}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Graham}{G.}%
+     {R.~Scott}{R.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tucker}{T.}%
+     {Kristi}{K.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{cerebral hemorrhage, controlled clinical trials, randomized, review,
+  systematic, Sensitivity and Specificity, tissue-type plasminogen activator}
+  \strng{namehash}{WAJS+1}
+  \strng{fullhash}{WAJSUNLMTCMJKJAIAMSRMZWZMAFJSHSLGBWCWCVPBRHSJCFSTSHMDNRHDFTAHDATHAMAASMMRGKIVPPPTCMFJCPSDBFWHALCSKSDGMLDTMCKADLJGMNCHMLDVCWMJJRMBKLJAAAOCLWKBJTFAHHCKTWLGPDDBDGNCJLHCASLAAFGRSTK1}
+  \field{abstract}{%
+  Background and Purpose-The {ABC}/2 score estimates intracerebral hemorrhage
+  ({ICH}) volume, yet validations have been limited by small samples and
+  inappropriate outcome measures. We determined accuracy of the {ABC}/2 score
+  calculated at a specialized reading center ({RC}-{ABC}) or local site
+  (site-{ABC}) versus the reference-standard computed tomography-based
+  planimetry ({CTP}). Methods-In Minimally Invasive Surgery Plus Recombinant
+  Tissue-Type Plasminogen Activator for Intracerebral Hemorrhage
+  Evacuation-{II} ({MISTIE}-{II}), Clot Lysis Evaluation of Accelerated
+  Resolution of Intraventricular Hemorrhage ({CLEAR}-{IVH}) and {CLEAR}-{III}
+  trials. {ICH} volume was prospectively calculated by {CTP}, {RC}-{ABC}, and
+  site-{ABC}. Agreement between {CTP} and {ABC}/2 was defined as an absolute
+  difference up to 5 {mL} and relative difference within 20\%. Determinants of
+  {ABC}/2 accuracy were assessed by logistic regression. Results-In 4369 scans
+  from 507 patients, {CTP} was more strongly correlated with {RC}-{ABC}
+  (r2=0.93) than with site-{ABC} (r2=0.87). Although {RC}-{ABC} overestimated
+  {CTP}-based volume on average ({RC}-{ABC}, 15.2 cm3; {CTP}, 12.7 cm3),
+  agreement was reasonable when categorized into mild, moderate, and severe
+  {ICH} (κ=0.75; P{\textless}0.001). This was consistent with overestimation
+  of {ICH} volume in 6 of 8 previous studies. Agreement with {CTP} was greater
+  for {RC}-{ABC} (84\% within 5 {mL}; 48\% of scans within 20\%) than for
+  site-{ABC} (81\% within 5 {mL}; 41\% within 20\%). {RC}-{ABC} had moderate
+  accuracy for detecting ≥5 {mL} change in {CTP} volume between consecutive
+  scans (sensitivity, 0.76; specificity, 0.86) and was more accurate with
+  smaller {ICH}, thalamic hemorrhage, and homogeneous clots.
+  Conclusions-{ABC}/2 scores at local or central sites are sufficiently
+  accurate to categorize {ICH} volume and assess eligibility for the
+  {CLEAR}-{III} and {MISTIE} {III} studies and moderately accurate for change
+  in {ICH} volume. However, accuracy decreases with large, irregular, or lobar
+  clots. Clinical Trial Registration-{URL}: http://www.clinicaltrials.gov.
+  Unique identifier: {MISTIE}-{II} {NCT}00224770; {CLEAR}-{III} {NCT}00784134.%
+  }
+  \verb{doi}
+  \verb 10.1161/STROKEAHA.114.007343
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{note}{00000 {PMID}: 26243227}
+  \field{number}{9}
+  \field{pages}{2470\bibrangedash 2476}
+  \field{shortjournal}{Stroke}
+  \field{title}{Accuracy of the {ABC}/2 Score for Intracerebral Hemorrhage
+  Systematic Review and Analysis of {MISTIE}, {CLEAR}-{IVH}, and {CLEAR} {III}}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/46/9/2470
+  \endverb
+  \field{volume}{46}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/QG3N7I38/Webb et al. - 2015 - A
+  \verb ccuracy of the ABC2 Score for Intracerebral Hemo.pdf:application/pdf;Sn
+  \verb apshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles
+  \verb /9yinbn16.default/zotero/storage/F79BPC8U/2470.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{09}
+  \field{year}{2015}
+  \field{urlday}{16}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{divani_abcs_2011}{article}{}
+  \name{author}{7}{}{%
+    {{}%
+     {Divani}{D.}%
+     {Afshin~A.}{A.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Majidi}{M.}%
+     {Shahram}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Luo}{L.}%
+     {Xianghua}{X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Souslian}{S.}%
+     {Fotis~G.}{F.~G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhang}{Z.}%
+     {Jie}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Abosch}{A.}%
+     {Aviva}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tummala}{T.}%
+     {Ramachandra~P.}{R.~P.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{hematoma volume, Intracerebral hemorrhage, volumetric measurements}
+  \strng{namehash}{DAA+1}
+  \strng{fullhash}{DAAMSLXSFGZJAATRP1}
+  \field{number}{6}
+  \field{pages}{1569\bibrangedash 1574}
+  \field{title}{The {ABCs} of accurate volumetric measurement of cerebral
+  hematoma}
+  \verb{url}
+  \verb https://stroke.ahajournals.org/content/42/6/1569.full
+  \endverb
+  \field{volume}{42}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/TK877D65/Divani et al. - 2011 -
+  \verb  The ABCs of Accurate Volumetric Measurement of Cer.pdf:application/pdf
+  \verb ;[HTML] from ahajournals.org:/Users/johnmuschelli/Library/Application S
+  \verb upport/Zotero/Profiles/9yinbn16.default/zotero/storage/B65TVGZ9/1569.ht
+  \verb ml:text/html;Snapshot:/Users/johnmuschelli/Library/Application Support/
+  \verb Zotero/Profiles/9yinbn16.default/zotero/storage/NFUHGH9U/1569.html:text
+  \verb /html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{year}{2011}
+  \field{urlday}{17}
+  \field{urlmonth}{06}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{pedraza_reliability_2012}{article}{}
+  \name{author}{8}{}{%
+    {{}%
+     {Pedraza}{P.}%
+     {Salvador}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Puig}{P.}%
+     {Josep}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Blasco}{B.}%
+     {Gerard}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Estadella}{E.}%
+     {Josep}{J.}%
+     {Daunis-i}{D.-i.}%
+     {}{}}%
+    {{}%
+     {Boada}{B.}%
+     {Imma}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bardera}{B.}%
+     {Anton}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Castellanos}{C.}%
+     {Mar}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Serena}{S.}%
+     {Joaqu\'in}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{infarct, Stroke, volume}
+  \strng{namehash}{PS+1}
+  \strng{fullhash}{PSPJBGEJDiBIBACMSJ1}
+  \field{abstract}{%
+  {ABSTRACT} {BACKGROUND} {AND} {PURPOSE} Infarct volume is used as a surrogate
+  outcome measure in clinical trials of therapies for acute ischemic stroke.
+  {ABC}/2 is a fast volumetric method, but its accuracy remains to be
+  determined. We aimed to study the accuracy and reproducibility of {ABC}/2 in
+  determining acute infarct volume with diffusion-weighted imaging. {METHODS}
+  We studied 86 consecutive patients with acute ischemic stroke. Three blinded
+  observers determined volume with the {ABC}/2 method, and the results were
+  compared with those of the manual planimetric method. {RESULTS} The {ABC}/2
+  technique overestimated infarct volume by a median false increase (variable
+  {ABC}/2 volume minus planimetric volume) of 7.33 cm3 (1.29, 22.170,
+  representing a 162.56\% increase over the value of the gold standard
+  (variable {ABC}/2 volume over planimetric volume) (121.70, 248.52). In each
+  method, the interrater reliability was excellent: the intraclass correlations
+  were .992 and .985 for the {ABC}/2 technique and planimetric method,
+  respectively. {CONCLUSIONS} {ABC}/2 is volumetric method with clinical value
+  but it consistently overestimates the real infarct volume. J Neuroimaging
+  2012;22:155-159%
+  }
+  \verb{doi}
+  \verb 10.1111/j.1552-6569.2011.00588.x
+  \endverb
+  \field{issn}{1552-6569}
+  \field{note}{00007}
+  \field{number}{2}
+  \field{pages}{155\bibrangedash 159}
+  \field{title}{Reliability of the {ABC}/2 Method in Determining Acute Infarct
+  Volume}
+  \verb{url}
+  \verb http://onlinelibrary.wiley.com/doi/10.1111/j.1552-6569.2011.00588.x/abs
+  \verb tract
+  \endverb
+  \field{volume}{22}
+  \field{langid}{english}
+  \verb{file}
+  \verb Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profil
+  \verb es/9yinbn16.default/zotero/storage/X28DIA9F/abstract.html:text/html
+  \endverb
+  \field{journaltitle}{Journal of Neuroimaging}
+  \field{year}{2012}
+  \field{urlday}{21}
+  \field{urlmonth}{01}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{hussein_reliability_2013}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Hussein}{H.}%
+     {Haitham~M.}{H.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tariq}{T.}%
+     {Nauman~A.}{N.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Palesch}{P.}%
+     {Yuko~Y.}{Y.~Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Qureshi}{Q.}%
+     {Adnan~I.}{A.~I.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{cerebral hemorrhage, emergency medicine, hypertension hematoma, Medical
+  imaging}
+  \strng{namehash}{HHM+1}
+  \strng{fullhash}{HHMTNAPYYQAI1}
+  \field{abstract}{%
+  Background and Purpose-The reliability of hematoma volume ({HV}) measurement
+  using the {ABC}/2 method in multicenter clinical trials is unknown. We
+  determined the accuracy of {ABC}/2 method as an on-site test in comparison
+  with the gold standard central {HV}-assessment and semiautomatic
+  {HV}-assessment. Method-We analyzed data from an acute intracerebral
+  hemorrhage multicenter clinical trial. {HV} was measured by site
+  investigators to determine enrollment eligibility ({\textless}60 cm3) using
+  the {ABC}/2 method (on-site {HV}), and independently by the core-imaging
+  laboratory using computer-based analysis (Medical Image Processing, Analysis,
+  and Visualization [{MIPAV}] {HV}). {HV} was also measured by {ABC}/2 method
+  (central {HV}) at the core-imaging laboratory to assess the difference in
+  measurements between on-site (multiple raters with variable experiences) and
+  central (single experienced rater) {HVs}. Results-Fifty-six subjects were
+  analyzed (mean age 62±15 years; 45\% women). On-site {HV} values showed a
+  significantly lower correlation with the {MIPAV} {HV} (r=0.63) than central
+  {HV} and {MIPAV} {HV} (r=0.93) values. The correlation between on-site {HV}
+  and central {HV} values was modest (r=0.51). A total of 73\% of the central
+  {HVs} were within 25\% of the corresponding {MIPAV} {HVs}, whereas only 46\%
+  of the on-site {HVs} were within 25\% of the corresponding {MIPAV} {HVs}
+  (P{\textless}0.001). One protocol violation occurred as a result of
+  inaccuracy of on-site {HV} measurement. Conclusion-On-site {HV} measurements
+  showed high variability, but the impact on the eligibility determination was
+  small. Centralized remeasurements of {HVs} with feedback to the sites may
+  increase the reliability of the on-site {HV} measurements. Clinical Trial
+  Registration-{URL}: http://www.clinicaltrials.gov/ct2/show/{NCT}00415610 or
+  http://www.atach-2.com. Unique identifier: {NCT}00415610.%
+  }
+  \verb{doi}
+  \verb 10.1161/STROKEAHA.112.667220
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{note}{00007 {PMID}: 23233387}
+  \field{number}{1}
+  \field{pages}{237\bibrangedash 239}
+  \field{shortjournal}{Stroke}
+  \field{title}{Reliability of Hematoma Volume Measurement at Local Sites in a
+  Multicenter Acute Intracerebral Hemorrhage Clinical Trial}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/44/1/237
+  \endverb
+  \field{volume}{44}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/NDINDMZ8/Hussein et al. - 2013
+  \verb - Reliability of Hematoma Volume Measurement at Loca.pdf:application/pd
+  \verb f;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Prof
+  \verb iles/9yinbn16.default/zotero/storage/UIXI3WB3/237.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{01}
+  \field{year}{2013}
+  \field{urlday}{21}
+  \field{urlmonth}{01}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{wang_hematoma_2013}{article}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Wang}{W.}%
+     {Shuo}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lou}{L.}%
+     {Min}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Liu}{L.}%
+     {Tian}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cui}{C.}%
+     {Deqi}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chen}{C.}%
+     {Xiaomei}{X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wang}{W.}%
+     {Yi}{Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{gradient echo, hematoma volume, Intracerebral hemorrhage, Magnetic
+  Resonance Imaging, quantitative susceptibility mapping}
+  \strng{namehash}{WS+1}
+  \strng{fullhash}{WSLMLTCDCXWY1}
+  \field{abstract}{%
+  Background and Purpose-A novel quantitative susceptibility mapping ({QSM})
+  processing technology has been developed to map tissue susceptibility
+  property without blooming artifacts. We hypothesize that hematoma volume
+  measurement on {QSM} is independent of imaging parameters, eliminating its
+  echo time dependence on gradient echo {MRI}. Methods-Gradient echo {MRI} of
+  16 patients with intracerebral hemorrhage was processed with
+  susceptibility-weighted imaging, R2* (=1/T2*) mapping, and {QSM} at various
+  echo times. Hematoma volumes were measured from these images. Results-Linear
+  regression of hematoma volume versus echo time showed substantial slopes for
+  gradient echo magnitude (0.45±0.31 L/s), susceptibility-weighted imaging
+  (0.52±0.46), and R2* (0.39±0.30) but nearly zero slope for {QSM}
+  (0.01±0.05). At echo time=20 ms, hematoma volume on {QSM} was 0.80× that on
+  gradient echo magnitude image (R2=0.99). Conclusions-{QSM} can provide
+  reliable measurement of hematoma volume, which can be performed rapidly and
+  accurately using a semiautomated segmentation tool.%
+  }
+  \verb{doi}
+  \verb 10.1161/STROKEAHA.113.001638
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{note}{00006 {PMID}: 23704111}
+  \field{number}{8}
+  \field{pages}{2315\bibrangedash 2317}
+  \field{shortjournal}{Stroke}
+  \field{title}{Hematoma Volume Measurement in Gradient Echo {MRI} Using
+  Quantitative Susceptibility Mapping}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/44/8/2315
+  \endverb
+  \field{volume}{44}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/NPMHDUQH/Wang et al. - 2013 - H
+  \verb ematoma Volume Measurement in Gradient Echo MRI U.pdf:application/pdf;S
+  \verb napshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profile
+  \verb s/9yinbn16.default/zotero/storage/5TJ4JKM4/2315.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{08}
+  \field{year}{2013}
+  \field{urlday}{23}
+  \field{urlmonth}{04}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{carhuapoma2003brain}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Carhuapoma}{C.}%
+     {Ricardo~J}{R.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {Daniel~F}{D.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Banerjee}{B.}%
+     {Mousumi}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Beauchamp}{B.}%
+     {Norman~J}{N.~J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {LWW}%
+  }
+  \strng{namehash}{CRJ+1}
+  \strng{fullhash}{CRJHDFBMBNJ1}
+  \field{number}{3}
+  \field{pages}{230\bibrangedash 233}
+  \field{title}{Brain Edema After Human Cerebral Hemorrhage A Magnetic
+  Resonance Imaging Volumetric Analysis}
+  \field{volume}{15}
+  \field{journaltitle}{Journal of neurosurgical anesthesiology}
+  \field{year}{2003}
+\endentry
+
+\entry{gillebert_automated_2014}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Gillebert}{G.}%
+     {C\'eline~R.}{C.~R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Humphreys}{H.}%
+     {Glyn~W.}{G.~W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mantini}{M.}%
+     {Dante}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Computerized tomography, Lesion segmentation, Medical imaging, Software
+  tool, Stroke}
+  \strng{namehash}{GCRHGWMD1}
+  \strng{fullhash}{GCRHGWMD1}
+  \field{abstract}{%
+  Computed tomographic ({CT}) images are widely used for the identification of
+  abnormal brain tissue following infarct and hemorrhage in stroke. Manual
+  lesion delineation is currently the standard approach, but is both
+  time-consuming and operator-dependent. To address these issues, we present a
+  method that can automatically delineate infarct and hemorrhage in stroke {CT}
+  images. The key elements of this method are the accurate normalization of
+  {CT} images from stroke patients into template space and the subsequent
+  voxelwise comparison with a group of control {CT} images for defining areas
+  with hypo- or hyper-intense signals. Our validation, using simulated and
+  actual lesions, shows that our approach is effective in reconstructing
+  lesions resulting from both infarct and hemorrhage and yields lesion maps
+  spatially consistent with those produced manually by expert operators. A
+  limitation is that, relative to manual delineation, there is reduced
+  sensitivity of the automated method in regions close to the ventricles and
+  the brain contours. However, the automated method presents a number of
+  benefits in terms of offering significant time savings and the elimination of
+  the inter-operator differences inherent to manual tracing approaches. These
+  factors are relevant for the creation of large-scale lesion databases for
+  neuropsychological research. The automated delineation of stroke lesions from
+  {CT} scans may also enable longitudinal studies to quantify changes in
+  damaged tissue in an objective and reproducible manner.%
+  }
+  \verb{doi}
+  \verb 10.1016/j.nicl.2014.03.009
+  \endverb
+  \field{issn}{2213-1582}
+  \field{pages}{540\bibrangedash 548}
+  \field{shortjournal}{{NeuroImage}: Clinical}
+  \field{title}{Automated delineation of stroke lesions using brain {CT}
+  images}
+  \verb{url}
+  \verb http://www.sciencedirect.com/science/article/pii/S2213158214000394
+  \endverb
+  \field{volume}{4}
+  \verb{file}
+  \verb ScienceDirect Full Text PDF:/Users/johnmuschelli/Library/Application Su
+  \verb pport/Zotero/Profiles/9yinbn16.default/zotero/storage/9UX4A9QI/Gilleber
+  \verb t et al. - 2014 - Automated delineation of stroke lesions using brai.pd
+  \verb f:application/pdf;ScienceDirect Snapshot:/Users/johnmuschelli/Library/A
+  \verb pplication Support/Zotero/Profiles/9yinbn16.default/zotero/storage/ZACS
+  \verb 7V3K/S2213158214000394.html:text/html
+  \endverb
+  \field{journaltitle}{{NeuroImage}: Clinical}
+  \field{year}{2014}
+  \field{urlday}{17}
+  \field{urlmonth}{07}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{prakash_segmentation_2012}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Prakash}{P.}%
+     {K.~N.~Bhanu}{K.~N.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhou}{Z.}%
+     {Shi}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Morgan}{M.}%
+     {Tim~C.}{T.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {Daniel~F.}{D.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nowinski}{N.}%
+     {Wieslaw~L.}{W.~L.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Brain, Computer Imaging, Vision, Pattern Recognition and Graphics,
+  Computer Science, general, {CT}, Health Informatics, Hemorrhage, Imaging /
+  Radiology, Level sets, Segmentation, surgery}
+  \strng{namehash}{PKNB+1}
+  \strng{fullhash}{PKNBZSMTCHDFNWL1}
+  \field{abstract}{%
+  Purpose An automatic, accurate and fast segmentation of hemorrhage in brain
+  Computed Tomography ({CT}) images is necessary for quantification and
+  treatment planning when assessing a large number of data sets. Though manual
+  segmentation is accurate, it is time consuming and tedious. Semi-automatic
+  methods need user interactions and might introduce variability in results.
+  Our study proposes a modified distance regularized level set evolution
+  ({MDRLSE}) algorithm for hemorrhage segmentation. Methods Study data set
+  (from the ongoing {CLEAR}-{IVH} phase {III} clinical trial) is comprised of
+  200 sequential {CT} scans of 40 patients collected at 10 different hospitals
+  using different machines/vendors. Data set contained both constant and
+  variable slice thickness scans. Our study included pre-processing (filtering
+  and skull removal), segmentation ({MDRLSE} which is a two-stage method with
+  shrinking and expansion) with modified parameters for faster convergence and
+  higher accuracy and post-processing (reduction in false positives and false
+  negatives). Results Results are validated against the gold standard marked
+  manually by a trained {CT} reader and neurologist. Data sets are grouped as
+  small, medium and large based on the volume of blood. Statistical analysis is
+  performed for both training and test data sets in each group. The median Dice
+  statistical indices ({DSI}) for the 3 groups are 0.8971, 0.8580 and 0.9173
+  respectively. Pre- and post-processing enhanced the {DSI} by 8 and 4\%
+  respectively. Conclusions The {MDRLSE} improved the accuracy and speed for
+  segmentation and calculation of the hemorrhage volume compared to the
+  original {DRLSE} method. The method generates quantitative information, which
+  is useful for specific decision making and reduces the time needed for the
+  clinicians to localize and segment the hemorrhagic regions.%
+  }
+  \verb{doi}
+  \verb 10.1007/s11548-012-0670-0
+  \endverb
+  \field{issn}{1861-6410, 1861-6429}
+  \field{note}{00005}
+  \field{number}{5}
+  \field{pages}{785\bibrangedash 798}
+  \field{shortjournal}{Int J {CARS}}
+  \field{title}{Segmentation and quantification of intra-ventricular/cerebral
+  hemorrhage in {CT} scans by modified distance regularized level set evolution
+  technique}
+  \verb{url}
+  \verb http://link.springer.com/article/10.1007/s11548-012-0670-0
+  \endverb
+  \field{volume}{7}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/E226UASC/Prakash et al. - 2012
+  \verb - Segmentation and quantification of intra-ventricul.pdf:application/pd
+  \verb f;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Prof
+  \verb iles/9yinbn16.default/zotero/storage/6DQNG9R4/s11548-012-0670-0.html:te
+  \verb xt/html
+  \endverb
+  \field{journaltitle}{International Journal of Computer Assisted Radiology and
+  Surgery}
+  \field{day}{01}
+  \field{month}{09}
+  \field{year}{2012}
+  \field{urlday}{03}
+  \field{urlmonth}{10}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{loncaric_hierarchical_1996}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Loncaric}{L.}%
+     {Sven}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cosic}{C.}%
+     {Dubravko}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Dhawan}{D.}%
+     {Atam~P.}{A.~P.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LSCDDAP1}
+  \strng{fullhash}{LSCDDAP1}
+  \field{pages}{1109}
+  \field{title}{Hierarchical segmentation of {CT} head images}
+  \verb{url}
+  \verb http://www.researchgate.net/publication/2690468_Hierarchical_Segmentati
+  \verb on_of_CT_Head_Images/file/d912f50edddd1ca672.pdf
+  \endverb
+  \field{volume}{10}
+  \verb{file}
+  \verb [PDF] from researchgate.net:/Users/johnmuschelli/Library/Application Su
+  \verb pport/Zotero/Profiles/9yinbn16.default/zotero/storage/AZPTNQCZ/Loncaric
+  \verb  et al. - 1996 - Hierarchical segmentation of CT head images.pdf:applic
+  \verb ation/pdf
+  \endverb
+  \field{journaltitle}{Proc {IEEE} {EMBS}. doi}
+  \field{year}{1996}
+  \field{urlday}{17}
+  \field{urlmonth}{06}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{loncaric_quantitative_1999}{inproceedings}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Loncaric}{L.}%
+     {Sven}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Dhawan}{D.}%
+     {Atam~P.}{A.~P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cosic}{C.}%
+     {Dubravko}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kovacevi\'c}{K.}%
+     {Domagoj}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Broderick}{B.}%
+     {Joseph}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Brott}{B.}%
+     {Thomas}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {International Society for Optics}%
+    {Photonics}%
+  }
+  \strng{namehash}{LS+1}
+  \strng{fullhash}{LSDAPCDKDBJBT1}
+  \field{booktitle}{Medical Imaging'99}
+  \field{pages}{886\bibrangedash 894}
+  \field{title}{Quantitative intracerebral brain hemorrhage analysis}
+  \verb{url}
+  \verb http://proceedings.spiedigitallibrary.org/proceeding.aspx?articleid=980
+  \verb 754
+  \endverb
+  \verb{file}
+  \verb [PDF] from researchgate.net:/Users/johnmuschelli/Library/Application Su
+  \verb pport/Zotero/Profiles/9yinbn16.default/zotero/storage/ERSCI8IU/Loncaric
+  \verb  et al. - 1999 - Quantitative intracerebral brain hemorrhage analys.pdf
+  \verb :application/pdf
+  \endverb
+  \field{year}{1999}
+  \field{urlday}{17}
+  \field{urlmonth}{06}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{perez_set_2007}{incollection}{}
+  \name{author}{5}{}{%
+    {{}%
+     {P\'erez}{P.}%
+     {Noel}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vald\'es}{V.}%
+     {Jos\'e~A.}{J.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Guevara}{G.}%
+     {Miguel~A.}{M.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rodr\'iguez}{R.}%
+     {Luis~A.}{L.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Molina}{M.}%
+     {J.~M.}{J.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \keyw{3D mathematic morphology, Artificial Intelligence (incl. Robotics),
+  Computer Imaging, Vision, Pattern Recognition and Graphics, deformable
+  models, Image Processing and Computer Vision, Intracerebral hemorrhage,
+  medical images analysis, Pattern Recognition, segmentation and tracking}
+  \strng{namehash}{PN+1}
+  \strng{fullhash}{PNVJAGMARLAMJM1}
+  \field{booktitle}{Progress in Pattern Recognition, Image Analysis and
+  Applications}
+  \field{pages}{212\bibrangedash 220}
+  \field{title}{Set of methods for spontaneous {ICH} segmentation and tracking
+  from {CT} head images}
+  \verb{url}
+  \verb http://link.springer.com/chapter/10.1007/978-3-540-76725-1_23
+  \endverb
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/RKKMSTKW/P\'erez et al. - 2007
+  \verb - Set of Methods for Spontaneous ICH Segmentation an.pdf:application/pd
+  \verb f;Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero
+  \verb /Profiles/9yinbn16.default/zotero/storage/CB92A9I7/P\'erez et al. - 200
+  \verb 7 - Set of Methods for Spontaneous ICH Segmentation an.pdf:application/
+  \verb pdf;Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Pr
+  \verb ofiles/9yinbn16.default/zotero/storage/N23UUZZV/978-3-540-76725-1_23.ht
+  \verb ml:text/html;Snapshot:/Users/johnmuschelli/Library/Application Support/
+  \verb Zotero/Profiles/9yinbn16.default/zotero/storage/2PWPJGZ3/978-3-540-7672
+  \verb 5-1_23.html:text/html;Snapshot:/Users/johnmuschelli/Library/Application
+  \verb  Support/Zotero/Profiles/9yinbn16.default/zotero/storage/6GCVRHP6/Pére
+  \verb z et al. - 2007 - Set of Methods for Spontaneous ICH Segmentation an.ht
+  \verb ml:text/html
+  \endverb
+  \field{year}{2007}
+  \field{urlday}{17}
+  \field{urlmonth}{06}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{mould_minimally_2013}{article}{}
+  \name{author}{13}{}{%
+    {{}%
+     {Mould}{M.}%
+     {W.~Andrew}{W.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Carhuapoma}{C.}%
+     {J.~Ricardo}{J.~R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Muschelli}{M.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lane}{L.}%
+     {Karen}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Morgan}{M.}%
+     {Timothy~C.}{T.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {{McBee}}{M.}%
+     {Nichol~A.}{N.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bistran-Hall}{B.-H.}%
+     {Amanda~J.}{A.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ullman}{U.}%
+     {Natalie~L.}{N.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vespa}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Martin}{M.}%
+     {Neil~A.}{N.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Awad}{A.}%
+     {Issam}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuccarello}{Z.}%
+     {Mario}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {Daniel~F.}{D.~F.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{brain edema, clot aspiration, intracerebral hemorrhage, minimally
+  invasive surgery, {MISTIE}, rt-{PA}, thrombolysis}
+  \strng{namehash}{MWA+1}
+  \strng{fullhash}{MWACJRMJLKMTCMNABHAJUNLVPMNAAIZMHDF1}
+  \field{abstract}{%
+  Background and Purpose-Perihematomal edema ({PHE}) can worsen outcomes after
+  intracerebral hemorrhage ({ICH}). Reports suggest that blood degradation
+  products lead to {PHE}. We hypothesized that hematoma evacuation will reduce
+  {PHE} volume and that treatment with recombinant tissue-type plasminogen
+  activator (rt-{PA}) will not exacerbate it. Methods-Minimally invasive
+  surgery and rt-{PA} in {ICH} evacuation ({MISTIE}) phase {II} tested safety
+  and efficacy of hematoma evacuation after {ICH}. We conducted a
+  semiautomated, computerized volumetric analysis on computed tomography to
+  assess impact of hematoma removal on {PHE} and effects of rt-{PA} on {PHE}.
+  Volumetric analyses were performed on baseline stability and end of treatment
+  scans. Results-Seventy-nine surgical and 39 medical patients from minimally
+  invasive surgery and rt-{PA} in {ICH} evacuation phase {II} ({MISTIE} {II})
+  were analyzed. Mean hematoma volume at end of treatment was 19.6±14.5 cm3
+  for the surgical cohort and 40.7±13.9 cm3 for the medical cohort
+  (P{\textless}0.001). Edema volume at end of treatment was lower for the
+  surgical cohort: 27.7±13.3 cm3 than medical cohort: 41.7±14.6 cm3
+  (P{\textless}0.001). Graded effect of clot removal on {PHE} was observed when
+  patients with {\textgreater}65\%, 20\% to 65\%, and {\textless}20\% {ICH}
+  removed were analyzed (P{\textless}0.001). Positive correlation between {PHE}
+  reduction and percent of {ICH} removed was identified (ρ=0.658;
+  P{\textless}0.001). In the surgical cohort, 69 patients underwent surgical
+  aspiration and rt-{PA}, whereas 10 underwent surgical aspiration only. Both
+  cohorts achieved similar clot reduction: surgical aspiration and rt-{PA},
+  18.9±14.5 cm3; and surgical aspiration only, 24.5±14.0 cm3 (P=0.26). Edema
+  at end of treatment in surgical aspiration and rt-{PA} was 28.1±13.8 cm3 and
+  24.4±8.6 cm3 in surgical aspiration only (P=0.41). Conclusions-Hematoma
+  evacuation is associated with significant reduction in {PHE}. Furthermore,
+  {PHE} does not seem to be exacerbated by rt-{PA}, making such neurotoxic
+  effects unlikely when the drug is delivered to intracranial clot.%
+  }
+  \verb{doi}
+  \verb 10.1161/STROKEAHA.111.000411
+  \endverb
+  \field{issn}{0039-2499, 1524-4628}
+  \field{number}{3}
+  \field{pages}{627\bibrangedash 634}
+  \field{shortjournal}{Stroke}
+  \field{title}{Minimally Invasive Surgery Plus Recombinant Tissue-type
+  Plasminogen Activator for Intracerebral Hemorrhage Evacuation Decreases
+  Perihematomal Edema}
+  \verb{url}
+  \verb http://stroke.ahajournals.org/content/44/3/627
+  \endverb
+  \field{volume}{44}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/M8J57V8V/Mould et al. - 2013 -
+  \verb Minimally Invasive Surgery Plus Recombinant Tissue.pdf:application/pdf;
+  \verb Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profil
+  \verb es/9yinbn16.default/zotero/storage/CC8CN3XW/627.html:text/html
+  \endverb
+  \field{journaltitle}{Stroke}
+  \field{day}{01}
+  \field{month}{03}
+  \field{year}{2013}
+  \field{urlday}{07}
+  \field{urlmonth}{03}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{bergstrom_variation_1977}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Bergstr\"om}{B.}%
+     {M}{M}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ericson}{E.}%
+     {K}{K}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Levander}{L.}%
+     {B}{B}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Svendsen}{S.}%
+     {P}{P}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Larsson}{L.}%
+     {S}{S}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Brain, Cerebral Hemorrhage, Fibrinolysis, Hematoma, Hematoma, Epidural,
+  Cranial, Hematoma, Subdural, Humans, Time Factors, Tomography, X-Ray
+  Computed}
+  \strng{namehash}{BM+1}
+  \strng{fullhash}{BMEKLBSPLS1}
+  \field{abstract}{%
+  Fourteen cases of subdural, epidural, and intracerebral hematoma, in which
+  the time of the trauma or bleeding was known, were selected. Attenuation of
+  samples taken at surgery showed good correlation with attenuation values
+  determined by computed tomography ({CT}). The decrease in the attenuation of
+  the hematoma from the time of trauma or bleeding was studied.%
+  }
+  \field{issn}{0363-8715}
+  \field{number}{1}
+  \field{pages}{57\bibrangedash 63}
+  \field{shortjournal}{J Comput Assist Tomogr}
+  \field{title}{Variation with time of the attenuation values of intracranial
+  hematomas}
+  \field{volume}{1}
+  \verb{file}
+  \verb 00004728-197701000-00008.pdf:/Users/johnmuschelli/Library/Application S
+  \verb upport/Zotero/Profiles/9yinbn16.default/zotero/storage/H3CWCX66/0000472
+  \verb 8-197701000-00008.pdf:application/pdf
+  \endverb
+  \field{journaltitle}{Journal of computer assisted tomography}
+  \field{month}{01}
+  \field{year}{1977}
+\endentry
+
+\entry{smith_imaging_2006}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Smith}{S.}%
+     {Eric~E.}{E.~E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rosand}{R.}%
+     {Jonathan}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Greenberg}{G.}%
+     {Steven~M.}{S.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SEERJGSM1}
+  \strng{fullhash}{SEERJGSM1}
+  \verb{doi}
+  \verb 10.1016/j.mric.2006.06.002
+  \endverb
+  \field{issn}{1064-9689}
+  \field{note}{00011}
+  \field{number}{2}
+  \field{pages}{127\bibrangedash 140}
+  \field{shortjournal}{Magnetic Resonance Imaging Clinics of North America}
+  \field{title}{Imaging of Hemorrhagic Stroke}
+  \verb{url}
+  \verb http://www.sciencedirect.com/science/article/pii/S1064968906000298
+  \endverb
+  \field{volume}{14}
+  \verb{file}
+  \verb ScienceDirect Full Text PDF:/Users/johnmuschelli/Library/Application Su
+  \verb pport/Zotero/Profiles/9yinbn16.default/zotero/storage/FA6JK6RJ/Smith et
+  \verb  al. - 2006 - Imaging of Hemorrhagic Stroke.pdf:application/pdf;Science
+  \verb Direct Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero
+  \verb /Profiles/9yinbn16.default/zotero/storage/S7SKUNMJ/Smith et al. - 2006
+  \verb - Imaging of Hemorrhagic Stroke.html:text/html
+  \endverb
+  \field{journaltitle}{Magnetic Resonance Imaging Clinics of North America}
+  \field{month}{05}
+  \field{year}{2006}
+  \field{urlday}{06}
+  \field{urlmonth}{03}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{rorden_stereotaxic_2000}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Rorden}{R.}%
+     {Chris}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Brett}{B.}%
+     {Matthew}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RCBM1}
+  \strng{fullhash}{RCBM1}
+  \field{abstract}{%
+  Traditionally lesion location has been reported using standard templates,
+  text based descriptions or representative raw slices from the patient's {CT}
+  or {MRI} scan. Each of these methods has drawbacks for the display of
+  neuroanatomical data. One solution is to display {MRI} scans in the same
+  stereotaxic space popular with researchers working in functional
+  neuroimaging. Presenting brains in this format is useful as the slices
+  correspond to the standard anatomical atlases used by neuroimagers. In
+  addition, lesion position and volume are directly comparable across patients.
+  This article describes freely available software for presenting
+  stereotaxically aligned patient scans. This article focuses on {MRI} scans,
+  but many of these tools are also applicable to other modalities (e.g. {CT},
+  {PET} and {SPECT}). We suggest that this technique of presenting lesions in
+  terms of images normalized to standard stereotaxic space should become the
+  standard for neuropsychological studies.%
+  }
+  \verb{doi}
+  \verb 10.1155/2000/421719
+  \endverb
+  \field{issn}{0953-4180}
+  \field{number}{4}
+  \field{pages}{191\bibrangedash 200}
+  \field{title}{Stereotaxic Display of Brain Lesions}
+  \verb{url}
+  \verb http://www.hindawi.com/journals/bn/2000/421719/abs/
+  \endverb
+  \field{volume}{12}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/ZTH3JGQ2/Rorden and Brett - 200
+  \verb 0 - Stereotaxic Display of Brain Lesions.pdf:application/pdf;Snapshot:/
+  \verb Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn1
+  \verb 6.default/zotero/storage/E53GAHXM/abs.html:application/xhtml+xml
+  \endverb
+  \field{journaltitle}{Behavioural Neurology}
+  \field{year}{2000}
+  \field{urlday}{06}
+  \field{urlmonth}{03}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{RCORE}{manual}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{R Core Team}}{R.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {R Foundation for Statistical Computing}%
+  }
+  \strng{namehash}{R1}
+  \strng{fullhash}{R1}
+  \field{title}{R: A Language and Environment for Statistical Computing}
+  \verb{url}
+  \verb https://www.R-project.org/
+  \endverb
+  \list{location}{1}{%
+    {Vienna, Austria}%
+  }
+  \field{year}{2015}
+\endentry
+
+\entry{muschelli2015fslr}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Muschelli}{M.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sweeney}{S.}%
+     {Elizabeth}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lindquist}{L.}%
+     {Martin}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Crainiceanu}{C.}%
+     {Ciprian}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {R Foundation for Statistical Computing}%
+  }
+  \strng{namehash}{MJ+1}
+  \strng{fullhash}{MJSELMCC1}
+  \field{number}{1}
+  \field{pages}{163\bibrangedash 175}
+  \field{title}{{fslr}: Connecting the {FSL} Software with {R}}
+  \field{volume}{7}
+  \field{journaltitle}{R Journal}
+  \field{year}{2015}
+\endentry
+
+\entry{jenkinson_fsl_2012}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Jenkinson}{J.}%
+     {Mark}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Beckmann}{B.}%
+     {Christian~F.}{C.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Behrens}{B.}%
+     {Timothy E.~J.}{T.~E.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Woolrich}{W.}%
+     {Mark~W.}{M.~W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Smith}{S.}%
+     {Stephen~M.}{S.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{{FSL}, Software}
+  \strng{namehash}{JM+1}
+  \strng{fullhash}{JMBCFBTEJWMWSSM1}
+  \field{abstract}{%
+  {FSL} (the {FMRIB} Software Library) is a comprehensive library of analysis
+  tools for functional, structural and diffusion {MRI} brain imaging data,
+  written mainly by members of the Analysis Group, {FMRIB}, Oxford. For this
+  {NeuroImage} special issue on “20 years of {fMRI}” we have been asked to
+  write about the history, developments and current status of {FSL}. We also
+  include some descriptions of parts of {FSL} that are not well covered in the
+  existing literature. We hope that some of this content might be of interest
+  to users of {FSL}, and also maybe to new research groups considering
+  creating, releasing and supporting new software packages for brain image
+  analysis.%
+  }
+  \verb{doi}
+  \verb 10.1016/j.neuroimage.2011.09.015
+  \endverb
+  \field{issn}{1053-8119}
+  \field{number}{2}
+  \field{pages}{782\bibrangedash 790}
+  \field{shortjournal}{{NeuroImage}}
+  \field{title}{{FSL}}
+  \verb{url}
+  \verb http://www.sciencedirect.com/science/article/pii/S1053811911010603
+  \endverb
+  \field{volume}{62}
+  \verb{file}
+  \verb Jenkinson et al_2012_FSL.pdf:/Users/johnmuschelli/Library/Application S
+  \verb upport/Zotero/Profiles/9yinbn16.default/zotero/storage/ET728B86/Jenkins
+  \verb on et al_2012_FSL.pdf:application/pdf;ScienceDirect Snapshot:/Users/joh
+  \verb nmuschelli/Library/Application Support/Zotero/Profiles/9yinbn16.default
+  \verb /zotero/storage/BGRM38N8/S1053811911010603.html:text/html;ScienceDirect
+  \verb  Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profi
+  \verb les/9yinbn16.default/zotero/storage/V3CCZKHS/S1053811911010603.html:tex
+  \verb t/html
+  \endverb
+  \field{journaltitle}{{NeuroImage}}
+  \field{day}{15}
+  \field{month}{08}
+  \field{year}{2012}
+  \field{urlday}{15}
+  \field{urlmonth}{01}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{avants_reproducible_2011}{article}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Avants}{A.}%
+     {Brian~B.}{B.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tustison}{T.}%
+     {Nicholas~J.}{N.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Song}{S.}%
+     {Gang}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cook}{C.}%
+     {Philip~A.}{P.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Klein}{K.}%
+     {Arno}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gee}{G.}%
+     {James~C.}{J.~C.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABB+2}
+  \strng{fullhash}{ABBTNJSGCPAKAGJC1}
+  \field{abstract}{%
+  The United States National Institutes of Health ({NIH}) commit significant
+  support to open-source data and software resources in order to foment
+  reproducibility in the biomedical imaging sciences. Here, we report and
+  evaluate a recent product of this commitment: Advanced Neuroimaging Tools
+  ({ANTs}), which is approaching its 2.0 release. The {ANTs} open source
+  software library consists of a suite of state-of-the-art image registration,
+  segmentation and template building tools for quantitative morphometric
+  analysis. In this work, we use {ANTs} to quantify, for the first time, the
+  impact of similarity metrics on the affine and deformable components of a
+  template-based normalization study. We detail the {ANTs} implementation of
+  three similarity metrics: squared intensity difference, a new and faster
+  cross-correlation, and voxel-wise mutual information. We then use two-fold
+  cross-validation to compare their performance on openly available, manually
+  labeled, T1-weighted {MRI} brain image data of 40 subjects ({UCLA}'s {LPBA}40
+  dataset). We report evaluation results on cortical and whole brain labels for
+  both the affine and deformable components of the registration. Results
+  indicate that the best {ANTs} methods are competitive with existing brain
+  extraction results (Jaccard = 0.958) and cortical labeling approaches. Mutual
+  information affine mapping combined with cross-correlation diffeomorphic
+  mapping gave the best cortical labeling results (Jaccard = 0.669 ± 0.022).
+  Furthermore, our two-fold cross-validation allows us to quantify the
+  similarity of templates derived from different subgroups. Our open code, data
+  and evaluation scripts set performance benchmark parameters for this
+  state-of-the-art toolkit. This is the first study to use a consistent
+  transformation framework to provide a reproducible evaluation of the isolated
+  effect of the similarity metric on optimal template construction and brain
+  labeling.%
+  }
+  \verb{doi}
+  \verb 10.1016/j.neuroimage.2010.09.025
+  \endverb
+  \field{issn}{1053-8119}
+  \field{note}{00315}
+  \field{number}{3}
+  \field{pages}{2033\bibrangedash 2044}
+  \field{shortjournal}{{NeuroImage}}
+  \field{title}{A reproducible evaluation of {ANTs} similarity metric
+  performance in brain image registration}
+  \verb{url}
+  \verb http://www.sciencedirect.com/science/article/pii/S1053811910012061
+  \endverb
+  \field{volume}{54}
+  \verb{file}
+  \verb ScienceDirect Full Text PDF:/Users/johnmuschelli/Library/Application Su
+  \verb pport/Zotero/Profiles/9yinbn16.default/zotero/storage/RRK6Q9BK/Avants e
+  \verb t al. - 2011 - A reproducible evaluation of ANTs similarity metri.pdf:a
+  \verb pplication/pdf;ScienceDirect Snapshot:/Users/johnmuschelli/Library/Appl
+  \verb ication Support/Zotero/Profiles/9yinbn16.default/zotero/storage/63P4MI7
+  \verb S/S1053811910012061.html:text/html
+  \endverb
+  \field{journaltitle}{{NeuroImage}}
+  \field{day}{01}
+  \field{month}{02}
+  \field{year}{2011}
+  \field{urlday}{16}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{smith_fast_2002}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Smith}{S.}%
+     {Stephen~M.}{S.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{brain segmentation, cortical surface modeling}
+  \strng{namehash}{SSM1}
+  \strng{fullhash}{SSM1}
+  \field{abstract}{%
+  An automated method for segmenting magnetic resonance head images into brain
+  and non-brain has been developed. It is very robust and accurate and has been
+  tested on thousands of data sets from a wide variety of scanners and taken
+  with a wide variety of {MR} sequences. The method, Brain Extraction Tool
+  ({BET}), uses a deformable model that evolves to fit the brain's surface by
+  the application of a set of locally adaptive model forces. The method is very
+  fast and requires no preregistration or other pre-processing before being
+  applied. We describe the new method and give examples of results and the
+  results of extensive quantitative testing against “gold-standard” hand
+  segmentations, and two other popular automated methods. Hum. Brain Mapping
+  17:143-155, 2002. © 2002 Wiley-Liss, Inc.%
+  }
+  \verb{doi}
+  \verb 10.1002/hbm.10062
+  \endverb
+  \field{issn}{1097-0193}
+  \field{number}{3}
+  \field{pages}{143\bibrangedash 155}
+  \field{title}{Fast robust automated brain extraction}
+  \verb{url}
+  \verb http://onlinelibrary.wiley.com/doi/10.1002/hbm.10062/abstract
+  \endverb
+  \field{volume}{17}
+  \field{langid}{english}
+  \verb{file}
+  \verb Smith_2002_Fast robust automated brain extraction.pdf:/Users/johnmusche
+  \verb lli/Library/Application Support/Zotero/Profiles/9yinbn16.default/zotero
+  \verb /storage/ZSXDCDIG/Smith_2002_Fast robust automated brain extraction.pdf
+  \verb :application/pdf;Snapshot:/Users/johnmuschelli/Library/Application Supp
+  \verb ort/Zotero/Profiles/9yinbn16.default/zotero/storage/6932EW7R/full.html:
+  \verb text/html;Snapshot:/Users/johnmuschelli/Library/Application Support/Zot
+  \verb ero/Profiles/9yinbn16.default/zotero/storage/QJG9M232/abstract.html:tex
+  \verb t/html
+  \endverb
+  \field{journaltitle}{Human Brain Mapping}
+  \field{year}{2002}
+  \field{urlday}{15}
+  \field{urlmonth}{01}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{muschelli_validated_2015}{article}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Muschelli}{M.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ullman}{U.}%
+     {Natalie~L.}{N.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mould}{M.}%
+     {W.~Andrew}{W.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vespa}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {Daniel~F.}{D.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Crainiceanu}{C.}%
+     {Ciprian~M.}{C.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Brain extraction, {CT}, Skull stripping, Validation}
+  \strng{namehash}{MJ+1}
+  \strng{fullhash}{MJUNLMWAVPHDFCCM1}
+  \field{abstract}{%
+  {AbstractBackground} X-ray computed tomography ({CT}) imaging of the brain is
+  commonly used in diagnostic settings. Although {CT} scans are primarily used
+  in clinical practice, they are increasingly used in research. A fundamental
+  processing step in brain imaging research is brain extraction - the process
+  of separating the brain tissue from all other tissues. Methods for brain
+  extraction have either been 1) validated but not fully automated, or 2) fully
+  automated and informally proposed, but never formally validated. Aim To
+  systematically analyze and validate the performance of {FSL}'s brain
+  extraction tool ({BET}) on head {CT} images of patients with intracranial
+  hemorrhage. This was done by comparing the manual gold standard with the
+  results of several versions of automatic brain extraction and by estimating
+  the reliability of automated segmentation of longitudinal scans. The effects
+  of the choice of {BET} parameters and data smoothing is studied and reported.
+  Methods All images were thresholded using a 0-100 Hounsfield unit ({HU})
+  range. In one variant of the pipeline, data were smoothed using a
+  3-dimensional Gaussian kernel (σ = 1 mm3) and re-thresholded to 0-100 {HU};
+  in the other, data were not smoothed. {BET} was applied using 1 of 3
+  fractional intensity ({FI}) thresholds: 0.01, 0.1, or 0.35 and any holes in
+  the brain mask were filled. For validation against a manual segmentation, 36
+  images from patients with intracranial hemorrhage were selected from 19
+  different centers from the {MISTIE} (Minimally Invasive Surgery plus
+  recombinant-tissue plasminogen activator for Intracerebral Evacuation) stroke
+  trial. Intracranial masks of the brain were manually created by one expert
+  {CT} reader. The resulting brain tissue masks were quantitatively compared to
+  the manual segmentations using sensitivity, specificity, accuracy, and the
+  Dice Similarity Index ({DSI}). Brain extraction performance across smoothing
+  and {FI} thresholds was compared using the Wilcoxon signed-rank test. The
+  intracranial volume ({ICV}) of each scan was estimated by multiplying the
+  number of voxels in the brain mask by the dimensions of each voxel for that
+  scan. From this, we calculated the {ICV} ratio comparing manual and automated
+  segmentation: I C V automated I C V manual . To estimate the performance in a
+  large number of scans, brain masks were generated from the 6 {BET} pipelines
+  for 1095 longitudinal scans from 129 patients. Failure rates were estimated
+  from visual inspection. {ICV} of each scan was estimated and an intraclass
+  correlation ({ICC}) was estimated using a one-way {ANOVA}. Results Smoothing
+  images improves brain extraction results using {BET} for all measures except
+  specificity (all p < 0.01, uncorrected), irrespective of the {FI} threshold.
+  Using an {FI} of 0.01 or 0.1 performed better than 0.35. Thus, all reported
+  results refer only to smoothed data using an {FI} of 0.01 or 0.1. Using an
+  {FI} of 0.01 had a higher median sensitivity (0.9901) than an {FI} of 0.1
+  (0.9884, median difference: 0.0014, p < 0.001), accuracy (0.9971 vs. 0.9971;
+  median difference: 0.0001, p < 0.001), and {DSI} (0.9895 vs. 0.9894; median
+  difference: 0.0004, p < 0.001) and lower specificity (0.9981 vs. 0.9982;
+  median difference: - 0.0001, p < 0.001). These measures are all very high
+  indicating that a range of {FI} values may produce visually indistinguishable
+  brain extractions. Using smoothed data and an {FI} of 0.01, the mean ({SD})
+  {ICV} ratio was 1.002 (0.008); the mean being close to 1 indicates the {ICV}
+  estimates are similar for automated and manual segmentation. In the 1095
+  longitudinal scans, this pipeline had a low failure rate (5.2\%) and the
+  {ICC} estimate was high (0.929, 95\% {CI}: 0.91, 0.945) for successfully
+  extracted brains. Conclusion {BET} performs well at brain extraction on
+  thresholded, 1 mm3 smoothed {CT} images with an {FI} of 0.01 or 0.1.
+  Smoothing before applying {BET} is an important step not previously discussed
+  in the literature. Analysis code is provided.%
+  }
+  \verb{doi}
+  \verb 10.1016/j.neuroimage.2015.03.074
+  \endverb
+  \field{issn}{1053-8119}
+  \field{note}{00000}
+  \field{shortjournal}{{NeuroImage}}
+  \field{title}{Validated automatic brain extraction of head {CT} images}
+  \verb{url}
+  \verb http://www.sciencedirect.com/science/article/pii/S1053811915002700
+  \endverb
+  \verb{file}
+  \verb ScienceDirect Full Text PDF:/Users/johnmuschelli/Library/Application Su
+  \verb pport/Zotero/Profiles/9yinbn16.default/zotero/storage/VV54SDC4/Muschell
+  \verb i et al. - Validated automatic brain extraction of head CT im.pdf:appli
+  \verb cation/pdf;ScienceDirect Snapshot:/Users/johnmuschelli/Library/Applicat
+  \verb ion Support/Zotero/Profiles/9yinbn16.default/zotero/storage/SMAQA4P2/S1
+  \verb 053811915002700.html:text/html
+  \endverb
+  \field{journaltitle}{{NeuroImage}}
+  \field{year}{2015}
+  \field{urlday}{20}
+  \field{urlmonth}{04}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{rorden_age-specific_2012}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Rorden}{R.}%
+     {Christopher}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bonilha}{B.}%
+     {Leonardo}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fridriksson}{F.}%
+     {Julius}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bender}{B.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Karnath}{K.}%
+     {Hans-Otto}{H.-O.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Aging, {CT}, Human, {MRI}, Stroke, Voxel-based lesion symptom mapping}
+  \strng{namehash}{RC+1}
+  \strng{fullhash}{RCBLFJBBKHO1}
+  \field{abstract}{%
+  Spatial normalization reshapes an individual's brain to match the shape and
+  size of a template image. This is a crucial step required for group-level
+  statistical analyses. The most popular standard templates are derived from
+  {MRI} scans of young adults. We introduce specialized templates that allow
+  normalization algorithms to be applied to stroke-aged populations. First, we
+  developed a {CT} template: while this is the dominant modality for many
+  clinical situations, there are no modern {CT} templates and popular
+  algorithms fail to successfully normalize {CT} scans. Importantly, our
+  template was based on healthy individuals with ages similar to what is
+  commonly seen in stroke (mean 65 years old). This template allows studies
+  where only {CT} scans are available. Second, we derived a {MRI} template that
+  approximately matches the shape of our {CT} template as well as processing
+  steps that aid the normalization of scans from older individuals (including
+  lesion masking and the ability to generate high quality cortical renderings
+  despite brain injury). The benefit of this strategy is that the resulting
+  templates can be used in studies where mixed modalities are present. We have
+  integrated these templates and processing algorithms into a simple {SPM}
+  toolbox (http://www.mricro.com/clinical-toolbox/spm8-scripts).%
+  }
+  \verb{doi}
+  \verb 10.1016/j.neuroimage.2012.03.020
+  \endverb
+  \field{issn}{1053-8119}
+  \field{number}{4}
+  \field{pages}{957\bibrangedash 965}
+  \field{shortjournal}{{NeuroImage}}
+  \field{title}{Age-specific {CT} and {MRI} templates for spatial
+  normalization}
+  \verb{url}
+  \verb http://www.sciencedirect.com/science/article/pii/S1053811912002935
+  \endverb
+  \field{volume}{61}
+  \verb{file}
+  \verb Rorden et al_2012_Age-specific CT and MRI templates for spatial normali
+  \verb zation.pdf:/Users/johnmuschelli/Library/Application Support/Zotero/Prof
+  \verb iles/9yinbn16.default/zotero/storage/SN4GPRGK/Rorden et al_2012_Age-spe
+  \verb cific CT and MRI templates for spatial normalization.pdf:application/pd
+  \verb f;ScienceDirect Snapshot:/Users/johnmuschelli/Library/Application Suppo
+  \verb rt/Zotero/Profiles/9yinbn16.default/zotero/storage/WRICF9ZZ/S1053811912
+  \verb 002935.html:text/html;ScienceDirect Snapshot:/Users/johnmuschelli/Libra
+  \verb ry/Application Support/Zotero/Profiles/9yinbn16.default/zotero/storage/
+  \verb ZX24V5ZM/S1053811912002935.html:text/html
+  \endverb
+  \field{journaltitle}{{NeuroImage}}
+  \field{day}{16}
+  \field{month}{07}
+  \field{year}{2012}
+  \field{urlday}{15}
+  \field{urlmonth}{01}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{flirt_reg}{misc}{}
+  \field{howpublished}{\url{http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FLIRT/FAQ}}
+  \field{note}{Accessed: 2016-01-18}
+  \field{title}{Frequently Asked Questions for {FLIRT}}
+\endentry
+
+\entry{atropos}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Avants}{A.}%
+     {Brian~B}{B.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tustison}{T.}%
+     {Nicholas~J}{N.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wu}{W.}%
+     {Jue}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cook}{C.}%
+     {Philip~A}{P.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gee}{G.}%
+     {James~C}{J.~C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{ABB+3}
+  \strng{fullhash}{ABBTNJWJCPAGJC1}
+  \field{number}{4}
+  \field{pages}{381\bibrangedash 400}
+  \field{title}{An open source multivariate framework for n-tissue segmentation
+  with evaluation on public data}
+  \field{volume}{9}
+  \field{journaltitle}{Neuroinformatics}
+  \field{year}{2011}
+\endentry
+
+\entry{menze2015multimodal}{article}{}
+  \true{moreauthor}
+  \name{author}{10}{}{%
+    {{}%
+     {Menze}{M.}%
+     {Bjoern~H}{B.~H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jakab}{J.}%
+     {Andras}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bauer}{B.}%
+     {Stefan}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kalpathy-Cramer}{K.-C.}%
+     {Jayashree}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Farahani}{F.}%
+     {Keyvan}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kirby}{K.}%
+     {Justin}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Burren}{B.}%
+     {Yuliya}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Porz}{P.}%
+     {Nicole}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Slotboom}{S.}%
+     {Johannes}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wiest}{W.}%
+     {Roland}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{MBH+1}
+  \strng{fullhash}{MBHJABSKCJFKKJBYPNSJWR+1}
+  \field{number}{10}
+  \field{pages}{1993\bibrangedash 2024}
+  \field{title}{The multimodal brain tumor image segmentation benchmark
+  (BRATS)}
+  \field{volume}{34}
+  \field{journaltitle}{Medical Imaging, IEEE Transactions on}
+  \field{year}{2015}
+\endentry
+
+\entry{avants_symmetric_2008}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Avants}{A.}%
+     {B.~B.}{B.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Epstein}{E.}%
+     {C.~L.}{C.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Grossman}{G.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gee}{G.}%
+     {J.~C.}{J.~C.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Cross-correlation, Deformable image registration, dementia,
+  Diffeomorphic, Human cortex, Morphometry}
+  \strng{namehash}{ABB+1}
+  \strng{fullhash}{ABBECLGMGJC1}
+  \field{abstract}{%
+  One of the most challenging problems in modern neuroimaging is detailed
+  characterization of neurodegeneration. Quantifying spatial and longitudinal
+  atrophy patterns is an important component of this process. These
+  spatiotemporal signals will aid in discriminating between related diseases,
+  such as frontotemporal dementia ({FTD}) and Alzheimer's disease ({AD}), which
+  manifest themselves in the same at-risk population. Here, we develop a novel
+  symmetric image normalization method ({SyN}) for maximizing the
+  cross-correlation within the space of diffeomorphic maps and provide the
+  Euler-Lagrange equations necessary for this optimization. We then turn to a
+  careful evaluation of our method. Our evaluation uses gold standard, human
+  cortical segmentation to contrast {SyN}'s performance with a related elastic
+  method and with the standard {ITK} implementation of Thirion's Demons
+  algorithm. The new method compares favorably with both approaches, in
+  particular when the distance between the template brain and the target brain
+  is large. We then report the correlation of volumes gained by algorithmic
+  cortical labelings of {FTD} and control subjects with those gained by the
+  manual rater. This comparison shows that, of the three methods tested,
+  {SyN}'s volume measurements are the most strongly correlated with volume
+  measurements gained by expert labeling. This study indicates that {SyN}, with
+  cross-correlation, is a reliable method for normalizing and making anatomical
+  measurements in volumetric {MRI} of patients and at-risk elderly
+  individuals.%
+  }
+  \verb{doi}
+  \verb 10.1016/j.media.2007.06.004
+  \endverb
+  \field{issn}{1361-8415}
+  \field{note}{00548}
+  \field{number}{1}
+  \field{pages}{26\bibrangedash 41}
+  \field{series}{Special Issue on The Third International Workshop on
+  Biomedical Image Registration - {WBIR} 2006}
+  \field{shortjournal}{Medical Image Analysis}
+  \field{shorttitle}{Symmetric diffeomorphic image registration with
+  cross-correlation}
+  \field{title}{Symmetric diffeomorphic image registration with
+  cross-correlation: Evaluating automated labeling of elderly and
+  neurodegenerative brain}
+  \verb{url}
+  \verb http://www.sciencedirect.com/science/article/pii/S1361841507000606
+  \endverb
+  \field{volume}{12}
+  \verb{file}
+  \verb ScienceDirect Full Text PDF:/Users/johnmuschelli/Library/Application Su
+  \verb pport/Zotero/Profiles/9yinbn16.default/zotero/storage/XHBHNS3I/Avants e
+  \verb t al. - 2008 - Symmetric diffeomorphic image registration with cr.pdf:a
+  \verb pplication/pdf;ScienceDirect Snapshot:/Users/johnmuschelli/Library/Appl
+  \verb ication Support/Zotero/Profiles/9yinbn16.default/zotero/storage/WNZHK6Z
+  \verb E/S1361841507000606.html:text/html
+  \endverb
+  \field{journaltitle}{Medical Image Analysis}
+  \field{month}{02}
+  \field{year}{2008}
+  \field{urlday}{28}
+  \field{urlmonth}{10}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{hastie_generalized_1986}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Hastie}{H.}%
+     {Trevor}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tibshirani}{T.}%
+     {Robert}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{HTTR1}
+  \strng{fullhash}{HTTR1}
+  \field{note}{01508}
+  \field{pages}{297\bibrangedash 310}
+  \field{title}{Generalized additive models}
+  \verb{url}
+  \verb http://www.jstor.org/stable/2245459
+  \endverb
+  \verb{file}
+  \verb Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profil
+  \verb es/9yinbn16.default/zotero/storage/RKVZE2XR/2245459.html:text/html
+  \endverb
+  \field{journaltitle}{Statistical science}
+  \field{year}{1986}
+  \field{urlday}{17}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{hastie_generalized_1990}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Hastie}{H.}%
+     {Trevor~J.}{T.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tibshirani}{T.}%
+     {Robert~J.}{R.~J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {{CRC} Press}%
+  }
+  \strng{namehash}{HTJTRJ1}
+  \strng{fullhash}{HTJTRJ1}
+  \field{note}{11378}
+  \field{title}{Generalized additive models}
+  \verb{url}
+  \verb https://books.google.com/books?hl=en&lr=&id=qa29r1Ze1coC&oi=fnd&pg=PR13
+  \verb &dq=Generalized+additive+models&ots=j3-UmlwXmJ&sig=1qxwMbQHaHxAJf-Cgqvy
+  \verb _rGodR0
+  \endverb
+  \field{volume}{43}
+  \verb{file}
+  \verb [PDF] from psu.edu:/Users/johnmuschelli/Library/Application Support/Zot
+  \verb ero/Profiles/9yinbn16.default/zotero/storage/BJZWSIB4/Hastie and Tibshi
+  \verb rani - 1990 - Generalized additive models.pdf:application/pdf;Snapshot:
+  \verb /Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9yinbn
+  \verb 16.default/zotero/storage/F8QNEIFM/books.html:text/html
+  \endverb
+  \field{year}{1990}
+  \field{urlday}{17}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{breiman2001random}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Breiman}{B.}%
+     {Leo}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{BL1}
+  \strng{fullhash}{BL1}
+  \field{number}{1}
+  \field{pages}{5\bibrangedash 32}
+  \field{title}{Random forests}
+  \field{volume}{45}
+  \field{journaltitle}{Machine learning}
+  \field{year}{2001}
+\endentry
+
+\entry{tibshirani_regression_1996}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Tibshirani}{T.}%
+     {Robert}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{TR1}
+  \strng{fullhash}{TR1}
+  \field{abstract}{%
+  We propose a new method for estimation in linear models. The `lasso'
+  minimizes the residual sum of squares subject to the sum of the absolute
+  value of the coefficients being less than a constant. Because of the nature
+  of this constraint it tends to produce some coefficients that are exactly 0
+  and hence gives interpretable models. Our simulation studies suggest that the
+  lasso enjoys some of the favourable properties of both subset selection and
+  ridge regression. It produces interpretable models like subset selection and
+  exhibits the stability of ridge regression. There is also an interesting
+  relationship with recent work in adaptive function estimation by Donoho and
+  Johnstone. The lasso idea is quite general and can be applied in a variety of
+  statistical models: extensions to generalized regression models and
+  tree-based models are briefly described.%
+  }
+  \field{issn}{0035-9246}
+  \field{note}{14480}
+  \field{number}{1}
+  \field{pages}{267\bibrangedash 288}
+  \field{shortjournal}{Journal of the Royal Statistical Society. Series B
+  (Methodological)}
+  \field{title}{Regression Shrinkage and Selection via the Lasso}
+  \verb{url}
+  \verb http://www.jstor.org/stable/2346178
+  \endverb
+  \field{volume}{58}
+  \verb{file}
+  \verb JSTOR Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zo
+  \verb tero/Profiles/9yinbn16.default/zotero/storage/NWDJ38NX/Tibshirani - 199
+  \verb 6 - Regression Shrinkage and Selection via the Lasso.pdf:application/pd
+  \verb f
+  \endverb
+  \field{journaltitle}{Journal of the Royal Statistical Society. Series B
+  (Methodological)}
+  \field{year}{1996}
+  \field{urlday}{18}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{friedman_regularization_2010}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Friedman}{F.}%
+     {Jerome}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hastie}{H.}%
+     {Trevor}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tibshirani}{T.}%
+     {Rob}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{FJHTTR1}
+  \strng{fullhash}{FJHTTR1}
+  \field{abstract}{%
+  We develop fast algorithms for estimation of generalized linear models with
+  convex penalties. The models include linear regression, two-class logistic
+  regression, and multinomial regression problems while the penalties include
+  ℓ1 (the lasso), ℓ2 (ridge regression) and mixtures of the two (the
+  elastic net). The algorithms use cyclical coordinate descent, computed along
+  a regularization path. The methods can handle large problems and can also
+  deal efficiently with sparse features. In comparative timings we find that
+  the new algorithms are considerably faster than competing methods.%
+  }
+  \field{issn}{1548-7660}
+  \field{note}{02362 {PMID}: 20808728}
+  \field{number}{1}
+  \field{pages}{1\bibrangedash 22}
+  \field{shortjournal}{J Stat Softw}
+  \field{title}{Regularization Paths for Generalized Linear Models via
+  Coordinate Descent}
+  \verb{url}
+  \verb http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2929880/
+  \endverb
+  \field{volume}{33}
+  \verb{file}
+  \verb PubMed Central Full Text PDF:/Users/johnmuschelli/Library/Application S
+  \verb upport/Zotero/Profiles/9yinbn16.default/zotero/storage/SEDHFKIB/Friedma
+  \verb n et al. - 2010 - Regularization Paths for Generalized Linear Models.pd
+  \verb f:application/pdf
+  \endverb
+  \field{journaltitle}{Journal of statistical software}
+  \field{year}{2010}
+  \field{urlday}{18}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{wood_fast_2011}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Wood}{W.}%
+     {Simon~N.}{S.~N.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{WSN1}
+  \strng{fullhash}{WSN1}
+  \field{note}{00721}
+  \field{number}{1}
+  \field{pages}{3\bibrangedash 36}
+  \field{title}{Fast stable restricted maximum likelihood and marginal
+  likelihood estimation of semiparametric generalized linear models}
+  \verb{url}
+  \verb http://onlinelibrary.wiley.com/doi/10.1111/j.1467-9868.2010.00749.x/pdf
+  \endverb
+  \field{volume}{73}
+  \verb{file}
+  \verb [PDF] from bath.ac.uk:/Users/johnmuschelli/Library/Application Support/
+  \verb Zotero/Profiles/9yinbn16.default/zotero/storage/B5694U5C/Wood - 2011 -
+  \verb Fast stable restricted maximum likelihood and marg.pdf:application/pdf;
+  \verb Snapshot:/Users/johnmuschelli/Library/Application Support/Zotero/Profil
+  \verb es/9yinbn16.default/zotero/storage/Z6MTBV36/pdf.html:text/html
+  \endverb
+  \field{journaltitle}{Journal of the Royal Statistical Society: Series B
+  (Statistical Methodology)}
+  \field{year}{2011}
+  \field{urlday}{17}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{wood_generalized_2015}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Wood}{W.}%
+     {Simon~N.}{S.~N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goude}{G.}%
+     {Yannig}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shaw}{S.}%
+     {Simon}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Correlated additive model, Electricity load prediction, Generalized
+  additive model estimation}
+  \strng{namehash}{WSNGYSS1}
+  \strng{fullhash}{WSNGYSS1}
+  \field{abstract}{%
+  We consider an application in electricity grid load prediction, where
+  generalized additive models are appropriate, but where the data set's size
+  can make their use practically intractable with existing methods. We
+  therefore develop practical generalized additive model fitting methods for
+  large data sets in the case in which the smooth terms in the model are
+  represented by using penalized regression splines. The methods use iterative
+  update schemes to obtain factors of the model matrix while requiring only
+  subblocks of the model matrix to be computed at any one time. We show that
+  efficient smoothing parameter estimation can be carried out in a
+  well-justified manner. The grid load prediction problem requires updates of
+  the model fit, as new data become available, and some means for dealing with
+  residual auto-correlation in grid load. Methods are provided for these
+  problems and parallel implementation is covered. The methods allow estimation
+  of generalized additive models for large data sets by using modest computer
+  hardware, and the grid load prediction problem illustrates the utility of
+  reduced rank spline smoothing methods for dealing with complex modelling
+  problems.%
+  }
+  \verb{doi}
+  \verb 10.1111/rssc.12068
+  \endverb
+  \field{issn}{1467-9876}
+  \field{note}{00012}
+  \field{number}{1}
+  \field{pages}{139\bibrangedash 155}
+  \field{shortjournal}{J. R. Stat. Soc. C}
+  \field{title}{Generalized additive models for large data sets}
+  \verb{url}
+  \verb http://onlinelibrary.wiley.com/doi/10.1111/rssc.12068/abstract
+  \endverb
+  \field{volume}{64}
+  \field{langid}{english}
+  \verb{file}
+  \verb Full Text PDF:/Users/johnmuschelli/Library/Application Support/Zotero/P
+  \verb rofiles/9yinbn16.default/zotero/storage/2VUKT772/Wood et al. - 2015 - G
+  \verb eneralized additive models for large data sets.pdf:application/pdf;Snap
+  \verb shot:/Users/johnmuschelli/Library/Application Support/Zotero/Profiles/9
+  \verb yinbn16.default/zotero/storage/I8VMBM4K/full.html:text/html
+  \endverb
+  \field{journaltitle}{Journal of the Royal Statistical Society: Series C
+  (Applied Statistics)}
+  \field{day}{01}
+  \field{month}{01}
+  \field{year}{2015}
+  \field{urlday}{18}
+  \field{urlmonth}{11}
+  \field{urlyear}{2015}
+\endentry
+
+\entry{randomForest}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Liaw}{L.}%
+     {Andy}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wiener}{W.}%
+     {Matthew}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LAWM1}
+  \strng{fullhash}{LAWM1}
+  \field{number}{3}
+  \field{pages}{18\bibrangedash 22}
+  \field{title}{Classification and Regression by randomForest}
+  \verb{url}
+  \verb http://CRAN.R-project.org/doc/Rnews/
+  \endverb
+  \field{volume}{2}
+  \field{journaltitle}{R News}
+  \field{year}{2002}
+\endentry
+
+\entry{dice_measures_1945}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Dice}{D.}%
+     {Lee~R.}{L.~R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DLR1}
+  \strng{fullhash}{DLR1}
+  \field{number}{3}
+  \field{pages}{297\bibrangedash 302}
+  \field{title}{Measures of the amount of ecologic association between species}
+  \verb{url}
+  \verb http://www.jstor.org/stable/1932409
+  \endverb
+  \field{volume}{26}
+  \field{journaltitle}{Ecology}
+  \field{year}{1945}
+  \field{urlday}{09}
+  \field{urlmonth}{09}
+  \field{urlyear}{2014}
+\endentry
+
+\entry{perona1994anisotropic}{incollection}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Perona}{P.}%
+     {Pietro}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shiota}{S.}%
+     {Takahiro}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Malik}{M.}%
+     {Jitendra}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{PPSTMJ1}
+  \strng{fullhash}{PPSTMJ1}
+  \field{booktitle}{Geometry-driven diffusion in computer vision}
+  \field{pages}{73\bibrangedash 92}
+  \field{title}{Anisotropic diffusion}
+  \field{year}{1994}
+\endentry
+
+\entry{shiny}{manual}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Chang}{C.}%
+     {Winston}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Cheng}{C.}%
+     {Joe}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Allaire}{A.}%
+     {JJ}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Xie}{X.}%
+     {Yihui}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {McPherson}{M.}%
+     {Jonathan}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CW+1}
+  \strng{fullhash}{CWCJAJXYMJ1}
+  \field{note}{R package version 0.12.2}
+  \field{title}{shiny: Web Application Framework for {R}}
+  \verb{url}
+  \verb http://CRAN.R-project.org/package=shiny
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{muschelli2015quantitative}{article}{}
+  \name{author}{8}{}{%
+    {{}%
+     {Muschelli}{M.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ullman}{U.}%
+     {Natalie~L}{N.~L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sweeney}{S.}%
+     {Elizabeth~M}{E.~M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Eloyan}{E.}%
+     {Ani}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Martin}{M.}%
+     {Neil}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vespa}{V.}%
+     {Paul}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hanley}{H.}%
+     {Daniel~F}{D.~F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Crainiceanu}{C.}%
+     {Ciprian~M}{C.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Am Heart Assoc}%
+  }
+  \strng{namehash}{MJ+1}
+  \strng{fullhash}{MJUNLSEMEAMNVPHDFCCM1}
+  \field{number}{11}
+  \field{pages}{3270\bibrangedash 3273}
+  \field{title}{Quantitative Intracerebral Hemorrhage Localization}
+  \field{volume}{46}
+  \field{journaltitle}{Stroke}
+  \field{year}{2015}
+\endentry
+
+\entry{jordan2009intracerebral}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Jordan}{J.}%
+     {Lori~C}{L.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kleinman}{K.}%
+     {Jonathan~T}{J.~T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hillis}{H.}%
+     {Argye~E}{A.~E.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Am Heart Assoc}%
+  }
+  \strng{namehash}{JLCKJTHAE1}
+  \strng{fullhash}{JLCKJTHAE1}
+  \field{number}{5}
+  \field{pages}{1666\bibrangedash 1671}
+  \field{title}{Intracerebral hemorrhage volume predicts poor neurologic
+  outcome in children}
+  \field{volume}{40}
+  \field{journaltitle}{Stroke}
+  \field{year}{2009}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

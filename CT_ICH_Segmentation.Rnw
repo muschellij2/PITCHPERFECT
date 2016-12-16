@@ -909,7 +909,7 @@ $\Sexpr{corrdata["rf", "cor"]}$ (95\% CI: $\Sexpr{corrdata["rf", "cor.lower"]}, 
 \end{figure}
 
 \subsection{Model Choice}
-In Supplemental Table~\ref{tab:modspec}, we report the estimated coefficients, standard errors, and z-statistics from the logistic regression model.  In Figure~\ref{fig:varimp}, we present the variable importance plot, representing the mean decrease in the Gini coefficient for each variable.  The standardized-to-template and neighborhood mean seem to be the strongest predictors in the random forest.  To reduce complexity and decrease computation time, we will remove some predictors in future implementations of this method.  
+In Supplemental Table~\ref{tab:modspec}, we report the estimated coefficients, standard errors, and z-statistics from the logistic regression model.  In Figure~\ref{fig:varimp}, we present the variable importance plot, representing the mean decrease in the Gini coefficient for each variable.  The standardized-to-template and neighborhood mean seem to be the strongest predictors in the random forest.  To reduce complexity and decrease computation time, we will remove some predictors in future implementations of this method, such as the thresholded image ($I_{\text{thresh}}$) as the this information can be encoded in thresholding the voxel intensity in a decision tree of the forest.
 
 Overall, all models perform well for ICH segmentation.  A small percentage ($\Sexpr{fail_rate}\%$) of failures were observed with DSI $< 0.5$ ($N = \Sexpr{n_under_50}$ out of $\Sexpr{non_nmods}$ scans), but the random forest algorithm had a slightly higher median DSI, slightly lower RMSE, and a higher slightly correlation than the other models.  Therefore, when implementing the algorithm, we will use the random forest model.
 
@@ -1244,7 +1244,7 @@ dev.off()
 \centering
 \includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer_A.png}
 \includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer_B.png}
-\caption{{\bf Dice Similarity Index (DSI) by CT Scanner Manufacturer}.  Here we present the DSI for all patients in the test set for the different scanner manufacturers (panel A). We note that the failed segmentation was a patient scanned with a GE scanner.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by scanner (note the y-axis begins at $0.5 DSI).  All median DSI is relatively high. We see the lowest median DSI for patients scanned in GE scanners, comparable median DSI for Toshiba and Philips, slightly higher DSI for those scanned in a Siemens machine. }
+\caption{{\bf Dice Similarity Index (DSI) by CT Scanner Manufacturer}.  Here we present the DSI for all patients in the test set for the different scanner manufacturers (panel A). We note that the failed segmentation was a patient scanned with a GE scanner.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by scanner (note the y-axis begins at $0.5$ DSI).  All median DSI is relatively high. We see the lowest median DSI for patients scanned in GE scanners, comparable median DSI for Toshiba and Philips, slightly higher DSI for those scanned in a Siemens machine. }
 \label{fig:dsi_man}
 \end{figure}
 
@@ -1321,7 +1321,7 @@ dev.off()
 \centering
 \includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_A.png}
 \includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_B.png}
-\caption{{\bf Dice Similarity Index (DSI) by Hemorrhage Volume Category}.  Here we present the DSI for all patients in the test set for the different hemorrhage voxel categories, described above (panel A).  We will denote the categories as small, medium and large.  We note that the failed segmentation was in the small category.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by category (note the y-axis begins at $0.5 DSI).  All median DSI is relatively high. We see the lowest median DSI for patients with small hemorrhages, followed by large hemorrhages, and the highest median DSI is in the medium hemorrhages.}
+\caption{{\bf Dice Similarity Index (DSI) by Hemorrhage Volume Category}.  Here we present the DSI for all patients in the test set for the different hemorrhage voxel categories, described above (panel A).  We will denote the categories as small, medium and large.  We note that the failed segmentation was in the small category.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by category (note the y-axis begins at $0.5$ DSI).  All median DSI is relatively high. We see the lowest median DSI for patients with small hemorrhages, followed by large hemorrhages, and the highest median DSI is in the medium hemorrhages.}
 \label{fig:dsi_man}
 \end{figure}
 

@@ -69,6 +69,8 @@ rootdir = path.expand("~/CT_Registration")
 # imag$id = NULL
 #
 # setdiff(fdf$patientName, imag$patientName)
+xxx = load("Reseg_111_Filenames_with_Exclusions.Rda")
+groups = fdf[, c("id", "group")]
 
 rda = "Scanning_Parameters.Rda"
 load(rda)
@@ -100,7 +102,8 @@ fdf$model[fdf$id == "179-402"] = ""
 fdf$man = man
 fdf$man[fdf$man == 'TOSHIBA'] = "Toshiba"
 fdf$man[fdf$man == 'SIEMENS'] = "Siemens"
-man_fdf = fdf[, c("id", "pid", "man", "model", "group")]
+man_fdf = fdf[, c("id", "pid", "man", "model")]
+man_fdf = left_join(man_fdf, groups, by = "id")
 # man = sapply(man, unique)
 
 stopifnot(nrow(fdf) == 112)
@@ -299,7 +302,16 @@ man_dice = left_join(
   by = "id")
 train_man = filter(man_dice, group %in% "Train") 
 man_dice = filter(man_dice, !group %in% "Train")
+man_dice$ich_cat = cut(man_dice$truevol, 
+                       breaks = c(0, 30, 60, max(man_dice$truevol)), 
+                       include.lowest = TRUE)
+man_dice$pre_ich_cat = cut(man_dice$Pre_Rand_ICHvol, 
+                       breaks = c(0, 30, 60, max(man_dice$truevol)), 
+                       include.lowest = TRUE)
+stopifnot(all(!is.na(man_dice$ich_cat)))
+stopifnot(all(!is.na(man_dice$pre_ich_cat)))
 
+large_ivh = man_dice %>% arrange(-Pre_Rand_IVHvol) %>% head(2)
 
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)
@@ -395,6 +407,75 @@ corrdata = corrs %>% select(cor, cor.lower, cor.upper)
 corrdata = round(corrdata, 2)
 save(corrdata, file = "Correlation_data_Abstract.rda")
 
+## ----dice_by_man---------------------------------------------------------
+# testing that no training data got in here somehow
+stopifnot(!any(man_dice$group %in% "Train"))
+# Getting the median/mean/sd for each manufacturer
+vals = man_dice %>% group_by(man) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice)) %>% 
+  as.data.frame
+rownames(vals) = vals$man
+vals$median = round(vals$median, 2)
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ factor(man), data = man_dice)
+eg = t(combn(unique(man_dice$man), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ factor(man), 
+                     data = man_dice %>% filter(man %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+sig = eg[ eg$adj < 0.05, , drop = FALSE]
+
+## ----cat_tab-------------------------------------------------------------
+tab = table(man_dice$ich_cat)
+ptab = round(prop.table(tab) * 100, 1)
+# Getting the median/mean/sd for each manufacturer
+ivals = man_dice %>% group_by(ich_cat) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice)) %>% 
+  as.data.frame
+rownames(ivals) = ivals$ich_cat
+ivals$median = round(ivals$median, 2)
+
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ ich_cat, data = man_dice)
+eg = t(combn(unique(as.character(man_dice$ich_cat)), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ ich_cat, 
+                     data = man_dice %>% filter(ich_cat %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+sig = eg[ eg$adj < 0.06, , drop = FALSE]
+
 ## ----loncaric------------------------------------------------------------
 library(reshape2)
 df = read.table("loncaric_data.txt")
@@ -438,7 +519,7 @@ rm(list = x)
 load("logistic_modlist.rda")
 # mod = logistic_modlist$mod
 mod = logistic_summary
-npred = length(coef(mod)) - 1
+npred = NROW(coef(mod)) - 1
 # npred for intercept
 stopifnot(npred == 20)
 rename_vec = c("(Intercept)" = "Intercept",
@@ -487,7 +568,7 @@ coefcap = paste0( "Beta coefficients (log odds ratio) for the logistic regressio
 "Combining these for each voxel value and using the inverse logit transformation yields the probability that ",
 "voxel is ICH. ",
 "After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was ",
-round(cutoff, 4), ".")
+round(cutoff, 4), ".  We note the standardized-to-template intensity and the neighborhood mean appear to be the strongest predictors.")
 xtab = xtable(coefs, digits = 3, caption = coefcap, label = "tab:modspec")
 
 ## ----results = "asis"----------------------------------------------------
@@ -496,37 +577,6 @@ print.xtable(xtab, include.rownames = FALSE, sanitize.text.function = identity)
 ## ----cutoff_rf-----------------------------------------------------------
 library(ichseg)
 cutoff = smoothed_rf_cutoffs$mod.dice.coef[1,"cutoff"]
-
-## ----dice_by_man---------------------------------------------------------
-# testing that no training data got in here somehow
-stopifnot(!any(man_dice$group %in% "Train"))
-# Getting the median/mean/sd for each manufacturer
-vals = man_dice %>% group_by(man) %>% 
-  summarise(mean = mean(dice),
-            sd = sd(dice),
-            median = median(dice))
-
-# testing medians across manufacturers
-kt = kruskal.test(dice ~ factor(man), data = man_dice)
-eg = t(combn(unique(man_dice$man), 2))
-eg = data.frame(eg, stringsAsFactors = FALSE)
-colnames(eg) = c("Var1", "Var2")
-eg$p.value = eg$statistic = NA
-
-# Getting the combination of tests for wilcox
-if (kt$p.value < 0.05) {
-  ieg = 1 
-  for (ieg in seq(nrow(eg))) {
-    man1 = eg$Var1[ieg]
-    man2 = eg$Var2[ieg]
-    wt = wilcox.test(dice ~ factor(man), 
-                     data = man_dice %>% filter(man %in% c(man1, man2)))
-    eg$p.value[ieg] = wt$p.value
-    eg$statistic[ieg] = wt$statistic
-  }
-}
-# adjusting p-values
-eg$adj = p.adjust(eg$p.value, method = "bonferroni")
 
 ## ----plotting_dice_over_manu---------------------------------------------
 library(ggplot2)
@@ -538,9 +588,133 @@ g = g +
   xlab("Manufacturer") +
   ylab("Dice Similarity Index") +
   theme(text = element_text(size = 24))
-g = g + ylim(c(0.5, 1)) 
+
+g = g + scale_y_continuous(
+  breaks = c(0, 0.25, 0.5, 0.75, 1),
+  limits = c(0, 1))
 pngname = "DSI_Box_By_Manufacturer.png"
 png(pngname, height = 5, width = 7, res = 600, units = "in")
   print(g)
 dev.off()
+pngname = "DSI_Box_By_Manufacturer_A.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g + geom_text(aes(x = 4, y = 0.125, label = "A"), size = 30)})
+dev.off()
+
+##################################
+# Throwing out bad point
+##################################
+g = g + scale_y_continuous(
+  breaks = c(0.5, 0.75, 1),
+  limits = c(0.5, 1))
+pngname = "DSI_Box_By_Manufacturer_Thresh.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g })
+dev.off()
+
+g = g + geom_text(aes(x = 4, y = 0.5625, label = "B"), size = 30)
+pngname = "DSI_Box_By_Manufacturer_B.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g})
+dev.off()
+
+## ----dice_vs_hu----------------------------------------------------------
+g = man_dice %>% 
+  ggplot(aes(y = dice)) + 
+  geom_point() + geom_smooth(se = FALSE)
+g = g + 
+  ylab("Dice Similarity Index") +
+  theme(text = element_text(size = 24))
+g = g + scale_y_continuous(
+  breaks = c(0, 0.25, 0.5, 0.75, 1),
+  limits = c(0, 1))
+g_mean = g + aes(x = mean) + xlab("Hemorrhage Mean Hounsfield Unit")
+g_med = g + aes(x = median) + xlab("Hemorrhage Median Hounsfield Unit")
+
+pngname = "DSI_By_Mean_HU.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print(g_mean)
+dev.off()
+
+pngname = "DSI_By_Mean_HU_A.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g_mean + geom_text(aes(x = 67.5, y = 0.125, label = "A"), size = 30)})
+dev.off()
+
+g_mean = g_mean + scale_y_continuous(
+  breaks = c(0.5, 0.75, 1),
+  limits = c(0.5, 1))
+g_mean = g_mean + geom_text(aes(x = 67.5, y = 0.5625, label = "B"), size = 30)
+pngname = "DSI_By_Mean_HU_B.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g_mean})
+dev.off()
+
+# pngname = "DSI_By_Median_HU.png"
+# png(pngname, height = 5, width = 7, res = 600, units = "in")
+#   print(g_med)
+# dev.off()
+
+## ----dice_vs_ich_cat-----------------------------------------------------
+stopifnot(all(!is.na(man_dice$ich_cat)))
+# levels(man_dice$ich_cat)
+g = man_dice %>% 
+  ggplot(aes(x = ich_cat, y = dice)) + 
+  geom_boxplot(outlier.size = NA, fill = NA) 
+g = g + geom_point(position = position_jitter(width = 0.2))
+g = g + 
+  xlab("Hemorrhage Size Category") +
+  ylab("Dice Similarity Index") +
+  theme(text = element_text(size = 24))
+g = g + scale_y_continuous(
+  breaks = c(0, 0.25, 0.5, 0.75, 1),
+  limits = c(NA, 1))
+pngname = "DSI_Box_By_ICH_Cat_A.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g + geom_text(aes(x = 3, y = 0.125, label = "A"), size = 30)})
+dev.off()
+
+g = g + scale_y_continuous(
+  breaks = c(0.5, 0.75, 1),
+  limits = c(0.5, 1))
+g = g + geom_text(aes(x = 3, y = 0.5625, label = "B"), size = 30)
+pngname = "DSI_Box_By_ICH_Cat_B.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print(g)
+dev.off()
+
+## ----pre_cat_tab---------------------------------------------------------
+tab = table(man_dice$pre_ich_cat)
+ptab = round(prop.table(tab) * 100, 1)
+# Getting the median/mean/sd for each manufacturer
+ivals = man_dice %>% group_by(pre_ich_cat) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice)) %>% 
+  as.data.frame
+rownames(ivals) = ivals$pre_ich_cat
+ivals$median = round(ivals$median, 2)
+
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ pre_ich_cat, data = man_dice)
+eg = t(combn(unique(as.character(man_dice$pre_ich_cat)), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ pre_ich_cat, 
+                     data = man_dice %>% filter(pre_ich_cat %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+sig = eg[ eg$adj < 0.06, , drop = FALSE]
 

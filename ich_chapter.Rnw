@@ -44,6 +44,8 @@ rootdir = path.expand("~/CT_Registration")
 # imag$id = NULL
 #
 # setdiff(fdf$patientName, imag$patientName)
+xxx = load("Reseg_111_Filenames_with_Exclusions.Rda")
+groups = fdf[, c("id", "group")]
 
 rda = "Scanning_Parameters.Rda"
 load(rda)
@@ -75,7 +77,8 @@ fdf$model[fdf$id == "179-402"] = ""
 fdf$man = man
 fdf$man[fdf$man == 'TOSHIBA'] = "Toshiba"
 fdf$man[fdf$man == 'SIEMENS'] = "Siemens"
-man_fdf = fdf[, c("id", "pid", "man", "model", "group")]
+man_fdf = fdf[, c("id", "pid", "man", "model")]
+man_fdf = left_join(man_fdf, groups, by = "id")
 # man = sapply(man, unique)
 
 stopifnot(nrow(fdf) == 112)
@@ -303,7 +306,7 @@ uthresh = 80
 We derived a set of imaging predictors from each CT scan.  We will describe each predictor together with the rationale for their use.  These features make up the potential set of predictors (features) for image segmentation.  Below we provide the definition of these predictors, while Figure~\ref{fig:pred} displays them for one axial slice of one subject.
 %Note that the corresponding images have roughly a distribution of between $0$ and $100$ HU as they have been skull stripped.
 
-\subsubsection{CT voxel intensity information} The first predictor is the raw voxel intensity value in HU denoted by $x(v)$. This is the main predictor used in visual inspection, with high HU values being indicative of hemorrhage. Based on the voxel intensity we have also created an indicator for the HU intensity value to be between $\Sexpr{lthresh}$ and $\Sexpr{uthresh}$ (inclusive), to mimic the criterion used for screening in manual segmentation. More precisely, we have introduced the predictor $$
+\subsubsection{CT voxel intensity information} The first predictor is the raw voxel intensity value in HU denoted by $x(v)$. This is the main predictor used in visual inspection, with high HU values being indicative of hemorrhage. Based on the voxel intensity we have also created an indicator for the HU intensity value to be between $\Sexpr{lthresh}$ and $\Sexpr{uthresh}$ (inclusive), to mimic the criterion used for screening in manual segmentation. Also, these thresholds have been used in previous ICH semgentation work \citep{prakash_segmentation_2012}. More precisely, we have introduced the predictor $$
 I_{\text{thresh}}(v) = \begin{cases}
 1 & \text{if } 40 \leq x(v) \leq 80 \\
 0 & \text{otherwise}
@@ -563,7 +566,16 @@ man_dice = left_join(
   by = "id")
 train_man = filter(man_dice, group %in% "Train") 
 man_dice = filter(man_dice, !group %in% "Train")
+man_dice$ich_cat = cut(man_dice$truevol, 
+                       breaks = c(0, 30, 60, max(man_dice$truevol)), 
+                       include.lowest = TRUE)
+man_dice$pre_ich_cat = cut(man_dice$Pre_Rand_ICHvol, 
+                       breaks = c(0, 30, 60, max(man_dice$truevol)), 
+                       include.lowest = TRUE)
+stopifnot(all(!is.na(man_dice$ich_cat)))
+stopifnot(all(!is.na(man_dice$pre_ich_cat)))
 
+large_ivh = man_dice %>% arrange(-Pre_Rand_IVHvol) %>% head(2)
 
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)
@@ -621,10 +633,11 @@ wt_pvals = pvaller(wt_pvals, 0.001)
 save(wt_pvals, file = "Wilcoxon_Rank_pvalues_Abstract.rda")
 @
 For each of the remaining $\Sexpr{non_nmods}$ scans in the test data, the voxel selection described in Section~\ref{sec:voxsel} was applied. Using the prediction process described in Section~\ref{sec:mods} an ICH probability map was estimated using each of the four models.  Using the probability thresholds calculated on the training data, as described in Section~\ref{sec:cutoffs}, we obtained a binary ICH map for each of the four methods. For evaluation, all results are provided in
-the native space of the patient, not in the template space, as the manual segmentation was
-done in the native space.
+the native space of the patient, not in the template space, as the manual segmentation was done in the native space.
 
-Model performance was evaluated on the validation data using the DSI and the ICH volume.  The ICH volume was estimated counting the number of ICH voxels multiplied by product of the voxel sizes, divided by 1000 (1000 mm$^3$ per 1 mL), provided in mL.  The large number of true negatives (non-ICH voxels) artificially inflates specificity and overall accuracy measures, which are not reported.  The global equality median DSI across models was tested using the Kruskal-Wallis test.  If a difference was present, we tested the null hypothesis of no difference in the medians for each combination of models ($\Sexpr{nrow(eg)}$ combinations) using a Wilcoxon signed rank test, and corrected the p-value using a Bonferroni correction.
+Model performance was evaluated on the validation data using the DSI and the ICH volume.  The ICH volume was estimated counting the number of ICH voxels multiplied by product of the voxel sizes, divided by 1000 (1000 mm$^3$ per 1 mL), provided in mL.  The large number of true negatives (non-ICH voxels) artificially inflates specificity and overall accuracy measures, which are not reported.  The global equality median DSI across models was tested using the Kruskal-Wallis test.  If a difference was present, we tested the null hypothesis of no difference in the medians for each combination of models ($\Sexpr{nrow(eg)}$ combinations) using a Wilcoxon signed-rank test, and corrected the p-value using a Bonferroni correction.  
+
+After choosing a single model, we explore the DSI over certain factors.  First we will investigate the DSI by different scanner manufacturers and test median equality using the Kruskal-Wallis test, performing a similar pairwise Wilcoxon signed-rank test procedure with multiplicity correction.  We similarly explore differences of DSI based on 3 categories of hemorrhage size (based on manual segmentation): using $0-30$mL, $> 30$ to $60$mL, and $>60$mL cutoffs, similar to \citet{hemphill_ich_2001}. 
 
 <<vol_wt_pvals>>=
 native$abs_diff = abs(native$diff)
@@ -695,6 +708,7 @@ save(corrdata, file = "Correlation_data_Abstract.rda")
 \label{fig:dice_img}
 \end{figure}
 
+
 \subsection{ICH Volume Estimation}
 In Figure~\ref{fig:vol}, we show the estimated ICH volume versus that from the manual segmentation.  The pink line represents the $X = Y$ line, where the estimated and true volume are identical.  The blue line represents the linear fit; the estimated linear regression equation and correlation are printed on the plot.  The farther away the slope of the equation is from $1$ the larger the bias with values larger than $1$ representing over-estimated volumes.
 %The farther the intercept is from $0$ represents and additive bias in the estimated volume, where values greater than $0$ again represent larger estimated volumes.
@@ -714,8 +728,100 @@ $\Sexpr{corrdata["rf", "cor"]}$ (95\% CI: $\Sexpr{corrdata["rf", "cor.lower"]}, 
 \end{figure}
 
 \subsection{Model Choice}
+In Supplemental Table~\ref{tab:modspec}, we report the estimated coefficients, standard errors, and z-statistics from the logistic regression model.  In Figure~\ref{fig:varimp}, we present the variable importance plot, representing the mean decrease in the Gini coefficient for each variable.  The standardized-to-template and neighborhood mean seem to be the strongest predictors in the random forest.  To reduce complexity and decrease computation time, we will remove some predictors in future implementations of this method, such as the thresholded image ($I_{\text{thresh}}$) as the this information can be encoded in thresholding the voxel intensity in a decision tree of the forest.
+
 Overall, all models perform well for ICH segmentation.  A small percentage ($\Sexpr{fail_rate}\%$) of failures were observed with DSI $< 0.5$ ($N = \Sexpr{n_under_50}$ out of $\Sexpr{non_nmods}$ scans), but the random forest algorithm had a slightly higher median DSI, slightly lower RMSE, and a higher slightly correlation than the other models.  Therefore, when implementing the algorithm, we will use the random forest model.
 
+<<dice_by_man>>=
+# testing that no training data got in here somehow
+stopifnot(!any(man_dice$group %in% "Train"))
+# Getting the median/mean/sd for each manufacturer
+vals = man_dice %>% group_by(man) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice)) %>% 
+  as.data.frame
+rownames(vals) = vals$man
+vals$median = round(vals$median, 2)
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ factor(man), data = man_dice)
+eg = t(combn(unique(man_dice$man), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ factor(man), 
+                     data = man_dice %>% filter(man %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+sig = eg[ eg$adj < 0.05, , drop = FALSE]
+@
+
+\subsection{DSI by Scanner Manufacturer, Average HU, and Hemorrhage Size}
+In the following section, we will use the DSI from the random forest model.  In the $\Sexpr{non_nmods}$ test scans, the median DSI was $\Sexpr{vals["GE", "median"]}$ for patients scanned in a GE scanner, $\Sexpr{vals["Philips", "median"]}$ for Philips, $\Sexpr{vals["Toshiba", "median"]}$ for Toshiba, and $\Sexpr{vals["Siemens", "median"]}$for Siemens (Supplemental Figure~\ref{fig:dsi_man}).  The patient with a failed segmentation was scanned using a GE scanner.  The Kruskal-Wallis test indicated a difference in medians ($\chi^2(\Sexpr{kt$parameter}) = \Sexpr{round(kt$statistic, 1)}
+$, $p = \Sexpr{round(kt$p.value, 3)}$).  After Bonferroni correction, the difference of DSI of patients scanned with Siemens versus GE scanners was the only statistically significant comparison ($W = \Sexpr{round(sig$statistic, 1)}
+$, $p = \Sexpr{round(sig$adj, 3)}$, corrected).
+
+In Figure~\ref{fig:dsi_hu}, we see the effect of average HU over the hemorrage versus DSI.  We note the failed scan had a much lower average HU in the hemorrhage compared to the rest of the images (panel A).  Overall, however, above 50 HU, there does not seem to be a strong effect on the average HU and DSI (panel B).
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_By_Mean_HU_A.png}
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_By_Mean_HU_B.png}
+\caption{{\bf Dice Similarity Index (DSI) by Average Voxel HU in the Hemorrhage}. These values represent the mean Hounsfield Unit (HU) over all voxels in the manual hemorrhage mask for each patient in the test data set versus the DSI for that patient compared to automatic segmentation.  The blue line represents a locally-weighted regression smoother (loess).  We see that the case with the lowest DSI had a much lower average HU in the hemorrhage.  Overall, however, above 50 HU, there does not seem to be a strong effect on the average HU and DSI.}
+\label{fig:dsi_hu}
+\end{figure}
+
+<<cat_tab>>=
+tab = table(man_dice$ich_cat)
+ptab = round(prop.table(tab) * 100, 1)
+# Getting the median/mean/sd for each manufacturer
+ivals = man_dice %>% group_by(ich_cat) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice)) %>% 
+  as.data.frame
+rownames(ivals) = ivals$ich_cat
+ivals$median = round(ivals$median, 2)
+
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ ich_cat, data = man_dice)
+eg = t(combn(unique(as.character(man_dice$ich_cat)), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ ich_cat, 
+                     data = man_dice %>% filter(ich_cat %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+sig = eg[ eg$adj < 0.06, , drop = FALSE]
+@
+
+After categorization of the hemorrhage volume, \Sexpr{tab["[0,30]"]} (\Sexpr{ptab["[0,30]"]}\%) patients had a volume of $0-30$mL (small), \Sexpr{tab["(30,60]"]} (\Sexpr{ptab["(30,60]"]}\%) had volumes $> 30$ to $60$mL (medium), and \Sexpr{tab["(60,141]"]} (\Sexpr{ptab["(60,141]"]}\%) had $>60$mL (large).  The Kruskal-Wallis test indicated a difference in medians ($\chi^2(\Sexpr{kt$parameter}) = \Sexpr{round(kt$statistic, 1)}
+$, $p = \Sexpr{round(kt$p.value, 2)}$, see Supplemental Figure~\ref{fig:dsi_ich_cat}).  After Bonferroni correction, there was no statistically significant difference in median DSI, but the strongest comparison was for the small versus medium hemorrhage sizes ($W = \Sexpr{round(sig$statistic, 1)}
+$, $p = \Sexpr{round(sig$adj, 4)}$, corrected).
 
 
 \section{Discussion}
@@ -730,7 +836,7 @@ The approach failed on a very small subset of the validation set ($N = \Sexpr{n_
 
 As the obstructive intraventricular hemorrhage (IVH) requiring external ventricular drainage was in the exclusion criteria in MISTIE II \citep{mould_minimally_2013}, no cases with large intraventricular hemorrhage were included.  We believe the model would perform reasonably well for IVH, but not necessarily subarachnoid hemorrhages (SAH), two other forms of hemorrhagic stroke.  
 
-Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, larger IVHs may cause larger deformations than seen in cases with ICH only, which may negatively effect any registration process. The process of mask erosion may considerably remove voxels from the SAH, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we may also need to re-fit the model using additional cases of IVH and/or SAH.
+Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, larger IVHs may cause larger deformations than seen in cases with ICH only, which may negatively affect any registration process. The process of mask erosion may considerably remove voxels from the SAH, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we may also need to re-fit the model using additional cases of IVH and/or SAH.
 
 <<loncaric>>=
 library(reshape2)
@@ -819,7 +925,7 @@ rm(list = x)
 load("logistic_modlist.rda")
 # mod = logistic_modlist$mod
 mod = logistic_summary
-npred = length(coef(mod)) - 1
+npred = NROW(coef(mod)) - 1
 # npred for intercept
 stopifnot(npred == 20)
 rename_vec = c("(Intercept)" = "Intercept",
@@ -868,7 +974,7 @@ coefcap = paste0( "Beta coefficients (log odds ratio) for the logistic regressio
 "Combining these for each voxel value and using the inverse logit transformation yields the probability that ",
 "voxel is ICH. ",
 "After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was ",
-round(cutoff, 4), ".")
+round(cutoff, 4), ".  We note the standardized-to-template intensity and the neighborhood mean appear to be the strongest predictors.")
 xtab = xtable(coefs, digits = 3, caption = coefcap, label = "tab:modspec")
 @
 Let $Y_{i}(v)$ represent the binary hemorrhage mask indicator for voxel $v$, from patient $i$, and $x_{i,v}(k)$ represent the predictor image for image $j$, $j = 1, \dots 21$.
@@ -902,37 +1008,6 @@ cutoff = smoothed_rf_cutoffs$mod.dice.coef[1,"cutoff"]
 \label{fig:varimp}
 \end{figure}
 
-<<dice_by_man>>=
-# testing that no training data got in here somehow
-stopifnot(!any(man_dice$group %in% "Train"))
-# Getting the median/mean/sd for each manufacturer
-vals = man_dice %>% group_by(man) %>% 
-  summarise(mean = mean(dice),
-            sd = sd(dice),
-            median = median(dice))
-
-# testing medians across manufacturers
-kt = kruskal.test(dice ~ factor(man), data = man_dice)
-eg = t(combn(unique(man_dice$man), 2))
-eg = data.frame(eg, stringsAsFactors = FALSE)
-colnames(eg) = c("Var1", "Var2")
-eg$p.value = eg$statistic = NA
-
-# Getting the combination of tests for wilcox
-if (kt$p.value < 0.05) {
-  ieg = 1 
-  for (ieg in seq(nrow(eg))) {
-    man1 = eg$Var1[ieg]
-    man2 = eg$Var2[ieg]
-    wt = wilcox.test(dice ~ factor(man), 
-                     data = man_dice %>% filter(man %in% c(man1, man2)))
-    eg$p.value[ieg] = wt$p.value
-    eg$statistic[ieg] = wt$statistic
-  }
-}
-# adjusting p-values
-eg$adj = p.adjust(eg$p.value, method = "bonferroni")
-@
 
 <<plotting_dice_over_manu>>=
 library(ggplot2)
@@ -944,8 +1019,118 @@ g = g +
   xlab("Manufacturer") +
   ylab("Dice Similarity Index") +
   theme(text = element_text(size = 24))
-g = g + ylim(c(0.5, 1)) 
+
+g = g + scale_y_continuous(
+  breaks = c(0, 0.25, 0.5, 0.75, 1),
+  limits = c(0, 1))
 pngname = "DSI_Box_By_Manufacturer.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print(g)
+dev.off()
+pngname = "DSI_Box_By_Manufacturer_A.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g + geom_text(aes(x = 4, y = 0.125, label = "A"), size = 30)})
+dev.off()
+
+##################################
+# Throwing out bad point
+##################################
+g = g + scale_y_continuous(
+  breaks = c(0.5, 0.75, 1),
+  limits = c(0.5, 1))
+pngname = "DSI_Box_By_Manufacturer_Thresh.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g })
+dev.off()
+
+g = g + geom_text(aes(x = 4, y = 0.5625, label = "B"), size = 30)
+pngname = "DSI_Box_By_Manufacturer_B.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g})
+dev.off()
+@
+
+
+
+% \begin{figure}
+% \centering
+% \includegraphics[width=0.75\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer.png}
+% \caption{{\bf Dice Similarity Index (DSI) by CT Scanner Manufacturer}.  Here we present the DSI for all patients in the test set for the different scanner manufacturers.  All median DSI is relatively high. We see the lowest median DSI for patients scanned in GE scanners, comparable median DSI for Toshiba and Philips, slightly higher DSI for those scanned in a Siemens machine. }
+% \label{fig:dsi_man}
+% \end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer_A.png}
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer_B.png}
+\caption{{\bf Dice Similarity Index (DSI) by CT Scanner Manufacturer}.  Here we present the DSI for all patients in the test set for the different scanner manufacturers (panel A). We note that the failed segmentation was a patient scanned with a GE scanner.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by scanner (note the y-axis begins at $0.5$ DSI).  All median DSI is relatively high. We see the lowest median DSI for patients scanned in GE scanners, comparable median DSI for Toshiba and Philips, slightly higher DSI for those scanned in a Siemens machine. }
+\label{fig:dsi_man}
+\end{figure}
+
+
+<<dice_vs_hu>>=
+g = man_dice %>% 
+  ggplot(aes(y = dice)) + 
+  geom_point() + geom_smooth(se = FALSE)
+g = g + 
+  ylab("Dice Similarity Index") +
+  theme(text = element_text(size = 24))
+g = g + scale_y_continuous(
+  breaks = c(0, 0.25, 0.5, 0.75, 1),
+  limits = c(0, 1))
+g_mean = g + aes(x = mean) + xlab("Hemorrhage Mean Hounsfield Unit")
+g_med = g + aes(x = median) + xlab("Hemorrhage Median Hounsfield Unit")
+
+pngname = "DSI_By_Mean_HU.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print(g_mean)
+dev.off()
+
+pngname = "DSI_By_Mean_HU_A.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g_mean + geom_text(aes(x = 67.5, y = 0.125, label = "A"), size = 30)})
+dev.off()
+
+g_mean = g_mean + scale_y_continuous(
+  breaks = c(0.5, 0.75, 1),
+  limits = c(0.5, 1))
+g_mean = g_mean + geom_text(aes(x = 67.5, y = 0.5625, label = "B"), size = 30)
+pngname = "DSI_By_Mean_HU_B.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g_mean})
+dev.off()
+
+# pngname = "DSI_By_Median_HU.png"
+# png(pngname, height = 5, width = 7, res = 600, units = "in")
+#   print(g_med)
+# dev.off()
+@
+
+
+<<dice_vs_ich_cat>>=
+stopifnot(all(!is.na(man_dice$ich_cat)))
+# levels(man_dice$ich_cat)
+g = man_dice %>% 
+  ggplot(aes(x = ich_cat, y = dice)) + 
+  geom_boxplot(outlier.size = NA, fill = NA) 
+g = g + geom_point(position = position_jitter(width = 0.2))
+g = g + 
+  xlab("Hemorrhage Size Category") +
+  ylab("Dice Similarity Index") +
+  theme(text = element_text(size = 24))
+g = g + scale_y_continuous(
+  breaks = c(0, 0.25, 0.5, 0.75, 1),
+  limits = c(NA, 1))
+pngname = "DSI_Box_By_ICH_Cat_A.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print({g + geom_text(aes(x = 3, y = 0.125, label = "A"), size = 30)})
+dev.off()
+
+g = g + scale_y_continuous(
+  breaks = c(0.5, 0.75, 1),
+  limits = c(0.5, 1))
+g = g + geom_text(aes(x = 3, y = 0.5625, label = "B"), size = 30)
+pngname = "DSI_Box_By_ICH_Cat_B.png"
 png(pngname, height = 5, width = 7, res = 600, units = "in")
   print(g)
 dev.off()
@@ -953,9 +1138,58 @@ dev.off()
 
 \begin{figure}
 \centering
-\includegraphics[width=0.75\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer.png}
-\caption{{\bf Dice Similarity Index (DSI) by CT Scanner Manufacturer}. These numbers represent the mean decrease in the Gini coefficient in the random forest classifier for all coefficients.  After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding with this classifier was \Sexpr{round(cutoff, 3)}.  }
-\label{fig:varimp}
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_A.png}
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_B.png}
+\caption{{\bf Dice Similarity Index (DSI) by Hemorrhage Volume Category}.  Here we present the DSI for all patients in the test set for the different hemorrhage voxel categories, described above (panel A).  We will denote the categories as small, medium and large.  We note that the failed segmentation was in the small category.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by category (note the y-axis begins at $0.5$ DSI).  All median DSI is relatively high. We see the lowest median DSI for patients with small hemorrhages, followed by large hemorrhages, and the highest median DSI is in the medium hemorrhages.}
+\label{fig:dsi_man}
 \end{figure}
+
+
+
+ 
+% \begin{figure}
+% \centering
+% \includegraphics[width=0.75\linewidth,keepaspectratio]{DSI_By_Mean_HU.png}
+% \caption{{\bf Dice Similarity Index (DSI) by Average Voxel HU in the Hemorrhage}. These values represent the mean Hounsfield Unit (HU) over all voxels in the manual hemorrhage mask for each patient in the test data set versus the DSI for that patient compared to automatic segmentation.  We see that the case with the lowest DSI had a much lower average HU in the hemorrhage.  Overall, however, after 50 HU, there does not seem to be a strong effect on the average HU and DSI.  }
+% \label{fig:dsi_hu}
+% \end{figure}
+
+
+<<pre_cat_tab>>=
+tab = table(man_dice$pre_ich_cat)
+ptab = round(prop.table(tab) * 100, 1)
+# Getting the median/mean/sd for each manufacturer
+ivals = man_dice %>% group_by(pre_ich_cat) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice)) %>% 
+  as.data.frame
+rownames(ivals) = ivals$pre_ich_cat
+ivals$median = round(ivals$median, 2)
+
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ pre_ich_cat, data = man_dice)
+eg = t(combn(unique(as.character(man_dice$pre_ich_cat)), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ pre_ich_cat, 
+                     data = man_dice %>% filter(pre_ich_cat %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+sig = eg[ eg$adj < 0.06, , drop = FALSE]
+@
+
 
 
