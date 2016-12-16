@@ -896,6 +896,11 @@ The project described was supported by the NIH grant RO1EB012547 from the Nation
 \clearpage
 \section{Supplemental Material}
 
+\setcounter{figure}{0}
+\makeatletter 
+\renewcommand{\thefigure}{S\@arabic\c@figure}
+\makeatother
+
 \subsection{Examples of Dice Similarity Index in Test Scans}
 
 <<results = 'asis'>>=
