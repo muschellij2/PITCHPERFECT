@@ -48,6 +48,12 @@ rootdir = path.expand("~/CT_Registration")
 rda = "Scanning_Parameters.Rda"
 load(rda)
 
+num_pid_to_id = function(x){
+  site_id = floor(x/1000)
+  id = x %% 1000
+  paste0(site_id, "-", id)
+}
+
 fdf$site_number = sapply(strsplit(fdf$id, "-"), `[[`, 1)
 fdf$pid = as.numeric(gsub("-", "", fdf$id))
 
@@ -69,7 +75,7 @@ fdf$model[fdf$id == "179-402"] = ""
 fdf$man = man
 fdf$man[fdf$man == 'TOSHIBA'] = "Toshiba"
 fdf$man[fdf$man == 'SIEMENS'] = "Siemens"
-man_fdf = fdf[, c("id", "pid", "man", "model")]
+man_fdf = fdf[, c("id", "pid", "man", "model", "group")]
 # man = sapply(man, unique)
 
 stopifnot(nrow(fdf) == 112)
@@ -87,6 +93,11 @@ man.tab = paste0(manu, " ($N=", man.tab, "$)")
 man.tab[length(man.tab)] = paste0('and ', man.tab[length(man.tab)] )
 man.tab[seq(length(man.tab)-1)] = paste0(man.tab[seq(length(man.tab)-1)], ", " )
 man.tab = paste(man.tab, collapse= " ")
+
+train.man.tab = table(man_fdf$man[ man_fdf$group == "Train"])
+man_fdf$group = NULL
+
+
 
 #####################
 # Running slice thickness
@@ -110,8 +121,14 @@ check.na(tilt)
 n.gant = sum(tilt != 0)
 #"102-323" added over the 111 pts
 
-ivh = read.csv("All_Patients.csv", stringsAsFactors = FALSE)
+all_and_ices = load("All_IncludingICES_Patients.Rda")
+stopifnot(all(all_and_ices == "all.alldat"))
+ivh = all.alldat
+rm(list= "all.alldat")
+# ivh = read.csv("All_Patients.csv", stringsAsFactors = FALSE)
 ivh = ivh[, c("Pre_Rand_IVHvol", "Pre_Rand_ICHvol", "patientName")]
+ivh$id = num_pid_to_id(ivh$patientName)
+ivh$patientName = NULL
 
 demog = read.csv("Patient_Demographics.csv",
                  stringsAsFactors = FALSE)
@@ -179,7 +196,7 @@ ICH was manually segmented on CT scans using the OsiriX imaging software by expe
 %previous to this analysis as a standard hemorrhage characteristic.
 
 \subsection{Image Processing: Brain Extraction, Registration}
-CT images and binary hemorrhage masks were exported from OsiriX to DICOM (Digital Imaging and Communications in Medicine) format.   The image processing pipeline can be seen in Figure~\ref{fig:framework}.   Images with gantry tilt were corrected using a customized MATLAB (The Mathworks, Natick, Massachusetts, USA) user-written script ({\scriptsize \url{http://bit.ly/1ltIM8c}}). Images were converted to the Neuroimaging Informatics Technology Initiative (NIfTI) data format using \code{dcm2nii} (provided with MRIcro \citep{rorden_stereotaxic_2000}).  Images were constrained to values $-1024$ and $3071$ HU to remove potential image rescaling errors and artifacts.   No interpolation was done for images with a variable slice thickness. Thickness was determined from the first converted slice and the NIfTI format assumes homogeneous thickness throughout the image.
+CT images and binary hemorrhage masks were exported from OsiriX to DICOM (Digital Imaging and Communications in Medicine) format.   The image processing pipeline can be seen in Figure~\ref{fig:framework}.   Images with gantry tilt were corrected using a customized MATLAB (The Mathworks, Natick, Massachusetts, USA) user-written script ({\scriptsize \url{http://bit.ly/1ltIM8c}}). Images were converted to the Neuroimaging Informatics Technology Initiative (NIfTI) data format using \code{dcm2nii} (provided with MRIcro \citep{rorden_stereotaxic_2000}).  Images were constrained to values $-1024$ and $3071$ HU to remove potential image rescaling errors and artifacts.   No interpolation was done for images with a variable slice thickness. Thickness was determined from the first converted slice and the NIfTI format assumes homogeneous thickness throughout the image.  In a future release of \code{dcm2nii}, called \code{dcm2niix}, interpolation will be done for scans with variable slice thickness and gantry-tilt correction will be performed automatically.
 % This loss of information, if not properly accounted for, affects volume estimation, which relies on accurate pixel dimensions in millimeters.  Variable slice thickness should have no affect on the other estimates of performance described below, such as sensitivity, as they are calculated at a voxel level and do not rely on pixel resolution.  Although the NIfTI images store the data with only one pixel dimension for the height of the voxel, we use the ImagePositionPatient DICOM field to determine the accurate height of each voxel to calculate an accurate volume.
 
 All image analysis was done in the R statistical software \citep{RCORE}, using the \pkg{fslr} \citep{muschelli2015fslr} package to call functions from the FSL \citep{jenkinson_fsl_2012} neuroimaging software (version 5.0.4), and the \pkg{ANTsR} package to call functions from the ANTs (Advanced Normalization Tools) neuroimaging software \citep{avants_reproducible_2011}.
@@ -325,7 +342,7 @@ and an indicator of whether any voxels in the neighborhood had a value of $0$:
 
 The reason for introducing these predictors is that we expect that voxels that have neighbors with intensity zero are less likely to be ICH. Our approach will not assume that the probability of voxels with neighbors with HU intensity equal to zero are not in the ICH. Instead, we will model the probability of belonging to the ICH as a function of the predictors described in this section.
 
-\subsubsection{Within-plane Standard Scores} Some brain structures have high HU values but are not ICH, such as the falx cerebri, which lies largely on the mid-sagittal plane.  Moreover, raw CT images may contain substantial inhomogeneity. For example, tissues closer to the top of the brain may have higher observed intensities (measured in HU) than those in the middle or bottom of the brain.  Thus, if values are standardized within each plane (axial, sagittal, coronal), the resulting plane-specific z-scores may discriminate better high relative values within the plane, which may attenuate the effect of HU intensity inhomogeneities.
+\subsubsection{Within-plane Standard Scores} Some brain structures have high HU values but are not ICH, such as the falx cerebri, which lies largely on the mid-sagittal plane.  Moreover, raw CT images may contain substantial inhomogeneity. For example, tissues closer to the top of the brain may have higher observed intensities (measured in HU) than those in the middle or bottom of the brain.  Thus, if values are standardized within each plane (axial, sagittal, coronal), for each scan separately, the resulting plane-specific z-scores may discriminate better high relative values within the plane, which may attenuate the effect of HU intensity inhomogeneities.
 
 Thus, for each voxel and slice (axial, sagittal, and coronal) planes, we defined
 \begin{equation}
@@ -333,10 +350,10 @@ z_{o}(v) = \frac{x(v) - \bar{x}(v, o)}{\hat{\sigma}(v, o)} \label{eq:z}
 \end{equation}
 where $o \in \{$axial, sagittal, and coronal$\}$, $\bar{x}(v, o)$ and $\hat{\sigma}(v, o)$ denote the mean and standard deviation of the intensities of voxels in the plane $o$ that contains the voxel $v$, excluding voxels outside the brain mask.   In addition to the standardized images within each plane we have also calculated standardized scores based on the Winsorized mean and standard deviation.  More precisely, we used the same formula as in equation~\eqref{eq:z}, we set any HU values below the $20^{\text{th}}$ percentile to the $20^{\text{th}}$ percentile value and above the $80^{\text{th}}$ percentile to the $80^{\text{th}}$ percentile value within that slice and calculated the slice-specific mean and standard deviation,. This approach is expected to be more robust to small and moderate artifacts in the image.
 
-\subsubsection{Initial Segmentation} A major advantage of our approach is that it can use the results of other segmentation algorithms as covariates in our model. Consider, for example, Atropos \citep{atropos}, a previously published, open source, general segmentation tool based on Markov random fields for image segmentation.  We used Atropos to conduct a 4-tissue class segmentation and combined the top 2 probability classes into one class.  The probability of the resulting class was then used as a predictor, denoted by $\text{Atropos}(v)$.  Although Atropos has been shown to perform well in other studies for tissue-class segmentation \citep{atropos, menze2015multimodal}, the Atropos segmentation did not perform adequately in our ICH CT data. However, using the Atropos segmentation probabilities as predictors can be done seamlessly in our approach. Similarly, the results of any other segmentation approach can be incorporated in our approach and the relative performance of methods can be compared.
+\subsubsection{Initial Segmentation} A major advantage of our approach is that it can use the results of other segmentation algorithms as covariates in our model. Consider, for example, Atropos \citep{atropos}, a previously published, open source, general segmentation tool based on Markov random fields for image segmentation.  Atropos combines an initial segmentation based on k-means with an expectation-maximization algorithm for a finite mixture model along with a Markov random field prior.  We used Atropos to conduct a 4-tissue class segmentation which provides the probability for each class.  We combined the top 2 probability classes into one class as Atropos orders the classes by the mean intensity and hemorrhages have higher HU values.  This combined probability was then used as a predictor, denoted by $\text{Atropos}(v)$.  Although Atropos has been shown to perform well in other studies for tissue-class segmentation \citep{atropos, menze2015multimodal}, the Atropos segmentation did not perform adequately in our ICH CT data. However, using the Atropos segmentation probabilities as predictors can be done seamlessly in our approach. Similarly, the results of any other segmentation approach can be incorporated in our approach and the relative performance of methods can be compared.
 
 
-\subsubsection{Contralateral Difference Images}  As most hemorrhages are constrained to one side of the brain, the contralateral side tends to have lower HU values.  In contrast, for non-hemorrhage voxels, the contralateral voxels tend to have similar HU values due to the quasi-symmetry of the brain and its adjacent tissues such as bone. To take advantage of this property, we right-left flipped the image, and computed a difference image
+\subsubsection{Contralateral Difference Images}  As most hemorrhages are constrained to one side of the brain, the contralateral side tends to have lower HU values.  In contrast, for non-hemorrhage voxels, the contralateral voxels tend to have similar HU values due to the quasi-symmetry of the brain and its adjacent tissues such as bone. To take advantage of this property, we right-left flipped the registered image, and computed a difference image
 \begin{equation}
 f(v) = x(v) - x(v^{*}), \label{eq:flip}
 \end{equation}
@@ -428,7 +445,8 @@ save(non_nmods, total_N, file = "Number_of_Non_Nmods_Abstract.rda")
 
 \subsection{Voxel Selection Procedure}
 \label{sec:voxsel}
-We chose $\Sexpr{Nmods}$ scans from $\Sexpr{Nmods}$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data. We used the $\Sexpr{non_nmods}$ remaining scans as test data to evaluate the performance of the proposed approaches.
+We chose $\Sexpr{Nmods}$ scans from $\Sexpr{Nmods}$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data.  These scans were randomly selected.   
+We used the $\Sexpr{non_nmods}$ remaining scans as test data to evaluate the performance of the proposed approaches.
 %Of the \Sexpr{non_nmods} remaining scans, we split the data into $\Sexpr{groups["Validation"]}$ validation scans and  $\Sexpr{groups["Test"]}$ test scans.
 
 
@@ -490,6 +508,7 @@ long = mutate(long,
     mean = (tvol + evol) /2,
     diff = tvol - evol
     )
+all_long = long
 long = filter(long,
     group %in% c("Test", "Validation"))
 slong = filter(long,
@@ -513,9 +532,23 @@ llong$variable = factor(llong$variable,
     levels = relev2)
 native = filter(slong, app %in% "Native")
 
+
 dice = filter(native, mod %in% "rf")
+all_dice = filter(all_long,
+    cutoff %in% c("Smoothed"),
+    app %in% "Native",
+    mod %in% "rf")    
+
+check_ids = function(ids) {
+  stopifnot(all(all_dice$id %in% ids))
+}
+
+check_ids(man_fdf$id)
+check_ids(hu_df$id)
+check_ids(ivh$id)
+
 man_dice = left_join(
-  dice %>% 
+  all_dice %>% 
     select(iimg, id, dice, group, truevol, estvol) %>% 
     mutate(truevol = truevol / 1000,
            estvol = estvol / 1000), 
@@ -524,6 +557,13 @@ man_dice = left_join(
   man_dice,
   hu_df,
   by = "id")
+man_dice = left_join(
+  man_dice,
+  ivh,
+  by = "id")
+train_man = filter(man_dice, group %in% "Train") 
+man_dice = filter(man_dice, !group %in% "Train")
+
 
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)
@@ -863,17 +903,59 @@ cutoff = smoothed_rf_cutoffs$mod.dice.coef[1,"cutoff"]
 \end{figure}
 
 <<dice_by_man>>=
+# testing that no training data got in here somehow
+stopifnot(!any(man_dice$group %in% "Train"))
+# Getting the median/mean/sd for each manufacturer
+vals = man_dice %>% group_by(man) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice))
+
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ factor(man), data = man_dice)
+eg = t(combn(unique(man_dice$man), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ factor(man), 
+                     data = man_dice %>% filter(man %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+@
+
+<<plotting_dice_over_manu>>=
 library(ggplot2)
-g = man_dice %>% filter(dice > 0.5) %>% 
+g = man_dice %>% 
   ggplot(aes(x = man, y = dice)) + 
-  geom_boxplot() 
-g = g + ylim(c(0.5, 1)) + 
+  geom_boxplot(outlier.size = NA, fill = NA) 
+g = g + geom_point(position = position_jitter(width = 0.2))
+g = g + 
   xlab("Manufacturer") +
   ylab("Dice Similarity Index") +
   theme(text = element_text(size = 24))
-
-g %+% man_dice[ man_dice$dice > 0.5,]
-# print(g)
+g = g + ylim(c(0.5, 1)) 
+pngname = "DSI_Box_By_Manufacturer.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print(g)
+dev.off()
 @
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer.png}
+\caption{{\bf Dice Similarity Index (DSI) by CT Scanner Manufacturer}. These numbers represent the mean decrease in the Gini coefficient in the random forest classifier for all coefficients.  After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding with this classifier was \Sexpr{round(cutoff, 3)}.  }
+\label{fig:varimp}
+\end{figure}
 
 

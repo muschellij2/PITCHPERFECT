@@ -73,6 +73,12 @@ rootdir = path.expand("~/CT_Registration")
 rda = "Scanning_Parameters.Rda"
 load(rda)
 
+num_pid_to_id = function(x){
+  site_id = floor(x/1000)
+  id = x %% 1000
+  paste0(site_id, "-", id)
+}
+
 fdf$site_number = sapply(strsplit(fdf$id, "-"), `[[`, 1)
 fdf$pid = as.numeric(gsub("-", "", fdf$id))
 
@@ -94,7 +100,7 @@ fdf$model[fdf$id == "179-402"] = ""
 fdf$man = man
 fdf$man[fdf$man == 'TOSHIBA'] = "Toshiba"
 fdf$man[fdf$man == 'SIEMENS'] = "Siemens"
-man_fdf = fdf[, c("id", "pid", "man", "model")]
+man_fdf = fdf[, c("id", "pid", "man", "model", "group")]
 # man = sapply(man, unique)
 
 stopifnot(nrow(fdf) == 112)
@@ -112,6 +118,11 @@ man.tab = paste0(manu, " ($N=", man.tab, "$)")
 man.tab[length(man.tab)] = paste0('and ', man.tab[length(man.tab)] )
 man.tab[seq(length(man.tab)-1)] = paste0(man.tab[seq(length(man.tab)-1)], ", " )
 man.tab = paste(man.tab, collapse= " ")
+
+train.man.tab = table(man_fdf$man[ man_fdf$group == "Train"])
+man_fdf$group = NULL
+
+
 
 #####################
 # Running slice thickness
@@ -135,8 +146,14 @@ check.na(tilt)
 n.gant = sum(tilt != 0)
 #"102-323" added over the 111 pts
 
-ivh = read.csv("All_Patients.csv", stringsAsFactors = FALSE)
+all_and_ices = load("All_IncludingICES_Patients.Rda")
+stopifnot(all(all_and_ices == "all.alldat"))
+ivh = all.alldat
+rm(list= "all.alldat")
+# ivh = read.csv("All_Patients.csv", stringsAsFactors = FALSE)
 ivh = ivh[, c("Pre_Rand_IVHvol", "Pre_Rand_ICHvol", "patientName")]
+ivh$id = num_pid_to_id(ivh$patientName)
+ivh$patientName = NULL
 
 demog = read.csv("Patient_Demographics.csv",
                  stringsAsFactors = FALSE)
@@ -227,6 +244,7 @@ long = mutate(long,
     mean = (tvol + evol) /2,
     diff = tvol - evol
     )
+all_long = long
 long = filter(long,
     group %in% c("Test", "Validation"))
 slong = filter(long,
@@ -250,9 +268,23 @@ llong$variable = factor(llong$variable,
     levels = relev2)
 native = filter(slong, app %in% "Native")
 
+
 dice = filter(native, mod %in% "rf")
+all_dice = filter(all_long,
+    cutoff %in% c("Smoothed"),
+    app %in% "Native",
+    mod %in% "rf")    
+
+check_ids = function(ids) {
+  stopifnot(all(all_dice$id %in% ids))
+}
+
+check_ids(man_fdf$id)
+check_ids(hu_df$id)
+check_ids(ivh$id)
+
 man_dice = left_join(
-  dice %>% 
+  all_dice %>% 
     select(iimg, id, dice, group, truevol, estvol) %>% 
     mutate(truevol = truevol / 1000,
            estvol = estvol / 1000), 
@@ -261,6 +293,13 @@ man_dice = left_join(
   man_dice,
   hu_df,
   by = "id")
+man_dice = left_join(
+  man_dice,
+  ivh,
+  by = "id")
+train_man = filter(man_dice, group %in% "Train") 
+man_dice = filter(man_dice, !group %in% "Train")
+
 
 n_under_50 = sum(dice$dice < 0.5)
 L = length(dice$dice)
@@ -459,15 +498,49 @@ library(ichseg)
 cutoff = smoothed_rf_cutoffs$mod.dice.coef[1,"cutoff"]
 
 ## ----dice_by_man---------------------------------------------------------
+# testing that no training data got in here somehow
+stopifnot(!any(man_dice$group %in% "Train"))
+# Getting the median/mean/sd for each manufacturer
+vals = man_dice %>% group_by(man) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice))
+
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ factor(man), data = man_dice)
+eg = t(combn(unique(man_dice$man), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ factor(man), 
+                     data = man_dice %>% filter(man %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+
+## ----plotting_dice_over_manu---------------------------------------------
 library(ggplot2)
-g = man_dice %>% filter(dice > 0.5) %>% 
+g = man_dice %>% 
   ggplot(aes(x = man, y = dice)) + 
-  geom_boxplot() 
-g = g + ylim(c(0.5, 1)) + 
+  geom_boxplot(outlier.size = NA, fill = NA) 
+g = g + geom_point(position = position_jitter(width = 0.2))
+g = g + 
   xlab("Manufacturer") +
   ylab("Dice Similarity Index") +
   theme(text = element_text(size = 24))
-
-g %+% man_dice[ man_dice$dice > 0.5,]
-# print(g)
+g = g + ylim(c(0.5, 1)) 
+pngname = "DSI_Box_By_Manufacturer.png"
+png(pngname, height = 5, width = 7, res = 600, units = "in")
+  print(g)
+dev.off()
 

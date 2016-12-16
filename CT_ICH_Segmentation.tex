@@ -253,7 +253,7 @@ ICH was manually segmented on CT scans using the OsiriX imaging software by expe
 %previous to this analysis as a standard hemorrhage characteristic.
 
 \subsection{Image Processing: Brain Extraction, Registration}
-CT images and binary hemorrhage masks were exported from OsiriX to DICOM (Digital Imaging and Communications in Medicine) format.   The image processing pipeline can be seen in Figure~\ref{fig:framework}.   Images with gantry tilt were corrected using a customized MATLAB (The Mathworks, Natick, Massachusetts, USA) user-written script ({\scriptsize \url{http://bit.ly/1ltIM8c}}). Images were converted to the Neuroimaging Informatics Technology Initiative (NIfTI) data format using \code{dcm2nii} (provided with MRIcro \citep{rorden_stereotaxic_2000}).  Images were constrained to values $-1024$ and $3071$ HU to remove potential image rescaling errors and artifacts.   No interpolation was done for images with a variable slice thickness. Thickness was determined from the first converted slice and the NIfTI format assumes homogeneous thickness throughout the image.
+CT images and binary hemorrhage masks were exported from OsiriX to DICOM (Digital Imaging and Communications in Medicine) format.   The image processing pipeline can be seen in Figure~\ref{fig:framework}.   Images with gantry tilt were corrected using a customized MATLAB (The Mathworks, Natick, Massachusetts, USA) user-written script ({\scriptsize \url{http://bit.ly/1ltIM8c}}). Images were converted to the Neuroimaging Informatics Technology Initiative (NIfTI) data format using \code{dcm2nii} (provided with MRIcro \citep{rorden_stereotaxic_2000}).  Images were constrained to values $-1024$ and $3071$ HU to remove potential image rescaling errors and artifacts.   No interpolation was done for images with a variable slice thickness. Thickness was determined from the first converted slice and the NIfTI format assumes homogeneous thickness throughout the image.  In a future release of \code{dcm2nii}, called \code{dcm2niix}, interpolation will be done for scans with variable slice thickness and gantry-tilt correction will be performed automatically.
 % This loss of information, if not properly accounted for, affects volume estimation, which relies on accurate pixel dimensions in millimeters.  Variable slice thickness should have no affect on the other estimates of performance described below, such as sensitivity, as they are calculated at a voxel level and do not rely on pixel resolution.  Although the NIfTI images store the data with only one pixel dimension for the height of the voxel, we use the ImagePositionPatient DICOM field to determine the accurate height of each voxel to calculate an accurate volume.
 
 All image analysis was done in the R statistical software \citep{RCORE}, using the \pkg{fslr} \citep{muschelli2015fslr} package to call functions from the FSL \citep{jenkinson_fsl_2012} neuroimaging software (version 5.0.4), and the \pkg{ANTsR} package to call functions from the ANTs (Advanced Normalization Tools) neuroimaging software \citep{avants_reproducible_2011}.
@@ -355,7 +355,7 @@ After registration, each brain mask was eroded by a box kernel ($3\times3\times1
 We derived a set of imaging predictors from each CT scan.  We will describe each predictor together with the rationale for their use.  These features make up the potential set of predictors (features) for image segmentation.  Below we provide the definition of these predictors, while Figure~\ref{fig:pred} displays them for one axial slice of one subject.
 %Note that the corresponding images have roughly a distribution of between $0$ and $100$ HU as they have been skull stripped.
 
-\subsubsection{CT voxel intensity information} The first predictor is the raw voxel intensity value in HU denoted by $x(v)$. This is the main predictor used in visual inspection, with high HU values being indicative of hemorrhage. Based on the voxel intensity we have also created an indicator for the HU intensity value to be between $40$ and $80$ (inclusive), to mimic the criterion used for screening in manual segmentation. More precisely, we have introduced the predictor $$
+\subsubsection{CT voxel intensity information} The first predictor is the raw voxel intensity value in HU denoted by $x(v)$. This is the main predictor used in visual inspection, with high HU values being indicative of hemorrhage. Based on the voxel intensity we have also created an indicator for the HU intensity value to be between $40$ and $80$ (inclusive), to mimic the criterion used for screening in manual segmentation. Also, these thresholds have been used in previous ICH semgentation work \citep{prakash_segmentation_2012}. More precisely, we have introduced the predictor $$
 I_{\text{thresh}}(v) = \begin{cases}
 1 & \text{if } 40 \leq x(v) \leq 80 \\
 0 & \text{otherwise}
@@ -394,7 +394,7 @@ and an indicator of whether any voxels in the neighborhood had a value of $0$:
 
 The reason for introducing these predictors is that we expect that voxels that have neighbors with intensity zero are less likely to be ICH. Our approach will not assume that the probability of voxels with neighbors with HU intensity equal to zero are not in the ICH. Instead, we will model the probability of belonging to the ICH as a function of the predictors described in this section.
 
-\subsubsection{Within-plane Standard Scores} Some brain structures have high HU values but are not ICH, such as the falx cerebri, which lies largely on the mid-sagittal plane.  Moreover, raw CT images may contain substantial inhomogeneity. For example, tissues closer to the top of the brain may have higher observed intensities (measured in HU) than those in the middle or bottom of the brain.  Thus, if values are standardized within each plane (axial, sagittal, coronal), the resulting plane-specific z-scores may discriminate better high relative values within the plane, which may attenuate the effect of HU intensity inhomogeneities.
+\subsubsection{Within-plane Standard Scores} Some brain structures have high HU values but are not ICH, such as the falx cerebri, which lies largely on the mid-sagittal plane.  Moreover, raw CT images may contain substantial inhomogeneity. For example, tissues closer to the top of the brain may have higher observed intensities (measured in HU) than those in the middle or bottom of the brain.  Thus, if values are standardized within each plane (axial, sagittal, coronal), for each scan separately, the resulting plane-specific z-scores may discriminate better high relative values within the plane, which may attenuate the effect of HU intensity inhomogeneities.
 
 Thus, for each voxel and slice (axial, sagittal, and coronal) planes, we defined
 \begin{equation}
@@ -402,10 +402,10 @@ z_{o}(v) = \frac{x(v) - \bar{x}(v, o)}{\hat{\sigma}(v, o)} \label{eq:z}
 \end{equation}
 where $o \in \{$axial, sagittal, and coronal$\}$, $\bar{x}(v, o)$ and $\hat{\sigma}(v, o)$ denote the mean and standard deviation of the intensities of voxels in the plane $o$ that contains the voxel $v$, excluding voxels outside the brain mask.   In addition to the standardized images within each plane we have also calculated standardized scores based on the Winsorized mean and standard deviation.  More precisely, we used the same formula as in equation~\eqref{eq:z}, we set any HU values below the $20^{\text{th}}$ percentile to the $20^{\text{th}}$ percentile value and above the $80^{\text{th}}$ percentile to the $80^{\text{th}}$ percentile value within that slice and calculated the slice-specific mean and standard deviation,. This approach is expected to be more robust to small and moderate artifacts in the image.
 
-\subsubsection{Initial Segmentation} A major advantage of our approach is that it can use the results of other segmentation algorithms as covariates in our model. Consider, for example, Atropos \citep{atropos}, a previously published, open source, general segmentation tool based on Markov random fields for image segmentation.  We used Atropos to conduct a 4-tissue class segmentation and combined the top 2 probability classes into one class.  The probability of the resulting class was then used as a predictor, denoted by $\text{Atropos}(v)$.  Although Atropos has been shown to perform well in other studies for tissue-class segmentation \citep{atropos, menze2015multimodal}, the Atropos segmentation did not perform adequately in our ICH CT data. However, using the Atropos segmentation probabilities as predictors can be done seamlessly in our approach. Similarly, the results of any other segmentation approach can be incorporated in our approach and the relative performance of methods can be compared.
+\subsubsection{Initial Segmentation} A major advantage of our approach is that it can use the results of other segmentation algorithms as covariates in our model. Consider, for example, Atropos \citep{atropos}, a previously published, open source, general segmentation tool based on Markov random fields for image segmentation.  Atropos combines an initial segmentation based on k-means with an expectation-maximization algorithm for a finite mixture model along with a Markov random field prior.  We used Atropos to conduct a 4-tissue class segmentation which provides the probability for each class.  We combined the top 2 probability classes into one class as Atropos orders the classes by the mean intensity and hemorrhages have higher HU values.  This combined probability was then used as a predictor, denoted by $\text{Atropos}(v)$.  Although Atropos has been shown to perform well in other studies for tissue-class segmentation \citep{atropos, menze2015multimodal}, the Atropos segmentation did not perform adequately in our ICH CT data. However, using the Atropos segmentation probabilities as predictors can be done seamlessly in our approach. Similarly, the results of any other segmentation approach can be incorporated in our approach and the relative performance of methods can be compared.
 
 
-\subsubsection{Contralateral Difference Images}  As most hemorrhages are constrained to one side of the brain, the contralateral side tends to have lower HU values.  In contrast, for non-hemorrhage voxels, the contralateral voxels tend to have similar HU values due to the quasi-symmetry of the brain and its adjacent tissues such as bone. To take advantage of this property, we right-left flipped the image, and computed a difference image
+\subsubsection{Contralateral Difference Images}  As most hemorrhages are constrained to one side of the brain, the contralateral side tends to have lower HU values.  In contrast, for non-hemorrhage voxels, the contralateral voxels tend to have similar HU values due to the quasi-symmetry of the brain and its adjacent tissues such as bone. To take advantage of this property, we right-left flipped the registered image, and computed a difference image
 \begin{equation}
 f(v) = x(v) - x(v^{*}), \label{eq:flip}
 \end{equation}
@@ -457,7 +457,8 @@ The within-plane standardized and Winsorized predictor images were not shown as 
 
 \subsection{Voxel Selection Procedure}
 \label{sec:voxsel}
-We chose $10$ scans from $10$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data. We used the $102$ remaining scans as test data to evaluate the performance of the proposed approaches.
+We chose $10$ scans from $10$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data.  These scans were randomly selected.   
+We used the $102$ remaining scans as test data to evaluate the performance of the proposed approaches.
 %Of the non_nmods remaining scans, we split the data into $groups["Validation"]$ validation scans and  $groups["Test"]$ test scans.
 
 
@@ -501,20 +502,16 @@ After thresholding the smoothed image using these DSI-optimized thresholds, we d
 
 \subsection{Testing ICH Prediction and Measuring Model Performance}
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{Error in eval(expr, envir, enclos): Can't join on 'id' x 'id' because of incompatible types (integer / character)}}\end{kframe}
-\end{knitrout}
 
 
 
 For each of the remaining $102$ scans in the test data, the voxel selection described in Section~\ref{sec:voxsel} was applied. Using the prediction process described in Section~\ref{sec:mods} an ICH probability map was estimated using each of the four models.  Using the probability thresholds calculated on the training data, as described in Section~\ref{sec:cutoffs}, we obtained a binary ICH map for each of the four methods. For evaluation, all results are provided in
-the native space of the patient, not in the template space, as the manual segmentation was
-done in the native space.
+the native space of the patient, not in the template space, as the manual segmentation was done in the native space.
 
-Model performance was evaluated on the validation data using the DSI and the ICH volume.  The ICH volume was estimated counting the number of ICH voxels multiplied by product of the voxel sizes, divided by 1000 (1000 mm$^3$ per 1 mL), provided in mL.  The large number of true negatives (non-ICH voxels) artificially inflates specificity and overall accuracy measures, which are not reported.  The global equality median DSI across models was tested using the Kruskal-Wallis test.  If a difference was present, we tested the null hypothesis of no difference in the medians for each combination of models ($6$ combinations) using a Wilcoxon signed rank test, and corrected the p-value using a Bonferroni correction.
+Model performance was evaluated on the validation data using the DSI and the ICH volume.  The ICH volume was estimated counting the number of ICH voxels multiplied by product of the voxel sizes, divided by 1000 (1000 mm$^3$ per 1 mL), provided in mL.  The large number of true negatives (non-ICH voxels) artificially inflates specificity and overall accuracy measures, which are not reported.  The global equality median DSI across models was tested using the Kruskal-Wallis test.  If a difference was present, we tested the null hypothesis of no difference in the medians for each combination of models ($6$ combinations) using a Wilcoxon signed-rank test, and corrected the p-value using a Bonferroni correction.  
+
+After choosing a single model, we explore the DSI over certain factors.  First we will investigate the DSI by different scanner manufacturers and test median equality using the Kruskal-Wallis test, performing a similar pairwise Wilcoxon signed-rank test procedure with multiplicity correction.  We similarly explore differences of DSI based on 3 categories of hemorrhage size (based on manual segmentation): using $0-30$mL, $> 30$ to $60$mL, and $>60$mL cutoffs, similar to \citet{hemphill_ich_2001}. 
 
 
 The performance of total ICH volume prediction was compared to the manual segmentation using the Pearson correlation and root mean squared errors (RMSE) between volumes measures.  Similarly, we performed the Kruskal-Wallis test for the null hypothesis of equality of medians of the absolute value of the difference between the estimated volume from each model and the true volume.  If the null hypothesis is rejected, pairwise tests were conducted as in the case of DSI.  For DSI and correlation, higher values indicate better agreement with the manual segmentation.  For RMSE, lower values indicate better agreement.
@@ -546,6 +543,7 @@ To better understand the DSI measurements in our data, Figure~\ref{fig:dice_img}
 \label{fig:dice_img}
 \end{figure}
 
+
 \subsection{ICH Volume Estimation}
 In Figure~\ref{fig:vol}, we show the estimated ICH volume versus that from the manual segmentation.  The pink line represents the $X = Y$ line, where the estimated and true volume are identical.  The blue line represents the linear fit; the estimated linear regression equation and correlation are printed on the plot.  The farther away the slope of the equation is from $1$ the larger the bias with values larger than $1$ representing over-estimated volumes.
 %The farther the intercept is from $0$ represents and additive bias in the estimated volume, where values greater than $0$ again represent larger estimated volumes.
@@ -565,8 +563,33 @@ $0.93$ (95\% CI: $0.9, 0.95$) for the random forest.  The RMSE for logistic (RMS
 \end{figure}
 
 \subsection{Model Choice}
+In Supplemental Table~\ref{tab:modspec}, we report the estimated coefficients, standard errors, and z-statistics from the logistic regression model.  In Figure~\ref{fig:varimp}, we present the variable importance plot, representing the mean decrease in the Gini coefficient for each variable.  The standardized-to-template and neighborhood mean seem to be the strongest predictors in the random forest.  To reduce complexity and decrease computation time, we will remove some predictors in future implementations of this method.  
+
 Overall, all models perform well for ICH segmentation.  A small percentage ($1.0\%$) of failures were observed with DSI $< 0.5$ ($N = 1$ out of $102$ scans), but the random forest algorithm had a slightly higher median DSI, slightly lower RMSE, and a higher slightly correlation than the other models.  Therefore, when implementing the algorithm, we will use the random forest model.
 
+
+
+\subsection{DSI by Scanner Manufacturer, Average HU, and Hemorrhage Size}
+In the following section, we will use the DSI from the random forest model.  In the $102$ test scans, the median DSI was $0.89$ for patients scanned in a GE scanner, $0.9$ for Philips, $0.9$ for Toshiba, and $0.92$for Siemens (Supplemental Figure~\ref{fig:dsi_man}).  The patient with a failed segmentation was scanned using a GE scanner.  The Kruskal-Wallis test indicated a difference in medians ($\chi^2(3) = 11.6
+$, $p = 0.009$).  After Bonferroni correction, the difference of DSI of patients scanned with Siemens versus GE scanners was the only statistically significant comparison ($W = 428
+$, $p = 0.008$, corrected).
+
+In Figure~\ref{fig:dsi_hu}, we see the effect of average HU over the hemorrage versus DSI.  We note the failed scan had a much lower average HU in the hemorrhage compared to the rest of the images (panel A).  Overall, however, above 50 HU, there does not seem to be a strong effect on the average HU and DSI (panel B).
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_By_Mean_HU_A.png}
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_By_Mean_HU_B.png}
+\caption{{\bf Dice Similarity Index (DSI) by Average Voxel HU in the Hemorrhage}. These values represent the mean Hounsfield Unit (HU) over all voxels in the manual hemorrhage mask for each patient in the test data set versus the DSI for that patient compared to automatic segmentation.  The blue line represents a locally-weighted regression smoother (loess).  We see that the case with the lowest DSI had a much lower average HU in the hemorrhage.  Overall, however, above 50 HU, there does not seem to be a strong effect on the average HU and DSI.}
+\label{fig:dsi_hu}
+\end{figure}
+
+
+
+After categorization of the hemorrhage volume, 34 (33.3\%) patients had a volume of $0-30$mL (small), 46 (45.1\%) had volumes $> 30$ to $60$mL (medium), and 22 (21.6\%) had $>60$mL (large).  The Kruskal-Wallis test indicated a difference in medians ($\chi^2(2) = 6.5
+$, $p = 0.04$, see Supplemental Figure~\ref{fig:dsi_ich_cat}).  After Bonferroni correction, there was no statistically significant difference in median DSI, but the strongest comparison was for the small versus medium hemorrhage sizes ($W = 537
+$, $p = 0.0502$, corrected).
 
 
 \section{Discussion}
@@ -581,7 +604,7 @@ The approach failed on a very small subset of the validation set ($N = 1$ out of
 
 As the obstructive intraventricular hemorrhage (IVH) requiring external ventricular drainage was in the exclusion criteria in MISTIE II \citep{mould_minimally_2013}, no cases with large intraventricular hemorrhage were included.  We believe the model would perform reasonably well for IVH, but not necessarily subarachnoid hemorrhages (SAH), two other forms of hemorrhagic stroke.  
 
-Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, larger IVHs may cause larger deformations than seen in cases with ICH only, which may negatively effect any registration process. The process of mask erosion may considerably remove voxels from the SAH, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we may also need to re-fit the model using additional cases of IVH and/or SAH.
+Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, larger IVHs may cause larger deformations than seen in cases with ICH only, which may negatively affect any registration process. The process of mask erosion may considerably remove voxels from the SAH, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we may also need to re-fit the model using additional cases of IVH and/or SAH.
 
 
 
@@ -657,12 +680,7 @@ The project described was supported by the NIH grant RO1EB012547 from the Nation
 
 \subsection{Model Specification}
 \label{sec:modspec}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{Error: npred == 20 is not TRUE}}\end{kframe}
-\end{knitrout}
 Let $Y_{i}(v)$ represent the binary hemorrhage mask indicator for voxel $v$, from patient $i$, and $x_{i,v}(k)$ represent the predictor image for image $j$, $j = 1, \dots 21$.
 $$
 \text{logit}\left(P(Y_{i}(v) = 1)\right) = \beta_0 + \sum_{j = 1}^{21} x_{i, j}(v)\beta_{j}
@@ -671,7 +689,7 @@ $$
 The coefficients for the logistic model are (in log odds or log odds ratios):
 
 % latex table generated in R 3.3.1 by xtable 1.8-2 package
-% Tue Dec 13 22:27:54 2016
+% Fri Dec 16 15:22:51 2016
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrrr}
@@ -701,7 +719,7 @@ Intercept & 1.008 & 0.331 & 3.046 \\
   Contralateral difference & 0.033 & 0.002 & 17.530 \\ 
    \hline
 \end{tabular}
-\caption{Beta coefficients (log odds ratio) for the logistic regression model for all coefficients.  Combining these for each voxel value and using the inverse logit transformation yields the probability that voxel is ICH. After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was 0.5481.} 
+\caption{Beta coefficients (log odds ratio) for the logistic regression model for all coefficients.  Combining these for each voxel value and using the inverse logit transformation yields the probability that voxel is ICH. After smoothing by 1 voxel in all 3 directions, the probability cutoff for thresholding was 0.5481.  We note the standardized-to-template intensity and the neighborhood mean appear to be the strongest predictors.} 
 \label{tab:modspec}
 \end{table}
 
@@ -723,11 +741,65 @@ $$
 \label{fig:varimp}
 \end{figure}
 
+
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/dice_by_man-1} 
+\includegraphics[width=\maxwidth]{figure/plotting_dice_over_manu-1} 
 
 \end{knitrout}
+
+
+
+% \begin{figure}
+% \centering
+% \includegraphics[width=0.75\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer.png}
+% \caption{{\bf Dice Similarity Index (DSI) by CT Scanner Manufacturer}.  Here we present the DSI for all patients in the test set for the different scanner manufacturers.  All median DSI is relatively high. We see the lowest median DSI for patients scanned in GE scanners, comparable median DSI for Toshiba and Philips, slightly higher DSI for those scanned in a Siemens machine. }
+% \label{fig:dsi_man}
+% \end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer_A.png}
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_Manufacturer_B.png}
+\caption{{\bf Dice Similarity Index (DSI) by CT Scanner Manufacturer}.  Here we present the DSI for all patients in the test set for the different scanner manufacturers (panel A). We note that the failed segmentation was a patient scanned with a GE scanner.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by scanner (note the y-axis begins at $0.5 DSI).  All median DSI is relatively high. We see the lowest median DSI for patients scanned in GE scanners, comparable median DSI for Toshiba and Philips, slightly higher DSI for those scanned in a Siemens machine. }
+\label{fig:dsi_man}
+\end{figure}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/dice_vs_hu-1} 
+
+\end{knitrout}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/dice_vs_ich_cat-1} 
+
+\end{knitrout}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_A.png}
+\includegraphics[width=0.48\linewidth,keepaspectratio]{DSI_Box_By_ICH_Cat_B.png}
+\caption{{\bf Dice Similarity Index (DSI) by Hemorrhage Volume Category}.  Here we present the DSI for all patients in the test set for the different hemorrhage voxel categories, described above (panel A).  We will denote the categories as small, medium and large.  We note that the failed segmentation was in the small category.  We present the same data in panel B without that patient to illustrate the distributions of the DSI by category (note the y-axis begins at $0.5 DSI).  All median DSI is relatively high. We see the lowest median DSI for patients with small hemorrhages, followed by large hemorrhages, and the highest median DSI is in the medium hemorrhages.}
+\label{fig:dsi_man}
+\end{figure}
+
+
+
+ 
+% \begin{figure}
+% \centering
+% \includegraphics[width=0.75\linewidth,keepaspectratio]{DSI_By_Mean_HU.png}
+% \caption{{\bf Dice Similarity Index (DSI) by Average Voxel HU in the Hemorrhage}. These values represent the mean Hounsfield Unit (HU) over all voxels in the manual hemorrhage mask for each patient in the test data set versus the DSI for that patient compared to automatic segmentation.  We see that the case with the lowest DSI had a much lower average HU in the hemorrhage.  Overall, however, after 50 HU, there does not seem to be a strong effect on the average HU and DSI.  }
+% \label{fig:dsi_hu}
+% \end{figure}
+
+
+
+
 
 
 \end{document}
