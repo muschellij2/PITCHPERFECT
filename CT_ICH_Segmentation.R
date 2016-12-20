@@ -140,7 +140,14 @@ slices = sapply(slices, function(x) {
 	stopifnot(all(x != ""))
 	length(unique(x))
 })
+alltabs.id = sapply(alltabs, function(x) {
+    x = rownames(x)[1]
+    gsub(".*/Registration/(.*)/Sorted/.*", "\\1", x)
+  })
 n.slices = sum(slices > 1)
+slice_df = data.frame(id = alltabs.id,
+                      var_slice = slices > 1,
+                      stringsAsFactors = FALSE)
 
 tilt = lapply(alltabs, `[[`, "0018-1120-GantryDetectorTilt")
 tilt = sapply(tilt, unique)
@@ -289,6 +296,8 @@ check_ids = function(ids) {
 check_ids(man_fdf$id)
 check_ids(hu_df$id)
 check_ids(ivh$id)
+check_ids(slice_df$id)
+
 
 man_dice = left_join(
   all_dice %>% 
@@ -304,6 +313,11 @@ man_dice = left_join(
   man_dice,
   ivh,
   by = "id")
+man_dice = left_join(
+  man_dice,
+  slice_df,
+  by = "id")
+
 train_man = filter(man_dice, group %in% "Train") 
 man_dice = filter(man_dice, !group %in% "Train")
 man_dice$ich_cat = cut(man_dice$truevol, 
@@ -445,6 +459,43 @@ if (kt$p.value < 0.05) {
 # adjusting p-values
 eg$adj = p.adjust(eg$p.value, method = "bonferroni")
 sig = eg[ eg$adj < 0.05, , drop = FALSE]
+
+## ------------------------------------------------------------------------
+failed_avg_hu = man_dice %>% filter(dice < 0.01) %>% select(mean)
+failed_avg_hu = round(failed_avg_hu, 1)
+
+## ----varslice_comp-------------------------------------------------------
+# Getting the median/mean/sd for each manufacturer
+ivals = man_dice %>% group_by(var_slice) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice)) %>% 
+  as.data.frame
+rownames(ivals) = ivals$var_slice
+ivals$median = round(ivals$median, 2)
+
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ var_slice, data = man_dice)
+eg = t(combn(unique(as.character(man_dice$var_slice)), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ ich_cat, 
+                     data = man_dice %>% filter(ich_cat %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+sig = eg[ eg$adj < 0.06, , drop = FALSE]
 
 ## ----cat_tab-------------------------------------------------------------
 tab = table(man_dice$ich_cat)

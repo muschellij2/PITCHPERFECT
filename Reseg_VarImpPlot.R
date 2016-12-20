@@ -36,6 +36,8 @@ n.var = nrow(imp)
 ord = rev(order(imp[, i], decreasing = TRUE)[1:n.var])
 imp = imp[ord, , drop = FALSE]
 
+dput(names(imp[seq(nrow(imp) - 10, nrow(imp)), ]))
+
 coefs = broom::tidy(imp)
 colnames(coefs)[1] = c("term")
 coefs$term = plyr::revalue(coefs$term, rename_vec)

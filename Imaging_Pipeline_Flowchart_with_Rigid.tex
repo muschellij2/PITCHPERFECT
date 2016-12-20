@@ -30,7 +30,8 @@
 
 \node [bblock, below of=BET]  (rigid_make) {Rigid\\
 Registration};
-\node [block, below of=rigid_make] (rigid) {ICH Predictors};
+\node [bblock, below of=rigid_make]  (ero) {Mask Erosion};
+\node [block, below of=ero] (rigid) {ICH Predictors};
 \node [bblock, below of=rigid] (predictors) {Voxel Selection};
 
 
@@ -45,8 +46,8 @@ Registration};
 
 
 
-\node [bblock, below of=BET]  (rigid_make) {Rigid\\
-Registration};
+%\node [bblock, below of=BET]  (rigid_make) {Rigid\\
+%Registration};
 
 \node [bblock, below left=0.8cm and -.5cm of native_probthresh] (Dice) {Dice \\ Similarity \\ Index};
 %\node [bblock, below left=0.8cm and -.5cm of probthresh] (Dice) {
@@ -69,7 +70,9 @@ Registration};
 \path [line] (dcmnii) -- (BET);
 %\path [line] (BET) -- (rigid);
 \path [line] (BET) -- (rigid_make);
-\path [line] (rigid_make) -- (rigid);
+\path [line] (rigid_make) -- (ero);
+
+\path [line] (ero) -- (rigid);
 %\path [line] (BET) -- (native);
 %\path [line] (BET) -- node {Different Processing Pipelines} (native);
 

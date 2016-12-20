@@ -170,7 +170,7 @@ For each validation scan, the model predicted the probability of ICH at each vox
 \vspace{-1em}
 
 \section*{Results}
-All results presented are for the $\Sexpr{non_nmods}$ scans in the validation set.  The median DSI for each model was: $\Sexpr{med_dice["logistic"]}$ (logistic), $\Sexpr{med_dice["lasso"]}$  (LASSO), $\Sexpr{med_dice["gam"]}$ (GAM), and $\Sexpr{med_dice["rf"]}$ (random forest).  Using the random forest results in a slightly higher median DSI compared to the other models. After Bonferroni correction, the hypothesis of equality of median DSI was rejected only when comparing the random forest DSI to the DSI from the logistic ($p \Sexpr{wt_pvals["logistic"]}$), LASSO ($p \Sexpr{wt_pvals["lasso"]}$), or GAM ($p \Sexpr{wt_pvals["gam"]}$) models.  In practical terms the difference between the random forest and the logistic regression is quite small.  The correlation (95\% CI) between the volume from manual segmentation and the predicted volume was $\Sexpr{corrdata["rf", "cor"]}$ ($\Sexpr{corrdata["rf", "cor.lower"]}, \Sexpr{corrdata["rf", "cor.upper"]}$) for the random forest model. These results indicate that random forest approach can achieve accurate segmentation of ICH in a population of patients from a variety of imaging centers.  We provide an R package and a webpage for implementing and testing the proposed approach.
+All results presented are for the $\Sexpr{non_nmods}$ scans in the validation set.  The median DSI for each model was: $\Sexpr{med_dice["logistic"]}$ (logistic), $\Sexpr{med_dice["lasso"]}$  (LASSO), $\Sexpr{med_dice["gam"]}$ (GAM), and $\Sexpr{med_dice["rf"]}$ (random forest).  Using the random forest results in a slightly higher median DSI compared to the other models. After Bonferroni correction, the hypothesis of equality of median DSI was rejected only when comparing the random forest DSI to the DSI from the logistic ($p \Sexpr{wt_pvals["logistic"]}$), LASSO ($p \Sexpr{wt_pvals["lasso"]}$), or GAM ($p \Sexpr{wt_pvals["gam"]}$) models.  In practical terms the difference between the random forest and the logistic regression is quite small.  The correlation (95\% CI) between the volume from manual segmentation and the predicted volume was $\Sexpr{corrdata["rf", "cor"]}$ ($\Sexpr{corrdata["rf", "cor.lower"]}, \Sexpr{corrdata["rf", "cor.upper"]}$) for the random forest model. These results indicate that random forest approach can achieve accurate segmentation of ICH in a population of patients from a variety of imaging centers.  We provide an R package (\url{https://github.com/muschellij2/ichseg}) and a Shiny R application online (\url{http://johnmuschelli.com/ich_segment_all.html}) for implementing and testing the proposed approach.
 
 \end{abstract}
 
@@ -296,7 +296,14 @@ slices = sapply(slices, function(x) {
 	stopifnot(all(x != ""))
 	length(unique(x))
 })
+alltabs.id = sapply(alltabs, function(x) {
+    x = rownames(x)[1]
+    gsub(".*/Registration/(.*)/Sorted/.*", "\\1", x)
+  })
 n.slices = sum(slices > 1)
+slice_df = data.frame(id = alltabs.id,
+                      var_slice = slices > 1,
+                      stringsAsFactors = FALSE)
 
 tilt = lapply(alltabs, `[[`, "0018-1120-GantryDetectorTilt")
 tilt = sapply(tilt, unique)
@@ -471,7 +478,7 @@ Brains were extracted to remove skull, eyes, facial and nasal features, extracra
 \subsection{Image Registration}
 \citet{rorden_age-specific_2012} introduced a CT template based on $35$ individuals who presented with specific neurological deficits that were suspected to be caused by a stroke, but were later found to be due to a metabolic abnormality.  This CT template is represented in MNI (Montreal Neurological Institute) space and brain-extraction was performed on the template.  Prior to image processing, brain-extracted images were registered to this brain-extracted template using a rigid-body (6 degrees of freedom) and linearly interpolated to a $1\times1\times1$mm voxel resolution.  After interpolation, transformed hemorrhage masks and brain masks are not binary.  These transformed masks were re-thresholded using a value of $0.5$ to preserve mask volume \cite{flirt_reg}.  Using a nearest-neighbor interpolation for these binary images after registration could also be used as a simpler approach and should be relatively equivalent to the re-thresholding.
 
-This rigid registration does not ensure brains are the same size or that voxels match across subjects.  Although brains of different shapes and sizes may map to different areas in the template space, the goals of this registration are to reorient the image, ensure isotropic voxel sizes for smoothing and other operations described below, and preserve the relative volume of the ICH.  All image preprocessing and analysis are done in MNI space, described as template space, unless otherwise specified.
+This rigid registration does not ensure brains are the same size or that voxels match across subjects.  Having voxels registered across subjects is not necessary for our model, as we do not incorporate voxel-level spatial information into the model. Although brains with different shapes and sizes may map to different areas in the template space, the goals of this registration are to reorient the image, ensure isotropic voxel sizes for smoothing and other operations described below, and preserve the relative volume of the ICH.  All image preprocessing and analysis are done in MNI space, described as template space, unless otherwise specified.
 
 <<>>=
 xx = load("Reseg_Aggregate_data_cutoffs_Rigid.Rda")
@@ -556,7 +563,7 @@ We have also incorporated predictors that contrast the scan HU intensities with 
 $$
 z_{\text{template}}(v) = \frac{x(v) - M(v)}{S(v)}
 $$
-The image was then returned to the original space to align this predictor with the other predictors.  This predictor is similar to that used in \citet{gillebert_automated_2014}.
+The image was then returned to the original space to align this predictor with the other predictors.  This predictor is similar to that used in \citet{gillebert_automated_2014} and the authors have shown that this predictor can detect voxels outside of a standard range such as the hemorrhage. 
 
 
 %Although standardizing voxels compared to within-scan measurements can detect anomalous tissue, one powerful tool is to use a measure how different a voxel is compared to that voxel in a person from a non-stroke population.  We registered the brain-extracted image to the brain-extracted CT template using an affine transformation, followed by a non-linear transformation estimated using Symmetric Normalization (SyN) \citep{avants_symmetric_2008}.
@@ -687,6 +694,8 @@ check_ids = function(ids) {
 check_ids(man_fdf$id)
 check_ids(hu_df$id)
 check_ids(ivh$id)
+check_ids(slice_df$id)
+
 
 man_dice = left_join(
   all_dice %>% 
@@ -702,6 +711,11 @@ man_dice = left_join(
   man_dice,
   ivh,
   by = "id")
+man_dice = left_join(
+  man_dice,
+  slice_df,
+  by = "id")
+
 train_man = filter(man_dice, group %in% "Train") 
 man_dice = filter(man_dice, !group %in% "Train")
 man_dice$ich_cat = cut(man_dice$truevol, 
@@ -746,7 +760,7 @@ save(med_dice, file = "Median_Dice_Abstract.rda")
 
 \subsection{Voxel Selection Procedure}
 \label{sec:voxsel}
-We chose $\Sexpr{Nmods}$ scans from $\Sexpr{Nmods}$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data.  These scans were randomly selected.  These selected patients had a mean (SD) hemorrhage volume of $\Sexpr{round(mean(train_man$truevol), 1)}$ ($\Sexpr{round(sd(train_man$truevol), 1)}$), had an average HU intensity of $\Sexpr{round(mean(train_man$mean), 1)}$ HU and were scanned on the following scanners: \Sexpr{train.man.tab}.
+We chose $\Sexpr{Nmods}$ scans from $\Sexpr{Nmods}$ patients to perform exploratory data analysis, model fitting, and estimation of model cutoffs; these data will be referred to as the training data.  These scans were randomly selected.  These selected patients had a mean (SD) hemorrhage volume of $\Sexpr{round(mean(train_man$truevol), 1)}$ ($\Sexpr{round(sd(train_man$truevol), 1)}$) mL, had an average HU intensity of $\Sexpr{round(mean(train_man$mean), 1)}$ HU and were scanned on the following scanners: \Sexpr{train.man.tab}.
 We used the $\Sexpr{non_nmods}$ remaining scans as test data to evaluate the performance of the proposed approaches.
 %Of the \Sexpr{non_nmods} remaining scans, we split the data into $\Sexpr{groups["Validation"]}$ validation scans and  $\Sexpr{groups["Test"]}$ test scans.
 
@@ -956,11 +970,16 @@ sig = eg[ eg$adj < 0.05, , drop = FALSE]
 @
 
 \subsection{DSI by Scanner Manufacturer, Average HU, and Hemorrhage Size}
-In the following section, we will use the DSI from the random forest model.  In the $\Sexpr{non_nmods}$ test scans, the median DSI was $\Sexpr{vals["GE", "median"]}$ for patients scanned in a GE scanner, $\Sexpr{vals["Philips", "median"]}$ for Philips, $\Sexpr{vals["Toshiba", "median"]}$ for Toshiba, and $\Sexpr{vals["Siemens", "median"]}$for Siemens (Supplemental Figure~\ref{fig:dsi_man}).  The patient with a failed segmentation was scanned using a GE scanner.  The Kruskal-Wallis test indicated a difference in medians ($\chi^2(\Sexpr{kt$parameter}) = \Sexpr{round(kt$statistic, 1)}
+In the following section, we will use the DSI from the random forest model.  In the $\Sexpr{non_nmods}$ test scans, the median DSI was $\Sexpr{vals["GE", "median"]}$ for patients scanned in a GE scanner, $\Sexpr{vals["Philips", "median"]}$ for Philips, $\Sexpr{vals["Toshiba", "median"]}$ for Toshiba, and $\Sexpr{vals["Siemens", "median"]}$ for Siemens (Supplemental Figure~\ref{fig:dsi_man}).  The patient with a failed segmentation was scanned using a GE scanner.  The Kruskal-Wallis test indicated a difference in medians ($\chi^2(\Sexpr{kt$parameter}) = \Sexpr{round(kt$statistic, 1)}
 $, $p = \Sexpr{round(kt$p.value, 3)}$).  After Bonferroni correction, the difference of DSI of patients scanned with Siemens versus GE scanners was the only statistically significant comparison ($W = \Sexpr{round(sig$statistic, 1)}
 $, $p = \Sexpr{round(sig$adj, 3)}$, corrected).
 
-In Figure~\ref{fig:dsi_hu}, we see the effect of average HU over the hemorrage versus DSI.  We note the failed scan had a much lower average HU in the hemorrhage compared to the rest of the images (panel A).  Overall, however, above 50 HU, there does not seem to be a strong effect on the average HU and DSI (panel B).
+<<>>=
+failed_avg_hu = man_dice %>% filter(dice < 0.01) %>% select(mean)
+failed_avg_hu = round(failed_avg_hu, 1)
+@
+
+In Figure~\ref{fig:dsi_hu}, we see the effect of average HU over the hemorrhage versus DSI.  We note the failed scan had a much lower average HU (\Sexpr{failed_avg_hu} HU) in the hemorrhage compared to the rest of the images (panel A).  Overall, however, above 50 HU, there does not seem to be a strong effect on the average HU and DSI (panel B).
 
 
 \begin{figure}
@@ -970,6 +989,40 @@ In Figure~\ref{fig:dsi_hu}, we see the effect of average HU over the hemorrage v
 \caption{{\bf Dice Similarity Index (DSI) by Average Voxel HU in the Hemorrhage}. These values represent the mean Hounsfield Unit (HU) over all voxels in the manual hemorrhage mask for each patient in the test data set versus the DSI for that patient compared to automatic segmentation.  The blue line represents a locally-weighted regression smoother (loess).  We see that the case with the lowest DSI had a much lower average HU in the hemorrhage.  Overall, however, above 50 HU, there does not seem to be a strong effect on the average HU and DSI.}
 \label{fig:dsi_hu}
 \end{figure}
+
+<<varslice_comp>>=
+# Getting the median/mean/sd for each manufacturer
+ivals = man_dice %>% group_by(var_slice) %>% 
+  summarise(mean = mean(dice),
+            sd = sd(dice),
+            median = median(dice)) %>% 
+  as.data.frame
+rownames(ivals) = ivals$var_slice
+ivals$median = round(ivals$median, 2)
+
+# testing medians across manufacturers
+kt = kruskal.test(dice ~ var_slice, data = man_dice)
+eg = t(combn(unique(as.character(man_dice$var_slice)), 2))
+eg = data.frame(eg, stringsAsFactors = FALSE)
+colnames(eg) = c("Var1", "Var2")
+eg$p.value = eg$statistic = NA
+
+# Getting the combination of tests for wilcox
+if (kt$p.value < 0.05) {
+  ieg = 1 
+  for (ieg in seq(nrow(eg))) {
+    man1 = eg$Var1[ieg]
+    man2 = eg$Var2[ieg]
+    wt = wilcox.test(dice ~ ich_cat, 
+                     data = man_dice %>% filter(ich_cat %in% c(man1, man2)))
+    eg$p.value[ieg] = wt$p.value
+    eg$statistic[ieg] = wt$statistic
+  }
+}
+# adjusting p-values
+eg$adj = p.adjust(eg$p.value, method = "bonferroni")
+sig = eg[ eg$adj < 0.06, , drop = FALSE]
+@
 
 <<cat_tab>>=
 tab = table(man_dice$ich_cat)
@@ -1022,9 +1075,9 @@ We started by creating a rich set of predictors that are likely to capture the m
 
 The approach failed on a very small subset of the validation set ($N = \Sexpr{n_under_50}$ out of $\Sexpr{non_nmods}$ with DSI below $0.5$). Most discrepancies observed occur at the edges of the hemorrhage.  This ``edge effect'' may be due to the isotropic, non edge-preserving smoothing.  Anisotropic smoothing, as proposed by \citet{perona1994anisotropic}, may improve segmentation.
 
-As the obstructive intraventricular hemorrhage (IVH) requiring external ventricular drainage was in the exclusion criteria in MISTIE II \citep{mould_minimally_2013}, no cases with primary intraventricular hemorrhage were included.  The 3 cases with the largest overall volume had some considerable IVH extensions, the largest being around 20mL.  This leads to an overall understimation of the hemorrhage volume in our models.  We believe the model may perform reasonably well with patients with IVH, yet may require a separate model, but not necessarily subarachnoid hemorrhages (SAH), two other forms of hemorrhagic stroke.  
+Although we have shown good performance in patients with ICH, intraventricular hemorrhage (IVH) and subarachnoid hemorrhages (SAH) are two other forms of hemorrhagic stroke that may occur clinically.  As obstructive IVH requiring external ventricular drainage was in the exclusion criteria in MISTIE II \citep{mould_minimally_2013}, no cases with primary IVH were included.  The 3 cases with the largest overall volume had some considerable IVH extensions, the largest being around 20mL.  This leads to an overall underestimation of the hemorrhage volume in our models.  We believe the model may perform reasonably well with patients with IVH, yet may require a separate model, but not necessarily SAH.  
 
-Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, larger IVHs may cause larger deformations than seen in cases with ICH only, which may negatively affect any registration process. The process of mask erosion may considerably remove voxels from the SAH, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we can perform the same procedure and re-fit the model using additional cases of IVH and/or SAH.
+Intraventricular hemorrhages have similar HU ranges for large portions of the hemorrhage, but may have lower HU values of the hemorrhage which are less dense and surrounded by cerebrospinal fluid.  Moreover, cases with larger IVH volumes may cause larger deformations than seen in cases with ICH only, which may negatively affect any registration process. In contrast, for SAH, the process of mask erosion may considerably remove voxels from the hemorrhage, which occurs largely on the cortical surface.  This step is important to remove false positives, which may occur from partial volume effects with areas of the skull and voxels towards the cortical surface. If the methods for registration and erosion perform similarly to the cases with ICH, we can perform the same procedure and re-fit the model using additional cases of IVH and/or SAH.
 
 <<loncaric>>=
 library(reshape2)
@@ -1050,7 +1103,7 @@ Thus, we use non-linear registration, but do not rely on a highly accurate image
 
 Another potential concern could be that training data consisted of only $\Sexpr{Nmods}$ patient scans and using only $\Sexpr{nsub_voxels}$ randomly sub-sampled voxels that passed the voxel selection procedure from these scans.  Remarkably, the models have shown to have high out-of-sample accuracy.  The training and test sets were kept unchanged to avoid overfitting the models to the test set.
 %If a cross-validation approach was done across the entire set of scans,  the models must also be combined in some way to give a final prediction.
-Validation of the method on additional data would be useful, while rater studies may provide more insight into the clinical differences between various segmentation approaches.  However, we would like to note that our data was highly heterogeneous and contains test scans from multiple sites and scanners. Moreover, the location and size of hemorrhages is also highly heterogeneous.  Thus, we expect our method to have a good out-of-sample accuracy in a heterogeneous population of ICH CT images.
+Validation of the method on additional data would be useful, while rater studies may provide more insight into the clinical differences between various segmentation approaches.  However, we would like to note that our data was highly heterogeneous and contains test scans from multiple sites and scanners. Moreover, the location and size of hemorrhages is also highly heterogeneous.  Thus, we expect our method to have a good out-of-sample accuracy in a heterogeneous population of CT images with ICH.
 
 The proposed approach provides estimated binary hemorrhage masks, which can be used to automatically estimate quantitative measures of hemorrhage location \citep{muschelli2015quantitative}.  Our results would also allow automated shape analysis, which require a binary mask.  The subject-specific hemorrhage masks can be used for other voxel-based analyses that could yield novel insights into the relationship between hemorrhage characteristics and patient outcomes.
 
